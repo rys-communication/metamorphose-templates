@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soins & prestations à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="Découvrez toutes les prestations de [Prénom Nom] à [Ville] : [Soin 1], [Soin 2], [Soin 3]. Tarifs, durées et réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   à partir du Bloc 4 du dossier client.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --terra:  #C4735A;
+  --terra2: #E0A08B;
+  --petal:  #F5E8E0;
+  --ivory:  #FBF8F5;
+  --sand:   #EDE4DA;
+  --sage:   #A8A898;
+  --sage-l: #D6D3C8;
+  --ink:    #2E2420;
+  --muted:  #7A6E68;
+  --line:   rgba(168,168,152,.2);
+
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Jost', sans-serif;
+  --max:     1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  padding-bottom: 72px; overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── STICKY ─────────────────────────────────────────────── */
+.sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--ink); display: flex; align-items: center;
+  justify-content: space-between; padding: 13px 40px; gap: 16px;
+}
+.sticky-txt { color: rgba(251,248,245,.6); font-size: .8rem; line-height: 1.5; }
+.sticky-txt strong { display: block; color: var(--petal); font-weight: 400; font-size: .86rem; }
+.sticky-btns { display: flex; gap: 10px; flex-shrink: 0; margin-left: auto; }
+.sticky-cta {
+  background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 11px 28px; flex-shrink: 0;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.sticky-cta:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+.sticky-gift {
+  background: transparent; color: var(--sand);
+  font-size: .72rem; font-weight: 400; letter-spacing: .14em;
+  text-transform: uppercase; padding: 11px 20px; flex-shrink: 0;
+  border: 1px solid rgba(237,228,218,.3); transition: all .3s;
+}
+.sticky-gift:hover { border-color: var(--sand); }
+@media(max-width:600px){
+  .sticky { padding: 12px 16px; gap: 8px; justify-content: center; }
+  .sticky-txt { display: none; }
+  .sticky-btns { margin-left: 0; gap: 8px; }
+  .sticky-cta, .sticky-gift { flex: 1; text-align: center; }
+}
+
+/* ─── HERO HUB ────────────────────────────────────────────── */
+.hero-hub {
+  background: var(--ink); padding: 96px 8% 80px;
+  position: relative; overflow: hidden;
+}
+.hero-hub::before {
+  content: '';
+  position: absolute; top: -140px; right: -140px;
+  width: 560px; height: 560px;
+  border: 1px solid rgba(196,115,90,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.hero-hub::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(196,115,90,.07); border-radius: 50%;
+  pointer-events: none;
+}
+.hero-hub-inner {
+  max-width: var(--max); margin: 0 auto;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 64px; align-items: end;
+}
+.hero-hub-eyebrow {
+  font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--terra2);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+}
+.hero-hub-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--terra2); }
+.hero-hub-h1 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  line-height: 1.1; letter-spacing: -.01em;
+  color: var(--ivory); margin-bottom: 24px;
+}
+.hero-hub-h1 em { font-style: italic; color: var(--terra2); }
+.hero-hub-intro {
+  font-size: .92rem; color: rgba(251,248,245,.6);
+  line-height: 1.9; max-width: 540px;
+}
+/* Encart chiffres clés */
+.hero-hub-aside {
+  background: rgba(251,248,245,.05);
+  border: 1px solid rgba(251,248,245,.1);
+  padding: 28px 24px; display: flex; flex-direction: column; gap: 0;
+}
+.hero-hub-stat {
+  padding: 13px 0; border-bottom: 1px solid rgba(251,248,245,.08);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+}
+.hero-hub-stat:last-child { border-bottom: none; }
+.hero-hub-stat-label {
+  font-size: .6rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(251,248,245,.45);
+}
+.hero-hub-stat-val {
+  font-family: var(--f-serif); font-size: 1rem;
+  color: var(--ivory); text-align: right;
+}
+.hero-hub-stat-val em { font-style: normal; color: var(--terra2); }
+@media(max-width:860px){
+  .hero-hub-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-hub-aside { display: none; }
+}
+
+/* ─── BANDEAU TICKER ──────────────────────────────────────── */
+.ticker {
+  background: var(--terra); overflow: hidden;
+  padding: 14px 0; display: flex;
+}
+.ticker-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: ticker 32s linear infinite;
+}
+.ticker-item {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: 1rem; color: var(--ivory); padding: 0 44px; opacity: .85;
+}
+.ticker-dot { color: rgba(251,248,245,.4); padding: 0 4px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── SECTIONS COMMUNES ───────────────────────────────────── */
+.section { padding: 80px 8%; }
+.inner { max-width: var(--max); margin: 0 auto; }
+
+.label {
+  display: block; font-size: .62rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.18; letter-spacing: -.01em; color: var(--ink);
+}
+.h2 em { font-style: italic; color: var(--terra); }
+.rule { width: 36px; height: 1px; background: var(--terra); margin: 18px 0 36px; }
+.p { font-size: .92rem; color: var(--muted); line-height: 2; margin-bottom: 14px; }
+
+/* ─── FILTRES ─────────────────────────────────────────────── */
+.filtres-wrap {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 48px;
+}
+.filtre-btn {
+  font-size: .68rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; padding: 9px 20px; cursor: pointer;
+  border: 1px solid var(--sage-l); color: var(--muted);
+  background: transparent; transition: all .25s;
+  font-family: var(--f-sans);
+}
+.filtre-btn:hover { border-color: var(--terra2); color: var(--terra); }
+.filtre-btn.actif {
+  background: var(--terra); color: var(--ivory);
+  border-color: var(--terra);
+}
+
+/* ─── GRILLE DE SOINS ─────────────────────────────────────── */
+.soins-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.soin-card {
+  background: var(--sand); padding: 36px 28px;
+  display: flex; flex-direction: column; gap: 10px;
+  border-top: 2px solid transparent;
+  transition: border-color .3s, background .3s;
+  text-decoration: none;
+  /* data-cat pour le filtre JS */
+}
+.soin-card:hover { border-top-color: var(--terra); background: var(--petal); }
+.soin-card.masque { display: none; }
+
+.soin-card-cat {
+  font-size: .58rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--terra);
+}
+.soin-card-num {
+  font-family: var(--f-serif); font-size: 1.9rem; font-weight: 400;
+  color: var(--terra); opacity: .22; line-height: 1;
+}
+.soin-card-name {
+  font-family: var(--f-serif); font-size: 1.15rem; font-weight: 400;
+  color: var(--ink); line-height: 1.25; flex: 1;
+}
+.soin-card-sep {
+  width: 28px; height: 1px; background: var(--line);
+}
+.soin-card-meta {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.soin-meta-item span {
+  display: block; font-size: .56rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 3px;
+}
+.soin-meta-item strong {
+  font-size: .84rem; color: var(--ink); font-weight: 400;
+}
+.soin-card-cta {
+  font-size: .7rem; color: var(--terra); font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+  transition: gap .25s; margin-top: 4px;
+}
+.soin-card:hover .soin-card-cta { gap: 14px; }
+.soin-card-cta::after { content: '→'; }
+
+/* Message "aucun résultat" */
+.no-result {
+  display: none; grid-column: span 3;
+  text-align: center; padding: 48px 24px;
+  font-size: .88rem; color: var(--sage);
+}
+
+@media(max-width:860px){ .soins-grid { grid-template-columns: 1fr 1fr; } .no-result { grid-column: span 2; } }
+@media(max-width:540px){ .soins-grid { grid-template-columns: 1fr; } .no-result { grid-column: span 1; } }
+
+/* ─── ENCART APPROCHE ─────────────────────────────────────── */
+.approche-encart {
+  background: var(--ink); padding: 56px 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  margin-top: 64px;
+}
+.approche-encart-quote {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+  line-height: 1.5; color: var(--ivory);
+  border-left: 2px solid var(--terra);
+  padding-left: 28px;
+}
+.approche-encart-quote em { color: var(--terra2); font-style: normal; }
+.approche-encart-txt {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.approche-encart-p {
+  font-size: .9rem; color: rgba(251,248,245,.65); line-height: 1.9;
+}
+.approche-encart-btn {
+  display: inline-block; width: fit-content;
+  background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 12px 28px;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.approche-encart-btn:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+@media(max-width:760px){
+  .approche-encart { grid-template-columns: 1fr; gap: 36px; padding: 40px 28px; }
+}
+
+/* ─── ENCART PRATICIENNE ──────────────────────────────────── */
+.prat-encart {
+  background: var(--petal); padding: 56px 8%;
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 40px; align-items: center;
+  max-width: 100%;
+}
+.prat-encart-img { width: 180px; height: 180px; object-fit: cover; object-position: top; }
+.prat-encart-img-placeholder {
+  width: 180px; height: 180px; background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 12px; flex-shrink: 0;
+}
+.prat-encart-content { display: flex; flex-direction: column; gap: 10px; }
+.prat-encart-name {
+  font-family: var(--f-serif); font-size: 1.2rem;
+  color: var(--ink); font-weight: 400;
+}
+.prat-encart-name em { font-style: italic; color: var(--terra); }
+.prat-encart-desc {
+  font-size: .88rem; color: var(--muted); line-height: 1.9; max-width: 600px;
+}
+.prat-encart-link {
+  font-size: .78rem; color: var(--terra); font-weight: 500;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+@media(max-width:600px){
+  .prat-encart { grid-template-columns: 1fr; }
+  .prat-encart-img, .prat-encart-img-placeholder { width: 120px; height: 120px; }
+}
+
+/* ─── SECTION AVIS ────────────────────────────────────────── */
+.avis-section { background: var(--sand); text-align: center; }
+.avis-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 40px; text-align: left;
+}
+.avis-card {
+  background: var(--ivory); padding: 32px 24px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.avis-stars { display: flex; gap: 3px; }
+.avis-star {
+  width: 10px; height: 10px; background: var(--terra);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.avis-txt {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: .88rem; color: var(--muted); line-height: 1.85; flex: 1;
+}
+.avis-author { font-size: .72rem; color: var(--terra); font-weight: 500; letter-spacing: .06em; }
+@media(max-width:760px){ .avis-grid { grid-template-columns: 1fr; gap: 2px; } }
+
+/* ─── CTA FINAL ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--terra); padding: 120px 8%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -120px; left: -120px;
+  width: 480px; height: 480px;
+  border: 1px solid rgba(251,248,245,.12); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute; bottom: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(251,248,245,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  color: var(--ivory); line-height: 1.12; margin-bottom: 22px;
+  letter-spacing: -.01em;
+}
+.cta-h2 em { font-style: italic; color: rgba(251,248,245,.75); }
+.cta-sub { font-size: .9rem; color: rgba(251,248,245,.7); line-height: 1.9; margin-bottom: 44px; }
+.cta-btn {
+  display: inline-block; background: var(--ivory); color: var(--terra);
+  font-size: .76rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; padding: 17px 52px; transition: all .3s;
+}
+.cta-btn:hover { background: var(--ink); color: var(--ivory); }
+.cta-contact { margin-top: 22px; font-size: .8rem; color: rgba(251,248,245,.55); }
+.cta-contact a { color: rgba(251,248,245,.75); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ────────────────────────────────────────────── */
+.maillage-section { background: var(--ivory); }
+.maillage-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.maillage-pill {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--sage-l); color: var(--muted);
+  font-size: .8rem; letter-spacing: .06em; transition: all .25s;
+}
+.maillage-pill:hover { border-color: var(--terra); color: var(--terra); background: var(--petal); }
+
+/* ─── REVEAL ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY
+     ============================================================ -->
+<div class="sticky">
+  <div class="sticky-txt">
+    <strong>[Prénom Nom] — [Titre professionnel]</strong>
+    [Ville] · Réservation en ligne 24h/24
+  </div>
+  <div class="sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="sticky-gift" target="_blank" rel="noopener">Offrir</a>
+    <a href="[LIEN_RDV]" class="sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     HERO HUB
+     ============================================================ -->
+<section class="hero-hub">
+  <div class="hero-hub-inner">
+    <div>
+      <p class="hero-hub-eyebrow">[Prénom Nom] · [Ville]</p>
+      <h1 class="hero-hub-h1 s1-custom">
+        Toutes les prestations<br>
+        <em>à [Ville]</em>
+      </h1>
+      <p class="hero-hub-intro">
+        [Prénom Nom], [titre professionnel] à [Ville], propose [nombre] soins
+        pensés pour [bénéfice principal depuis Bloc 0 ADN].
+        Chaque séance est sur-mesure, adaptée à votre état du moment.
+      </p>
+    </div>
+    <div class="hero-hub-aside">
+      <div class="hero-hub-stat">
+        <span class="hero-hub-stat-label">Prestations</span>
+        <span class="hero-hub-stat-val"><em>[X]</em> soins</span>
+      </div>
+      <div class="hero-hub-stat">
+        <span class="hero-hub-stat-label">Tarifs</span>
+        <span class="hero-hub-stat-val">À partir de <em>[X]€</em></span>
+      </div>
+      <div class="hero-hub-stat">
+        <span class="hero-hub-stat-label">Avis Google</span>
+        <span class="hero-hub-stat-val"><em>[X.X]</em> · [X] avis</span>
+      </div>
+      <div class="hero-hub-stat">
+        <span class="hero-hub-stat-label">Réservation</span>
+        <span class="hero-hub-stat-val">En ligne 24h/24</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BANDEAU TICKER
+     ============================================================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 3]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 4]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 5]</span><span class="ticker-dot">·</span>
+    <!-- Dupliqué pour boucle continue -->
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 3]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 4]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 5]</span><span class="ticker-dot">·</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     GRILLE DES SOINS + FILTRES
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);">
+  <div class="inner">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:12px;">
+      <div>
+        <span class="label">Les soins</span>
+        <h2 class="h2">[Nb] prestations disponibles<br><em>à [Ville]</em></h2>
+        <div class="rule" style="margin-bottom:0;"></div>
+      </div>
+      <p class="p" style="padding-bottom:4px;">
+        [Depuis Bloc 0 ADN — phrase courte sur l'approche globale.
+        Ce qui relie tous les soins entre eux.]
+      </p>
+    </div>
+
+    <!-- ── FILTRES PAR CATÉGORIE ──
+         data-filtre doit correspondre exactement aux data-cat des cartes
+         "tout" affiche toutes les cartes
+         → Adapter les catégories selon les soins réels de la cliente
+    ─────────────────────────────── -->
+    <div class="filtres-wrap" role="group" aria-label="Filtrer par catégorie">
+      <button class="filtre-btn actif" data-filtre="tout">Tous les soins</button>
+      <button class="filtre-btn" data-filtre="[cat-1-slug]">[Catégorie 1 — ex : Corps]</button>
+      <button class="filtre-btn" data-filtre="[cat-2-slug]">[Catégorie 2 — ex : Visage]</button>
+      <button class="filtre-btn" data-filtre="[cat-3-slug]">[Catégorie 3 — ex : Émotionnel]</button>
+      <button class="filtre-btn" data-filtre="[cat-4-slug]">[Catégorie 4 — ex : À distance]</button>
+      <!-- Ajouter ou supprimer des boutons selon les vraies catégories -->
+    </div>
+
+    <!-- ── GRILLE DES SOINS ──
+         Chaque .soin-card reçoit :
+         - data-cat="[cat-slug]" → doit correspondre au data-filtre du bouton
+         - href="/[slug-prestation]-[ville]" → URL de la page prestation
+         → Dupliquer autant de .soin-card que de prestations (Bloc 5 dossier)
+         → Ne jamais inventer une prestation non listée dans le dossier
+    ──────────────────────────── -->
+    <div class="soins-grid">
+
+      <a href="/[slug-soin-1]-[ville]" class="soin-card" data-cat="[cat-1-slug]">
+        <div class="soin-card-cat">[Catégorie 1]</div>
+        <div class="soin-card-num">01</div>
+        <div class="soin-card-name">[Nom du soin 1]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <a href="/[slug-soin-2]-[ville]" class="soin-card" data-cat="[cat-1-slug]">
+        <div class="soin-card-cat">[Catégorie 1]</div>
+        <div class="soin-card-num">02</div>
+        <div class="soin-card-name">[Nom du soin 2]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <a href="/[slug-soin-3]-[ville]" class="soin-card" data-cat="[cat-2-slug]">
+        <div class="soin-card-cat">[Catégorie 2]</div>
+        <div class="soin-card-num">03</div>
+        <div class="soin-card-name">[Nom du soin 3]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <a href="/[slug-soin-4]-[ville]" class="soin-card" data-cat="[cat-2-slug]">
+        <div class="soin-card-cat">[Catégorie 2]</div>
+        <div class="soin-card-num">04</div>
+        <div class="soin-card-name">[Nom du soin 4]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <a href="/[slug-soin-5]-[ville]" class="soin-card" data-cat="[cat-3-slug]">
+        <div class="soin-card-cat">[Catégorie 3]</div>
+        <div class="soin-card-num">05</div>
+        <div class="soin-card-name">[Nom du soin 5]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <a href="/[slug-soin-6]-[ville]" class="soin-card" data-cat="[cat-3-slug]">
+        <div class="soin-card-cat">[Catégorie 3]</div>
+        <div class="soin-card-num">06</div>
+        <div class="soin-card-name">[Nom du soin 6]</div>
+        <div class="soin-card-sep"></div>
+        <div class="soin-card-meta">
+          <div class="soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="soin-meta-item"><span>Lieu</span><strong>[Cabinet / Visio]</strong></div>
+        </div>
+        <span class="soin-card-cta">Découvrir</span>
+      </a>
+
+      <!-- Message si aucun résultat après filtrage -->
+      <div class="no-result">Aucune prestation dans cette catégorie.</div>
+
+    </div><!-- /soins-grid -->
+
+    <!-- Encart approche -->
+    <div class="approche-encart reveal">
+      <blockquote class="approche-encart-quote">
+        « [Citation depuis Bloc 0 ADN — phrase qui résume l'approche.
+        Mot pour mot, entre guillemets.] »
+        <cite style="display:block;margin-top:16px;font-style:normal;font-size:.7rem;
+          font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+          color:rgba(251,248,245,.5);">— [Prénom Nom] · [Titre]</cite>
+      </blockquote>
+      <div class="approche-encart-txt">
+        <span class="label" style="color:var(--terra2);">Mon approche</span>
+        <p class="approche-encart-p">
+          [Depuis Bloc 0 "Ce que tu fais différemment" — 2-3 phrases dans ses mots.
+          Pourquoi ses soins ne sont pas des soins comme les autres.]
+        </p>
+        <a href="/[slug-a-propos]" class="approche-encart-btn">
+          En savoir plus sur mon approche
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ENCART PRATICIENNE
+     → Remplacer .prat-encart-img-placeholder par :
+       <img src="URL" alt="..." class="prat-encart-img" loading="lazy">
+     ============================================================ -->
+<section style="background:var(--petal);padding:0;" class="reveal">
+  <div class="prat-encart">
+    <div class="prat-encart-img-placeholder">[URL_PORTRAIT]</div>
+    <div class="prat-encart-content">
+      <span class="label">Votre praticienne</span>
+      <div class="prat-encart-name">
+        [Prénom Nom] — <em>[Titre professionnel]</em>
+      </div>
+      <p class="prat-encart-desc">
+        [Depuis Bloc 9 bio courte + Bloc 0 différenciation.
+        2-3 phrases dans les mots de la praticienne.]
+      </p>
+      <a href="/[slug-a-propos]" class="prat-encart-link">
+        Découvrir le parcours de [Prénom] →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AVIS CLIENTS
+     → Option A : décommenter Elfsight quand ID disponible
+     → Option B : 3 avis manuels
+     ============================================================ -->
+<section class="section avis-section reveal">
+  <div class="inner">
+    <span class="label label-center" style="display:block;text-align:center;">Témoignages</span>
+    <h2 class="h2" style="text-align:center;">Ce que disent<br><em>les clientes</em></h2>
+    <div class="rule rule-center" style="margin:18px auto 0;"></div>
+
+    <!-- Option A -->
+    <!-- <script src="https://elfsightcdn.com/platform.js" async></script> -->
+    <!-- <div class="elfsight-app-[ID]" data-elfsight-app-lazy></div> -->
+
+    <!-- Option B -->
+    <div class="avis-grid">
+      <div class="avis-card">
+        <div class="avis-stars"><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div></div>
+        <p class="avis-txt">« [Témoignage 1 depuis Bloc 11 — texte exact] »</p>
+        <span class="avis-author">[Prénom N.] — Avis Google vérifié</span>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars"><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div></div>
+        <p class="avis-txt">« [Témoignage 2 depuis Bloc 11] »</p>
+        <span class="avis-author">[Prénom N.] — Avis Google vérifié</span>
+      </div>
+      <div class="avis-card">
+        <div class="avis-stars"><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div><div class="avis-star"></div></div>
+        <p class="avis-txt">« [Témoignage 3 depuis Bloc 11] »</p>
+        <span class="avis-author">[Prénom N.] — Avis Google vérifié</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px;">
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener"
+         style="display:inline-block;background:transparent;color:var(--ink);
+         font-size:.74rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;
+         padding:15px 28px;border:1px solid var(--sage-l);transition:all .3s;">
+        Voir tous les avis Google
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <span class="label label-light label-center" style="display:block;color:rgba(251,248,245,.65);">[Prénom Nom] · [Ville]</span>
+    <h2 class="cta-h2">
+      [Accroche — depuis Bloc 0 ADN]<br>
+      <em>[suite en italique]</em>
+    </h2>
+    <p class="cta-sub">
+      [Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous
+    </p>
+    <a href="[LIEN_RDV]" class="cta-btn" target="_blank" rel="noopener">Réserver ma séance</a>
+    <p class="cta-contact">
+      Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAILLAGE — villes et soins
+     ============================================================ -->
+<section class="section maillage-section reveal">
+  <div class="inner">
+    <span class="label">Rayonnement</span>
+    <h2 class="h2" style="margin-bottom:8px;">Prestations disponibles<br><em>dans votre ville</em></h2>
+    <div style="width:36px;height:1px;background:var(--terra);margin:18px 0 32px;"></div>
+    <div class="maillage-grid">
+      <a href="/[slug-soin-1]-[ville]"  class="maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]"  class="maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]"  class="maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-1]-[ville2]" class="maillage-pill">[Soin 1] à [Ville 2]</a>
+      <a href="/[slug-soin-2]-[ville2]" class="maillage-pill">[Soin 2] à [Ville 2]</a>
+      <a href="/[slug-soin-1]-[ville3]" class="maillage-pill">[Soin 1] à [Ville 3]</a>
+      <a href="/[slug-faq]"             class="maillage-pill">Questions fréquentes</a>
+      <a href="/[slug-a-propos]"        class="maillage-pill">À propos de [Prénom]</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Soins et prestations de [Prénom Nom] à [Ville]",
+    "description": "Liste complète des soins proposés par [Prénom Nom], [titre professionnel] à [Ville].",
+    "url": "https://[votre-domaine].fr/[slug-soins]",
+    "numberOfItems": "[Nb soins]",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 1] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-1]-[ville]",
+          "description": "[Description courte soin 1 depuis Bloc 5]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 2] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-2]-[ville]",
+          "description": "[Description courte soin 2]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 3] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-3]-[ville]",
+          "description": "[Description courte soin 3]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 4] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-4]-[ville]",
+          "description": "[Description courte soin 4]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 5] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-5]-[ville]",
+          "description": "[Description courte soin 5]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Service",
+          "name": "[Nom soin 6] à [Ville]",
+          "url": "https://[votre-domaine].fr/[slug-soin-6]-[ville]",
+          "description": "[Description courte soin 6]",
+          "offers": { "@type": "Offer", "price": "[Tarif]", "priceCurrency": "EUR" }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Titre professionnel]",
+    "description": "[Description 150-200 caractères — soins, approche, zone géographique.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "email": "[email]",
+    "priceRange": "€€",
+    "image": "[URL_PHOTO_PRATICIENNE]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Soins et prestations à [Ville]",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "[Soin 1] à [Ville]", "url": "https://[votre-domaine].fr/[slug-soin-1]-[ville]"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "[Soin 2] à [Ville]", "url": "https://[votre-domaine].fr/[slug-soin-2]-[ville]"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "[Soin 3] à [Ville]", "url": "https://[votre-domaine].fr/[slug-soin-3]-[ville]"}}
+      ]
+    },
+    "sameAs": ["[URL Google Maps]", "[URL Instagram]", "[URL Facebook]"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://[votre-domaine].fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Soins & prestations", "item": "https://[votre-domaine].fr/[slug-soins]"}
+    ]
+  }
+]
+</script>
+
+
+<script>
+/* Reveal au scroll */
+(function(){
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+/* Filtres par catégorie */
+(function(){
+  var btns  = document.querySelectorAll('.filtre-btn');
+  var cards = document.querySelectorAll('.soin-card');
+  var noRes = document.querySelector('.no-result');
+
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var filtre = btn.getAttribute('data-filtre');
+
+      /* Mise à jour des boutons */
+      btns.forEach(function(b){ b.classList.remove('actif'); });
+      btn.classList.add('actif');
+
+      /* Affichage / masquage des cartes */
+      var visible = 0;
+      cards.forEach(function(card){
+        if(filtre === 'tout' || card.getAttribute('data-cat') === filtre){
+          card.classList.remove('masque');
+          visible++;
+        } else {
+          card.classList.add('masque');
+        }
+      });
+
+      /* Message si aucun résultat */
+      if(noRes) noRes.style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
