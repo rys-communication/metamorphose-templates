@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — [Titre professionnel] à [Ville]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3]. [Accroche courte — bénéfice principal]. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --c-main:  #3d5a47;
+  --c-mid:   #7a9e85;
+  --c-soft:  #b5cdb9;
+  --c-lin:   #e8dfd0;
+  --c-cream: #f4efe6;
+  --c-ivory: #faf7f2;
+  --f-title: 'Cormorant Garamond', Georgia, serif;
+  --f-body:  'Nunito', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body); color: #1e2e22;
+  line-height: 1.65; padding-bottom: 70px;
+  background: var(--c-ivory); overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--c-main); text-decoration: none; }
+
+/* ─── STICKY BAR ──────────────────────────────────────────── */
+.s2-sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--c-main); color: #fff; padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: var(--f-body); font-size: .82rem;
+}
+.s2-sticky-txt { flex: 1; min-width: 0; font-weight: 300; }
+.s2-sticky-txt strong { font-weight: 500; letter-spacing: .02em; }
+.s2-sticky-btn {
+  background: var(--c-mid); color: #fff; padding: 10px 22px;
+  font-size: .75rem; font-weight: 400; text-decoration: none;
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--f-body); flex-shrink: 0; border-radius: 40px;
+  border: 1px solid var(--c-mid); transition: all .3s;
+}
+.s2-sticky-btn:hover { background: transparent; color: var(--c-mid); }
+.s2-sticky-btn-ghost {
+  background: transparent; color: rgba(255,255,255,.75); padding: 10px 18px;
+  font-size: .75rem; font-weight: 400; text-decoration: none;
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--f-body); flex-shrink: 0; border-radius: 40px;
+  border: 1px solid rgba(255,255,255,.3); transition: all .3s;
+}
+.s2-sticky-btn-ghost:hover { border-color: rgba(255,255,255,.7); color: #fff; }
+@media(max-width:768px){
+  .s2-sticky { justify-content: center; }
+  .s2-sticky-txt { display: none; }
+  .s2-sticky-btn-ghost, .s2-sticky-btn { flex: 1; text-align: center; }
+}
+
+/* ─── HERO PLEIN ÉCRAN ────────────────────────────────────── */
+.s2-hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: #0d1a11;
+}
+.s2-hero-bg {
+  position: absolute; inset: -20% 0;
+  background-size: cover; background-position: center top;
+  opacity: .5; will-change: transform;
+}
+.s2-hero-content {
+  position: relative; z-index: 2;
+  padding: 120px 12%; max-width: 100%;
+  text-align: center; width: 100%;
+}
+.s2-hero-tag {
+  display: inline-block; border: 1px solid rgba(255,255,255,.5); color: #fff;
+  font-size: .7rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  padding: 7px 20px; border-radius: 40px; margin-bottom: 28px; font-family: var(--f-body);
+}
+.s2-hero h1 {
+  font-family: var(--f-title); font-size: clamp(2.8rem,6vw,5.2rem);
+  font-weight: 300; color: #fff; line-height: 1.08; margin-bottom: 24px;
+  letter-spacing: -.01em;
+}
+.s2-hero h1 em { font-style: italic; color: var(--c-lin); }
+.s2-hero-sub {
+  font-size: .88rem; color: rgba(255,255,255,.6);
+  letter-spacing: .16em; text-transform: uppercase;
+  margin-bottom: 32px; font-family: var(--f-body);
+}
+.s2-hero-intro {
+  font-size: .96rem; color: rgba(255,255,255,.72); font-weight: 300;
+  line-height: 1.9; max-width: 540px; margin: 0 auto 44px;
+  letter-spacing: .01em;
+}
+/* Pastilles réassurance */
+.s2-hero-pills {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 44px;
+}
+.s2-hero-pill {
+  display: inline-block; border: 1px solid rgba(255,255,255,.25); color: rgba(255,255,255,.7);
+  font-size: .7rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+  padding: 7px 18px; border-radius: 40px; font-family: var(--f-body);
+}
+.s2-hero-pill strong { color: #fff; font-weight: 500; }
+.s2-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+@media(max-width:768px){
+  .s2-hero { min-height: 80vh; }
+  .s2-hero-content { padding: 40px 6% 100px; }
+  .s2-hero h1 { font-size: clamp(2.4rem,9vw,3.2rem); }
+  .s2-hero-intro { display: none; }
+  .s2-hero-btns { flex-direction: column; align-items: center; }
+}
+
+/* ─── SECTIONS EMPILÉES ───────────────────────────────────── */
+.s2-s0  { padding: 80px 8% 100px;  background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 1;  text-align: center; }
+.s2-s1  { padding: 100px 8% 120px; background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 2;  text-align: center; }
+.s2-s2  { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 3;  text-align: center; }
+.s2-s3  { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 4;  text-align: center; color: var(--c-ivory); }
+.s2-s4  { padding: 100px 8% 120px; background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 5;  text-align: center; }
+.s2-s5  { padding: 100px 8% 120px; background: var(--c-lin);   border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 6;  text-align: center; }
+.s2-s6  { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 7;  text-align: center; }
+.s2-s7  { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 8;  text-align: center; color: var(--c-ivory); }
+.s2-s8  { padding: 80px 8% 100px;  background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 9;  text-align: center; }
+
+/* ─── TYPO COMMUNE ────────────────────────────────────────── */
+.s2-label {
+  font-size: .68rem; font-weight: 400; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--c-mid);
+  margin-bottom: 16px; display: block;
+}
+.s2-label-light { color: rgba(181,205,185,.9); }
+.s2-h2 {
+  font-family: var(--f-title); font-size: clamp(1.8rem,3.5vw,2.8rem);
+  font-weight: 300; line-height: 1.2; margin-bottom: 20px;
+  letter-spacing: -.01em; color: var(--c-main);
+}
+.s2-h2 em { font-style: italic; color: var(--c-mid); }
+.s2-h2-light { color: var(--c-ivory); }
+.s2-h2-light em { color: var(--c-lin); }
+.s2-p {
+  font-size: .95rem; font-weight: 300; line-height: 1.9;
+  color: #2d4033; margin-bottom: 16px; letter-spacing: .01em;
+}
+.s2-p-light { color: rgba(250,247,242,.78); }
+.s2-p strong { color: var(--c-main); font-weight: 500; }
+.s2-divider { width: 40px; height: 1px; background: var(--c-mid); margin: 0 auto 32px; }
+
+/* ─── BOUTONS PILLS ───────────────────────────────────────── */
+.s2-btn-outline {
+  display: inline-block; border: 1px solid #fff; color: #fff;
+  font-size: .75rem; font-weight: 400; letter-spacing: .15em; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px; transition: all .3s;
+  background: transparent; font-family: var(--f-body);
+}
+.s2-btn-outline:hover { background: #fff; color: var(--c-main); }
+.s2-btn-dark {
+  display: inline-block; border: 1px solid var(--c-main); color: var(--c-main);
+  font-size: .75rem; font-weight: 400; letter-spacing: .15em; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px; transition: all .3s;
+  background: transparent; font-family: var(--f-body);
+}
+.s2-btn-dark:hover { background: var(--c-main); color: #fff; }
+.s2-btn-sage {
+  display: inline-block; border: 1px solid var(--c-mid); background: var(--c-mid);
+  color: #fff; font-size: .75rem; font-weight: 400; letter-spacing: .15em;
+  text-transform: uppercase; padding: 14px 36px; border-radius: 40px;
+  transition: all .3s; font-family: var(--f-body);
+}
+.s2-btn-sage:hover { background: transparent; color: var(--c-mid); }
+.s2-btn-outline-light {
+  display: inline-block; border: 1px solid rgba(250,247,242,.5); color: var(--c-ivory);
+  font-size: .75rem; font-weight: 400; letter-spacing: .15em; text-transform: uppercase;
+  padding: 14px 36px; border-radius: 40px; transition: all .3s;
+  background: transparent; font-family: var(--f-body);
+}
+.s2-btn-outline-light:hover { background: var(--c-ivory); color: var(--c-main); }
+
+/* ─── S0 — ACCROCHE + VALEURS ─────────────────────────────── */
+.s2-accroche-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; text-align: left;
+  max-width: 1100px; margin: 0 auto;
+}
+.s2-accroche-quote {
+  font-family: var(--f-title); font-style: italic; font-weight: 300;
+  font-size: clamp(1.4rem,2.5vw,2rem);
+  line-height: 1.5; color: var(--c-main);
+  border-left: 2px solid var(--c-soft);
+  padding-left: 28px; margin-bottom: 24px;
+}
+.s2-accroche-quote em { font-style: normal; color: var(--c-mid); }
+.s2-accroche-cite {
+  font-size: .68rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--c-mid); opacity: .7;
+}
+.s2-valeurs-pills {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+}
+.s2-valeur-pill {
+  display: inline-block; padding: 8px 18px;
+  border: 1px solid var(--c-soft); color: var(--c-main);
+  font-size: .72rem; font-weight: 400; letter-spacing: .1em;
+  text-transform: uppercase; border-radius: 40px;
+  font-family: var(--f-body); background: rgba(181,205,185,.1);
+}
+@media(max-width:768px){ .s2-accroche-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ─── S1 — SOINS (grille 3 cartes) ───────────────────────── */
+.s2-soins-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: end; max-width: 1100px;
+  margin: 0 auto 48px; text-align: left;
+}
+.s2-soins-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 1100px; margin: 0 auto;
+}
+.s2-soin-card {
+  background: #fff; border-radius: 32px; padding: 40px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: 0 4px 32px rgba(61,90,71,.07);
+  border-bottom: 3px solid transparent;
+  transition: transform .35s, box-shadow .35s, border-color .3s;
+  text-decoration: none; color: inherit;
+}
+.s2-soin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(61,90,71,.13);
+  border-bottom-color: var(--c-mid);
+}
+.s2-soin-num {
+  font-family: var(--f-title); font-size: 2.2rem; font-weight: 300;
+  color: var(--c-mid); opacity: .3; line-height: 1;
+}
+.s2-soin-name {
+  font-family: var(--f-title); font-size: 1.3rem; font-weight: 400;
+  color: var(--c-main); line-height: 1.25;
+}
+.s2-soin-cat {
+  font-size: .62rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--c-mid);
+}
+.s2-soin-sep { width: 24px; height: 1px; background: var(--c-soft); }
+.s2-soin-meta {
+  display: flex; gap: 18px; flex-wrap: wrap;
+}
+.s2-soin-meta-item span {
+  display: block; font-size: .58rem; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--c-mid); opacity: .7;
+  margin-bottom: 2px;
+}
+.s2-soin-meta-item strong { font-size: .84rem; color: var(--c-main); font-weight: 400; }
+.s2-soin-cta {
+  font-size: .72rem; color: var(--c-mid); font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px; margin-top: 4px;
+  transition: gap .25s; font-family: var(--f-body);
+}
+.s2-soin-card:hover .s2-soin-cta { gap: 14px; }
+.s2-soin-cta::after { content: '→'; }
+@media(max-width:860px){
+  .s2-soins-header { grid-template-columns: 1fr; gap: 24px; }
+  .s2-soins-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:540px){ .s2-soins-grid { grid-template-columns: 1fr; } }
+
+/* ─── S2 — PRATICIENNE ────────────────────────────────────── */
+.s2-prat-grid {
+  display: grid; grid-template-columns: 480px 1fr;
+  gap: 80px; align-items: center; text-align: left;
+  max-width: 1100px; margin: 0 auto;
+}
+.s2-prat-img {
+  width: 100%; height: 540px; object-fit: cover;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+}
+.s2-prat-img-placeholder {
+  width: 100%; height: 540px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  background: rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--c-lin); text-align: center; padding: 32px;
+}
+.s2-prat-certifs { list-style: none; margin: 20px 0 32px; }
+.s2-prat-certifs li {
+  padding: 10px 0 10px 20px; border-bottom: 1px solid rgba(250,247,242,.15);
+  font-size: .86rem; font-weight: 300; color: rgba(250,247,242,.72); position: relative;
+}
+.s2-prat-certifs li::before {
+  content: "·"; position: absolute; left: 0;
+  color: var(--c-soft); font-size: 1.4rem; line-height: 1; top: 8px;
+}
+@media(max-width:768px){
+  .s2-prat-grid { grid-template-columns: 1fr; gap: 40px; }
+  .s2-prat-img, .s2-prat-img-placeholder { height: 360px; }
+}
+
+/* ─── S3 — AVIS ───────────────────────────────────────────── */
+.s2-avis-grid-home {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px; max-width: 1000px; margin: 40px auto 0;
+}
+.s2-avis-card {
+  background: #fff; border-radius: 24px; padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(61,90,71,.06); text-align: left;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.s2-avis-stars {
+  font-family: var(--f-title); font-size: .82rem;
+  color: var(--c-mid); letter-spacing: .1em;
+}
+.s2-avis-txt {
+  font-family: var(--f-title); font-style: italic;
+  font-size: 1rem; font-weight: 300; color: #2d4033; line-height: 1.7; flex: 1;
+}
+.s2-avis-author {
+  font-size: .74rem; font-weight: 500; color: var(--c-mid); letter-spacing: .06em;
+}
+.s2-avis-link {
+  display: inline-block; margin-top: 28px;
+  font-size: .78rem; color: var(--c-main); font-weight: 400;
+  letter-spacing: .08em; text-decoration: underline; text-underline-offset: 3px;
+  font-family: var(--f-body);
+}
+@media(max-width:768px){ .s2-avis-grid-home { grid-template-columns: 1fr; } }
+
+/* ─── S4 — CABINET ────────────────────────────────────────── */
+.s2-cabinet-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: start; text-align: left;
+  max-width: 1000px; margin: 0 auto;
+}
+.s2-cabinet-photos-home {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 260px 180px; gap: 12px;
+}
+.s2-cabinet-photo-home {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 20px;
+}
+.s2-cabinet-photo-placeholder-home {
+  width: 100%; height: 100%; border-radius: 20px;
+  background: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--c-mid); text-align: center; padding: 16px;
+}
+.s2-cabinet-photo-wide { grid-column: span 2; }
+.s2-cabinet-infos-home { display: flex; flex-direction: column; gap: 0; }
+.s2-cabinet-info-row {
+  display: flex; align-items: baseline; gap: 20px; padding: 18px 0;
+  border-bottom: 1px solid rgba(61,90,71,.1);
+}
+.s2-cabinet-info-row:last-child { border-bottom: none; }
+.s2-cabinet-info-lbl {
+  font-size: .62rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--c-mid); min-width: 80px; flex-shrink: 0;
+  font-family: var(--f-body);
+}
+.s2-cabinet-info-val {
+  font-size: .9rem; font-weight: 300; color: #1e2e22; line-height: 1.6;
+}
+.s2-cabinet-info-val a { color: var(--c-main); text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:768px){
+  .s2-cabinet-grid { grid-template-columns: 1fr; gap: 36px; }
+  .s2-cabinet-photos-home { grid-template-rows: 200px 150px; }
+}
+
+/* ─── S5 — CADEAU ─────────────────────────────────────────── */
+.s2-cadeau-grid {
+  display: grid; grid-template-columns: 1fr 400px;
+  gap: 72px; align-items: center; text-align: left;
+  max-width: 1000px; margin: 0 auto;
+}
+.s2-cadeau-img {
+  width: 100%; height: 420px; object-fit: cover;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+}
+.s2-cadeau-img-placeholder {
+  width: 100%; height: 420px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  background: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--c-mid); text-align: center; padding: 32px;
+}
+@media(max-width:768px){
+  .s2-cadeau-grid { grid-template-columns: 1fr; gap: 40px; }
+  .s2-cadeau-img, .s2-cadeau-img-placeholder { height: 300px; }
+}
+
+/* ─── S6 — FAQ ────────────────────────────────────────────── */
+.s2-faq-home {
+  max-width: 720px; margin: 40px auto 0; text-align: left;
+}
+details.s2-faq-item { border-bottom: 1px solid var(--c-soft); }
+details.s2-faq-item summary {
+  padding: 20px 0; font-size: .95rem; font-weight: 400;
+  cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  letter-spacing: .01em; font-family: var(--f-body); color: #1e2e22;
+}
+details.s2-faq-item summary::-webkit-details-marker { display: none; }
+details.s2-faq-item summary::after {
+  content: "+"; font-size: 1.2rem; color: var(--c-mid);
+  transition: transform .3s; flex-shrink: 0; margin-left: 16px;
+}
+details.s2-faq-item[open] summary { color: var(--c-main); }
+details.s2-faq-item[open] summary::after { transform: rotate(45deg); }
+.s2-faq-ans {
+  padding-bottom: 20px; font-size: .9rem; font-weight: 300;
+  line-height: 1.9; color: #4a6b55;
+}
+.s2-faq-ans a { color: var(--c-mid); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── S7 — CTA FINAL ──────────────────────────────────────── */
+/* (fond sombre géré par .s2-s7) */
+
+/* ─── S8 — MAILLAGE ───────────────────────────────────────── */
+.s2-maillage {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 32px; justify-content: center;
+}
+.s2-maillage a {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--c-mid); color: var(--c-main);
+  font-family: var(--f-body); font-size: .82rem; font-weight: 400;
+  text-decoration: none; border-radius: 40px;
+  transition: all .3s; letter-spacing: .05em;
+}
+.s2-maillage a:hover { background: var(--c-mid); color: #fff; }
+
+/* ─── PARALLAX ────────────────────────────────────────────── */
+@media(max-width:900px){
+  .s2-hero-bg { inset: 0; transform: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY BAR — pas de sticky sur homepage ?
+     Si tu veux la sticky sur la homepage : garder ce bloc.
+     Sinon : supprimer et retirer padding-bottom: 70px du body.
+     ============================================================ -->
+<div class="s2-sticky">
+  <div class="s2-sticky-txt">
+    <strong>[Prénom Nom] — [Titre professionnel]</strong>
+    [Ville] · Réservation en ligne 24h/24
+  </div>
+  <a href="[LIEN_CARTE_CADEAU]" class="s2-sticky-btn-ghost" target="_blank" rel="noopener">Offrir</a>
+  <a href="[LIEN_RDV]" class="s2-sticky-btn" target="_blank" rel="noopener">Prendre rendez-vous</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     → Remplacer style="background-image:url('[URL_IMAGE_HERO]')"
+     ============================================================ -->
+<section class="s2-hero">
+  <div class="s2-hero-bg" id="heroParallax"
+       style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  <div class="s2-hero-content">
+    <div class="s2-hero-tag">[Titre professionnel] · [Ville]</div>
+    <h1 class="s2-custom-h1">
+      [Accroche principale]<br>
+      <em>[suite en italique]</em>
+    </h1>
+    <p class="s2-hero-sub">[Soin 1] · [Soin 2] · [Soin 3]</p>
+    <p class="s2-hero-intro">
+      [Depuis Bloc 0 ADN — 2 phrases sur ce que la praticienne offre concrètement.
+      Dans ses mots. Pas de jargon.]
+    </p>
+    <div class="s2-hero-pills">
+      <span class="s2-hero-pill"><strong>[X.X]</strong> · [X] avis Google</span>
+      <span class="s2-hero-pill"><strong>[X]</strong> ans d'expérience</span>
+      <span class="s2-hero-pill">Réservation en ligne 24h/24</span>
+    </div>
+    <div class="s2-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-outline">
+        Prendre rendez-vous
+      </a>
+      <a href="/[slug-soins]" class="s2-btn-outline" style="background:rgba(255,255,255,.1);">
+        Découvrir les soins
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S0 — ACCROCHE ÉDITORIALE
+     ============================================================ -->
+<section class="s2-s0">
+  <div class="s2-accroche-grid">
+    <div>
+      <blockquote class="s2-accroche-quote">
+        « [Citation depuis Bloc 0 ADN —
+        la phrase qui résume le mieux
+        l'essence de son travail.] »
+      </blockquote>
+      <span class="s2-accroche-cite">— [Prénom Nom] · [Titre]</span>
+    </div>
+    <div style="text-align:left;">
+      <span class="s2-label" style="text-align:left;">Mon approche</span>
+      <h2 class="s2-h2" style="text-align:left;">
+        [Ce qui rend votre approche<br>unique] — <em>[accroche]</em>
+      </h2>
+      <div class="s2-divider" style="margin-left:0;"></div>
+      <p class="s2-p">
+        [Depuis Bloc 0 "Ce que tu fais différemment" —
+        2 phrases dans ses mots exacts.]
+      </p>
+      <p class="s2-p">
+        [Depuis Bloc 0 "Ce que tu veux qu'elles emportent après" —
+        1-2 phrases.]
+      </p>
+      <div class="s2-valeurs-pills">
+        <span class="s2-valeur-pill">[Valeur 1]</span>
+        <span class="s2-valeur-pill">[Valeur 2]</span>
+        <span class="s2-valeur-pill">[Valeur 3]</span>
+        <span class="s2-valeur-pill">[Valeur 4]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S1 — LES SOINS
+     → Dupliquer / supprimer des .s2-soin-card selon Bloc 5
+     ============================================================ -->
+<section class="s2-s1">
+  <div class="s2-soins-header">
+    <div style="text-align:left;">
+      <span class="s2-label" style="text-align:left;">Les soins</span>
+      <h2 class="s2-h2" style="text-align:left;">
+        Mes prestations<br><em>à [Ville]</em>
+      </h2>
+    </div>
+    <p class="s2-p" style="text-align:left;padding-bottom:4px;">
+      [Depuis Bloc 0 ADN — phrase courte sur ce qui relie tous les soins.
+      L'intention derrière l'ensemble des prestations.]
+    </p>
+  </div>
+  <div class="s2-soins-grid">
+
+    <a href="/[slug-soin-1]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">01</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 1]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+    <a href="/[slug-soin-2]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">02</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 2]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+    <a href="/[slug-soin-3]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">03</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 3]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+    <a href="/[slug-soin-4]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">04</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 4]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+    <a href="/[slug-soin-5]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">05</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 5]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+    <a href="/[slug-soin-6]-[ville]" class="s2-soin-card">
+      <div class="s2-soin-num">06</div>
+      <div class="s2-soin-cat">[Catégorie]</div>
+      <div class="s2-soin-name">[Nom du soin 6]</div>
+      <div class="s2-soin-sep"></div>
+      <div class="s2-soin-meta">
+        <div class="s2-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+        <div class="s2-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+      </div>
+      <span class="s2-soin-cta">Découvrir</span>
+    </a>
+
+  </div>
+  <div style="margin-top:40px;">
+    <a href="/[slug-soins]" class="s2-btn-dark">Voir toutes les prestations</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S2 — LA PRATICIENNE (fond ivory)
+     → Remplacer .s2-prat-img-placeholder par :
+       <img src="URL" alt="..." class="s2-prat-img" loading="lazy">
+     ============================================================ -->
+<section class="s2-s2">
+  <div class="s2-prat-grid" style="color:inherit;">
+    <div class="s2-prat-img-placeholder" style="background:var(--c-cream);color:var(--c-mid);">
+      [URL_PHOTO_PRATICIENNE]
+    </div>
+    <div style="text-align:left;">
+      <span class="s2-label" style="text-align:left;">La praticienne</span>
+      <h2 class="s2-h2" style="text-align:left;">
+        [Prénom Nom],<br><em>[Titre professionnel] à [Ville]</em>
+      </h2>
+      <div class="s2-divider" style="margin-left:0;"></div>
+      <p class="s2-p">
+        [Depuis Bloc 9 bio + Bloc 0 ADN — paragraphe 1.
+        Qui elle est, d'où elle vient, pourquoi ce métier.]
+      </p>
+      <p class="s2-p">
+        [Depuis Bloc 0 "Ce que tu fais différemment" — paragraphe 2.
+        <strong>La phrase qui différencie.</strong>]
+      </p>
+      <ul class="s2-prat-certifs" style="border-color:rgba(61,90,71,.12);">
+        <li style="border-color:rgba(61,90,71,.1);color:#2d4033;">[Formation 1 depuis Bloc 9]</li>
+        <li style="border-color:rgba(61,90,71,.1);color:#2d4033;">[Formation 2]</li>
+        <li style="border-color:rgba(61,90,71,.1);color:#2d4033;">[Formation 3]</li>
+      </ul>
+      <a href="/[slug-a-propos]" class="s2-btn-dark">En savoir plus sur [Prénom]</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S3 — AVIS (fond sombre)
+     Option A : Elfsight — Option B : 3 avis manuels
+     ============================================================ -->
+<section class="s2-s3">
+  <span class="s2-label s2-label-light">Témoignages</span>
+  <h2 class="s2-h2 s2-h2-light">
+    Ce que disent<br><em>les clientes</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <!-- Option A -->
+  <!-- <script src="https://elfsightcdn.com/platform.js" async></script> -->
+  <!-- <div class="elfsight-app-[ID]" data-elfsight-app-lazy></div> -->
+  <!-- Option B -->
+  <div class="s2-avis-grid-home">
+    <div class="s2-avis-card">
+      <div class="s2-avis-stars">★★★★★</div>
+      <p class="s2-avis-txt">« [Témoignage 1 depuis Bloc 11 — texte exact] »</p>
+      <span class="s2-avis-author">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+    <div class="s2-avis-card">
+      <div class="s2-avis-stars">★★★★★</div>
+      <p class="s2-avis-txt">« [Témoignage 2 depuis Bloc 11] »</p>
+      <span class="s2-avis-author">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+    <div class="s2-avis-card">
+      <div class="s2-avis-stars">★★★★★</div>
+      <p class="s2-avis-txt">« [Témoignage 3 depuis Bloc 11] »</p>
+      <span class="s2-avis-author">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+  </div>
+  <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" class="s2-avis-link"
+     style="color:var(--c-lin);">
+    Voir tous les avis Google →
+  </a>
+</section>
+
+
+<!-- ============================================================
+     S4 — LE CABINET
+     → Remplacer les placeholders par de vraies <img>
+     ============================================================ -->
+<section class="s2-s4">
+  <span class="s2-label">Le cabinet</span>
+  <h2 class="s2-h2">[Prénom Nom] à [Ville] —<br><em>informations pratiques</em></h2>
+  <div class="s2-divider"></div>
+  <div class="s2-cabinet-grid">
+    <div class="s2-cabinet-photos-home">
+      <div class="s2-cabinet-photo-placeholder-home s2-cabinet-photo-wide">[URL_PHOTO_CABINET_1]</div>
+      <div class="s2-cabinet-photo-placeholder-home">[URL_PHOTO_CABINET_2]</div>
+      <div class="s2-cabinet-photo-placeholder-home">[URL_PHOTO_CABINET_3]</div>
+    </div>
+    <div class="s2-cabinet-infos-home">
+      <div class="s2-cabinet-info-row">
+        <span class="s2-cabinet-info-lbl">Adresse</span>
+        <span class="s2-cabinet-info-val">[Numéro et rue]<br>[Code postal] [Ville]</span>
+      </div>
+      <div class="s2-cabinet-info-row">
+        <span class="s2-cabinet-info-lbl">Horaires</span>
+        <span class="s2-cabinet-info-val">[Jours] : [HH:MM] – [HH:MM]<br>Uniquement sur rendez-vous</span>
+      </div>
+      <div class="s2-cabinet-info-row">
+        <span class="s2-cabinet-info-lbl">Accès</span>
+        <span class="s2-cabinet-info-val">[Villes desservies depuis Bloc 1]</span>
+      </div>
+      <div class="s2-cabinet-info-row">
+        <span class="s2-cabinet-info-lbl">Contact</span>
+        <span class="s2-cabinet-info-val">
+          <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a><br>
+          <a href="mailto:[email]">[Email]</a>
+        </span>
+      </div>
+      <div class="s2-cabinet-info-row" style="border-bottom:none;">
+        <span class="s2-cabinet-info-lbl">Réserver</span>
+        <span class="s2-cabinet-info-val">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener">En ligne 24h/24 →</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S5 — CARTES CADEAUX
+     → Remplacer .s2-cadeau-img-placeholder par :
+       <img src="URL" alt="Offrir un soin [Ville]" class="s2-cadeau-img" loading="lazy">
+     ============================================================ -->
+<section class="s2-s5">
+  <div class="s2-cadeau-grid">
+    <div style="text-align:left;">
+      <span class="s2-label" style="text-align:left;">Offrir</span>
+      <h2 class="s2-h2" style="text-align:left;">
+        Offrir une parenthèse<br><em>de [douceur / bien-être]</em>
+      </h2>
+      <div class="s2-divider" style="margin-left:0;"></div>
+      <p class="s2-p">
+        [Depuis Bloc 0 ADN — 2 phrases sur ce que représente offrir une séance.
+        Ce que la bénéficiaire va vivre concrètement.]
+      </p>
+      <p class="s2-p">
+        Cartes cadeaux disponibles pour toutes les prestations.
+        La bénéficiaire choisit son créneau directement en ligne.
+      </p>
+      <br>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s2-btn-dark">
+        Commander une carte cadeau
+      </a>
+    </div>
+    <div class="s2-cadeau-img-placeholder">[URL_PHOTO_CADEAU]</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S6 — FAQ HOMEPAGE
+     ============================================================ -->
+<section class="s2-s6">
+  <span class="s2-label">Questions fréquentes</span>
+  <h2 class="s2-h2">
+    [Prénom Nom] à [Ville] —<br><em>vos questions</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-faq-home">
+
+    <details class="s2-faq-item">
+      <summary>Qui est [Prénom Nom] et quelles sont ses spécialités ?</summary>
+      <div class="s2-faq-ans">
+        [Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans.
+        Elle propose [liste des soins principaux].
+        <a href="/[slug-a-propos]">En savoir plus →</a>
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>Quels soins sont proposés à [Ville] ?</summary>
+      <div class="s2-faq-ans">
+        [Prénom] propose [liste des soins] à [Ville]. Chaque soin est sur-mesure.
+        <a href="/[slug-soins]">Voir toutes les prestations →</a>
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>Comment prendre rendez-vous à [Ville] ?</summary>
+      <div class="s2-faq-ans">
+        La réservation se fait directement en ligne sur
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>, 24h/24.
+        Le cabinet est situé [adresse], à [Ville].
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>Quels sont les tarifs des soins à [Ville] ?</summary>
+      <div class="s2-faq-ans">
+        [Liste courte soin + tarif depuis Bloc 5].
+        <a href="/[slug-soins]">Voir tous les tarifs →</a>
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>Puis-je offrir une séance en cadeau ?</summary>
+      <div class="s2-faq-ans">
+        Oui — des cartes cadeaux sont disponibles pour toutes les prestations.
+        <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">Commander une carte cadeau →</a>
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>Y a-t-il des contre-indications aux soins ?</summary>
+      <div class="s2-faq-ans">
+        [Synthèse des contre-indications depuis Bloc 5 — en cas de doute,
+        contacter [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>
+        avant de réserver.]
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S7 — CTA FINAL (fond sombre)
+     ============================================================ -->
+<section class="s2-s7">
+  <span class="s2-label s2-label-light">[Prénom Nom] · [Ville]</span>
+  <h2 class="s2-h2 s2-h2-light">
+    [Accroche depuis Bloc 0 ADN]<br>
+    <em>[suite en italique]</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-outline">
+    Prendre rendez-vous — [Ville]
+  </a>
+  <p style="margin-top:28px;font-size:.82rem;color:var(--c-lin);font-weight:300;letter-spacing:.05em;">
+    Questions ?
+    <a href="tel:[+33XXXXXXXXX]"
+       style="color:var(--c-lin);text-decoration:underline;text-underline-offset:3px;">[Téléphone]</a>
+    ·
+    <a href="mailto:[email]"
+       style="color:var(--c-lin);text-decoration:underline;text-underline-offset:3px;">[Email]</a>
+  </p>
+</section>
+
+
+<!-- ============================================================
+     S8 — MAILLAGE
+     ============================================================ -->
+<section class="s2-s8">
+  <span class="s2-label">Rayonnement</span>
+  <h2 class="s2-h2">Prestations disponibles<br><em>dans votre ville</em></h2>
+  <div class="s2-divider"></div>
+  <div class="s2-maillage">
+    <a href="/[slug-soin-1]-[ville]">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soin-3]-[ville]">[Soin 3] à [Ville]</a>
+    <a href="/[slug-soin-1]-[ville2]">[Soin 1] à [Ville 2]</a>
+    <a href="/[slug-soin-2]-[ville2]">[Soin 2] à [Ville 2]</a>
+    <a href="/[slug-a-propos]">À propos de [Prénom]</a>
+    <a href="/[slug-faq]">Questions fréquentes</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Titre professionnel]",
+    "description": "[Description 150-200 caractères — soins, approche, zone géographique.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "email": "[email]",
+    "priceRange": "€€",
+    "image": "[URL_PHOTO_PRATICIENNE]",
+    "founder": {"@type": "Person", "name": "[Prénom Nom]"},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Soins et prestations",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 1] à [Ville]"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 2] à [Ville]"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 3] à [Ville]"}}
+      ]
+    },
+    "sameAs": ["[URL Google Maps]","[URL Instagram]","[URL Facebook]"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Qui est [Prénom Nom] et quelles sont ses spécialités ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans. Elle propose [soins]."}},
+      {"@type":"Question","name":"Quels soins sont proposés à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom] propose [liste soins] à [Ville]. Chaque soin est sur-mesure."}},
+      {"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Réservation en ligne 24h/24 sur [URL_RDV]. Cabinet situé [adresse], à [Ville]."}},
+      {"@type":"Question","name":"Quels sont les tarifs des soins à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [tarif]€. [Soin 2] : [tarif]€. [Soin 3] : [tarif]€."}},
+      {"@type":"Question","name":"Puis-je offrir une séance en cadeau à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Oui, des cartes cadeaux sont disponibles pour toutes les prestations sur [URL_CARTE_CADEAU]."}},
+      {"@type":"Question","name":"Y a-t-il des contre-indications aux soins ?","acceptedAnswer":{"@type":"Answer","text":"[Contre-indications depuis Bloc 5]. En cas de doute, contacter [Prénom] au [Téléphone]."}}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "[Prénom Nom]",
+    "jobTitle": "[Titre professionnel]",
+    "url": "https://[votre-domaine].fr",
+    "image": "[URL_PHOTO_PRATICIENNE]",
+    "telephone": "[+33XXXXXXXXX]",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "knowsAbout": ["[Soin 1]","[Soin 2]","[Soin 3]"],
+    "sameAs": ["[URL Instagram]","[URL Facebook]"]
+  }
+]
+</script>
+
+
+<!-- PARALLAX JS -->
+<script>
+(function(){
+  var bg = document.getElementById('heroParallax');
+  if(!bg || window.innerWidth < 900) return;
+  var raf = false;
+  window.addEventListener('scroll', function(){
+    if(!raf){
+      requestAnimationFrame(function(){
+        bg.style.transform = 'translateY(' + (window.scrollY * 0.18) + 'px)';
+        raf = false;
+      });
+      raf = true;
+    }
+  }, {passive: true});
+})();
+</script>
+
+</body>
+</html>

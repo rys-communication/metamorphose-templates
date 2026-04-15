@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Nom de la prestation] à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="[Nom de la prestation] à [Ville] par [Prénom Nom], [titre professionnel]. [Accroche courte — bénéfice principal]. [Tarif] € · [Durée]. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   à partir du Bloc 4 du dossier client.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --c-main:  #3d5a47;   /* vert sauge profond */
+  --c-mid:   #7a9e85;   /* sauge moyen */
+  --c-soft:  #b5cdb9;   /* sauge clair */
+  --c-lin:   #e8dfd0;   /* lin chaud */
+  --c-cream: #f4efe6;   /* crème douce */
+  --c-ivory: #faf7f2;   /* blanc cassé */
+  --f-title: 'Cormorant Garamond', Georgia, serif;
+  --f-body:  'Nunito', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body); color: #1e2e22;
+  line-height: 1.65; padding-bottom: 70px;
+  background: var(--c-ivory); overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--c-main); }
+
+/* ─── STICKY BAR ──────────────────────────────────────────── */
+.s2-sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--c-main); color: #fff; padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-family: var(--f-body); font-size: .82rem;
+}
+.s2-sticky-txt { flex: 1; min-width: 0; font-weight: 300; }
+.s2-sticky-txt strong { font-weight: 500; letter-spacing: .02em; }
+.s2-sticky-btn {
+  background: var(--c-mid); color: #fff; padding: 10px 22px;
+  font-size: .75rem; font-weight: 400; text-decoration: none;
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--f-body); flex-shrink: 0; border-radius: 40px;
+  border: 1px solid var(--c-mid); transition: all .3s;
+}
+.s2-sticky-btn:hover { background: transparent; color: var(--c-mid); }
+.s2-sticky-btn-ghost {
+  background: transparent; color: rgba(255,255,255,.75); padding: 10px 18px;
+  font-size: .75rem; font-weight: 400; text-decoration: none;
+  letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--f-body); flex-shrink: 0; border-radius: 40px;
+  border: 1px solid rgba(255,255,255,.3); transition: all .3s;
+}
+.s2-sticky-btn-ghost:hover { border-color: rgba(255,255,255,.7); color: #fff; }
+@media(max-width:768px){
+  .s2-sticky { justify-content: center; }
+  .s2-sticky-txt { display: none; }
+  .s2-sticky-btn-ghost { flex: 1; text-align: center; }
+  .s2-sticky-btn { flex: 1; text-align: center; }
+}
+
+/* ─── HERO PLEIN ÉCRAN OVERLAY ────────────────────────────── */
+.s2-hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: #0d1a11;
+}
+.s2-hero-bg {
+  position: absolute; inset: -20% 0;
+  background-size: cover; background-position: center top;
+  opacity: .5; will-change: transform;
+}
+.s2-hero-content {
+  position: relative; z-index: 2;
+  padding: 120px 12%; max-width: 100%;
+  text-align: center; width: 100%;
+}
+.s2-hero-tag {
+  display: inline-block; border: 1px solid rgba(255,255,255,.5); color: #fff;
+  font-size: .7rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase;
+  padding: 7px 20px; border-radius: 40px; margin-bottom: 28px; font-family: var(--f-body);
+}
+.s2-hero h1 {
+  font-family: var(--f-title); font-size: clamp(2.8rem,6vw,5rem);
+  font-weight: 300; color: #fff; line-height: 1.1; margin-bottom: 28px;
+  letter-spacing: -.01em;
+}
+.s2-hero h1 em { font-style: italic; color: var(--c-lin); }
+.s2-hero-badge {
+  display: inline-block; background: rgba(122,158,133,.22);
+  border: 1px solid rgba(181,205,185,.45);
+  color: #fff; font-size: .78rem; font-weight: 300; letter-spacing: .1em;
+  padding: 6px 20px; border-radius: 40px; margin-bottom: 32px; font-family: var(--f-body);
+}
+.s2-hero-lieux {
+  color: rgba(255,255,255,.65); font-size: .85rem; font-weight: 300;
+  margin-bottom: 52px; letter-spacing: .05em; font-family: var(--f-body);
+}
+.s2-hero-lieux a { color: var(--c-lin); text-decoration: underline; text-underline-offset: 3px; }
+.s2-hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+@media(max-width:768px){
+  .s2-hero { min-height: 70vh; }
+  .s2-hero-content { padding: 32px 6%; }
+  .s2-hero-tag { font-size: .58rem; letter-spacing: .16em; padding: 5px 14px; margin-bottom: 14px; opacity: .75; }
+  .s2-hero h1 { font-size: clamp(2.4rem,10vw,3.2rem); margin-bottom: 18px; }
+  .s2-hero-badge { font-size: .72rem; margin-bottom: 20px; }
+  .s2-hero-btns { flex-direction: column; align-items: center; }
+}
+
+/* ─── SECTIONS EMPILÉES border-radius 60px ───────────────── */
+.s2-s-avis { padding: 80px 8% 100px;  background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 1;  text-align: center; }
+.s2-s1     { padding: 100px 8% 90px;  background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 2;  text-align: center; }
+.s2-s2     { padding: 100px 8% 140px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 3;  text-align: center; }
+.s2-s3     { padding: 100px 8% 140px; background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 4;  text-align: center; }
+.s2-s4     { padding: 100px 8% 140px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 5;  text-align: center; }
+.s2-s5     { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 6;  text-align: center; color: var(--c-ivory); }
+.s2-s6     { padding: 100px 8% 100px; background: var(--c-lin); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 7;  text-align: center; }
+.s2-s7     { padding: 100px 8% 140px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 8;  text-align: center; }
+.s2-s8     { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 9;  text-align: center; color: var(--c-ivory); }
+.s2-s9     { padding: 80px 8% 100px;  background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 10; text-align: center; }
+
+/* ─── TYPO COMMUNE ────────────────────────────────────────── */
+.s2-label {
+  font-size: .68rem; font-weight: 400; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--c-mid);
+  margin-bottom: 16px; display: block;
+}
+.s2-label-light { color: rgba(181,205,185,.9); }
+
+.s2-h2 {
+  font-family: var(--f-title); font-size: clamp(1.8rem,3.5vw,2.8rem);
+  font-weight: 300; line-height: 1.2; margin-bottom: 20px;
+  letter-spacing: -.01em; color: var(--c-main);
+}
+.s2-h2 em { font-style: italic; color: var(--c-mid); }
+.s2-h2-light { color: var(--c-ivory); }
+.s2-h2-light em { color: var(--c-lin); }
+
+.s2-p {
+  font-size: .95rem; font-weight: 300; line-height: 1.9;
+  color: #1e2e22; margin-bottom: 16px; letter-spacing: .01em;
+}
+.s2-p-light { color: rgba(250,247,242,.82); }
+.s2-p strong { color: var(--c-main); font-weight: 500; }
+
+.s2-divider { width: 40px; height: 1px; background: var(--c-mid); margin: 0 auto 32px; }
+
+/* ─── BOUTONS PILLS ───────────────────────────────────────── */
+.s2-btn-outline {
+  display: inline-block; border: 1px solid #fff; color: #fff;
+  text-decoration: none; font-size: .75rem; font-weight: 400;
+  letter-spacing: .15em; text-transform: uppercase; padding: 14px 36px;
+  border-radius: 40px; transition: all .3s; background: transparent;
+  font-family: var(--f-body);
+}
+.s2-btn-outline:hover { background: #fff; color: var(--c-main); }
+
+.s2-btn-dark {
+  display: inline-block; border: 1px solid var(--c-main); color: var(--c-main);
+  text-decoration: none; font-size: .75rem; font-weight: 400;
+  letter-spacing: .15em; text-transform: uppercase; padding: 14px 36px;
+  border-radius: 40px; transition: all .3s; background: transparent;
+  font-family: var(--f-body);
+}
+.s2-btn-dark:hover { background: var(--c-main); color: #fff; }
+
+.s2-btn-sage {
+  display: inline-block; border: 1px solid var(--c-mid); background: var(--c-mid);
+  color: #fff; text-decoration: none; font-size: .75rem; font-weight: 400;
+  letter-spacing: .15em; text-transform: uppercase; padding: 14px 36px;
+  border-radius: 40px; transition: all .3s; font-family: var(--f-body);
+}
+.s2-btn-sage:hover { background: transparent; color: var(--c-mid); }
+
+.s2-btn-outline-light {
+  display: inline-block; border: 1px solid rgba(250,247,242,.5); color: var(--c-ivory);
+  text-decoration: none; font-size: .75rem; font-weight: 400;
+  letter-spacing: .15em; text-transform: uppercase; padding: 14px 36px;
+  border-radius: 40px; transition: all .3s; background: transparent;
+  font-family: var(--f-body);
+}
+.s2-btn-outline-light:hover { background: var(--c-ivory); color: var(--c-main); }
+
+/* ─── GRILLE 2 COL ────────────────────────────────────────── */
+.s2-grid-2 {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 80px; align-items: center; text-align: left;
+  max-width: 1100px; margin: 0 auto;
+}
+.s2-grid-2 img {
+  width: 100%; height: 460px; object-fit: cover;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+}
+.s2-grid-2-placeholder {
+  width: 100%; height: 460px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  background: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--c-mid); text-align: center; padding: 32px;
+}
+@media(max-width:768px){
+  .s2-grid-2 { grid-template-columns: 1fr; gap: 40px; }
+  .s2-grid-2 img, .s2-grid-2-placeholder { height: 300px; }
+}
+
+/* ─── BIENFAITS CARTES NUMÉROTÉES ─────────────────────────── */
+.s2-bienfaits {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 32px; margin-top: 56px;
+  max-width: 1100px; margin-left: auto; margin-right: auto;
+}
+.s2-bienfait {
+  background: #fff; border-radius: 32px; padding: 48px 36px; text-align: left;
+  box-shadow: 0 4px 40px rgba(61,90,71,.07); border-bottom: 3px solid var(--c-mid);
+  transition: transform .35s, box-shadow .35s;
+}
+.s2-bienfait:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(61,90,71,.13); }
+.s2-bienfait-num {
+  font-family: var(--f-title); font-size: 2.4rem; font-weight: 300;
+  color: var(--c-mid); opacity: .5; line-height: 1; margin-bottom: 20px;
+}
+.s2-bienfait h3 {
+  font-family: var(--f-title); font-size: 1.35rem; font-weight: 400;
+  margin-bottom: 14px; color: var(--c-main);
+}
+.s2-bienfait p { font-size: .9rem; font-weight: 300; line-height: 1.8; color: #4a6b55; }
+@media(max-width:900px){ .s2-bienfaits { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:600px){ .s2-bienfaits { grid-template-columns: 1fr; } }
+
+/* ─── TIMELINE DÉROULEMENT ────────────────────────────────── */
+.s2-timeline {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 0; max-width: 1000px; margin: 64px auto 0; position: relative;
+}
+.s2-timeline::before {
+  content: ''; position: absolute; top: 26px; left: 12.5%; right: 12.5%;
+  height: 1px; background: var(--c-mid); z-index: 0;
+}
+.s2-tl-item { text-align: center; padding: 0 24px; position: relative; }
+.s2-tl-dot {
+  width: 54px; height: 54px; border-radius: 50%;
+  border: 1px solid var(--c-mid); background: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px; position: relative; z-index: 1;
+  font-family: var(--f-title); font-size: 1.4rem; font-weight: 300; color: var(--c-main);
+}
+.s2-tl-item h3 {
+  font-family: var(--f-title); font-size: 1.15rem; font-weight: 400;
+  margin-bottom: 10px; color: var(--c-main);
+}
+.s2-tl-item p { font-size: .85rem; font-weight: 300; line-height: 1.75; color: #4a6b55; }
+@media(max-width:900px){
+  .s2-timeline::before { display: none; }
+  .s2-timeline { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ─── CARTE TARIF ─────────────────────────────────────────── */
+.s2-tarif-card {
+  background: #fff; border-radius: 32px; padding: 56px 48px;
+  max-width: 600px; margin: 48px auto 0; text-align: center;
+  box-shadow: 0 4px 32px rgba(61,90,71,.08);
+}
+.s2-tarif-tag {
+  display: inline-block; background: var(--c-cream); color: var(--c-mid);
+  font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 40px; margin-bottom: 24px; font-family: var(--f-body);
+}
+.s2-tarif-title {
+  font-family: var(--f-title); font-size: 1.9rem; font-weight: 300;
+  margin-bottom: 8px; color: var(--c-main);
+}
+.s2-tarif-price {
+  font-family: var(--f-title); font-size: 3.5rem; font-weight: 300;
+  color: var(--c-mid); line-height: 1; margin-bottom: 32px;
+}
+.s2-tarif-price span { font-size: 1.2rem; vertical-align: super; }
+.s2-tarif-card ul { list-style: none; margin-bottom: 36px; text-align: left; }
+.s2-tarif-card ul li {
+  padding: 12px 0 12px 24px; border-bottom: 1px solid var(--c-cream);
+  font-size: .9rem; font-weight: 300; color: #4a6b55; position: relative;
+}
+.s2-tarif-card ul li::before { content: "—"; position: absolute; left: 0; color: var(--c-mid); }
+@media(max-width:768px){ .s2-tarif-card { padding: 36px 24px; } }
+
+/* ─── PRATICIENNE (fond sombre) ───────────────────────────── */
+.s2-praticienne {
+  display: grid; grid-template-columns: 1fr 480px;
+  gap: 80px; align-items: center; text-align: left;
+  max-width: 1100px; margin: 0 auto;
+}
+.s2-praticienne img {
+  width: 100%; height: 540px; object-fit: cover;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+}
+.s2-praticienne-placeholder {
+  width: 100%; height: 540px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  background: rgba(255,255,255,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--c-lin); text-align: center; padding: 32px;
+}
+.s2-formations { list-style: none; margin: 24px 0 36px; }
+.s2-formations li {
+  padding: 10px 0 10px 20px; border-bottom: 1px solid rgba(250,247,242,.15);
+  font-size: .85rem; font-weight: 300; color: rgba(250,247,242,.75); position: relative;
+}
+.s2-formations li::before {
+  content: "·"; position: absolute; left: 0;
+  color: var(--c-mid); font-size: 1.4rem; line-height: 1; top: 8px;
+}
+@media(max-width:768px){
+  .s2-praticienne { grid-template-columns: 1fr; gap: 40px; }
+  .s2-praticienne img, .s2-praticienne-placeholder { height: 360px; }
+}
+
+/* ─── SECTION CABINET ─────────────────────────────────────── */
+.s2-cabinet-photos {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; max-width: 900px; margin: 0 auto 56px;
+}
+.s2-cabinet-photos img {
+  width: 100%; height: 340px; object-fit: cover; border-radius: 20px;
+}
+.s2-cabinet-photo-placeholder {
+  width: 100%; height: 340px; border-radius: 20px;
+  background: var(--c-cream);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--c-mid); text-align: center; padding: 20px;
+}
+.s2-cabinet-infos {
+  max-width: 760px; margin: 0 auto;
+  background: rgba(250,247,242,.72); border-radius: 20px; padding: 8px 40px;
+}
+.s2-cabinet-info-item {
+  display: flex; align-items: baseline; gap: 24px; padding: 20px 0;
+}
+.s2-cabinet-info-label {
+  font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--c-main); opacity: .6; min-width: 90px; flex-shrink: 0;
+  font-family: var(--f-body); margin-bottom: 0;
+}
+.s2-cabinet-info-val {
+  font-family: var(--f-body); font-size: .95rem;
+  font-weight: 300; color: #1e2e22; line-height: 1.6;
+}
+.s2-cabinet-sep { height: 1px; background: rgba(61,90,71,.12); }
+@media(max-width:680px){
+  .s2-cabinet-photos { grid-template-columns: 1fr; gap: 12px; }
+  .s2-cabinet-photos img, .s2-cabinet-photo-placeholder { height: 240px; }
+  .s2-cabinet-info-item { flex-direction: column; gap: 4px; padding: 16px 0; }
+  .s2-cabinet-info-label { min-width: unset; }
+}
+
+/* ─── FAQ ─────────────────────────────────────────────────── */
+.s2-faq {
+  margin-top: 48px; max-width: 720px;
+  margin-left: auto; margin-right: auto; text-align: left;
+}
+details.s2-faq-item { border-bottom: 1px solid var(--c-mid); }
+details.s2-faq-item summary {
+  padding: 22px 0; font-size: .95rem; font-weight: 400;
+  cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  letter-spacing: .01em; font-family: var(--f-body); color: #1e2e22;
+}
+details.s2-faq-item summary::-webkit-details-marker { display: none; }
+details.s2-faq-item summary::after {
+  content: "+"; font-size: 1.2rem; color: var(--c-mid);
+  transition: transform .3s; flex-shrink: 0; margin-left: 16px;
+}
+details.s2-faq-item[open] summary { color: var(--c-main); }
+details.s2-faq-item[open] summary::after { transform: rotate(45deg); }
+.s2-faq-ans {
+  padding-bottom: 22px;
+  font-size: .9rem; font-weight: 300; line-height: 1.9; color: #4a6b55;
+}
+.s2-faq-ans a { color: var(--c-mid); }
+
+/* ─── MAILLAGE PILLS ──────────────────────────────────────── */
+.s2-maillage {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 32px; justify-content: center;
+}
+.s2-maillage a {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--c-mid); color: var(--c-main);
+  font-family: var(--f-body); font-size: .82rem; font-weight: 400;
+  text-decoration: none; border-radius: 40px;
+  transition: all .3s; letter-spacing: .05em;
+}
+.s2-maillage a:hover { background: var(--c-mid); color: #fff; }
+
+/* ─── PARALLAX ────────────────────────────────────────────── */
+@media(max-width:900px){
+  .s2-hero-bg { inset: 0; transform: none !important; }
+}
+
+/* ─── AVIS GRID RESPONSIVE ────────────────────────────────── */
+@media(max-width:768px){
+  .s2-avis-grid { grid-template-columns: 1fr !important; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY BAR
+     ============================================================ -->
+<div class="s2-sticky">
+  <div class="s2-sticky-txt">
+    <strong>[Nom de la prestation] · [Prénom Nom]</strong>
+    [Tarif] € · [Durée] · [Détail pratique — ex : Cabinet [Ville] · Présentiel]
+  </div>
+  <a href="[LIEN_CARTE_CADEAU]" class="s2-sticky-btn-ghost" target="_blank" rel="noopener">Offrir</a>
+  <a href="[LIEN_RDV]" class="s2-sticky-btn" target="_blank" rel="noopener">Réserver</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     → Remplacer style="background-image:url('[URL_IMAGE_HERO]')"
+       par l'URL réelle de la photo (Bloc 8 dossier client)
+     ============================================================ -->
+<section class="s2-hero">
+  <div class="s2-hero-bg" id="heroParallax"
+       style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  <div class="s2-hero-content">
+    <div class="s2-hero-tag">[Type de soin] · [Présentiel / Distanciel] · [Ville]</div>
+    <h1 class="s2-custom-h1">
+      [Nom de la prestation]<br><em>à [Ville]</em>
+    </h1>
+    <div class="s2-hero-badge">[Tarif] € · [Durée] · [Lieu précis]</div>
+    <p class="s2-hero-lieux">
+      Cabinet au
+      <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">[Adresse complète]</a>
+      · [Jours de disponibilité]
+    </p>
+    <div class="s2-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-outline">
+        Prendre rendez-vous
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AVIS GOOGLE
+     Option A — widget Elfsight (décommenter quand ID disponible)
+     Option B — 3 avis manuels depuis Bloc 11 dossier client
+     ============================================================ -->
+<section class="s2-s-avis">
+  <span class="s2-label">Ce que disent les clientes</span>
+  <h2 class="s2-h2">Avis Google<br><em>[Prénom Nom] · [Ville]</em></h2>
+  <div class="s2-divider"></div>
+  <!-- Option A — décommenter quand Elfsight ID disponible -->
+  <!-- <script src="https://elfsightcdn.com/platform.js" async></script> -->
+  <!-- <div class="elfsight-app-[VOTRE_ID]" data-elfsight-app-lazy></div> -->
+  <!-- Option B — 3 avis manuels, à supprimer si widget Elfsight activé -->
+  <div class="s2-avis-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;">
+    <div style="background:#fff;border-radius:24px;padding:32px 28px;box-shadow:0 4px 24px rgba(61,90,71,.06);text-align:left;">
+      <div style="font-family:var(--f-title);font-size:.82rem;color:var(--c-mid);letter-spacing:.1em;margin-bottom:12px;">★★★★★</div>
+      <p style="font-family:var(--f-title);font-style:italic;font-size:1rem;font-weight:300;color:#2d3d31;line-height:1.7;margin-bottom:14px;">« [Témoignage 1 depuis Bloc 11 — texte exact] »</p>
+      <span style="font-size:.74rem;font-weight:500;color:var(--c-mid);letter-spacing:.06em;">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+    <div style="background:#fff;border-radius:24px;padding:32px 28px;box-shadow:0 4px 24px rgba(61,90,71,.06);text-align:left;">
+      <div style="font-family:var(--f-title);font-size:.82rem;color:var(--c-mid);letter-spacing:.1em;margin-bottom:12px;">★★★★★</div>
+      <p style="font-family:var(--f-title);font-style:italic;font-size:1rem;font-weight:300;color:#2d3d31;line-height:1.7;margin-bottom:14px;">« [Témoignage 2 depuis Bloc 11] »</p>
+      <span style="font-size:.74rem;font-weight:500;color:var(--c-mid);letter-spacing:.06em;">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+    <div style="background:#fff;border-radius:24px;padding:32px 28px;box-shadow:0 4px 24px rgba(61,90,71,.06);text-align:left;">
+      <div style="font-family:var(--f-title);font-size:.82rem;color:var(--c-mid);letter-spacing:.1em;margin-bottom:12px;">★★★★★</div>
+      <p style="font-family:var(--f-title);font-style:italic;font-size:1rem;font-weight:300;color:#2d3d31;line-height:1.7;margin-bottom:14px;">« [Témoignage 3 depuis Bloc 11] »</p>
+      <span style="font-size:.74rem;font-weight:500;color:var(--c-mid);letter-spacing:.06em;">[Prénom N.] · Avis Google vérifié</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S1 — L'APPROCHE
+     → Remplacer .s2-grid-2-placeholder par :
+       <img src="URL" alt="..." class="..." loading="lazy">
+     ============================================================ -->
+<section class="s2-s1">
+  <span class="s2-label">L'approche</span>
+  <h2 class="s2-h2">
+    [Nom de la prestation] à [Ville] :<br>
+    <em>comment ça fonctionne ?</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-grid-2">
+    <div>
+      <p class="s2-p">
+        [Depuis Bloc 5 description du soin — paragraphe 1.
+        Ce qu'est la technique, comment elle agit sur le corps/l'émotion/l'énergie.
+        Dans les mots de la praticienne depuis Bloc 0 ADN.]
+      </p>
+      <p class="s2-p">
+        [Depuis Bloc 5 — paragraphe 2.
+        L'objectif thérapeutique/bien-être. Ce que ça change concrètement.
+        <strong>Ce qui rend cette approche unique chez [Prénom].</strong>]
+      </p>
+      <p class="s2-p">
+        [Depuis Bloc 5 — paragraphe 3.
+        Où se pratique le soin, pour qui il est particulièrement adapté,
+        depuis Bloc 0 profil clientèle idéale.]
+      </p>
+      <br>
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-dark">
+        Prendre rendez-vous
+      </a>
+    </div>
+    <!-- Remplacer par <img src="URL" alt="[Nom soin] [Ville] — [Prénom]" class="..." loading="lazy"> -->
+    <div class="s2-grid-2-placeholder">[URL_IMAGE_APPROCHE]</div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S2 — BIENFAITS (6 cartes numérotées)
+     → Depuis Bloc 5 bienfaits + Bloc 0 "Ce que tu veux qu'elles emportent"
+     → Adapter le nombre de cartes si moins de 6 bienfaits
+     ============================================================ -->
+<section class="s2-s2">
+  <span class="s2-label">Les bienfaits</span>
+  <h2 class="s2-h2">
+    [Nom de la prestation] à [Ville] :<br>
+    <em>ce que ça change concrètement</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-bienfaits">
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">01</div>
+      <h3>[Bienfait 1 depuis Bloc 5]</h3>
+      <p>[Description courte — concret, mesurable si possible. Jamais de lorem ipsum.]</p>
+    </div>
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">02</div>
+      <h3>[Bienfait 2]</h3>
+      <p>[Description courte.]</p>
+    </div>
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">03</div>
+      <h3>[Bienfait 3]</h3>
+      <p>[Description courte.]</p>
+    </div>
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">04</div>
+      <h3>[Bienfait 4]</h3>
+      <p>[Description courte.]</p>
+    </div>
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">05</div>
+      <h3>[Bienfait 5]</h3>
+      <p>[Description courte.]</p>
+    </div>
+
+    <div class="s2-bienfait">
+      <div class="s2-bienfait-num">06</div>
+      <h3>[Bienfait 6]</h3>
+      <p>[Description courte.]</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S3 — DÉROULEMENT (timeline 4 étapes)
+     → Depuis Bloc 5 déroulement de la prestation
+     → HowTo microdata intégré pour le SEO
+     ============================================================ -->
+<section class="s2-s3">
+  <span class="s2-label">Déroulement · [Durée] · [Présentiel / Distanciel]</span>
+  <h2 class="s2-h2">
+    Séance de [Nom de la prestation] à [Ville] ·<br>
+    <em>déroulement et réservation</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-timeline" itemscope itemtype="https://schema.org/HowTo">
+    <meta itemprop="name" content="Comment se passe une séance de [Nom de la prestation] à [Ville]">
+    <meta itemprop="totalTime" content="PT[X]M">
+
+    <div class="s2-tl-item" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+      <div class="s2-tl-dot">1</div>
+      <h3 itemprop="name">[Étape 1 depuis Bloc 5]</h3>
+      <p itemprop="text">[Description de l'étape 1 — dans les mots de la praticienne.]</p>
+    </div>
+
+    <div class="s2-tl-item" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+      <div class="s2-tl-dot">2</div>
+      <h3 itemprop="name">[Étape 2]</h3>
+      <p itemprop="text">[Description de l'étape 2.]</p>
+    </div>
+
+    <div class="s2-tl-item" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+      <div class="s2-tl-dot">3</div>
+      <h3 itemprop="name">[Étape 3]</h3>
+      <p itemprop="text">[Description de l'étape 3.]</p>
+    </div>
+
+    <div class="s2-tl-item" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+      <div class="s2-tl-dot">4</div>
+      <h3 itemprop="name">[Étape 4]</h3>
+      <p itemprop="text">[Description de l'étape 4.]</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S4 — TARIF
+     → Depuis Bloc 5 tarif + durée + bénéfices principaux
+     ============================================================ -->
+<section class="s2-s4">
+  <span class="s2-label">La formule</span>
+  <h2 class="s2-h2">
+    Séance de [Nom de la prestation]<br>
+    <em>tarif et réservation</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-tarif-card">
+    <div class="s2-tarif-tag">[Séance individuelle] · [Lieu — ex : Cabinet [Ville]]</div>
+    <div class="s2-tarif-title">[Nom de la prestation]</div>
+    <div class="s2-tarif-price"><span>€</span>[Tarif]</div>
+    <ul>
+      <li>[Durée de la séance]</li>
+      <li>[Lieu — ex : Présentiel uniquement · Cabinet [Ville]]</li>
+      <li>[Bénéfice principal 1 depuis Bloc 5]</li>
+      <li>[Bénéfice principal 2]</li>
+      <li>[Bénéfice principal 3]</li>
+      <li>[Recommandation fréquence depuis Bloc 5]</li>
+    </ul>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-sage">
+      Réserver ma séance
+    </a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S5 — PRATICIENNE (fond sombre)
+     → Remplacer .s2-praticienne-placeholder par :
+       <img src="URL" alt="[Prénom Nom] [titre] [Ville]" class="..." loading="lazy">
+     ============================================================ -->
+<section class="s2-s5">
+  <span class="s2-label s2-label-light">Votre praticienne</span>
+  <h2 class="s2-h2 s2-h2-light">
+    [Prénom Nom]<br>
+    <em>[Titre professionnel] · [Ville]</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-praticienne">
+    <!-- Remplacer par <img src="URL" alt="..." class="..." loading="lazy"> -->
+    <div class="s2-praticienne-placeholder">[URL_PHOTO_PRATICIENNE]</div>
+    <div>
+      <p class="s2-p s2-p-light">
+        [Depuis Bloc 9 bio courte + Bloc 0 ADN — paragraphe 1.
+        Qui elle est, son parcours, pourquoi ce métier.]
+      </p>
+      <p class="s2-p s2-p-light">
+        [Depuis Bloc 0 "Ce que tu fais différemment" — paragraphe 2.
+        Ce qui distingue son approche. <strong style="color:#fff;font-weight:400;">Phrase ADN Bloc 0.</strong>]
+      </p>
+      <ul class="s2-formations">
+        <li>[Formation / certification 1 depuis Bloc 9]</li>
+        <li>[Formation / certification 2]</li>
+        <li>[Formation / certification 3]</li>
+        <li>[Autre élément de parcours]</li>
+      </ul>
+      <a href="/[slug-a-propos]" class="s2-btn-outline-light">
+        Voir mon parcours complet
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S6 — CABINET (fond beige)
+     → Remplacer .s2-cabinet-photo-placeholder par :
+       <img src="URL" alt="..." class="..." loading="lazy">
+     ============================================================ -->
+<section class="s2-s6">
+  <span class="s2-label">Informations pratiques</span>
+  <h2 class="s2-h2">Le cabinet<br><em>[Prénom Nom] · [Ville]</em></h2>
+  <div class="s2-divider"></div>
+
+  <div class="s2-cabinet-photos">
+    <div class="s2-cabinet-photo-placeholder">[URL_PHOTO_CABINET_1]</div>
+    <div class="s2-cabinet-photo-placeholder">[URL_PHOTO_CABINET_2]</div>
+  </div>
+
+  <div class="s2-cabinet-infos">
+    <div class="s2-cabinet-info-item">
+      <span class="s2-cabinet-info-label">Adresse</span>
+      <span class="s2-cabinet-info-val">[Numéro et rue] · [Code postal] [Ville]</span>
+    </div>
+    <div class="s2-cabinet-sep"></div>
+    <div class="s2-cabinet-info-item">
+      <span class="s2-cabinet-info-label">Horaires</span>
+      <span class="s2-cabinet-info-val">[Jours et horaires depuis Bloc 10]</span>
+    </div>
+    <div class="s2-cabinet-sep"></div>
+    <div class="s2-cabinet-info-item">
+      <span class="s2-cabinet-info-label">Accès</span>
+      <span class="s2-cabinet-info-val">[Villes desservies / Zone géographique depuis Bloc 1]</span>
+    </div>
+    <div class="s2-cabinet-sep"></div>
+    <div class="s2-cabinet-info-item">
+      <span class="s2-cabinet-info-label">Contact</span>
+      <span class="s2-cabinet-info-val">
+        <a href="tel:[+33XXXXXXXXX]" style="color:#1e2e22;text-decoration:none;">[Téléphone]</a>
+        &nbsp;·&nbsp;
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener"
+           style="color:var(--c-main);text-decoration:underline;text-underline-offset:3px;">
+          Réserver en ligne
+        </a>
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S7 — FAQ
+     → Depuis Bloc 5 contre-indications + informations pratiques
+     ============================================================ -->
+<section class="s2-s7">
+  <span class="s2-label">Questions fréquentes</span>
+  <h2 class="s2-h2">
+    [Nom de la prestation] à [Ville] ·<br>
+    <em>vos questions</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <div class="s2-faq">
+
+    <details class="s2-faq-item">
+      <summary>[Qu'est-ce que [Nom de la prestation] et à quoi ça sert ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 5 description complète. Minimum 3-4 phrases dans les mots de la praticienne.]
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[Quel est le tarif de [Nom de la prestation] à [Ville] ?]</summary>
+      <div class="s2-faq-ans">
+        La séance de [Nom de la prestation] dure [durée] et est au tarif de [tarif] €
+        au cabinet de [Ville]. La réservation se fait directement en ligne
+        sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>.
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[Où se déroule la prestation à [Ville] ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 2 adresse + Bloc 5 lieu de pratique.
+        Les séances se déroulent [uniquement en présentiel / aussi en visio]
+        au cabinet situé au [Adresse complète].
+        [Prénom] reçoit [jours et horaires].]
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[Combien de séances sont nécessaires pour voir des résultats ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 5 fréquence conseillée.
+        Pour un premier contact, une séance unique suffit à ressentir les effets immédiats.
+        Pour un travail en profondeur, [Prénom] recommande [protocole].]
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[La prestation est-elle douloureuse ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 5 ou type de soin — sensations, niveau d'intensité.
+        [Prénom] adapte son approche à votre ressenti en temps réel.]
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[Quelle est la différence entre [Nom de la prestation] et [autre soin] ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 5 et soins hub — description comparative courte.
+        [Nom de la prestation] est particulièrement adapté pour [profil / situation].]
+      </div>
+    </details>
+
+    <details class="s2-faq-item">
+      <summary>[Y a-t-il des contre-indications ?]</summary>
+      <div class="s2-faq-ans">
+        [Depuis Bloc 5 contre-indications — liste précise.
+        En cas de doute, signalez votre situation lors de la prise de rendez-vous.
+        Ce soin ne se substitue pas à un suivi médical.]
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S8 — CTA FINAL (fond sombre)
+     ============================================================ -->
+<section class="s2-s8">
+  <span class="s2-label s2-label-light">[Prénom Nom] · [Ville] · [Département / Région]</span>
+  <h2 class="s2-h2 s2-h2-light">
+    [Accroche CTA depuis Bloc 0 ADN]<br>
+    <em>[suite en italique]</em>
+  </h2>
+  <div class="s2-divider"></div>
+  <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s2-btn-outline">
+    Prendre rendez-vous — [Ville]
+  </a>
+  <p style="margin-top:28px;font-size:.82rem;color:var(--c-lin);font-weight:300;letter-spacing:.05em;">
+    Questions ?
+    <a href="tel:[+33XXXXXXXXX]"
+       style="color:var(--c-lin);text-decoration:underline;text-underline-offset:3px;">
+      [Téléphone]
+    </a>
+    ·
+    <a href="mailto:[email]"
+       style="color:var(--c-lin);text-decoration:underline;text-underline-offset:3px;">
+      [Email]
+    </a>
+  </p>
+</section>
+
+
+<!-- ============================================================
+     S9 — MAILLAGE
+     ============================================================ -->
+<section class="s2-s9">
+  <span class="s2-label">À découvrir aussi</span>
+  <h2 class="s2-h2">Toutes les prestations<br><em>à [Ville]</em></h2>
+  <div class="s2-divider"></div>
+  <div class="s2-maillage">
+    <a href="/[slug-soin-2]-[ville]">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soin-3]-[ville]">[Soin 3] à [Ville]</a>
+    <a href="/[slug-soin-4]-[ville]">[Soin 4] à [Ville]</a>
+    <a href="/[slug-soin-5]-[ville]">[Soin 5] à [Ville]</a>
+    <a href="/[slug-soins]">Voir toutes les prestations à [Ville]</a>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "[Nom de la prestation] à [Ville]",
+    "description": "[Description complète : praticienne, technique, bénéfices, tarif, durée, lieu.]",
+    "serviceType": "[Nom de la prestation]",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "[Prénom Nom] — [Spécialité]",
+      "url": "https://[votre-domaine].fr",
+      "telephone": "[+33XXXXXXXXX]",
+      "image": "[URL_PHOTO_PRATICIENNE]",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[Numéro et rue]",
+        "addressLocality": "[Ville]",
+        "postalCode": "[Code postal]",
+        "addressCountry": "FR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "[X.X]",
+        "reviewCount": "[X]",
+        "bestRating": "5"
+      }
+    },
+    "areaServed": [
+      {"@type": "City", "name": "[Ville principale]"},
+      {"@type": "City", "name": "[Ville 2]"},
+      {"@type": "City", "name": "[Ville 3]"}
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "[Tarif]",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "[LIEN_RDV]"
+    },
+    "url": "https://[votre-domaine].fr/[slug-prestation]-[ville]"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"[Question 1]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 1]"}},
+      {"@type":"Question","name":"[Question 2]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 2]"}},
+      {"@type":"Question","name":"[Question 3]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 3]"}},
+      {"@type":"Question","name":"[Question 4]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 4]"}},
+      {"@type":"Question","name":"[Question 5]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 5]"}},
+      {"@type":"Question","name":"[Question 6]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 6]"}},
+      {"@type":"Question","name":"[Question 7]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 7]"}}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+      {"@type":"ListItem","position":2,"name":"[Mes soins]","item":"https://[votre-domaine].fr/[slug-soins]"},
+      {"@type":"ListItem","position":3,"name":"[Nom de la prestation] [Ville]","item":"https://[votre-domaine].fr/[slug-prestation]-[ville]"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Spécialité]",
+    "description": "[Description cabinet — soins, profil clientèle, zone géographique. 150-200 caractères.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "priceRange": "€€",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"}
+    ],
+    "sameAs": ["[URL Google Maps]","[URL Instagram]","[URL Facebook]"]
+  }
+]
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Comment se déroule une séance de [Nom de la prestation] à [Ville]",
+  "totalTime": "PT[X]M",
+  "step": [
+    {"@type":"HowToStep","position":1,"name":"[Étape 1]","text":"[Description étape 1.]"},
+    {"@type":"HowToStep","position":2,"name":"[Étape 2]","text":"[Description étape 2.]"},
+    {"@type":"HowToStep","position":3,"name":"[Étape 3]","text":"[Description étape 3.]"},
+    {"@type":"HowToStep","position":4,"name":"[Étape 4]","text":"[Description étape 4.]"}
+  ]
+}
+</script>
+
+
+<!-- ============================================================
+     PARALLAX JS — ne pas modifier
+     ============================================================ -->
+<script>
+(function(){
+  var bg = document.getElementById('heroParallax');
+  if(!bg || window.innerWidth < 900) return;
+  var raf = false;
+  window.addEventListener('scroll', function(){
+    if(!raf){
+      requestAnimationFrame(function(){
+        bg.style.transform = 'translateY(' + (window.scrollY * 0.18) + 'px)';
+        raf = false;
+      });
+      raf = true;
+    }
+  }, {passive: true});
+})();
+</script>
+
+</body>
+</html>
