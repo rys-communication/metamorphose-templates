@@ -1,0 +1,286 @@
+<!-- FICHIER SOURCE — contient les 4 templates restants style-03 -->
+<!-- Copier chaque section dans son propre fichier -->
+
+<!-- ========================================================
+     SOINS HUB — style-03-vivant
+     Fichier : soins-hub-style-03-vivant.html
+     ======================================================== -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soins & prestations à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="Toutes les prestations de [Prénom Nom] à [Ville] : [Soin 1], [Soin 2], [Soin 3]. Tarifs, durées et réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--vif:#1a3a8f;--vif2:#c9a84c;--vif3:#e8ecf8;--noir:#0d1020;--gris:#f4f5f8;--blanc:#ffffff;--muted:#6b7080;--line:rgba(13,16,32,.1);--f-title:'Fraunces',Georgia,serif;--f-body:'Outfit',sans-serif;--max:1140px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:var(--f-body);font-weight:300;background:var(--blanc);color:var(--noir);padding-bottom:72px;overflow-x:hidden;cursor:none;}img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.cursor-dot{width:8px;height:8px;border-radius:50%;background:var(--vif);position:fixed;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);}
+.cursor-ring{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--vif);position:fixed;z-index:99998;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
+@media(max-width:860px){.cursor-dot,.cursor-ring{display:none;}body{cursor:auto;}}
+.s3-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--noir);display:flex;align-items:center;justify-content:space-between;padding:12px 40px;gap:16px;}
+.s3-sticky-txt{color:rgba(255,255,255,.55);font-size:.8rem;line-height:1.5;}.s3-sticky-txt strong{display:block;color:#fff;font-weight:500;}
+.s3-sticky-btns{display:flex;gap:10px;flex-shrink:0;}
+.s3-sticky-cta{background:var(--vif);color:#fff;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:11px 28px;border:2px solid var(--vif);transition:all .25s;font-family:var(--f-body);}
+.s3-sticky-cta:hover{background:transparent;color:var(--vif2);border-color:var(--vif2);}
+.s3-sticky-ghost{background:transparent;color:rgba(255,255,255,.7);font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:11px 20px;border:2px solid rgba(255,255,255,.2);transition:all .25s;font-family:var(--f-body);}
+.s3-sticky-ghost:hover{border-color:rgba(255,255,255,.6);color:#fff;}
+@media(max-width:600px){.s3-sticky{padding:12px 16px;justify-content:center;}.s3-sticky-txt{display:none;}.s3-sticky-btns{width:100%;justify-content:center;gap:8px;}.s3-sticky-cta,.s3-sticky-ghost{flex:1;text-align:center;}}
+/* HERO */
+.s3-hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 6% 72px;background:var(--noir);}
+.s3-hero-bg{position:absolute;inset:-10%;background-size:cover;background-position:center top;opacity:.4;transform:scale(1.08);transition:transform 8s ease;}
+.s3-hero-bg.loaded{transform:scale(1);}
+.s3-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,16,32,.9) 0%,rgba(13,16,32,.2) 60%,transparent 100%);}
+.s3-hero-num{position:absolute;top:0;right:4%;font-family:var(--f-title);font-size:22vw;font-weight:300;color:rgba(26,58,143,.07);line-height:1;pointer-events:none;}
+.s3-hero-content{position:relative;z-index:2;max-width:var(--max);width:100%;}
+.s3-hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--vif2);margin-bottom:24px;opacity:0;animation:fadeUp .6s .2s ease forwards;}
+.s3-hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--vif2);}
+.s3-hero h1{font-family:var(--f-title);font-weight:400;font-size:clamp(3rem,6.5vw,6.5rem);line-height:.96;letter-spacing:-.03em;color:#fff;margin-bottom:28px;opacity:0;animation:fadeUp .9s .3s ease forwards;}
+.s3-hero h1 em{font-style:italic;color:var(--vif2);}
+.s3-hero-bar{display:flex;gap:28px;flex-wrap:wrap;align-items:center;padding-top:28px;border-top:1px solid rgba(255,255,255,.15);opacity:0;animation:fadeUp .8s .6s ease forwards;}
+.s3-hero-bar-item{display:flex;flex-direction:column;gap:3px;}
+.s3-hero-bar-label{font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.s3-hero-bar-val{font-family:var(--f-title);font-size:1rem;font-weight:400;color:#fff;line-height:1;}
+.s3-hero-btns{margin-left:auto;display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .7s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+@media(max-width:768px){.s3-hero{padding:0 5% 56px;}.s3-hero h1{font-size:clamp(2.6rem,11vw,4rem);}.s3-hero-bar{gap:18px;}.s3-hero-btns{margin-left:0;}.s3-hero-num{display:none;}}
+/* MARQUEE */
+.s3-marquee{background:var(--vif);overflow:hidden;padding:14px 0;display:flex;}
+.s3-marquee-track{display:flex;white-space:nowrap;animation:marquee 26s linear infinite;}
+.s3-marquee-item{font-family:var(--f-title);font-style:italic;font-weight:300;font-size:1.05rem;color:#fff;padding:0 36px;opacity:.9;}
+.s3-marquee-sep{color:var(--vif2);padding:0 4px;align-self:center;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* SECTIONS */
+.s3-section{padding:80px 6%;}.s3-inner{max-width:var(--max);margin:0 auto;}
+.s3-label{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--vif2);margin-bottom:16px;font-family:var(--f-body);}
+.s3-label::before{content:'';width:28px;height:2px;background:var(--vif2);}
+.s3-label-blue{color:var(--vif);}.s3-label-blue::before{background:var(--vif);}
+.s3-h2{font-family:var(--f-title);font-weight:400;font-size:clamp(1.9rem,4vw,3.8rem);line-height:1.04;letter-spacing:-.025em;color:var(--noir);}
+.s3-h2 em{font-style:italic;color:var(--vif);}
+.s3-h2-light{color:#fff;}.s3-h2-light em{color:var(--vif2);}
+.s3-p{font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:14px;}
+/* BOUTONS */
+.s3-btn-primary{display:inline-block;background:var(--vif);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:15px 36px;border:2px solid var(--vif);transition:all .25s;font-family:var(--f-body);}
+.s3-btn-primary:hover{background:transparent;color:var(--vif);}
+.s3-btn-ghost{display:inline-block;background:transparent;color:var(--noir);font-size:.74rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:15px 28px;border:2px solid var(--line);transition:all .25s;font-family:var(--f-body);}
+.s3-btn-ghost:hover{border-color:var(--vif);color:var(--vif);}
+.s3-btn-white{display:inline-block;background:#fff;color:var(--vif);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 40px;border:2px solid #fff;transition:all .25s;font-family:var(--f-body);}
+.s3-btn-white:hover{background:transparent;color:#fff;}
+/* FILTRES */
+.s3-filtres{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:44px;}
+.s3-filtre-btn{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;cursor:pointer;border:2px solid var(--line);color:var(--muted);background:transparent;transition:all .22s;font-family:var(--f-body);}
+.s3-filtre-btn:hover{border-color:var(--vif);color:var(--vif);}
+.s3-filtre-btn.actif{background:var(--vif);color:#fff;border-color:var(--vif);}
+/* GRILLE SOINS */
+.s3-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.s3-soin-card{background:var(--gris);padding:40px 32px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;text-decoration:none;color:inherit;border-top:3px solid transparent;transition:border-color .3s;}
+.s3-soin-card::before{content:'';position:absolute;inset:0;background:var(--vif);transform:scaleY(0);transform-origin:bottom;transition:transform .45s cubic-bezier(.77,0,.18,1);z-index:0;}
+.s3-soin-card:hover::before{transform:scaleY(1);}
+.s3-soin-card:hover{border-top-color:var(--vif2);}
+.s3-soin-card.masque{display:none;}
+.s3-soin-inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px;height:100%;}
+.s3-soin-num{font-family:var(--f-title);font-size:2.4rem;font-weight:300;color:var(--vif);opacity:.25;line-height:1;transition:color .3s,opacity .3s;}
+.s3-soin-card:hover .s3-soin-num{color:var(--vif2);opacity:.45;}
+.s3-soin-cat{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--vif2);font-family:var(--f-body);}
+.s3-soin-name{font-family:var(--f-title);font-size:1.25rem;font-weight:400;color:var(--noir);line-height:1.2;flex:1;transition:color .3s;}
+.s3-soin-card:hover .s3-soin-name{color:#fff;}
+.s3-soin-sep{width:24px;height:2px;background:var(--vif2);transition:width .3s;}
+.s3-soin-card:hover .s3-soin-sep{width:48px;}
+.s3-soin-meta{display:flex;gap:18px;flex-wrap:wrap;}
+.s3-soin-meta-item span{display:block;font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;transition:color .3s;font-family:var(--f-body);}
+.s3-soin-meta-item strong{font-size:.84rem;color:var(--noir);font-weight:400;transition:color .3s;}
+.s3-soin-card:hover .s3-soin-meta-item span{color:rgba(255,255,255,.5);}
+.s3-soin-card:hover .s3-soin-meta-item strong{color:rgba(255,255,255,.9);}
+.s3-soin-cta{font-size:.7rem;color:var(--vif);font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:8px;transition:gap .25s,color .3s;font-family:var(--f-body);}
+.s3-soin-card:hover .s3-soin-cta{gap:18px;color:var(--vif2);}
+.s3-soin-cta::after{content:'→';}
+.s3-no-result{display:none;grid-column:span 3;text-align:center;padding:48px;font-size:.9rem;color:var(--muted);font-style:italic;font-family:var(--f-title);}
+@media(max-width:860px){.s3-soins-grid{grid-template-columns:1fr 1fr;}.s3-no-result{grid-column:span 2;}}
+@media(max-width:540px){.s3-soins-grid{grid-template-columns:1fr;}.s3-no-result{grid-column:span 1;}}
+/* APPROCHE ENCART */
+.s3-approche-encart{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;background:var(--noir);padding:56px 48px;margin-top:56px;}
+.s3-approche-quote{font-family:var(--f-title);font-style:italic;font-weight:300;font-size:clamp(1.2rem,2vw,1.8rem);line-height:1.45;color:#fff;border-left:3px solid var(--vif2);padding-left:24px;}
+.s3-approche-quote cite{display:block;margin-top:16px;font-style:normal;font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--vif2);opacity:.7;font-family:var(--f-body);}
+@media(max-width:768px){.s3-approche-encart{grid-template-columns:1fr;gap:32px;padding:32px 24px;}}
+/* PRATICIENNE ENCART */
+.s3-prat-encart{display:grid;grid-template-columns:120px 1fr;gap:28px;align-items:center;background:var(--gris);padding:32px;margin-top:56px;}
+.s3-prat-encart-img-placeholder{width:120px;height:120px;background:var(--vif3);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--vif);text-align:center;padding:12px;flex-shrink:0;}
+.s3-prat-name{font-family:var(--f-title);font-size:1.15rem;font-weight:400;color:var(--noir);margin-bottom:6px;}
+.s3-prat-name em{font-style:italic;color:var(--vif);}
+.s3-prat-bio{font-size:.86rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:14px;}
+@media(max-width:540px){.s3-prat-encart{grid-template-columns:1fr;}}
+/* AVIS */
+.s3-avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:48px;}
+.s3-avis-card{background:var(--gris);padding:32px 26px;display:flex;flex-direction:column;gap:12px;border-top:3px solid transparent;transition:border-color .3s,transform .3s;}
+.s3-avis-card:hover{border-top-color:var(--vif2);transform:translateY(-4px);}
+.s3-avis-stars{color:var(--vif2);font-size:.95rem;letter-spacing:2px;}
+.s3-avis-txt{font-family:var(--f-title);font-style:italic;font-size:.96rem;font-weight:300;color:var(--muted);line-height:1.8;flex:1;}
+.s3-avis-author{font-size:.72rem;font-weight:600;color:var(--vif);letter-spacing:.08em;font-family:var(--f-body);}
+@media(max-width:760px){.s3-avis-grid{grid-template-columns:1fr;}}
+/* CTA */
+.s3-cta-lin{background:var(--vif);padding:80px 6%;text-align:center;position:relative;overflow:hidden;}
+.s3-cta-deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-title);font-size:28vw;font-weight:300;color:rgba(255,255,255,.05);white-space:nowrap;pointer-events:none;line-height:1;}
+.s3-cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.s3-cta-inner h2{font-family:var(--f-title);font-weight:400;font-size:clamp(2.2rem,5.5vw,4.8rem);color:#fff;line-height:1;margin-bottom:20px;letter-spacing:-.03em;}
+.s3-cta-inner h2 em{font-style:italic;color:var(--vif2);}
+.s3-cta-sub{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:36px;}
+/* MAILLAGE */
+.s3-maillage{background:var(--noir);padding:56px 6%;}.s3-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s3-maillage-label{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--vif2);margin-bottom:20px;display:block;}
+.s3-maillage-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.s3-maillage-pill{display:inline-block;padding:10px 20px;border:2px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);font-size:.8rem;font-weight:400;font-family:var(--f-body);letter-spacing:.04em;transition:all .25s;}
+.s3-maillage-pill:hover{border-color:var(--vif2);color:var(--vif2);}
+.s3-reveal{opacity:0;transform:translateY(36px);transition:opacity .85s ease,transform .85s ease;}
+.s3-reveal.in{opacity:1;transform:none;}
+.s3-reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .85s ease,transform .85s ease;}
+.s3-reveal-left.in{opacity:1;transform:none;}
+.s3-reveal-right{opacity:0;transform:translateX(36px);transition:opacity .85s ease,transform .85s ease;}
+.s3-reveal-right.in{opacity:1;transform:none;}
+.s3-d1{transition-delay:.1s;}.s3-d2{transition-delay:.2s;}.s3-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="s3-sticky">
+  <div class="s3-sticky-txt"><strong>[Prénom Nom] — [Titre professionnel]</strong>[Ville] · Réservation 24h/24</div>
+  <div class="s3-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s3-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s3-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<section class="s3-hero">
+  <div class="s3-hero-bg" id="heroBg" style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  <div class="s3-hero-overlay"></div>
+  <div class="s3-hero-num" aria-hidden="true">04</div>
+  <div class="s3-hero-content">
+    <div class="s3-hero-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h1 class="s3-custom-h1">Toutes les prestations<br><em>à [Ville]</em></h1>
+    <div class="s3-hero-bar">
+      <div class="s3-hero-bar-item"><span class="s3-hero-bar-label">Soins</span><span class="s3-hero-bar-val">[X] disponibles</span></div>
+      <div class="s3-hero-bar-item"><span class="s3-hero-bar-label">À partir de</span><span class="s3-hero-bar-val">[X] €</span></div>
+      <div class="s3-hero-bar-item"><span class="s3-hero-bar-label">Note</span><span class="s3-hero-bar-val">[X.X] ★</span></div>
+      <div class="s3-hero-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s3-btn-primary">Réserver</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s3-marquee" aria-hidden="true">
+  <div class="s3-marquee-track">
+    <span class="s3-marquee-item">[Soin 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Ville]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 3]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Ville]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 3]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 1]</span><span class="s3-marquee-sep">✦</span>
+  </div>
+</div>
+
+<section class="s3-section" style="background:var(--blanc);">
+  <div class="s3-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:40px;">
+      <div class="s3-reveal-left">
+        <span class="s3-label s3-label-blue">[X] prestations disponibles à [Ville]</span>
+        <h2 class="s3-h2">Les soins de [Prénom]<br><em>à [Ville]</em></h2>
+      </div>
+      <p class="s3-p s3-reveal-right" style="padding-bottom:4px;">[Depuis Bloc 0 ADN — phrase courte sur l'intention commune de tous les soins.]</p>
+    </div>
+    <div class="s3-filtres">
+      <button class="s3-filtre-btn actif" data-filtre="tout">Tous les soins</button>
+      <button class="s3-filtre-btn" data-filtre="[cat-1-slug]">[Catégorie 1]</button>
+      <button class="s3-filtre-btn" data-filtre="[cat-2-slug]">[Catégorie 2]</button>
+      <button class="s3-filtre-btn" data-filtre="[cat-3-slug]">[Catégorie 3]</button>
+    </div>
+    <div class="s3-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s3-soin-card s3-reveal s3-d1" data-cat="[cat-1-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">01</span><span class="s3-soin-cat">[Catégorie 1]</span><div class="s3-soin-name">[Nom du soin 1]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><div class="s3-soin-meta-item"><span>Lieu</span><strong>[Cabinet]</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <a href="/[slug-soin-2]-[ville]" class="s3-soin-card s3-reveal s3-d2" data-cat="[cat-1-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">02</span><span class="s3-soin-cat">[Catégorie 1]</span><div class="s3-soin-name">[Nom du soin 2]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><div class="s3-soin-meta-item"><span>Lieu</span><strong>[Cabinet]</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <a href="/[slug-soin-3]-[ville]" class="s3-soin-card s3-reveal s3-d3" data-cat="[cat-2-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">03</span><span class="s3-soin-cat">[Catégorie 2]</span><div class="s3-soin-name">[Nom du soin 3]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><div class="s3-soin-meta-item"><span>Lieu</span><strong>[Cabinet · Visio]</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <a href="/[slug-soin-4]-[ville]" class="s3-soin-card s3-reveal s3-d1" data-cat="[cat-2-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">04</span><span class="s3-soin-cat">[Catégorie 2]</span><div class="s3-soin-name">[Nom du soin 4]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <a href="/[slug-soin-5]-[ville]" class="s3-soin-card s3-reveal s3-d2" data-cat="[cat-3-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">05</span><span class="s3-soin-cat">[Catégorie 3]</span><div class="s3-soin-name">[Nom du soin 5]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <a href="/[slug-soin-6]-[ville]" class="s3-soin-card s3-reveal s3-d3" data-cat="[cat-3-slug]"><div class="s3-soin-inner"><span class="s3-soin-num">06</span><span class="s3-soin-cat">[Catégorie 3]</span><div class="s3-soin-name">[Nom du soin 6]</div><div class="s3-soin-sep"></div><div class="s3-soin-meta"><div class="s3-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s3-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div></div><span class="s3-soin-cta">Découvrir</span></div></a>
+      <div class="s3-no-result">Aucune prestation dans cette catégorie.</div>
+    </div>
+    <div class="s3-approche-encart s3-reveal">
+      <blockquote class="s3-approche-quote">« [Citation depuis Bloc 0 ADN — phrase qui résume l'approche globale.] »<cite>— [Prénom Nom] · [Titre]</cite></blockquote>
+      <div>
+        <span class="s3-label">Mon approche</span>
+        <p class="s3-p" style="color:rgba(255,255,255,.65);">[Depuis Bloc 0 "Ce que tu fais différemment" — 2-3 phrases dans ses mots.]</p>
+        <a href="/[slug-a-propos]" style="display:inline-block;background:var(--vif2);color:var(--noir);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 28px;border:2px solid var(--vif2);transition:all .25s;font-family:var(--f-body);">En savoir plus sur mon approche</a>
+      </div>
+    </div>
+    <div class="s3-prat-encart s3-reveal" style="margin-top:3px;">
+      <div class="s3-prat-encart-img-placeholder">[URL_PORTRAIT]</div>
+      <div>
+        <div class="s3-prat-name">[Prénom Nom] — <em>[Titre]</em></div>
+        <p class="s3-prat-bio">[Depuis Bloc 9 bio courte + Bloc 0 — 2 phrases dans les mots de la praticienne.]</p>
+        <a href="/[slug-a-propos]" class="s3-btn-ghost" style="font-size:.7rem;padding:10px 22px;">Découvrir le parcours →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s3-section s3-reveal" style="background:var(--noir);text-align:center;">
+  <div class="s3-inner">
+    <span class="s3-label" style="color:rgba(201,168,76,.9);justify-content:center;">Témoignages</span>
+    <h2 class="s3-h2 s3-h2-light" style="text-align:center;margin-bottom:0;">Ce que disent<br><em>les clientes</em></h2>
+    <div class="s3-avis-grid" style="margin-top:48px;">
+      <div class="s3-avis-card" style="background:rgba(255,255,255,.06);"><div class="s3-avis-stars">★★★★★</div><p class="s3-avis-txt" style="color:rgba(255,255,255,.6);">« [Témoignage 1 depuis Bloc 11] »</p><span class="s3-avis-author">[Prénom N.] · Avis Google vérifié</span></div>
+      <div class="s3-avis-card" style="background:rgba(255,255,255,.06);"><div class="s3-avis-stars">★★★★★</div><p class="s3-avis-txt" style="color:rgba(255,255,255,.6);">« [Témoignage 2 depuis Bloc 11] »</p><span class="s3-avis-author">[Prénom N.] · Avis Google vérifié</span></div>
+      <div class="s3-avis-card" style="background:rgba(255,255,255,.06);"><div class="s3-avis-stars">★★★★★</div><p class="s3-avis-txt" style="color:rgba(255,255,255,.6);">« [Témoignage 3 depuis Bloc 11] »</p><span class="s3-avis-author">[Prénom N.] · Avis Google vérifié</span></div>
+    </div>
+    <div style="margin-top:32px;"><a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:rgba(255,255,255,.7);font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:13px 28px;border:2px solid rgba(255,255,255,.2);transition:all .25s;font-family:var(--f-body);">Voir tous les avis Google</a></div>
+  </div>
+</section>
+
+<div class="s3-cta-lin">
+  <div class="s3-cta-deco" aria-hidden="true">[Prénom]</div>
+  <div class="s3-cta-inner s3-reveal">
+    <span style="display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--vif2);margin-bottom:16px;font-family:var(--f-body);"><span style="width:28px;height:2px;background:var(--vif2);display:inline-block;"></span>[Prénom Nom] · [Ville]</span>
+    <h2>[Accroche depuis Bloc 0]<br><em>[suite]</em></h2>
+    <p class="s3-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s3-btn-white">Réserver ma séance</a>
+  </div>
+</div>
+
+<div class="s3-maillage">
+  <div class="s3-maillage-inner">
+    <span class="s3-maillage-label">Rayonnement</span>
+    <div class="s3-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s3-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s3-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s3-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-1]-[ville2]" class="s3-maillage-pill">[Soin 1] à [Ville 2]</a>
+      <a href="/[slug-a-propos]" class="s3-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s3-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"ItemList","name":"Soins de [Prénom Nom] à [Ville]","url":"https://[votre-domaine].fr/[slug-soins]","itemListElement":[
+  {"@type":"ListItem","position":1,"item":{"@type":"Service","name":"[Soin 1] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-1]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},
+  {"@type":"ListItem","position":2,"item":{"@type":"Service","name":"[Soin 2] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-2]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},
+  {"@type":"ListItem","position":3,"item":{"@type":"Service","name":"[Soin 3] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-3]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}}
+]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+  {"@type":"ListItem","position":2,"name":"Soins & prestations","item":"https://[votre-domaine].fr/[slug-soins]"}
+]}]
+</script>
+<script>
+(function(){var dot=document.getElementById('cursorDot');var ring=document.getElementById('cursorRing');if(!dot||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();document.querySelectorAll('a,button,.s3-soin-card,.s3-avis-card').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='60px';ring.style.height='60px';});el.addEventListener('mouseleave',function(){ring.style.width='36px';ring.style.height='36px';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.1});document.querySelectorAll('.s3-reveal,.s3-reveal-left,.s3-reveal-right').forEach(function(el){io.observe(el);});})();
+(function(){var btns=document.querySelectorAll('[data-filtre]');var cards=document.querySelectorAll('.s3-soin-card');var noRes=document.querySelector('.s3-no-result');btns.forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre');btns.forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');var v=0;cards.forEach(function(c){var show=f==='tout'||c.getAttribute('data-cat')===f;c.classList.toggle('masque',!show);if(show)v++;});if(noRes)noRes.style.display=v===0?'block':'none';});});})();
+</script>
+</body>
+</html>

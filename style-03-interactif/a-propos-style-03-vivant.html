@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — [Titre professionnel] à [Ville] · À propos</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. Découvrez son histoire, son approche, ses formations et ses valeurs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --vif:   #1a3a8f;
+  --vif2:  #c9a84c;
+  --vif3:  #e8ecf8;
+  --noir:  #0d1020;
+  --gris:  #f4f5f8;
+  --blanc: #ffffff;
+  --muted: #6b7080;
+  --line:  rgba(13,16,32,.1);
+  --f-title: 'Fraunces', Georgia, serif;
+  --f-body:  'Outfit', sans-serif;
+  --max: 1140px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-body); font-weight: 300; background: var(--blanc); color: var(--noir); padding-bottom: 72px; overflow-x: hidden; cursor: none; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── CURSEUR ── */
+.cursor-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--vif); position: fixed; z-index: 99999; pointer-events: none; transform: translate(-50%,-50%); }
+.cursor-ring { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--vif); position: fixed; z-index: 99998; pointer-events: none; transform: translate(-50%,-50%); transition: width .25s, height .25s; }
+@media(max-width:860px){ .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
+
+/* ─── STICKY ── */
+.s3-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: var(--noir); display: flex; align-items: center; justify-content: space-between; padding: 12px 40px; gap: 16px; }
+.s3-sticky-txt { color: rgba(255,255,255,.55); font-size: .8rem; line-height: 1.5; }
+.s3-sticky-txt strong { display: block; color: #fff; font-weight: 500; font-size: .85rem; }
+.s3-sticky-btns { display: flex; gap: 10px; flex-shrink: 0; }
+.s3-sticky-cta { background: var(--vif); color: #fff; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 11px 28px; border: 2px solid var(--vif); transition: all .25s; font-family: var(--f-body); }
+.s3-sticky-cta:hover { background: transparent; color: var(--vif2); border-color: var(--vif2); }
+.s3-sticky-ghost { background: transparent; color: rgba(255,255,255,.7); font-size: .72rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; padding: 11px 20px; border: 2px solid rgba(255,255,255,.2); transition: all .25s; font-family: var(--f-body); }
+.s3-sticky-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
+@media(max-width:600px){ .s3-sticky { padding: 12px 16px; justify-content: center; } .s3-sticky-txt { display: none; } .s3-sticky-btns { width: 100%; justify-content: center; gap: 8px; } .s3-sticky-cta, .s3-sticky-ghost { flex: 1; text-align: center; } }
+
+/* ─── HERO PLEIN ÉCRAN ── */
+.s3-hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 0 6% 72px; background: var(--noir); }
+.s3-hero-bg { position: absolute; inset: -10%; background-size: cover; background-position: center top; opacity: .45; transform: scale(1.08); transition: transform 8s ease; }
+.s3-hero-bg.loaded { transform: scale(1); }
+.s3-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,16,32,.88) 0%, rgba(13,16,32,.2) 60%, transparent 100%); }
+.s3-hero-num { position: absolute; top: 0; right: 4%; font-family: var(--f-title); font-size: 22vw; font-weight: 300; color: rgba(26,58,143,.08); line-height: 1; pointer-events: none; }
+.s3-hero-content { position: relative; z-index: 2; max-width: var(--max); width: 100%; }
+.s3-hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .62rem; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--vif2); margin-bottom: 24px; opacity: 0; animation: fadeUp .6s .2s ease forwards; }
+.s3-hero-eyebrow::before { content:''; width:28px; height:2px; background:var(--vif2); }
+.s3-hero h1 { font-family: var(--f-title); font-weight: 400; font-size: clamp(3rem,6.5vw,6.5rem); line-height: .96; letter-spacing: -.03em; color: #fff; margin-bottom: 28px; opacity: 0; animation: fadeUp .9s .3s ease forwards; }
+.s3-hero h1 em { font-style: italic; color: var(--vif2); }
+.s3-hero-bar { display: flex; gap: 28px; flex-wrap: wrap; align-items: center; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.15); opacity: 0; animation: fadeUp .8s .6s ease forwards; }
+.s3-hero-bar-item { display: flex; flex-direction: column; gap: 3px; }
+.s3-hero-bar-label { font-size: .58rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); }
+.s3-hero-bar-val { font-family: var(--f-title); font-size: 1rem; font-weight: 400; color: #fff; line-height: 1; }
+.s3-hero-btns { margin-left: auto; display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .7s ease forwards; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+@media(max-width:768px){ .s3-hero { padding: 0 5% 56px; } .s3-hero h1 { font-size: clamp(2.6rem,11vw,4rem); } .s3-hero-bar { gap: 18px; } .s3-hero-btns { margin-left:0; } .s3-hero-num { display:none; } }
+
+/* ─── MARQUEE ── */
+.s3-marquee { background: var(--vif); overflow: hidden; padding: 14px 0; display: flex; }
+.s3-marquee-track { display: flex; white-space: nowrap; animation: marquee 26s linear infinite; }
+.s3-marquee-item { font-family: var(--f-title); font-style: italic; font-weight: 300; font-size: 1.05rem; color: #fff; padding: 0 36px; opacity: .9; }
+.s3-marquee-sep { color: var(--vif2); padding: 0 4px; align-self: center; }
+@keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+/* ─── SECTIONS ── */
+.s3-section { padding: 96px 6%; }
+.s3-inner { max-width: var(--max); margin: 0 auto; }
+.s3-label { display: inline-flex; align-items: center; gap: 10px; font-size: .62rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--vif2); margin-bottom: 16px; font-family: var(--f-body); }
+.s3-label::before { content:''; width:28px; height:2px; background:var(--vif2); }
+.s3-label-blue { color: var(--vif); } .s3-label-blue::before { background: var(--vif); }
+.s3-label-light { color: rgba(201,168,76,.9); } .s3-label-light::before { background: rgba(201,168,76,.9); }
+.s3-h2 { font-family: var(--f-title); font-weight: 400; font-size: clamp(1.9rem,4vw,3.8rem); line-height: 1.04; letter-spacing: -.025em; color: var(--noir); }
+.s3-h2 em { font-style: italic; color: var(--vif); }
+.s3-h2-light { color: #fff; } .s3-h2-light em { color: var(--vif2); }
+.s3-p { font-size: .95rem; font-weight: 300; line-height: 1.9; color: var(--muted); margin-bottom: 14px; }
+.s3-p strong { color: var(--noir); font-weight: 500; }
+.s3-p-light { color: rgba(255,255,255,.62); }
+.s3-note { border-left: 3px solid var(--vif2); padding: 14px 20px; background: var(--vif3); margin: 20px 0; font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+.s3-note strong { color: var(--vif); font-weight: 600; display: block; margin-bottom: 4px; }
+
+/* ─── BOUTONS ── */
+.s3-btn-primary { display: inline-block; background: var(--vif); color: #fff; font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 15px 36px; border: 2px solid var(--vif); transition: all .25s; font-family: var(--f-body); }
+.s3-btn-primary:hover { background: transparent; color: var(--vif); }
+.s3-btn-gold { display: inline-block; background: var(--vif2); color: var(--noir); font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 15px 36px; border: 2px solid var(--vif2); transition: all .25s; font-family: var(--f-body); }
+.s3-btn-gold:hover { background: transparent; color: var(--vif2); }
+.s3-btn-ghost { display: inline-block; background: transparent; color: var(--noir); font-size: .74rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; padding: 15px 28px; border: 2px solid var(--line); transition: all .25s; font-family: var(--f-body); }
+.s3-btn-ghost:hover { border-color: var(--vif); color: var(--vif); }
+.s3-btn-outline-light { display: inline-block; background: transparent; color: rgba(255,255,255,.8); font-size: .74rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; padding: 15px 28px; border: 2px solid rgba(255,255,255,.3); transition: all .25s; font-family: var(--f-body); }
+.s3-btn-outline-light:hover { border-color: #fff; color: #fff; }
+
+/* ─── S0 — HISTOIRE ── */
+.s3-histoire { background: var(--blanc); }
+.s3-histoire-grid { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: start; }
+.s3-histoire-quote { font-family: var(--f-title); font-style: italic; font-weight: 300; font-size: clamp(1.3rem,2.2vw,1.9rem); line-height: 1.45; color: var(--noir); border-left: 3px solid var(--vif2); padding-left: 28px; margin-bottom: 32px; }
+/* Image avec hover */
+.s3-img-hover-wrap { position: relative; overflow: hidden; }
+.s3-img-hover-wrap img, .s3-img-placeholder { width: 100%; height: 520px; object-fit: cover; display: block; transition: transform .7s ease; }
+.s3-img-placeholder { background: var(--gris); display: flex; align-items: center; justify-content: center; font-size: .66rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 32px; }
+.s3-img-hover-wrap:hover img, .s3-img-hover-wrap:hover .s3-img-placeholder { transform: scale(1.05); }
+.s3-img-overlay { position: absolute; inset: 0; background: var(--vif); opacity: 0; transition: opacity .4s; mix-blend-mode: multiply; }
+.s3-img-hover-wrap:hover .s3-img-overlay { opacity: .2; }
+.s3-img-badge { position: absolute; bottom: 24px; left: 24px; background: var(--vif2); color: var(--noir); padding: 10px 16px; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-family: var(--f-body); transform: translateY(8px); opacity: 0; transition: all .4s; }
+.s3-img-hover-wrap:hover .s3-img-badge { transform: translateY(0); opacity: 1; }
+@media(max-width:860px){ .s3-histoire-grid { grid-template-columns: 1fr; gap: 40px; } .s3-img-hover-wrap img, .s3-img-placeholder { height: 320px; } }
+
+/* ─── S1 — VALEURS ── */
+.s3-valeurs-section { background: var(--gris); }
+.s3-valeurs-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 48px; }
+.s3-valeurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+/* Carte valeur — hover fill bleu */
+.s3-valeur-card { background: var(--blanc); padding: 44px 32px; position: relative; overflow: hidden; border-top: 3px solid transparent; transition: border-color .3s; }
+.s3-valeur-card::before { content:''; position: absolute; inset: 0; background: var(--vif); transform: scaleY(0); transform-origin: bottom; transition: transform .45s cubic-bezier(.77,0,.18,1); z-index: 0; }
+.s3-valeur-card:hover::before { transform: scaleY(1); }
+.s3-valeur-card:hover { border-top-color: var(--vif2); }
+.s3-valeur-inner { position: relative; z-index: 1; }
+.s3-valeur-num { font-family: var(--f-title); font-size: 3rem; font-weight: 300; color: var(--vif); opacity: .2; line-height: 1; margin-bottom: 20px; display: block; transition: color .3s, opacity .3s; }
+.s3-valeur-card:hover .s3-valeur-num { color: var(--vif2); opacity: .4; }
+.s3-valeur-name { font-family: var(--f-title); font-size: 1.3rem; font-weight: 400; color: var(--noir); margin-bottom: 12px; transition: color .3s; }
+.s3-valeur-card:hover .s3-valeur-name { color: #fff; }
+.s3-valeur-desc { font-size: .88rem; font-weight: 300; line-height: 1.8; color: var(--muted); transition: color .3s; }
+.s3-valeur-card:hover .s3-valeur-desc { color: rgba(255,255,255,.8); }
+@media(max-width:900px){ .s3-valeurs-grid { grid-template-columns: 1fr 1fr; } .s3-valeurs-header { grid-template-columns: 1fr; gap: 24px; } }
+@media(max-width:540px){ .s3-valeurs-grid { grid-template-columns: 1fr; } }
+
+/* ─── S2 — MÉTHODE (fond sombre) ── */
+.s3-methode { background: var(--noir); }
+.s3-methode-grid { display: grid; grid-template-columns: 1fr 460px; gap: 80px; align-items: center; }
+.s3-methode-steps { display: flex; flex-direction: column; gap: 0; }
+.s3-methode-step { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.07); align-items: flex-start; transition: background .25s; border-left: 3px solid transparent; padding-left: 16px; }
+.s3-methode-step:hover { border-left-color: var(--vif2); }
+.s3-methode-step:last-child { border-bottom: none; }
+.s3-methode-num { font-family: var(--f-title); font-size: 1.8rem; font-weight: 300; color: var(--vif2); opacity: .4; flex-shrink: 0; line-height: 1; width: 36px; }
+.s3-methode-t { font-family: var(--f-title); font-size: 1.1rem; font-weight: 400; color: #fff; margin-bottom: 6px; }
+.s3-methode-p { font-size: .86rem; color: rgba(255,255,255,.55); line-height: 1.8; font-weight: 300; }
+.s3-methode-aside { display: flex; flex-direction: column; gap: 12px; }
+.s3-methode-img-placeholder { width: 100%; aspect-ratio: 4/5; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center; font-size: .66rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); text-align: center; padding: 32px; }
+.s3-methode-encart { background: var(--vif2); padding: 22px 24px; }
+.s3-methode-encart-label { font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(13,16,32,.6); margin-bottom: 6px; font-family: var(--f-body); }
+.s3-methode-encart-val { font-family: var(--f-title); font-style: italic; font-size: .96rem; color: var(--noir); line-height: 1.7; }
+@media(max-width:860px){ .s3-methode-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── S3 — FORMATIONS ── */
+.s3-formations { background: var(--blanc); }
+.s3-formations-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 48px; }
+.s3-formations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.s3-formation-item { background: var(--gris); padding: 32px 28px; display: flex; gap: 20px; align-items: flex-start; border-top: 3px solid transparent; transition: border-color .25s, background .25s; }
+.s3-formation-item:hover { border-top-color: var(--vif2); background: var(--vif3); }
+.s3-formation-year { font-family: var(--f-title); font-size: .88rem; font-weight: 300; color: var(--vif2); flex-shrink: 0; writing-mode: vertical-rl; letter-spacing: .1em; border-right: 2px solid var(--vif3); padding-right: 14px; margin-right: 4px; }
+.s3-formation-name { font-family: var(--f-title); font-size: 1.1rem; font-weight: 400; color: var(--noir); margin-bottom: 4px; }
+.s3-formation-org { font-size: .72rem; color: var(--vif); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; font-family: var(--f-body); font-weight: 600; }
+.s3-formation-desc { font-size: .84rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+@media(max-width:680px){ .s3-formations-grid { grid-template-columns: 1fr; } .s3-formations-header { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ─── S4 — GALERIE ── */
+.s3-galerie { background: var(--gris); }
+.s3-galerie-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 300px 220px; gap: 3px; margin-top: 48px; }
+.s3-galerie-wrap { position: relative; overflow: hidden; }
+.s3-galerie-wrap img, .s3-galerie-placeholder { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; display: block; }
+.s3-galerie-placeholder { background: var(--blanc); display: flex; align-items: center; justify-content: center; font-size: .62rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 16px; }
+.s3-galerie-wide { grid-column: span 2; }
+.s3-galerie-wrap:hover img, .s3-galerie-wrap:hover .s3-galerie-placeholder { transform: scale(1.05); }
+/* Overlay hover */
+.s3-galerie-wrap::after { content:''; position: absolute; inset: 0; background: var(--vif); opacity: 0; transition: opacity .35s; }
+.s3-galerie-wrap:hover::after { opacity: .15; }
+@media(max-width:680px){ .s3-galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; } .s3-galerie-wide { grid-column: span 2; } }
+
+/* ─── S5 — FAQ ── */
+.s3-faq { background: var(--blanc); }
+.s3-faq-wrap { max-width: 720px; margin: 48px auto 0; }
+details.s3-faq-item { border-bottom: 2px solid var(--line); }
+details.s3-faq-item summary { padding: 22px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; font-size: .96rem; font-weight: 400; color: var(--noir); font-family: var(--f-body); transition: color .2s; }
+details.s3-faq-item summary::-webkit-details-marker { display: none; }
+details.s3-faq-item summary::after { content:'+'; font-size: 1.3rem; color: var(--vif); flex-shrink: 0; transition: transform .3s; font-weight: 300; line-height: 1; }
+details.s3-faq-item[open] summary { color: var(--vif); }
+details.s3-faq-item[open] summary::after { transform: rotate(45deg); }
+.s3-faq-ans { padding: 0 0 22px; font-size: .9rem; font-weight: 300; color: var(--muted); line-height: 2; }
+.s3-faq-ans a { color: var(--noir); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── S6 — CTA ── */
+.s3-cta { background: var(--vif); padding: 120px 6%; text-align: center; position: relative; overflow: hidden; }
+.s3-cta-deco { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-title); font-size: 28vw; font-weight: 300; color: rgba(255,255,255,.05); white-space: nowrap; pointer-events: none; line-height: 1; }
+.s3-cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.s3-cta h2 { font-family: var(--f-title); font-weight: 400; font-size: clamp(2.4rem,6vw,5.5rem); color: #fff; line-height: 1.0; margin-bottom: 24px; letter-spacing: -.03em; }
+.s3-cta h2 em { font-style: italic; color: var(--vif2); }
+.s3-cta-sub { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.8; margin-bottom: 44px; }
+.s3-btn-white { display: inline-block; background: #fff; color: var(--vif); font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 18px 56px; border: 2px solid #fff; transition: all .25s; font-family: var(--f-body); }
+.s3-btn-white:hover { background: transparent; color: #fff; }
+.s3-cta-contact { margin-top: 22px; font-size: .8rem; color: rgba(255,255,255,.45); }
+.s3-cta-contact a { color: rgba(255,255,255,.7); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ── */
+.s3-maillage { background: var(--noir); padding: 64px 6%; }
+.s3-maillage-inner { max-width: var(--max); margin: 0 auto; }
+.s3-maillage-label { font-size: .62rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--vif2); margin-bottom: 24px; display: block; }
+.s3-maillage-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.s3-maillage-pill { display: inline-block; padding: 10px 20px; border: 2px solid rgba(255,255,255,.15); color: rgba(255,255,255,.6); font-size: .8rem; font-weight: 400; font-family: var(--f-body); letter-spacing: .04em; transition: all .25s; }
+.s3-maillage-pill:hover { border-color: var(--vif2); color: var(--vif2); }
+
+/* ─── REVEAL ── */
+.s3-reveal { opacity:0; transform:translateY(36px); transition:opacity .85s ease, transform .85s ease; }
+.s3-reveal.in { opacity:1; transform:none; }
+.s3-reveal-left { opacity:0; transform:translateX(-36px); transition:opacity .85s ease, transform .85s ease; }
+.s3-reveal-left.in { opacity:1; transform:none; }
+.s3-reveal-right { opacity:0; transform:translateX(36px); transition:opacity .85s ease, transform .85s ease; }
+.s3-reveal-right.in { opacity:1; transform:none; }
+.s3-d1{transition-delay:.1s;} .s3-d2{transition-delay:.2s;} .s3-d3{transition-delay:.3s;} .s3-d4{transition-delay:.4s;}
+
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+
+<!-- STICKY -->
+<div class="s3-sticky">
+  <div class="s3-sticky-txt">
+    <strong>[Prénom Nom] — [Titre professionnel]</strong>
+    [Ville] · Réservation en ligne 24h/24
+  </div>
+  <div class="s3-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s3-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s3-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s3-hero">
+  <div class="s3-hero-bg" id="heroBg" style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  <div class="s3-hero-overlay"></div>
+  <div class="s3-hero-num" aria-hidden="true">02</div>
+  <div class="s3-hero-content">
+    <div class="s3-hero-eyebrow">[Titre professionnel] · [Ville]</div>
+    <h1 class="s3-custom-h1">
+      [Prénom Nom],<br>
+      <em>[titre ou accroche]</em>
+    </h1>
+    <div class="s3-hero-bar">
+      <div class="s3-hero-bar-item">
+        <span class="s3-hero-bar-label">Expérience</span>
+        <span class="s3-hero-bar-val">[X] ans</span>
+      </div>
+      <div class="s3-hero-bar-item">
+        <span class="s3-hero-bar-label">Spécialité</span>
+        <span class="s3-hero-bar-val">[Soin signature]</span>
+      </div>
+      <div class="s3-hero-bar-item">
+        <span class="s3-hero-bar-label">Ville</span>
+        <span class="s3-hero-bar-val">[Ville] · [Dpt]</span>
+      </div>
+      <div class="s3-hero-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s3-btn-primary">Prendre rendez-vous</a>
+        <a href="/[slug-soins]" class="s3-btn-outline-light">Découvrir les soins</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- MARQUEE -->
+<div class="s3-marquee" aria-hidden="true">
+  <div class="s3-marquee-track">
+    <span class="s3-marquee-item">[Valeur 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 3]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Ville]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 4]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 1]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Soin 2]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 3]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Ville]</span><span class="s3-marquee-sep">✦</span>
+    <span class="s3-marquee-item">[Valeur 4]</span><span class="s3-marquee-sep">✦</span>
+  </div>
+</div>
+
+
+<!-- S0 — HISTOIRE -->
+<section class="s3-section s3-histoire">
+  <div class="s3-inner">
+    <div class="s3-histoire-grid">
+      <div class="s3-reveal-left">
+        <span class="s3-label">Mon histoire</span>
+        <h2 class="s3-h2" style="margin-bottom:28px;">
+          [Ce qui m'a amenée<br>à ce métier] — <em>[accroche]</em>
+        </h2>
+        <blockquote class="s3-histoire-quote">
+          « [Citation depuis Bloc 0 ADN — la phrase qui résume le pourquoi. Mot pour mot.] »
+        </blockquote>
+        <p class="s3-p">[Paragraphe 1 — depuis Bloc 0 "Pourquoi tu fais ce métier". À la première personne.]</p>
+        <p class="s3-p">[Paragraphe 2 — depuis Bloc 0 "Ce qui t'a amenée là". Le déclic.]</p>
+        <div class="s3-note">
+          <strong>[Ce que je veux que vous emportiez]</strong>
+          [Depuis Bloc 0 "Ce que tu veux qu'elles emportent après". La vraie version.]
+        </div>
+        <p class="s3-p">[Paragraphe 3 — depuis Bloc 0 "Ce qui te rend fière".]</p>
+      </div>
+      <div class="s3-reveal-right">
+        <div class="s3-img-hover-wrap">
+          <div class="s3-img-placeholder">[URL_PHOTO_HISTOIRE — Portrait naturel]</div>
+          <div class="s3-img-overlay"></div>
+          <div class="s3-img-badge">[Prénom Nom] · [Ville]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S1 — VALEURS -->
+<section class="s3-section s3-valeurs-section">
+  <div class="s3-inner">
+    <div class="s3-valeurs-header s3-reveal">
+      <div>
+        <span class="s3-label">Mes valeurs</span>
+        <h2 class="s3-h2">Ce qui guide<br><em>chaque séance</em></h2>
+      </div>
+      <p class="s3-p" style="padding-bottom:4px;">
+        [Depuis Bloc 0 — phrase d'intro sur ce que représentent ses valeurs dans la pratique concrète.]
+      </p>
+    </div>
+    <div class="s3-valeurs-grid">
+
+      <div class="s3-valeur-card s3-reveal s3-d1">
+        <div class="s3-valeur-inner">
+          <span class="s3-valeur-num">01</span>
+          <div class="s3-valeur-name">[Valeur 1 depuis Bloc 0]</div>
+          <p class="s3-valeur-desc">[Ce que cette valeur veut dire concrètement dans la pratique.]</p>
+        </div>
+      </div>
+
+      <div class="s3-valeur-card s3-reveal s3-d2">
+        <div class="s3-valeur-inner">
+          <span class="s3-valeur-num">02</span>
+          <div class="s3-valeur-name">[Valeur 2]</div>
+          <p class="s3-valeur-desc">[Description concrète.]</p>
+        </div>
+      </div>
+
+      <div class="s3-valeur-card s3-reveal s3-d3">
+        <div class="s3-valeur-inner">
+          <span class="s3-valeur-num">03</span>
+          <div class="s3-valeur-name">[Valeur 3]</div>
+          <p class="s3-valeur-desc">[Description concrète.]</p>
+        </div>
+      </div>
+
+      <!-- Ajouter / supprimer selon Bloc 0 -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S2 — MÉTHODE (fond sombre) -->
+<section class="s3-section s3-methode s3-reveal">
+  <div class="s3-inner">
+    <div class="s3-methode-grid">
+      <div>
+        <span class="s3-label s3-label-light">Mon approche</span>
+        <h2 class="s3-h2 s3-h2-light" style="margin-bottom:24px;">
+          Comment je travaille —<br><em>[accroche méthode]</em>
+        </h2>
+        <p class="s3-p s3-p-light">
+          [Depuis Bloc 0 "Ce que tu fais différemment" et Bloc 5. Philosophie globale.]
+        </p>
+        <div class="s3-methode-steps">
+
+          <div class="s3-methode-step">
+            <div class="s3-methode-num">01</div>
+            <div>
+              <div class="s3-methode-t">[Pilier 1 de la méthode]</div>
+              <p class="s3-methode-p">[Description concrète depuis Bloc 0 ou Bloc 5.]</p>
+            </div>
+          </div>
+
+          <div class="s3-methode-step">
+            <div class="s3-methode-num">02</div>
+            <div>
+              <div class="s3-methode-t">[Pilier 2]</div>
+              <p class="s3-methode-p">[Description concrète.]</p>
+            </div>
+          </div>
+
+          <div class="s3-methode-step">
+            <div class="s3-methode-num">03</div>
+            <div>
+              <div class="s3-methode-t">[Pilier 3]</div>
+              <p class="s3-methode-p">[Description concrète.]</p>
+            </div>
+          </div>
+
+          <div class="s3-methode-step">
+            <div class="s3-methode-num">04</div>
+            <div>
+              <div class="s3-methode-t">[Pilier 4]</div>
+              <p class="s3-methode-p">[Description concrète.]</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="s3-methode-aside">
+        <div class="s3-img-hover-wrap">
+          <div class="s3-methode-img-placeholder">[URL_PHOTO_METHODE — Soin en cours]</div>
+          <div class="s3-img-overlay"></div>
+        </div>
+        <div class="s3-methode-encart">
+          <div class="s3-methode-encart-label">Ce que disent les clientes</div>
+          <div class="s3-methode-encart-val">
+            « [Depuis Bloc 0 "Ce que mes clientes disent le plus souvent". Verbatim.] »
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S3 — FORMATIONS -->
+<section class="s3-section s3-formations">
+  <div class="s3-inner">
+    <div class="s3-formations-header s3-reveal">
+      <div>
+        <span class="s3-label s3-label-blue">Formations & certifications</span>
+        <h2 class="s3-h2">Mon parcours<br><em>professionnel</em></h2>
+      </div>
+      <p class="s3-p" style="padding-bottom:4px;">
+        [Depuis Bloc 9 "Années d'expérience" — 1-2 phrases contextuelles. Jamais inventer de chiffres.]
+      </p>
+    </div>
+    <div class="s3-formations-grid">
+
+      <div class="s3-formation-item s3-reveal s3-d1">
+        <div class="s3-formation-year">[Année]</div>
+        <div>
+          <div class="s3-formation-name">[Nom exact formation 1]</div>
+          <div class="s3-formation-org">[Organisme / École]</div>
+          <p class="s3-formation-desc">[Description si fournie — sinon laisser vide.]</p>
+        </div>
+      </div>
+
+      <div class="s3-formation-item s3-reveal s3-d2">
+        <div class="s3-formation-year">[Année]</div>
+        <div>
+          <div class="s3-formation-name">[Nom exact formation 2]</div>
+          <div class="s3-formation-org">[Organisme]</div>
+          <p class="s3-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="s3-formation-item s3-reveal s3-d3">
+        <div class="s3-formation-year">[Année]</div>
+        <div>
+          <div class="s3-formation-name">[Nom exact formation 3]</div>
+          <div class="s3-formation-org">[Organisme]</div>
+          <p class="s3-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="s3-formation-item s3-reveal s3-d4">
+        <div class="s3-formation-year">[Année]</div>
+        <div>
+          <div class="s3-formation-name">[Formation 4 / Certification]</div>
+          <div class="s3-formation-org">[Organisme]</div>
+          <p class="s3-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <!-- Dupliquer selon Bloc 9 -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — GALERIE -->
+<section class="s3-section s3-galerie">
+  <div class="s3-inner s3-reveal">
+    <span class="s3-label">Univers</span>
+    <h2 class="s3-h2" style="margin-bottom:0;">[Mon cabinet] — <em>[Ville]</em></h2>
+  </div>
+  <div class="s3-inner">
+    <div class="s3-galerie-grid">
+      <div class="s3-galerie-wrap s3-galerie-wide">
+        <div class="s3-galerie-placeholder">[URL_PHOTO_CABINET_1 — Vue d'ensemble]</div>
+      </div>
+      <div class="s3-galerie-wrap">
+        <div class="s3-galerie-placeholder">[URL_PHOTO_CABINET_2]</div>
+      </div>
+      <div class="s3-galerie-wrap">
+        <div class="s3-galerie-placeholder">[URL_PHOTO_SOIN_1]</div>
+      </div>
+      <div class="s3-galerie-wrap">
+        <div class="s3-galerie-placeholder">[URL_PHOTO_CABINET_3]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — FAQ -->
+<section class="s3-section s3-faq">
+  <div class="s3-inner" style="text-align:center;">
+    <span class="s3-label" style="justify-content:center;">Questions fréquentes</span>
+    <h2 class="s3-h2" style="text-align:center;margin-bottom:0;">
+      [Prénom Nom] à [Ville] —<br><em>vos questions</em>
+    </h2>
+  </div>
+  <div class="s3-faq-wrap">
+
+    <details class="s3-faq-item">
+      <summary>Quel est votre parcours et vos formations ?</summary>
+      <div class="s3-faq-ans">
+        [Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans.
+        [Formations principales depuis Bloc 9]. <a href="/[slug-a-propos]">Voir le parcours complet →</a>
+      </div>
+    </details>
+
+    <details class="s3-faq-item">
+      <summary>Quelle est votre approche et ce qui vous différencie ?</summary>
+      <div class="s3-faq-ans">
+        [Depuis Bloc 0 "Ce que tu fais différemment". Réponse directe, dans ses mots.]
+      </div>
+    </details>
+
+    <details class="s3-faq-item">
+      <summary>Pour quel type de clientèle travaillez-vous ?</summary>
+      <div class="s3-faq-ans">
+        [Depuis Bloc 0 profil cliente idéale. Décrire précisément.]
+        <a href="/[slug-soins]">Découvrir les soins →</a>
+      </div>
+    </details>
+
+    <details class="s3-faq-item">
+      <summary>Depuis combien de temps exercez-vous à [Ville] ?</summary>
+      <div class="s3-faq-ans">
+        [Depuis Bloc 9 année de lancement et années d'expérience.]
+      </div>
+    </details>
+
+    <details class="s3-faq-item">
+      <summary>Comment se passe une première séance avec vous ?</summary>
+      <div class="s3-faq-ans">
+        [Depuis Bloc 5 déroulement. Rassurer sur ce à quoi s'attendre.]
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener">Réserver →</a>
+      </div>
+    </details>
+
+    <details class="s3-faq-item">
+      <summary>Proposez-vous des séances à domicile ou à distance ?</summary>
+      <div class="s3-faq-ans">
+        [Depuis Bloc 5 — domicile oui/non + rayon + villes. Visio oui/non + modalités.]
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- S6 — CTA -->
+<section class="s3-cta">
+  <div class="s3-cta-deco" aria-hidden="true">[Prénom]</div>
+  <div class="s3-cta-inner s3-reveal">
+    <span class="s3-label s3-label-light" style="justify-content:center;">[Prénom Nom] · [Ville]</span>
+    <h2>[Accroche depuis<br>Bloc 0 ADN]<br><em>[suite]</em></h2>
+    <p class="s3-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s3-btn-white">Prendre rendez-vous</a>
+    <p class="s3-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+
+<!-- MAILLAGE -->
+<div class="s3-maillage">
+  <div class="s3-maillage-inner">
+    <span class="s3-maillage-label">À découvrir aussi</span>
+    <div class="s3-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s3-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s3-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s3-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soins]" class="s3-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-faq]" class="s3-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","description":"[Bio courte depuis Bloc 9 — 2-3 phrases.]","url":"https://[votre-domaine].fr/[slug-a-propos]","image":"[URL_PHOTO_PORTRAIT]","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","streetAddress":"[Numéro et rue]","addressLocality":"[Ville]","postalCode":"[Code postal]","addressCountry":"FR"},"alumniOf":[{"@type":"EducationalOrganization","name":"[Organisme 1]"},{"@type":"EducationalOrganization","name":"[Organisme 2]"}],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"[Certification 1]"}],"knowsAbout":["[Soin 1]","[Soin 2]","[Soin 3]"],"sameAs":["[URL Instagram]","[URL Facebook]"]},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Quel est le parcours de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre] à [Ville] depuis [X] ans. [Formations principales]."}},
+    {"@type":"Question","name":"Quelle est l'approche de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0 différenciation.]"}},
+    {"@type":"Question","name":"Pour quel type de clientèle travaille [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0 profil cliente.]"}},
+    {"@type":"Question","name":"Comment se passe une première séance ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 déroulement.]}},
+    {"@type":"Question","name":"[Prénom Nom] propose-t-elle des séances à domicile ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 — domicile oui/non + rayon.]"}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"À propos","item":"https://[votre-domaine].fr/[slug-a-propos]"}
+  ]}
+]
+</script>
+
+
+<script>
+(function(){
+  var dot=document.getElementById('cursorDot');
+  var ring=document.getElementById('cursorRing');
+  if(!dot||!ring)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+  document.querySelectorAll('a,button,.s3-valeur-card,.s3-galerie-wrap,.s3-formation-item').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='60px';ring.style.height='60px';});
+    el.addEventListener('mouseleave',function(){ring.style.width='36px';ring.style.height='36px';});
+  });
+})();
+(function(){ var bg=document.getElementById('heroBg'); if(bg)setTimeout(function(){bg.classList.add('loaded');},100); })();
+(function(){
+  var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.1});
+  document.querySelectorAll('.s3-reveal,.s3-reveal-left,.s3-reveal-right').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
