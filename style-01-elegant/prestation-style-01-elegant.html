@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Nom de la prestation] à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Nom de la prestation] : [bénéfice 1], [bénéfice 2]. [Tarif] € · [Durée]. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --terra:  #C4735A;
+  --terra2: #E0A08B;
+  --petal:  #F5E8E0;
+  --ivory:  #FBF8F5;
+  --sand:   #EDE4DA;
+  --sage:   #A8A898;
+  --sage-l: #D6D3C8;
+  --ink:    #2E2420;
+  --muted:  #7A6E68;
+  --line:   rgba(168,168,152,.22);
+
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Jost', sans-serif;
+  --max:     1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  padding-bottom: 72px; overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── STICKY ─────────────────────────────────────────────── */
+.sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--ink); display: flex; align-items: center;
+  justify-content: space-between; padding: 13px 40px; gap: 16px;
+}
+.sticky-txt { color: rgba(251,248,245,.6); font-size: .8rem; line-height: 1.5; }
+.sticky-txt strong { display: block; color: var(--petal); font-weight: 400; font-size: .86rem; letter-spacing: .01em; }
+.sticky-cta {
+  background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 11px 28px; flex-shrink: 0;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.sticky-cta:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+@media(max-width:600px){
+  .sticky { padding: 12px 16px; }
+  .sticky-txt { display: none; }
+  .sticky-cta { flex: 1; text-align: center; }
+}
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 90vh;
+}
+.hero-left {
+  position: relative; overflow: hidden;
+}
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; display: block;
+}
+.hero-img-placeholder {
+  width: 100%; height: 100%; min-height: 90vh;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 32px;
+}
+/* Filet vertical décoratif */
+.hero-left::after {
+  content: '';
+  position: absolute; top: 12%; right: 0; bottom: 12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(196,115,90,.35), transparent);
+}
+/* Badge flottant sur l'image */
+.hero-img-badge {
+  position: absolute; bottom: 32px; left: 32px;
+  background: var(--ink); color: var(--ivory);
+  padding: 14px 20px; font-size: .76rem; line-height: 1.6;
+  max-width: 260px;
+}
+.hero-img-badge strong {
+  display: block; color: var(--terra2); font-weight: 400;
+  font-family: var(--f-serif); font-style: italic; font-size: .88rem; margin-bottom: 3px;
+}
+.hero-right {
+  background: var(--ivory); display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 72px 80px 80px;
+  position: relative;
+}
+.hero-eyebrow {
+  font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--terra);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp .7s .1s ease forwards;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--terra); }
+.hero-h1 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  line-height: 1.12; letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .8s .25s ease forwards;
+}
+.hero-h1 em { font-style: italic; color: var(--terra); }
+.hero-intro {
+  font-size: .92rem; color: var(--muted); line-height: 2;
+  max-width: 400px; margin-bottom: 36px; border-left: 2px solid var(--terra2);
+  padding-left: 20px;
+  opacity: 0; animation: fadeUp .8s .4s ease forwards;
+}
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px;
+  opacity: 0; animation: fadeUp .8s .5s ease forwards;
+}
+.hero-badge {
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); padding: 6px 14px;
+  border: 1px solid var(--line); background: var(--sand);
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: 28px; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp .8s .55s ease forwards;
+}
+.hero-meta-item span {
+  display: block; font-size: .58rem; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 5px;
+}
+.hero-meta-item strong { font-size: .9rem; color: var(--ink); font-weight: 400; }
+.hero-ctas {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .8s .65s ease forwards;
+}
+.btn-primary {
+  display: inline-block; background: var(--terra); color: var(--ivory);
+  font-size: .74rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 15px 36px;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.btn-primary:hover { background: transparent; color: var(--terra); }
+.btn-ghost {
+  display: inline-block; background: transparent; color: var(--ink);
+  font-size: .74rem; font-weight: 400; letter-spacing: .12em;
+  text-transform: uppercase; padding: 15px 24px;
+  border: 1px solid var(--sage-l); transition: all .3s;
+}
+.btn-ghost:hover { border-color: var(--terra); color: var(--terra); }
+/* Tags maillage */
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+  opacity: 0; animation: fadeUp .8s .75s ease forwards; }
+.hero-tag {
+  font-size: .66rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--sage); padding: 5px 12px;
+  border: 1px solid var(--line); transition: all .25s;
+}
+.hero-tag:hover { color: var(--terra); border-color: var(--terra2); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media(max-width:960px){
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { height: 56vw; min-height: 260px; }
+  .hero-img-placeholder { min-height: 260px; }
+  .hero-left::after { display: none; }
+  .hero-img-badge { display: none; }
+  .hero-right { padding: 48px 28px 64px; }
+  .hero-h1 { font-size: 2.2rem; }
+}
+
+/* ─── SECTIONS COMMUNES ───────────────────────────────────── */
+.section { padding: 96px 8%; }
+.inner { max-width: var(--max); margin: 0 auto; }
+
+.label {
+  display: block; font-size: .62rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.label-light { color: var(--terra2); }
+.label-center { text-align: center; }
+
+.h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.18; letter-spacing: -.01em; color: var(--ink);
+}
+.h2 em { font-style: italic; color: var(--terra); }
+.h2-light { color: var(--ivory); }
+.h2-light em { color: var(--terra2); }
+.h2-center { text-align: center; }
+
+.rule { width: 36px; height: 1px; background: var(--terra); margin: 18px 0 36px; }
+.rule-center { margin: 18px auto 36px; }
+
+.p { font-size: .92rem; color: var(--muted); line-height: 2; margin-bottom: 14px; }
+.p strong { color: var(--ink); font-weight: 500; }
+.p-light { color: rgba(251,248,245,.65); }
+
+/* ─── S1 APPROCHE — texte + image ────────────────────────── */
+.approche-grid {
+  display: grid; grid-template-columns: 1fr 420px;
+  gap: 80px; align-items: start;
+}
+.approche-img-wrap { position: relative; }
+.approche-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+.approche-img-placeholder {
+  width: 100%; aspect-ratio: 3/4; background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 24px;
+}
+/* Cadre offset décoratif */
+.approche-img-wrap::before {
+  content: '';
+  position: absolute; bottom: -14px; left: -14px;
+  width: 55%; height: 40%;
+  border: 1px solid var(--terra2); opacity: .3;
+  pointer-events: none;
+}
+.note {
+  border-left: 2px solid var(--terra); padding: 16px 20px;
+  background: var(--petal); margin: 24px 0;
+  font-size: .88rem; color: var(--muted); line-height: 1.9;
+}
+.note strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 4px; }
+@media(max-width:860px){ .approche-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ─── S2 BIENFAITS ────────────────────────────────────────── */
+.bienfaits-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 48px;
+}
+.bienfait {
+  background: var(--sand); padding: 40px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: background .3s;
+}
+.bienfait:hover { background: var(--petal); }
+.bienfait-num {
+  font-family: var(--f-serif); font-size: 2.2rem; font-weight: 400;
+  color: var(--terra); opacity: .28; line-height: 1;
+}
+.bienfait h3 {
+  font-family: var(--f-serif); font-size: 1.15rem; font-weight: 400;
+  color: var(--ink); line-height: 1.25;
+}
+.bienfait p { font-size: .86rem; color: var(--muted); line-height: 1.9; }
+@media(max-width:860px){ .bienfaits-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:540px){ .bienfaits-grid { grid-template-columns: 1fr; } }
+
+/* ─── S3 DÉROULEMENT — accordéon + encart ────────────────── */
+.derou-grid {
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 72px; align-items: start; margin-top: 48px;
+}
+details.step { border-bottom: 1px solid var(--line); }
+details.step summary {
+  padding: 22px 0; cursor: pointer; list-style: none;
+  display: flex; align-items: baseline; gap: 20px;
+  user-select: none;
+}
+details.step summary::-webkit-details-marker { display: none; }
+.step-num {
+  font-family: var(--f-serif); font-size: 1.5rem; font-weight: 400;
+  color: var(--terra); opacity: .35; flex-shrink: 0; line-height: 1; width: 32px;
+}
+.step-title {
+  font-size: .92rem; font-weight: 500; color: var(--ink); flex: 1;
+}
+.step-icon {
+  font-size: 1.1rem; color: var(--terra); flex-shrink: 0; transition: transform .25s;
+}
+details.step[open] .step-icon { transform: rotate(45deg); }
+.step-body {
+  padding: 4px 0 22px 52px;
+  font-size: .88rem; color: var(--muted); line-height: 2;
+}
+/* Encart infos pratiques */
+.derou-aside { display: flex; flex-direction: column; gap: 2px; }
+.derou-card { background: var(--ink); padding: 22px 24px; }
+.derou-card:first-child { background: var(--terra); }
+.derou-card-label {
+  font-size: .58rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(251,248,245,.55); margin-bottom: 6px;
+}
+.derou-card:first-child .derou-card-label { color: rgba(251,248,245,.7); }
+.derou-card-val { font-size: .9rem; color: var(--ivory); line-height: 1.6; }
+.derou-rdv {
+  display: block; text-align: center; background: var(--ivory);
+  color: var(--ink); font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 14px 20px; margin-top: 2px; transition: all .3s;
+  border: 1px solid transparent;
+}
+.derou-rdv:hover { background: var(--terra); color: var(--ivory); border-color: var(--terra); }
+@media(max-width:860px){
+  .derou-grid { grid-template-columns: 1fr; gap: 40px; }
+  .derou-aside { order: -1; }
+}
+
+/* ─── S4 TARIF ────────────────────────────────────────────── */
+.tarif-section { background: var(--terra); }
+.tarif-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 0;
+}
+.tarif-left { padding: 80px 64px 80px 0; }
+.tarif-price {
+  font-family: var(--f-serif); font-size: 5.5rem;
+  color: var(--ivory); line-height: 1; font-weight: 400;
+  margin: 20px 0;
+}
+.tarif-price sup { font-size: 1.8rem; vertical-align: super; }
+.tarif-list { list-style: none; margin: 28px 0 40px; }
+.tarif-list li {
+  font-size: .88rem; color: rgba(251,248,245,.75);
+  padding: 11px 0 11px 18px; position: relative;
+  border-bottom: 1px solid rgba(251,248,245,.12); line-height: 1.6;
+}
+.tarif-list li::before {
+  content: '—'; position: absolute; left: 0;
+  color: rgba(251,248,245,.45); font-size: .72rem; top: 13px;
+}
+.tarif-list li:last-child { border-bottom: none; }
+.tarif-btn {
+  display: inline-block; background: var(--ivory); color: var(--terra);
+  font-size: .74rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 15px 40px; transition: all .3s;
+}
+.tarif-btn:hover { background: var(--ink); color: var(--ivory); }
+.tarif-right {
+  background: rgba(46,36,32,.18); padding: 64px 56px;
+  height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 20px;
+}
+.tarif-right .p { color: rgba(251,248,245,.75); max-width: 100%; }
+@media(max-width:860px){
+  .tarif-inner { grid-template-columns: 1fr; }
+  .tarif-left { padding: 64px 0 40px; }
+  .tarif-right { padding: 40px 32px 64px; }
+}
+
+/* ─── S5 INDICATIONS / CI ─────────────────────────────────── */
+.ci-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 48px;
+}
+.ci-col { background: var(--sand); padding: 44px 36px; border-top: 2px solid var(--terra); }
+.ci-col:last-child { background: var(--petal); border-top-color: var(--sage-l); }
+.ci-col h3 {
+  font-family: var(--f-serif); font-size: 1.05rem; font-weight: 400;
+  color: var(--ink); margin-bottom: 24px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.ci-list { list-style: none; }
+.ci-list li {
+  font-size: .87rem; color: var(--muted);
+  padding: 9px 0 9px 18px; position: relative;
+  border-bottom: 1px solid var(--line); line-height: 1.65;
+}
+.ci-list li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--terra); font-size: .72rem; top: 11px;
+}
+.ci-list li:last-child { border-bottom: none; }
+.ci-note {
+  font-size: .8rem; color: var(--sage); margin-top: 16px; line-height: 1.75;
+  font-style: italic;
+}
+@media(max-width:680px){ .ci-grid { grid-template-columns: 1fr; } }
+
+/* ─── S6 PRATICIENNE ──────────────────────────────────────── */
+.prat-section { background: var(--ink); padding: 0; }
+.prat-grid {
+  display: grid; grid-template-columns: 480px 1fr;
+  align-items: stretch;
+}
+.prat-img-col { position: relative; overflow: hidden; min-height: 560px; }
+.prat-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.prat-img-placeholder {
+  width: 100%; height: 100%; min-height: 560px; background: #3a2e29;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra2); text-align: center; padding: 32px;
+}
+.prat-content { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
+.prat-certifs { list-style: none; margin: 20px 0 32px; }
+.prat-certifs li {
+  font-size: .86rem; color: rgba(251,248,245,.6);
+  padding: 10px 0 10px 20px; position: relative;
+  border-bottom: 1px solid rgba(251,248,245,.07); line-height: 1.6;
+}
+.prat-certifs li::before {
+  content: '·'; position: absolute; left: 0;
+  color: var(--terra2); font-size: 1.3rem; top: 7px;
+}
+.prat-certifs li:last-child { border-bottom: none; }
+.prat-encart {
+  border-left: 2px solid var(--terra); padding: 16px 20px;
+  background: rgba(196,115,90,.1); margin-bottom: 28px;
+  font-size: .87rem; color: rgba(251,248,245,.7); line-height: 1.9;
+}
+.prat-encart strong { color: var(--terra2); display: block; margin-bottom: 3px; font-weight: 400; }
+.prat-cta {
+  display: inline-block; width: fit-content;
+  border: 1px solid rgba(251,248,245,.22); color: var(--ivory);
+  font-size: .72rem; font-weight: 400; letter-spacing: .14em;
+  text-transform: uppercase; padding: 12px 28px; transition: all .3s;
+}
+.prat-cta:hover { background: var(--terra); border-color: var(--terra); }
+@media(max-width:960px){
+  .prat-grid { grid-template-columns: 1fr; }
+  .prat-img-col { min-height: 360px; }
+  .prat-img-placeholder { min-height: 360px; }
+  .prat-content { padding: 56px 28px; }
+}
+
+/* ─── S7 CABINET ──────────────────────────────────────────── */
+.cabinet-grid {
+  display: grid; grid-template-columns: 1fr 360px;
+  gap: 64px; align-items: start; margin-top: 48px;
+}
+.cabinet-photos {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 260px 180px; gap: 3px;
+}
+.cabinet-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cabinet-photo-placeholder {
+  width: 100%; height: 100%; background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 16px;
+}
+.cabinet-photo-wide { grid-column: span 2; }
+.cabinet-infos { display: flex; flex-direction: column; gap: 0; background: var(--ink); }
+.cabinet-info-row {
+  padding: 20px 24px; border-bottom: 1px solid rgba(251,248,245,.07);
+  display: flex; flex-direction: column; gap: 5px;
+}
+.cabinet-info-row:last-child { border-bottom: none; padding-bottom: 24px; }
+.cabinet-info-label {
+  font-size: .58rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--terra);
+}
+.cabinet-info-val {
+  font-size: .88rem; color: rgba(251,248,245,.72); line-height: 1.65;
+}
+.cabinet-info-val a { color: var(--terra2); text-decoration: underline; text-underline-offset: 3px; }
+.cabinet-rdv-btn {
+  display: block; text-align: center; background: var(--terra);
+  color: var(--ivory); font-size: .72rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 15px 20px; margin: 4px 0 0; transition: opacity .25s;
+}
+.cabinet-rdv-btn:hover { opacity: .85; }
+@media(max-width:860px){
+  .cabinet-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cabinet-photos { grid-template-rows: 200px 150px; }
+}
+
+/* ─── S8 AVIS ─────────────────────────────────────────────── */
+.avis-placeholder {
+  max-width: 720px; margin: 40px auto 0;
+  padding: 44px; background: var(--sand); text-align: center;
+  font-size: .8rem; color: var(--terra); font-style: italic;
+}
+
+/* ─── S9 FAQ ──────────────────────────────────────────────── */
+.faq-wrap { max-width: 720px; margin: 48px auto 0; }
+details.faq-item { border-bottom: 1px solid var(--line); }
+details.faq-item summary {
+  padding: 22px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; font-size: .92rem; font-weight: 400; color: var(--ink);
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+'; font-size: 1.1rem; color: var(--terra);
+  flex-shrink: 0; transition: transform .25s;
+}
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-ans {
+  padding: 0 0 22px;
+  font-size: .88rem; color: var(--muted); line-height: 2;
+}
+.faq-ans a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── CTA FINAL ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--ink); padding: 120px 8%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  border: 1px solid rgba(196,115,90,.12); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -60px;
+  width: 280px; height: 280px;
+  border: 1px solid rgba(196,115,90,.08); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  color: var(--ivory); line-height: 1.12; margin-bottom: 22px;
+}
+.cta-h2 em { font-style: italic; color: var(--terra2); }
+.cta-sub {
+  font-size: .9rem; color: rgba(251,248,245,.55);
+  line-height: 1.9; margin-bottom: 44px;
+}
+.cta-btn {
+  display: inline-block; background: var(--terra); color: var(--ivory);
+  font-size: .76rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; padding: 17px 52px; transition: all .3s;
+  border: 1px solid var(--terra);
+}
+.cta-btn:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+.cta-contact {
+  margin-top: 22px; font-size: .8rem; color: rgba(251,248,245,.4);
+}
+.cta-contact a { color: rgba(251,248,245,.65); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ────────────────────────────────────────────── */
+.maillage-section { background: var(--petal); }
+.maillage-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 40px;
+}
+.maillage-card {
+  background: var(--ivory); padding: 28px 24px;
+  display: flex; flex-direction: column; gap: 7px;
+  border-top: 2px solid transparent; transition: border-color .25s, background .25s;
+}
+.maillage-card:hover { border-top-color: var(--terra); background: var(--sand); }
+.maillage-cat { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
+.maillage-name {
+  font-family: var(--f-serif); font-size: 1rem; color: var(--ink);
+  font-weight: 400; line-height: 1.3; flex: 1;
+}
+.maillage-name a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.maillage-arrow { font-size: .72rem; color: var(--terra); font-weight: 500; letter-spacing: .06em; }
+@media(max-width:760px){ .maillage-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .maillage-grid { grid-template-columns: 1fr; } }
+
+/* ─── REVEAL ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY
+     → [Nom de la prestation], [Prénom Nom], tarif, durée, lien RDV
+     ============================================================ -->
+<div class="sticky">
+  <div class="sticky-txt">
+    <strong>[Nom de la prestation] — [Prénom Nom]</strong>
+    [Tarif] € · [Durée] · [Ville]
+  </div>
+  <a href="[LIEN_RDV]" class="sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     → Remplacer .hero-img-placeholder par :
+       <img src="URL" alt="..." class="hero-img" loading="eager">
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-img-placeholder">[URL_IMAGE_HERO]</div>
+    <div class="hero-img-badge">
+      <strong>[Accroche courte sur l'approche]</strong>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-eyebrow">[Prénom Nom] · [Titre professionnel]</p>
+    <h1 class="hero-h1">
+      [Nom de la prestation]<br>
+      <em>à [Ville]</em>
+    </h1>
+    <p class="hero-intro">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — un soin pensé pour [profil de clientèle].
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge">[Bénéfice 1]</span>
+      <span class="hero-badge">[Bénéfice 2]</span>
+      <span class="hero-badge">[Bénéfice 3]</span>
+      <span class="hero-badge">[Bénéfice 4]</span>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span>Tarif</span>
+        <strong>[X] €</strong>
+      </div>
+      <div class="hero-meta-item">
+        <span>Durée</span>
+        <strong>[X heure(s)]</strong>
+      </div>
+      <div class="hero-meta-item">
+        <span>Lieu</span>
+        <strong>[Cabinet / Domicile]</strong>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a href="[LIEN_RDV]" class="btn-primary" target="_blank" rel="noopener">Réserver ma séance</a>
+      <a href="/[slug-page-soins]" class="btn-ghost">Voir tous les soins</a>
+    </div>
+    <div class="hero-tags">
+      <a href="/[slug-prestation-2]-[ville]" class="hero-tag">[Prestation 2]</a>
+      <a href="/[slug-prestation-3]-[ville]" class="hero-tag">[Prestation 3]</a>
+      <a href="/[slug-prestation-4]-[ville]" class="hero-tag">[Prestation 4]</a>
+      <a href="/[slug-prestation-5]-[ville]" class="hero-tag">[Prestation 5]</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S1 — AVIS CLIENTS
+     → Décommenter Elfsight ou laisser les 3 avis manuels
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);text-align:center;">
+  <div class="inner">
+    <span class="label label-center">[Vos retours]</span>
+    <h2 class="h2 h2-center">[Ce que disent]<br><em>les clientes</em></h2>
+    <div class="rule rule-center"></div>
+    <!-- <script src="https://elfsightcdn.com/platform.js" async></script> -->
+    <!-- <div class="elfsight-app-[VOTRE_ID]" data-elfsight-app-lazy></div> -->
+    <div class="avis-placeholder">[Intégrer ici le widget d'avis Google — Elfsight ou autre]</div>
+    <div style="margin-top:28px;">
+      <a href="[LIEN_GOOGLE_AVIS]" class="btn-ghost" target="_blank" rel="noopener">Voir tous les avis Google</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S2 — L'APPROCHE
+     → Remplacer .approche-img-placeholder par :
+       <img src="URL" alt="..." class="approche-img" loading="lazy">
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);">
+  <div class="inner">
+    <div class="approche-grid">
+      <div>
+        <span class="label">L'approche</span>
+        <h2 class="h2">[Nom de la prestation] à [Ville] :<br><em>comment ça fonctionne ?</em></h2>
+        <div class="rule"></div>
+        <p class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ce soin agit sur <strong>lorem ipsum dolor sit amet</strong> — les résultats se sentent dès la première séance : [sensations immédiates].</p>
+        <div class="note">
+          <strong>[Distinction importante — ex : Différence avec X]</strong>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+        </div>
+        <div class="note">
+          <strong>[Pour qui — ex : Ce soin est fait pour vous si…]</strong>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Particulièrement adapté à [profil de clientèle].
+        </div>
+        <a href="[LIEN_RDV]" class="btn-primary" style="margin-top:8px;" target="_blank" rel="noopener">Prendre rendez-vous</a>
+      </div>
+      <div class="approche-img-wrap d1 reveal">
+        <div class="approche-img-placeholder">[URL_IMAGE_APPROCHE]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S2 — BIENFAITS (6 cartes)
+     → Adapter titres et textes à la prestation
+     ============================================================ -->
+<section class="section reveal" style="background:var(--petal);">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;">
+      <div>
+        <span class="label">[Les bienfaits]</span>
+        <h2 class="h2">[Nom de la prestation] :<br><em>ce que ça change concrètement</em></h2>
+        <div class="rule"></div>
+      </div>
+      <p class="p" style="padding-bottom:4px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+    </div>
+    <div class="bienfaits-grid">
+      <div class="bienfait">
+        <div class="bienfait-num">01</div>
+        <h3>[Bienfait 1]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+      </div>
+      <div class="bienfait">
+        <div class="bienfait-num">02</div>
+        <h3>[Bienfait 2]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.</p>
+      </div>
+      <div class="bienfait">
+        <div class="bienfait-num">03</div>
+        <h3>[Bienfait 3]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+      </div>
+      <div class="bienfait">
+        <div class="bienfait-num">04</div>
+        <h3>[Bienfait 4]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam.</p>
+      </div>
+      <div class="bienfait">
+        <div class="bienfait-num">05</div>
+        <h3>[Bienfait 5]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim.</p>
+      </div>
+      <div class="bienfait">
+        <div class="bienfait-num">06</div>
+        <h3>[Bienfait 6]</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S3 — DÉROULEMENT (accordéon) + encart pratique
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);">
+  <div class="inner">
+    <span class="label">Protocole</span>
+    <h2 class="h2">Déroulement d'une séance<br><em>[Nom de la prestation] à [Ville]</em></h2>
+    <div class="rule"></div>
+    <div class="derou-grid">
+      <div>
+
+        <details class="step" open>
+          <summary>
+            <span class="step-num">01</span>
+            <span class="step-title">[Étape 1 — ex : Accueil et échange]</span>
+            <span class="step-icon">+</span>
+          </summary>
+          <div class="step-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ce temps permet d'orienter le soin selon votre état du moment et vos besoins spécifiques.</div>
+        </details>
+
+        <details class="step">
+          <summary>
+            <span class="step-num">02</span>
+            <span class="step-title">[Étape 2 — ex : Préparation / Nettoyage]</span>
+            <span class="step-icon">+</span>
+          </summary>
+          <div class="step-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</div>
+        </details>
+
+        <details class="step">
+          <summary>
+            <span class="step-num">03</span>
+            <span class="step-title">[Étape 3 — ex : Le soin]</span>
+            <span class="step-icon">+</span>
+          </summary>
+          <div class="step-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Le toucher reste toujours doux et adapté à l'état de la cliente.</div>
+        </details>
+
+        <details class="step">
+          <summary>
+            <span class="step-num">04</span>
+            <span class="step-title">[Étape 4 — ex : Intégration et conseils]</span>
+            <span class="step-icon">+</span>
+          </summary>
+          <div class="step-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Échange sur le ressenti et pistes pratiques pour prolonger les effets du soin au quotidien.</div>
+        </details>
+
+        <div class="note" style="margin-top:28px;">
+          <strong>[Recommandations après la séance]</strong>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Éviter [X, Y, Z] dans les jours suivant la séance.
+        </div>
+      </div>
+
+      <div class="derou-aside">
+        <div class="derou-card">
+          <div class="derou-card-label">Durée</div>
+          <div class="derou-card-val">[X à Y minutes]</div>
+        </div>
+        <div class="derou-card">
+          <div class="derou-card-label">Fréquence conseillée</div>
+          <div class="derou-card-val">[X séances pour un résultat optimal]</div>
+        </div>
+        <div class="derou-card">
+          <div class="derou-card-label">Lieu</div>
+          <div class="derou-card-val">[Cabinet · Domicile · En ligne]</div>
+        </div>
+        <div class="derou-card">
+          <div class="derou-card-label">Reprise d'activité</div>
+          <div class="derou-card-val">[Immédiate / Délai]</div>
+        </div>
+        <a href="[LIEN_RDV]" class="derou-rdv" target="_blank" rel="noopener">Prendre rendez-vous</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S4 — TARIF (fond terracotta)
+     ============================================================ -->
+<section class="tarif-section reveal" style="padding:0;">
+  <div class="tarif-inner" style="padding:0 8%;">
+    <div class="tarif-left">
+      <span class="label label-light">[La formule]</span>
+      <h2 class="h2 h2-light">[Nom de la prestation]<br><em>à [Ville]</em></h2>
+      <div class="tarif-price"><sup>€</sup>[XX]</div>
+      <ul class="tarif-list">
+        <li>[Durée de la séance]</li>
+        <li>[Lieu — Cabinet / Domicile]</li>
+        <li>[Ce qui est inclus 1]</li>
+        <li>[Ce qui est inclus 2]</li>
+        <li>[Ce qui est inclus 3]</li>
+        <li>[Recommandation — ex : X séances conseillées]</li>
+      </ul>
+      <a href="[LIEN_RDV]" class="tarif-btn" target="_blank" rel="noopener">Réserver ma séance</a>
+    </div>
+    <div class="tarif-right">
+      <span class="label label-light">[À savoir]</span>
+      <h2 class="h2 h2-light"><em>[Mention importante tarif]</em></h2>
+      <p class="p p-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Les tarifs sont communiqués avant toute réservation. Consultez la <a href="/[slug-tarifs]" style="color:var(--terra2);text-decoration:underline;text-underline-offset:3px;">page tarifs</a> pour le détail complet.</p>
+      <p class="p p-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cartes cadeaux disponibles en ligne.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S5 — INDICATIONS / CONTRE-INDICATIONS
+     ============================================================ -->
+<section class="section reveal" style="background:var(--sand);">
+  <div class="inner">
+    <span class="label">[Pour qui]</span>
+    <h2 class="h2">Qui peut bénéficier de <em>[la prestation] à [Ville]</em> ?</h2>
+    <div class="rule"></div>
+    <div class="ci-grid">
+      <div class="ci-col">
+        <h3>Situations pouvant être traitées</h3>
+        <ul class="ci-list">
+          <li>[Indication 1]</li>
+          <li>[Indication 2]</li>
+          <li>[Indication 3]</li>
+          <li>[Indication 4]</li>
+          <li>[Indication 5]</li>
+          <li>[Indication 6]</li>
+        </ul>
+      </div>
+      <div class="ci-col">
+        <h3>Situations contre-indiquées</h3>
+        <ul class="ci-list">
+          <li>[Contre-indication 1]</li>
+          <li>[Contre-indication 2]</li>
+          <li>[Contre-indication 3]</li>
+          <li>[Contre-indication 4]</li>
+          <li>[Contre-indication 5]</li>
+        </ul>
+        <p class="ci-note">En cas de doute, n'hésitez pas à me contacter avant votre réservation. Ce soin ne se substitue pas à un suivi médical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S6 — LA PRATICIENNE (fond sombre)
+     → Remplacer .prat-img-placeholder par :
+       <img src="URL" alt="..." class="prat-img" loading="lazy">
+     ============================================================ -->
+<section class="prat-section reveal">
+  <div class="prat-grid">
+    <div class="prat-img-col">
+      <div class="prat-img-placeholder">[URL_PHOTO_PRATICIENNE]</div>
+    </div>
+    <div class="prat-content">
+      <span class="label label-light">[Votre praticienne]</span>
+      <h2 class="h2 h2-light">[Prénom Nom],<br><em>[Titre professionnel] à [Ville]</em></h2>
+      <div class="rule"></div>
+      <p class="p p-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      <p class="p p-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Chaque séance est sur-mesure, guidée par ce que je perçois de l'état de la cliente à cet instant précis.</p>
+      <ul class="prat-certifs">
+        <li>[Certification ou formation 1]</li>
+        <li>[Certification ou formation 2]</li>
+        <li>[Certification ou formation 3]</li>
+        <li>[Autre élément de parcours]</li>
+      </ul>
+      <div class="prat-encart">
+        <strong>[Titre encart — ex : Mon approche]</strong>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+      </div>
+      <a href="/[slug-a-propos]" class="prat-cta">En savoir plus sur [Prénom]</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S7 — LE CABINET
+     → Remplacer les .cabinet-photo-placeholder par :
+       <img src="URL" alt="..." class="cabinet-photo [cabinet-photo-wide]" loading="lazy">
+     ============================================================ -->
+<section class="section reveal" style="background:var(--petal);">
+  <div class="inner">
+    <span class="label">[Le studio / Le cabinet]</span>
+    <h2 class="h2">[Nom du cabinet] —<br><em>[Ville]</em></h2>
+    <div class="rule"></div>
+    <div class="cabinet-grid">
+      <div class="cabinet-photos">
+        <div class="cabinet-photo-placeholder cabinet-photo-wide">[URL_PHOTO_CABINET_1]</div>
+        <div class="cabinet-photo-placeholder">[URL_PHOTO_CABINET_2]</div>
+        <div class="cabinet-photo-placeholder">[URL_PHOTO_CABINET_3]</div>
+      </div>
+      <div class="cabinet-infos">
+        <div class="cabinet-info-row">
+          <span class="cabinet-info-label">Adresse</span>
+          <span class="cabinet-info-val">[Numéro et rue]<br>[Code postal] [Ville]</span>
+        </div>
+        <div class="cabinet-info-row">
+          <span class="cabinet-info-label">Horaires</span>
+          <span class="cabinet-info-val">[Jour(s)] : [HH:MM] – [HH:MM]<br>[Jour(s)] : [HH:MM] – [HH:MM]<br>Uniquement sur rendez-vous</span>
+        </div>
+        <div class="cabinet-info-row">
+          <span class="cabinet-info-label">Accès</span>
+          <span class="cabinet-info-val">[Villes desservies · Zone géographique]</span>
+        </div>
+        <div class="cabinet-info-row">
+          <span class="cabinet-info-label">Contact</span>
+          <span class="cabinet-info-val">
+            <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a><br>
+            <a href="mailto:[email]">[Email]</a>
+          </span>
+        </div>
+        <a href="[LIEN_RDV]" class="cabinet-rdv-btn" target="_blank" rel="noopener">Réserver en ligne — 24h/24</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- ============================================================
+     S9 — FAQ
+     ============================================================ -->
+<section class="section reveal" style="background:var(--sand);text-align:center;">
+  <div class="inner">
+    <span class="label label-center">[Questions fréquentes]</span>
+    <h2 class="h2 h2-center">[Nom de la prestation] à [Ville] ·<br><em>vos questions</em></h2>
+    <div class="rule rule-center"></div>
+    <div class="faq-wrap" style="text-align:left;">
+      <details class="faq-item">
+        <summary>[Qu'est-ce que la prestation et à quoi ça sert ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</div>
+      </details>
+      <details class="faq-item">
+        <summary>[Quel est le tarif à [Ville] ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. La séance dure [X heure(s)] et est au tarif de [X] €. La réservation se fait directement en ligne sur <a href="[LIEN_RDV]">ce lien</a>.</div>
+      </details>
+      <details class="faq-item">
+        <summary>[Combien de séances pour voir des résultats ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pour un premier contact, une séance suffit à ressentir les effets immédiats. Pour un travail en profondeur, [X] séances sont conseillées.</div>
+      </details>
+      <details class="faq-item">
+        <summary>[Est-ce douloureux ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Le soin reste doux et adapté à votre ressenti en temps réel.</div>
+      </details>
+      <details class="faq-item">
+        <summary>[Y a-t-il des contre-indications ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. En cas de doute, contactez-moi avant votre réservation. Ce soin ne se substitue pas à un suivi médical.</div>
+      </details>
+      <details class="faq-item">
+        <summary>[Quelle différence avec [autre soin] ?]</summary>
+        <div class="faq-ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href="/[slug-autre-soin]-[ville]">En savoir plus sur [l'autre soin] →</a></div>
+      </details>
+      <details class="faq-item">
+        <summary>[Où se situe le cabinet à [Ville] ?]</summary>
+        <div class="faq-ans">[Adresse complète]. <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Google Maps →</a></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL (fond encre)
+     ============================================================ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <span class="label label-light label-center" style="display:block;">[Prénom Nom] · [Ville]</span>
+    <h2 class="cta-h2">
+      [Accroche CTA]<br>
+      <em>[suite en italique]</em>
+    </h2>
+    <p class="cta-sub">
+      [Détail pratique] · [Ville] · Sur rendez-vous
+    </p>
+    <a href="[LIEN_RDV]" class="cta-btn" target="_blank" rel="noopener">Réserver ma séance</a>
+    <p class="cta-contact">
+      Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAILLAGE — autres prestations
+     ============================================================ -->
+<section class="section maillage-section reveal">
+  <div class="inner">
+    <span class="label">[À découvrir aussi]</span>
+    <h2 class="h2" style="margin-bottom:8px;">Toutes les prestations<br><em>à [Ville]</em></h2>
+    <div class="rule" style="margin-bottom:40px;"></div>
+    <div class="maillage-grid">
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-1]-[ville]">[Nom du soin 1]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-2]-[ville]">[Nom du soin 2]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-3]-[ville]">[Nom du soin 3]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-4]-[ville]">[Nom du soin 4]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-5]-[ville]">[Nom du soin 5]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+      <div class="maillage-card">
+        <span class="maillage-cat">[Catégorie]</span>
+        <div class="maillage-name"><a href="/[slug-soin-6]-[ville]">[Nom du soin 6]</a></div>
+        <p style="font-size:.8rem;color:var(--muted);line-height:1.7;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <span class="maillage-arrow">Découvrir →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD — à personnaliser intégralement
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "[Nom de la prestation] à [Ville]",
+    "description": "[Description complète : praticienne, technique, bénéfices, tarif, durée, lieu.]",
+    "serviceType": "[Nom de la prestation]",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "[Prénom Nom] — [Spécialité]",
+      "url": "https://[votre-domaine].fr",
+      "telephone": "[+33XXXXXXXXX]",
+      "image": "[URL_PHOTO_PRATICIENNE]",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[Numéro et rue]",
+        "addressLocality": "[Ville]",
+        "postalCode": "[Code postal]",
+        "addressCountry": "FR"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "[X.X]",
+        "reviewCount": "[X]",
+        "bestRating": "5"
+      }
+    },
+    "areaServed": [
+      {"@type": "City", "name": "[Ville principale]"},
+      {"@type": "City", "name": "[Ville 2]"},
+      {"@type": "City", "name": "[Ville 3]"}
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "[XX]",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": "[LIEN_RDV]"
+    },
+    "url": "https://[votre-domaine].fr/[slug-prestation]-[ville]"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"[Question 1]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 1]"}},
+      {"@type":"Question","name":"[Question 2]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 2]"}},
+      {"@type":"Question","name":"[Question 3]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 3]"}},
+      {"@type":"Question","name":"[Question 4]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 4]"}},
+      {"@type":"Question","name":"[Question 5]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 5]"}},
+      {"@type":"Question","name":"[Question 6]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 6]"}},
+      {"@type":"Question","name":"[Question 7]","acceptedAnswer":{"@type":"Answer","text":"[Réponse 7]"}}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+      {"@type":"ListItem","position":2,"name":"[Mes soins]","item":"https://[votre-domaine].fr/[slug-soins]"},
+      {"@type":"ListItem","position":3,"name":"[Nom de la prestation] [Ville]","item":"https://[votre-domaine].fr/[slug-prestation]-[ville]"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Spécialité]",
+    "description": "[Description du cabinet, soins, approche, zone géographique.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "priceRange": "€€",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"}
+    ],
+    "sameAs": ["[URL Google Maps]","[URL Instagram]"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Comment se déroule une séance de [Nom de la prestation] à [Ville]",
+    "totalTime": "PT[X]M",
+    "step": [
+      {"@type":"HowToStep","position":1,"name":"[Étape 1]","text":"[Description de l'étape 1.]"},
+      {"@type":"HowToStep","position":2,"name":"[Étape 2]","text":"[Description de l'étape 2.]"},
+      {"@type":"HowToStep","position":3,"name":"[Étape 3]","text":"[Description de l'étape 3.]"},
+      {"@type":"HowToStep","position":4,"name":"[Étape 4]","text":"[Description de l'étape 4.]"}
+    ]
+  }
+]
+</script>
+
+
+<script>
+/* Reveal au scroll */
+(function(){
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(n){ if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+/* Accordéon déroulement — icône + → × */
+document.querySelectorAll('details.step').forEach(function(d){
+  d.addEventListener('toggle', function(){
+    var ic = d.querySelector('.step-icon');
+    if(ic) ic.textContent = d.open ? '×' : '+';
+  });
+});
+</script>
+
+</body>
+</html>
