@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offrir — Cartes Cadeaux [Ville] | [Prénom Nom]</title>
+<meta name="description" content="Offrez un soin à [Ville] — cartes cadeaux [Soin 1], [Soin 2], [Soin 3]. Code envoyé immédiatement. Valable 1 an. [Prénom Nom], [titre professionnel].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --terra:  #C4735A;
+  --terra2: #E0A08B;
+  --petal:  #F5E8E0;
+  --ivory:  #FBF8F5;
+  --sand:   #EDE4DA;
+  --sage:   #A8A898;
+  --sage-l: #D6D3C8;
+  --ink:    #2E2420;
+  --muted:  #7A6E68;
+  --line:   rgba(168,168,152,.2);
+
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Jost', sans-serif;
+  --max:     1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  overflow-x: hidden;
+  /* Pas de padding-bottom — pas de sticky bar sur cette page */
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── HERO SPLIT-SCREEN ──────────────────────────────────── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+/* Colonne image */
+.hero-img-col { position: relative; overflow: hidden; }
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; display: block;
+}
+.hero-img-placeholder {
+  width: 100%; height: 100%; min-height: 80vh;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 32px;
+}
+/* Filet décoratif */
+.hero-img-col::after {
+  content: '';
+  position: absolute; top: 10%; right: 0; bottom: 10%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--terra2), transparent);
+  opacity: .4;
+}
+/* Colonne texte */
+.hero-txt {
+  background: var(--ink);
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 72px 80px 64px;
+  position: relative; overflow: hidden;
+}
+/* Cercle décoratif fond */
+.hero-txt::before {
+  content: '';
+  position: absolute; bottom: -120px; right: -120px;
+  width: 360px; height: 360px;
+  border: 1px solid rgba(196,115,90,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--terra2);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--terra2); }
+.hero-h1 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1.08; letter-spacing: -.02em;
+  color: var(--ivory); margin-bottom: 20px;
+}
+.hero-h1 em { font-style: italic; color: var(--terra2); }
+.hero-sub {
+  font-size: .88rem; color: rgba(251,248,245,.5);
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: 32px;
+}
+.hero-intro {
+  font-size: .9rem; color: rgba(251,248,245,.65);
+  line-height: 1.95; max-width: 400px; margin-bottom: 36px;
+}
+/* Pastilles réassurance */
+.hero-pills {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.hero-pill {
+  display: flex; align-items: center; gap: 12px;
+  font-size: .78rem; color: rgba(251,248,245,.65);
+}
+.hero-pill-dot {
+  width: 6px; height: 6px; background: var(--terra);
+  border-radius: 50%; flex-shrink: 0;
+}
+.hero-pill strong { color: var(--ivory); font-weight: 400; }
+
+@media(max-width:860px){
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-img-col { height: 52vw; min-height: 240px; }
+  .hero-img-placeholder { min-height: 240px; }
+  .hero-img-col::after { display: none; }
+  .hero-txt { padding: 48px 28px 56px; }
+  .hero-h1 { font-size: 2.4rem; }
+}
+
+/* ─── BANDEAU TICKER ──────────────────────────────────────── */
+.ticker {
+  background: var(--terra); overflow: hidden;
+  padding: 14px 0; display: flex;
+}
+.ticker-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+.ticker-item {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: 1rem; color: var(--ivory); padding: 0 44px; opacity: .85;
+}
+.ticker-dot { color: rgba(251,248,245,.4); padding: 0 4px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── SECTIONS COMMUNES ───────────────────────────────────── */
+.section { padding: 80px 8%; }
+.inner { max-width: var(--max); margin: 0 auto; }
+
+.label {
+  display: block; font-size: .62rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.16; letter-spacing: -.01em; color: var(--ink);
+}
+.h2 em { font-style: italic; color: var(--terra); }
+.rule { width: 36px; height: 1px; background: var(--terra); margin: 18px 0 36px; }
+.p { font-size: .92rem; color: var(--muted); line-height: 2; margin-bottom: 14px; }
+
+/* ─── GRILLE CARTES CADEAUX ───────────────────────────────── */
+.cartes-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 48px;
+}
+
+/* Carte cadeau — style élégant fond clair */
+.carte-card {
+  background: var(--sand); padding: 40px 32px;
+  display: flex; flex-direction: column; gap: 12px;
+  border-top: 2px solid transparent;
+  transition: border-color .3s, background .3s;
+  position: relative;
+}
+.carte-card:hover { border-top-color: var(--terra); background: var(--petal); }
+
+/* Badge optionnel — ex "Idéal naissance" */
+.carte-badge {
+  position: absolute; top: 0; right: 0;
+  background: var(--terra); color: var(--ivory);
+  font-size: .55rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; padding: 5px 12px;
+}
+
+.carte-cat {
+  font-size: .58rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--terra);
+}
+.carte-num {
+  font-family: var(--f-serif); font-size: 2rem; font-weight: 400;
+  color: var(--terra); opacity: .22; line-height: 1;
+}
+.carte-name {
+  font-family: var(--f-serif); font-size: 1.2rem; font-weight: 400;
+  color: var(--ink); line-height: 1.25;
+}
+.carte-tagline {
+  font-size: .84rem; color: var(--muted); font-style: italic; line-height: 1.5;
+}
+.carte-sep { width: 28px; height: 1px; background: var(--line); }
+.carte-infos {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.carte-info span {
+  display: block; font-size: .56rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 3px;
+}
+.carte-info strong { font-size: .84rem; color: var(--ink); font-weight: 400; }
+
+.carte-note {
+  font-size: .74rem; color: var(--sage); line-height: 1.6; font-style: italic;
+}
+
+.carte-footer {
+  margin-top: auto; display: flex;
+  align-items: center; justify-content: space-between;
+  gap: 12px; padding-top: 16px; border-top: 1px solid var(--line);
+}
+.carte-prix {
+  font-family: var(--f-serif); font-size: 1.8rem;
+  color: var(--terra); line-height: 1; font-weight: 400;
+}
+.carte-prix sup { font-size: .9rem; vertical-align: super; }
+.carte-cta {
+  display: inline-block; background: var(--terra); color: var(--ivory);
+  font-size: .7rem; font-weight: 500; letter-spacing: .14em;
+  text-transform: uppercase; padding: 11px 22px;
+  border: 1px solid var(--terra); transition: all .3s; flex-shrink: 0;
+}
+.carte-cta:hover { background: transparent; color: var(--terra); }
+
+@media(max-width:860px){ .cartes-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:540px){ .cartes-grid { grid-template-columns: 1fr; } }
+
+/* ─── ENCART COMMENT ÇA MARCHE ───────────────────────────── */
+.comment-section { background: var(--ink); padding: 72px 8%; }
+.comment-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+.comment-steps { display: flex; flex-direction: column; gap: 0; }
+.comment-step {
+  display: flex; gap: 20px; padding: 20px 0;
+  border-bottom: 1px solid rgba(251,248,245,.07);
+}
+.comment-step:last-child { border-bottom: none; }
+.comment-step-num {
+  font-family: var(--f-serif); font-size: 1.6rem;
+  color: var(--terra2); opacity: .45;
+  flex-shrink: 0; line-height: 1; width: 32px;
+}
+.comment-step-t {
+  font-size: .9rem; font-weight: 500; color: var(--ivory); margin-bottom: 4px;
+}
+.comment-step-p {
+  font-size: .84rem; color: rgba(251,248,245,.58); line-height: 1.8;
+}
+/* Encart droite : réassurance */
+.comment-aside { display: flex; flex-direction: column; gap: 2px; }
+.reassurance-block {
+  background: rgba(251,248,245,.05);
+  border: 1px solid rgba(251,248,245,.08);
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 5px;
+}
+.reassurance-block:first-child { background: var(--terra); border-color: var(--terra); }
+.reassurance-block-title {
+  font-family: var(--f-serif); font-size: .94rem; color: var(--ivory); font-weight: 400;
+}
+.reassurance-block-txt { font-size: .8rem; color: rgba(251,248,245,.6); line-height: 1.7; }
+.reassurance-block:first-child .reassurance-block-txt { color: rgba(251,248,245,.85); }
+@media(max-width:760px){ .comment-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ─── ENCART OCCASIONS ────────────────────────────────────── */
+.occasions-section { background: var(--petal); }
+.occasions-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin-top: 40px;
+}
+.occasion-item {
+  background: var(--ivory); padding: 28px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+  border-top: 2px solid transparent; transition: border-color .3s;
+}
+.occasion-item:hover { border-top-color: var(--terra2); }
+.occasion-icon {
+  font-family: var(--f-serif); font-size: 1.5rem;
+  color: var(--terra); opacity: .5; line-height: 1;
+}
+.occasion-title {
+  font-family: var(--f-serif); font-size: .95rem;
+  color: var(--ink); font-weight: 400; line-height: 1.3;
+}
+.occasion-txt { font-size: .8rem; color: var(--muted); line-height: 1.7; }
+@media(max-width:760px){ .occasions-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .occasions-grid { grid-template-columns: 1fr; } }
+
+/* ─── FAQ ─────────────────────────────────────────────────── */
+.faq-section { background: var(--sand); }
+.faq-wrap { max-width: 720px; margin: 40px auto 0; }
+details.faq-item { border-bottom: 1px solid var(--line); }
+details.faq-item summary {
+  padding: 20px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; font-size: .9rem; font-weight: 400; color: var(--ink); line-height: 1.45;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+'; font-size: 1.1rem; color: var(--terra);
+  flex-shrink: 0; transition: transform .25s; margin-top: 2px;
+}
+details.faq-item[open] summary { color: var(--terra); }
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-ans {
+  padding: 0 0 20px;
+  font-size: .87rem; color: var(--muted); line-height: 2;
+}
+.faq-ans a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── CTA FINAL ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--terra); padding: 104px 8%; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -120px; left: -120px;
+  width: 480px; height: 480px;
+  border: 1px solid rgba(251,248,245,.12); border-radius: 50%; pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute; bottom: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(251,248,245,.1); border-radius: 50%; pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  color: var(--ivory); line-height: 1.12; margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.cta-h2 em { font-style: italic; color: rgba(251,248,245,.75); }
+.cta-sub { font-size: .88rem; color: rgba(251,248,245,.65); line-height: 1.9; margin-bottom: 40px; }
+.cta-btn {
+  display: inline-block; background: var(--ivory); color: var(--terra);
+  font-size: .76rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; padding: 17px 52px; transition: all .3s;
+}
+.cta-btn:hover { background: var(--ink); color: var(--ivory); }
+.cta-contact { margin-top: 20px; font-size: .8rem; color: rgba(251,248,245,.5); }
+.cta-contact a { color: rgba(251,248,245,.72); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ────────────────────────────────────────────── */
+.maillage-section { background: var(--ivory); padding: 64px 8%; }
+.maillage-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.maillage-pill {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--sage-l); color: var(--muted);
+  font-size: .8rem; letter-spacing: .06em; transition: all .25s;
+}
+.maillage-pill:hover { border-color: var(--terra); color: var(--terra); background: var(--petal); }
+
+/* ─── REVEAL ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     HERO SPLIT-SCREEN
+     → Remplacer .hero-img-placeholder par :
+       <img src="URL" alt="Offrir un soin [Ville] — [Prénom Nom]" class="hero-img" loading="eager">
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-img-col">
+    <div class="hero-img-placeholder">[URL_PHOTO_CADEAU — ambiance douce, texture, lumière]</div>
+  </div>
+  <div class="hero-txt">
+    <p class="hero-eyebrow">[Prénom Nom] · [Ville]</p>
+    <h1 class="hero-h1 s1-custom">
+      Offrir,<br><em>prendre soin.</em>
+    </h1>
+    <p class="hero-sub">Cartes cadeaux · [Ville]</p>
+    <p class="hero-intro">
+      [Depuis Bloc 0 ADN — 2 phrases sur ce que signifie offrir une séance.
+      Pas marketing. Ce que la bénéficiaire va vivre, concrètement.]
+    </p>
+    <div class="hero-pills">
+      <div class="hero-pill">
+        <div class="hero-pill-dot"></div>
+        <span><strong>Code cadeau</strong> envoyé immédiatement par email</span>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-dot"></div>
+        <span>Valable <strong>1 an</strong> à compter de l'achat</span>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-dot"></div>
+        <span>La bénéficiaire choisit <strong>son créneau</strong> en ligne</span>
+      </div>
+      <div class="hero-pill">
+        <div class="hero-pill-dot"></div>
+        <span><strong>Aucun montant</strong> à régler sur place</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BANDEAU TICKER
+     ============================================================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Envoi immédiat</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Valable 1 an</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 3]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Sur rendez-vous</span><span class="ticker-dot">·</span>
+    <!-- Dupliqué -->
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Envoi immédiat</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Valable 1 an</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 3]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">Sur rendez-vous</span><span class="ticker-dot">·</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     CARTES CADEAUX
+     → Dupliquer / supprimer des .carte-card selon le Bloc 6 dossier
+     → Ajouter .carte-badge si une carte mérite d'être mise en avant
+     → data-cat : optionnel si filtres non utilisés sur cette version light
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:0;">
+      <div>
+        <span class="label">Cartes Cadeaux</span>
+        <h2 class="h2">[Prénom Nom], <em>offert avec intention</em></h2>
+        <div class="rule" style="margin-bottom:0;"></div>
+      </div>
+      <p class="p" style="padding-bottom:4px;">
+        [Depuis Bloc 0 ADN — phrase courte sur ce que représente offrir une séance.
+        Pas une liste de fonctionnalités. Une émotion.]
+      </p>
+    </div>
+
+    <div class="cartes-grid">
+
+      <div class="carte-card">
+        <!-- Optionnel : <div class="carte-badge">Idéal cadeau de naissance</div> -->
+        <div class="carte-cat">[Catégorie — ex : Relaxation]</div>
+        <div class="carte-num">01</div>
+        <div class="carte-name">[Nom du soin 1]</div>
+        <div class="carte-tagline">[Accroche courte — 1 phrase évocatrice depuis Bloc 5]</div>
+        <div class="carte-sep"></div>
+        <div class="carte-infos">
+          <div class="carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="carte-info"><span>Lieu</span><strong>[Cabinet · Domicile · Visio]</strong></div>
+        </div>
+        <p class="carte-note">Envoi immédiat · Valable 1 an[· Domicile : rayon [X] km si applicable]</p>
+        <div class="carte-footer">
+          <div class="carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_1]" class="carte-cta" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+
+      <div class="carte-card">
+        <div class="carte-cat">[Catégorie]</div>
+        <div class="carte-num">02</div>
+        <div class="carte-name">[Nom du soin 2]</div>
+        <div class="carte-tagline">[Accroche courte]</div>
+        <div class="carte-sep"></div>
+        <div class="carte-infos">
+          <div class="carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="carte-info"><span>Lieu</span><strong>[Cabinet · Domicile]</strong></div>
+        </div>
+        <p class="carte-note">Envoi immédiat · Valable 1 an</p>
+        <div class="carte-footer">
+          <div class="carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_2]" class="carte-cta" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+
+      <div class="carte-card">
+        <div class="carte-cat">[Catégorie]</div>
+        <div class="carte-num">03</div>
+        <div class="carte-name">[Nom du soin 3]</div>
+        <div class="carte-tagline">[Accroche courte]</div>
+        <div class="carte-sep"></div>
+        <div class="carte-infos">
+          <div class="carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="carte-info"><span>Lieu</span><strong>[Cabinet · Visio]</strong></div>
+        </div>
+        <p class="carte-note">Envoi immédiat · Valable 1 an</p>
+        <div class="carte-footer">
+          <div class="carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_3]" class="carte-cta" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+
+      <!-- Dupliquer autant que nécessaire — Bloc 6 dossier client -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     COMMENT ÇA MARCHE + RÉASSURANCE
+     ============================================================ -->
+<section class="comment-section reveal">
+  <div class="comment-inner">
+    <div>
+      <span class="label" style="color:var(--terra2);">Comment ça marche</span>
+      <h2 class="h2" style="color:var(--ivory);margin-bottom:8px;">
+        Simple, immédiat,<br><em>sans surprise.</em>
+      </h2>
+      <div style="width:36px;height:1px;background:var(--terra);margin:16px 0 28px;"></div>
+      <div class="comment-steps">
+        <div class="comment-step">
+          <div class="comment-step-num">01</div>
+          <div>
+            <div class="comment-step-t">Vous choisissez votre carte cadeau</div>
+            <p class="comment-step-p">Sélectionnez le soin que vous souhaitez offrir parmi les cartes disponibles ci-dessus.</p>
+          </div>
+        </div>
+        <div class="comment-step">
+          <div class="comment-step-num">02</div>
+          <div>
+            <div class="comment-step-t">Vous payez en ligne en toute sécurité</div>
+            <p class="comment-step-p">Règlement intégral lors de la commande. Aucun montant à régler sur place, ni par la bénéficiaire.</p>
+          </div>
+        </div>
+        <div class="comment-step">
+          <div class="comment-step-num">03</div>
+          <div>
+            <div class="comment-step-t">Vous recevez un code unique par email</div>
+            <p class="comment-step-p">Immédiatement après l'achat. Vous pouvez l'imprimer, l'encadrer ou le transmettre par message.</p>
+          </div>
+        </div>
+        <div class="comment-step">
+          <div class="comment-step-num">04</div>
+          <div>
+            <div class="comment-step-t">La bénéficiaire réserve quand elle veut</div>
+            <p class="comment-step-p">Elle choisit son créneau directement en ligne sur <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="color:var(--terra2);text-decoration:underline;text-underline-offset:3px;">la plateforme de réservation</a> et utilise le code pour régler. Valable 1 an.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-aside">
+      <div class="reassurance-block">
+        <div class="reassurance-block-title">Code envoyé immédiatement</div>
+        <p class="reassurance-block-txt">Dès la validation du paiement, votre bon numérique arrive dans votre boîte email.</p>
+      </div>
+      <div class="reassurance-block">
+        <div class="reassurance-block-title">Valable 1 an</div>
+        <p class="reassurance-block-txt">La bénéficiaire a 12 mois pour réserver sa séance selon ses disponibilités.</p>
+      </div>
+      <div class="reassurance-block">
+        <div class="reassurance-block-title">Aucun montant sur place</div>
+        <p class="reassurance-block-txt">Le bon couvre l'intégralité du soin. La bénéficiaire n'a rien à payer à la praticienne.</p>
+      </div>
+      <div class="reassurance-block">
+        <div class="reassurance-block-title">[X.X] · [X] avis Google</div>
+        <p class="reassurance-block-txt">[Prénom] accompagne ses clientes à [Ville] depuis [X] ans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     OCCASIONS — POUR QUI OFFRIR
+     ============================================================ -->
+<section class="section occasions-section reveal">
+  <div class="inner">
+    <span class="label">Pour qui ?</span>
+    <h2 class="h2" style="margin-bottom:8px;">Les meilleures occasions<br><em>pour offrir une séance</em></h2>
+    <div class="rule"></div>
+    <div class="occasions-grid">
+
+      <div class="occasion-item">
+        <div class="occasion-icon">I</div>
+        <div class="occasion-title">Anniversaire</div>
+        <p class="occasion-txt">Un cadeau qui marque — pour quelqu'un qui mérite de prendre soin de lui.</p>
+      </div>
+
+      <div class="occasion-item">
+        <div class="occasion-icon">II</div>
+        <div class="occasion-title">Fête des mères</div>
+        <p class="occasion-txt">Offrir du temps pour soi à une maman qui s'oublie souvent au profit des autres.</p>
+      </div>
+
+      <div class="occasion-item">
+        <div class="occasion-icon">III</div>
+        <div class="occasion-title">Naissance ou maternité</div>
+        <p class="occasion-txt">[Adapter selon les soins — ex : Un soin postnatal, un accompagnement, un moment rien que pour elle.]</p>
+      </div>
+
+      <div class="occasion-item">
+        <div class="occasion-icon">IV</div>
+        <div class="occasion-title">Sans occasion</div>
+        <p class="occasion-txt">Parce qu'une femme de votre vie a besoin de souffler — et qu'on n'a pas toujours besoin d'un prétexte.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section faq-section reveal">
+  <div class="inner" style="text-align:center;">
+    <span class="label" style="display:block;">Questions fréquentes</span>
+    <h2 class="h2" style="margin-bottom:0;">Tout savoir avant <em>de commander</em></h2>
+    <div class="rule rule-center" style="margin:18px auto 0;"></div>
+  </div>
+  <div class="faq-wrap" style="text-align:left;">
+
+    <details class="faq-item">
+      <summary>Comment fonctionne la carte cadeau ?</summary>
+      <div class="faq-ans">
+        Vous choisissez la carte cadeau, payez en ligne, et recevez immédiatement un bon numérique par email. La bénéficiaire prend rendez-vous sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">la plateforme de réservation</a> et utilise ce code lors de sa réservation. Elle n'a rien à payer. Valable 1 an.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Comment la carte cadeau est-elle transmise ?</summary>
+      <div class="faq-ans">
+        Dès la validation du paiement, le bon est envoyé par email à l'adresse que vous indiquez lors de l'achat. Vous pouvez l'imprimer, l'encadrer ou le transmettre directement par message à la bénéficiaire. Il n'y a pas d'envoi postal.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Combien de temps est valable la carte cadeau ?</summary>
+      <div class="faq-ans">
+        Les cartes cadeaux sont valables 1 an à compter de la date d'achat. La bénéficiaire choisit librement son créneau dans ce délai.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Comment la bénéficiaire prend-elle rendez-vous ?</summary>
+      <div class="faq-ans">
+        Elle reçoit son code avec les instructions pour réserver en ligne sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">la plateforme de réservation</a>, disponible 24h/24. Elle saisit le code lors de la réservation — aucun montant ne lui est demandé.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Peut-on offrir plusieurs cartes cadeaux différentes ?</summary>
+      <div class="faq-ans">
+        Oui, tout à fait. Vous pouvez acheter plusieurs cartes cadeaux séparément pour composer un cadeau sur mesure. Chaque code est indépendant et peut être transmis à la même personne ou à des personnes différentes.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>La carte cadeau est-elle valable pour n'importe quel créneau ?</summary>
+      <div class="faq-ans">
+        Oui — la bénéficiaire choisit librement son créneau parmi les disponibilités en ligne. [Prénom] reçoit [jours et horaires depuis Bloc 10]. Les disponibilités sont visibles en temps réel sur la plateforme.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Y a-t-il des contre-indications à signaler avant la séance ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 5 contre-indications — synthèse courte. Recommander de contacter [Prénom] si la bénéficiaire a des conditions médicales particulières avant de réserver.]
+        <br>En cas de doute : <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <h2 class="cta-h2">
+      Un vrai cadeau —<br><em>pas juste un joli emballage.</em>
+    </h2>
+    <p class="cta-sub">
+      [Soin 1] · [Soin 2] · [Soin 3]<br>
+      [Ville] · Code envoyé immédiatement · Valable 1 an
+    </p>
+    <a href="#cartes" class="cta-btn">Choisir une carte cadeau</a>
+    <p class="cta-contact">
+      Une question ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAILLAGE
+     ============================================================ -->
+<section class="maillage-section reveal">
+  <div class="inner">
+    <span class="label">À découvrir aussi</span>
+    <h2 class="h2" style="margin-bottom:8px;">Toutes les prestations<br><em>à [Ville]</em></h2>
+    <div style="width:36px;height:1px;background:var(--terra);margin:18px 0 28px;"></div>
+    <div class="maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soins]"          class="maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-faq]"            class="maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Cartes cadeaux — [Prénom Nom] à [Ville]",
+    "description": "Cartes cadeaux soins à [Ville] par [Prénom Nom], [titre professionnel]. Code envoyé immédiatement. Valable 1 an.",
+    "url": "https://[votre-domaine].fr/[slug-offrir]",
+    "itemListElement": [
+      {
+        "@type": "ListItem", "position": 1,
+        "item": {
+          "@type": "Product",
+          "name": "Carte cadeau [Soin 1] — [Prénom Nom] [Ville]",
+          "description": "[Description courte soin 1 depuis Bloc 5]",
+          "offers": {
+            "@type": "Offer",
+            "price": "[Tarif]", "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "[LIEN_CARTE_CADEAU_SOIN_1]"
+          }
+        }
+      },
+      {
+        "@type": "ListItem", "position": 2,
+        "item": {
+          "@type": "Product",
+          "name": "Carte cadeau [Soin 2] — [Prénom Nom] [Ville]",
+          "description": "[Description courte soin 2]",
+          "offers": {
+            "@type": "Offer",
+            "price": "[Tarif]", "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "[LIEN_CARTE_CADEAU_SOIN_2]"
+          }
+        }
+      },
+      {
+        "@type": "ListItem", "position": 3,
+        "item": {
+          "@type": "Product",
+          "name": "Carte cadeau [Soin 3] — [Prénom Nom] [Ville]",
+          "description": "[Description courte soin 3]",
+          "offers": {
+            "@type": "Offer",
+            "price": "[Tarif]", "priceCurrency": "EUR",
+            "availability": "https://schema.org/InStock",
+            "url": "[LIEN_CARTE_CADEAU_SOIN_3]"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne une carte cadeau chez [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Vous choisissez la carte cadeau, payez en ligne, et recevez immédiatement un bon numérique par email. La bénéficiaire prend rendez-vous en ligne et utilise le code. Valable 1 an. Aucun montant à régler sur place."}
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps est valable une carte cadeau de [Prénom Nom] ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Les cartes cadeaux sont valables 1 an à compter de la date d'achat."}
+      },
+      {
+        "@type": "Question",
+        "name": "Comment offrir un soin de [Soin 1] à [Ville] ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Achetez la carte cadeau [Soin 1] en ligne sur [URL_CARTE_CADEAU_SOIN_1]. Vous recevez immédiatement un bon par email à transmettre à la bénéficiaire. Elle réserve directement en ligne sans rien débourser."}
+      },
+      {
+        "@type": "Question",
+        "name": "Comment la bénéficiaire prend-elle rendez-vous avec sa carte cadeau ?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Elle reçoit les instructions par email et réserve en ligne sur [URL_RDV], disponible 24h/24. Elle saisit son code lors de la réservation — aucun paiement ne lui est demandé."}
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://[votre-domaine].fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Offrir", "item": "https://[votre-domaine].fr/[slug-offrir]"}
+    ]
+  }
+]
+</script>
+
+
+<script>
+/* Reveal au scroll */
+(function(){
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
