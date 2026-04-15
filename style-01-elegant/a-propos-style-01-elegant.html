@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — [Titre professionnel] à [Ville] · À propos</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. Découvrez son histoire, son approche, ses formations et ses valeurs. [Accroche différenciante].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   à partir du Bloc 4 du dossier client.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --terra:  #C4735A;
+  --terra2: #E0A08B;
+  --petal:  #F5E8E0;
+  --ivory:  #FBF8F5;
+  --sand:   #EDE4DA;
+  --sage:   #A8A898;
+  --sage-l: #D6D3C8;
+  --ink:    #2E2420;
+  --muted:  #7A6E68;
+  --line:   rgba(168,168,152,.2);
+
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Jost', sans-serif;
+  --max:     1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  padding-bottom: 72px; overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── STICKY ─────────────────────────────────────────────── */
+.sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--ink); display: flex; align-items: center;
+  justify-content: space-between; padding: 13px 40px; gap: 16px;
+}
+.sticky-txt { color: rgba(251,248,245,.6); font-size: .8rem; line-height: 1.5; }
+.sticky-txt strong { display: block; color: var(--petal); font-weight: 400; font-size: .86rem; }
+.sticky-btns { display: flex; gap: 10px; flex-shrink: 0; margin-left: auto; }
+.sticky-cta {
+  background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 11px 28px; flex-shrink: 0;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.sticky-cta:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+.sticky-gift {
+  background: transparent; color: var(--sand);
+  font-size: .72rem; font-weight: 400; letter-spacing: .14em;
+  text-transform: uppercase; padding: 11px 20px; flex-shrink: 0;
+  border: 1px solid rgba(237,228,218,.3); transition: all .3s;
+}
+.sticky-gift:hover { border-color: var(--sand); }
+@media(max-width:600px){
+  .sticky { padding: 12px 16px; gap: 8px; justify-content: center; }
+  .sticky-txt { display: none; }
+  .sticky-btns { margin-left: 0; gap: 8px; }
+  .sticky-cta, .sticky-gift { flex: 1; text-align: center; }
+}
+
+/* ─── HERO SPLIT-SCREEN ──────────────────────────────────── */
+.hero {
+  display: grid; grid-template-columns: 55% 1fr;
+  min-height: 100vh; position: relative;
+}
+.hero-img-col { position: relative; overflow: hidden; }
+.hero-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; display: block;
+}
+.hero-img-placeholder {
+  width: 100%; height: 100%; min-height: 100vh;
+  background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 32px;
+}
+/* Filet vertical décoratif */
+.hero-img-col::after {
+  content: '';
+  position: absolute; top: 10%; right: 0; bottom: 10%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--terra2), transparent);
+  opacity: .4;
+}
+.hero-txt-col {
+  background: var(--ivory);
+  display: flex; flex-direction: column;
+  justify-content: center; padding: 80px 64px 80px 72px;
+  position: relative;
+}
+/* Grain subtil */
+.hero-txt-col::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 160px; opacity: .022; pointer-events: none;
+}
+.hero-eyebrow {
+  font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--terra);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 32px;
+  opacity: 0; animation: fadeUp .8s .1s ease forwards;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--terra); }
+.hero-h1 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  line-height: 1.12; letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp .9s .25s ease forwards;
+}
+.hero-h1 em { font-style: italic; color: var(--terra); }
+.hero-sub {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  color: var(--terra2); margin-bottom: 36px;
+  opacity: 0; animation: fadeUp .9s .35s ease forwards;
+}
+.hero-intro {
+  font-size: .92rem; color: var(--muted); line-height: 2;
+  max-width: 400px; margin-bottom: 44px;
+  border-left: 2px solid var(--terra2); padding-left: 20px;
+  opacity: 0; animation: fadeUp .9s .45s ease forwards;
+}
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .9s .6s ease forwards;
+}
+.btn-primary {
+  display: inline-block; background: var(--terra); color: var(--ivory);
+  font-size: .74rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 15px 36px;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.btn-primary:hover { background: transparent; color: var(--terra); }
+.btn-ghost {
+  display: inline-block; background: transparent; color: var(--ink);
+  font-size: .74rem; font-weight: 400; letter-spacing: .12em;
+  text-transform: uppercase; padding: 15px 24px;
+  border: 1px solid var(--sage-l); transition: all .3s;
+}
+.btn-ghost:hover { border-color: var(--terra); color: var(--terra); }
+/* Signature décorative */
+.hero-deco {
+  position: absolute; bottom: 48px; right: 40px;
+  font-family: var(--f-serif); font-style: italic;
+  font-size: .78rem; color: var(--sage); letter-spacing: .04em;
+  opacity: 0; animation: fadeIn 1.2s 1s ease forwards;
+}
+.hero-deco::before { content: '— '; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media(max-width:960px){
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-img-col { height: 56vw; min-height: 260px; order: -1; }
+  .hero-img-placeholder { min-height: 260px; }
+  .hero-img-col::after { display: none; }
+  .hero-txt-col { padding: 48px 28px 64px; }
+  .hero-h1 { font-size: 2.2rem; }
+}
+
+/* ─── BANDEAU TICKER ──────────────────────────────────────── */
+.ticker {
+  background: var(--terra); overflow: hidden;
+  padding: 14px 0; display: flex;
+}
+.ticker-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: ticker 32s linear infinite;
+}
+.ticker-item {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: 1rem; color: var(--ivory); padding: 0 44px; opacity: .85;
+}
+.ticker-dot { color: rgba(251,248,245,.4); padding: 0 4px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ─── SECTIONS COMMUNES ───────────────────────────────────── */
+.section { padding: 96px 8%; }
+.inner { max-width: var(--max); margin: 0 auto; }
+
+.label {
+  display: block; font-size: .62rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.label-light { color: var(--terra2); }
+.label-center { text-align: center; }
+
+.h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 1.18; letter-spacing: -.01em; color: var(--ink);
+}
+.h2 em { font-style: italic; color: var(--terra); }
+.h2-light { color: var(--ivory); }
+.h2-light em { color: var(--terra2); }
+
+.rule { width: 36px; height: 1px; background: var(--terra); margin: 18px 0 36px; }
+.rule-center { margin: 18px auto 36px; }
+
+.p { font-size: .92rem; color: var(--muted); line-height: 2; margin-bottom: 14px; }
+.p strong { color: var(--ink); font-weight: 500; }
+.p-light { color: rgba(251,248,245,.65); }
+
+.note {
+  border-left: 2px solid var(--terra); padding: 16px 20px;
+  background: var(--petal); margin: 24px 0;
+  font-size: .88rem; color: var(--muted); line-height: 1.9;
+}
+.note strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 4px; }
+
+/* ─── S1 — MON HISTOIRE ──────────────────────────────────── */
+.histoire-grid {
+  display: grid; grid-template-columns: 1fr 400px;
+  gap: 80px; align-items: start;
+}
+.histoire-img-wrap { position: relative; }
+.histoire-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; }
+.histoire-img-placeholder {
+  width: 100%; aspect-ratio: 3/4; background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 24px;
+}
+/* Cadre offset */
+.histoire-img-wrap::before {
+  content: '';
+  position: absolute; bottom: -14px; left: -14px;
+  width: 50%; height: 35%;
+  border: 1px solid var(--terra2); opacity: .3;
+  pointer-events: none;
+}
+.histoire-quote {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.55; color: var(--ink);
+  border-left: 2px solid var(--terra);
+  padding-left: 28px; margin-bottom: 32px;
+}
+.histoire-quote em { color: var(--terra); font-style: normal; }
+@media(max-width:860px){ .histoire-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ─── S2 — MES VALEURS ───────────────────────────────────── */
+.valeurs-section { background: var(--petal); }
+.valeurs-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 2px; margin-top: 48px;
+}
+.valeur-card {
+  background: var(--ivory); padding: 44px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  border-top: 2px solid transparent;
+  transition: border-color .3s, background .3s;
+}
+.valeur-card:hover { border-top-color: var(--terra); background: var(--sand); }
+.valeur-num {
+  font-family: var(--f-serif); font-size: 2.2rem;
+  color: var(--terra); opacity: .22; line-height: 1;
+}
+.valeur-name {
+  font-family: var(--f-serif); font-size: 1.2rem;
+  color: var(--ink); line-height: 1.25;
+}
+.valeur-desc { font-size: .86rem; color: var(--muted); line-height: 1.9; flex: 1; }
+@media(max-width:760px){ .valeurs-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .valeurs-grid { grid-template-columns: 1fr; } }
+
+/* ─── S3 — MA MÉTHODE ────────────────────────────────────── */
+.methode-section { background: var(--ink); }
+.methode-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.methode-steps { display: flex; flex-direction: column; gap: 0; }
+.methode-step {
+  display: flex; gap: 24px; padding: 24px 0;
+  border-bottom: 1px solid rgba(251,248,245,.07);
+  align-items: flex-start;
+}
+.methode-step:last-child { border-bottom: none; }
+.methode-step-num {
+  font-family: var(--f-serif); font-size: 1.8rem;
+  color: var(--terra2); opacity: .45;
+  flex-shrink: 0; line-height: 1; width: 36px;
+}
+.methode-step-t {
+  font-size: .92rem; font-weight: 500;
+  color: var(--ivory); margin-bottom: 6px;
+}
+.methode-step-p {
+  font-size: .86rem; color: rgba(251,248,245,.6); line-height: 1.85;
+}
+.methode-aside { display: flex; flex-direction: column; gap: 3px; }
+.methode-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; display: block; }
+.methode-img-placeholder {
+  width: 100%; aspect-ratio: 4/5; background: #3a2e29;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .66rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--terra2); text-align: center; padding: 24px;
+}
+.methode-encart {
+  background: var(--terra); padding: 22px 24px;
+}
+.methode-encart-label {
+  font-size: .6rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(251,248,245,.7); margin-bottom: 6px;
+}
+.methode-encart-val {
+  font-family: var(--f-serif); font-style: italic;
+  font-size: .94rem; color: var(--ivory); line-height: 1.7;
+}
+@media(max-width:860px){ .methode-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── S4 — MES FORMATIONS ────────────────────────────────── */
+.formations-section { background: var(--sand); }
+.formations-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 48px;
+}
+.formation-item {
+  background: var(--ivory); padding: 32px 28px;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.formation-year {
+  font-family: var(--f-serif); font-size: .88rem;
+  color: var(--terra); opacity: .6; flex-shrink: 0;
+  writing-mode: vertical-rl; letter-spacing: .1em;
+  border-right: 1px solid var(--line); padding-right: 16px;
+}
+.formation-content { flex: 1; }
+.formation-name {
+  font-size: .92rem; font-weight: 500; color: var(--ink);
+  margin-bottom: 5px; line-height: 1.4;
+}
+.formation-org {
+  font-size: .78rem; color: var(--terra); letter-spacing: .06em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.formation-desc { font-size: .84rem; color: var(--muted); line-height: 1.8; }
+@media(max-width:680px){ .formations-grid { grid-template-columns: 1fr; } }
+
+/* ─── S5 — GALERIE PHOTOS ────────────────────────────────── */
+.galerie-section { background: var(--ivory); }
+.galerie-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 320px 240px;
+  gap: 3px; margin-top: 48px;
+}
+.galerie-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.galerie-photo-placeholder {
+  width: 100%; height: 100%; background: var(--sand);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .62rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--terra); text-align: center; padding: 16px;
+}
+.galerie-photo-large { grid-column: span 2; }
+@media(max-width:680px){
+  .galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 160px; }
+  .galerie-photo-large { grid-column: span 2; }
+}
+
+/* ─── S6 — FAQ ────────────────────────────────────────────── */
+.faq-section { background: var(--petal); }
+.faq-wrap { max-width: 720px; margin: 48px auto 0; }
+details.faq-item { border-bottom: 1px solid var(--line); }
+details.faq-item summary {
+  padding: 22px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; font-size: .92rem; font-weight: 400; color: var(--ink);
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+'; font-size: 1.1rem; color: var(--terra);
+  flex-shrink: 0; transition: transform .25s;
+}
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-ans {
+  padding: 0 0 22px;
+  font-size: .88rem; color: var(--muted); line-height: 2;
+}
+.faq-ans a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── CTA FINAL ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--terra); padding: 120px 8%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -120px; left: -120px;
+  width: 480px; height: 480px;
+  border: 1px solid rgba(251,248,245,.12); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute; bottom: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(251,248,245,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  color: var(--ivory); line-height: 1.12; margin-bottom: 22px;
+  letter-spacing: -.01em;
+}
+.cta-h2 em { font-style: italic; color: rgba(251,248,245,.75); }
+.cta-sub { font-size: .9rem; color: rgba(251,248,245,.7); line-height: 1.9; margin-bottom: 44px; }
+.cta-btn {
+  display: inline-block; background: var(--ivory); color: var(--terra);
+  font-size: .76rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; padding: 17px 52px; transition: all .3s;
+}
+.cta-btn:hover { background: var(--ink); color: var(--ivory); }
+.cta-contact { margin-top: 22px; font-size: .8rem; color: rgba(251,248,245,.55); }
+.cta-contact a { color: rgba(251,248,245,.75); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ────────────────────────────────────────────── */
+.maillage-section { background: var(--sand); }
+.maillage-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.maillage-pill {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--sage-l); color: var(--muted);
+  font-size: .8rem; letter-spacing: .06em; transition: all .25s;
+}
+.maillage-pill:hover { border-color: var(--terra); color: var(--terra); background: var(--petal); }
+
+/* ─── REVEAL ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; }
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY
+     ============================================================ -->
+<div class="sticky">
+  <div class="sticky-txt">
+    <strong>[Prénom Nom] — [Titre professionnel]</strong>
+    [Ville] · Réservation en ligne 24h/24
+  </div>
+  <div class="sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="sticky-gift" target="_blank" rel="noopener">Offrir</a>
+    <a href="[LIEN_RDV]" class="sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     HERO SPLIT-SCREEN
+     → Remplacer .hero-img-placeholder par :
+       <img src="URL" alt="Portrait [Prénom Nom] [titre] [Ville]" class="hero-img" loading="eager">
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-img-col">
+    <div class="hero-img-placeholder">[URL_PHOTO_PORTRAIT — Portrait professionnel, regard caméra]</div>
+  </div>
+  <div class="hero-txt-col">
+    <p class="hero-eyebrow">[Titre professionnel] · [Ville]</p>
+    <h1 class="hero-h1 s1-custom">
+      [Prénom Nom],<br>
+      <em>[titre ou accroche]</em>
+    </h1>
+    <p class="hero-sub">[Sous-titre — ex : [X] ans au service de votre équilibre]</p>
+    <p class="hero-intro">
+      [2-3 phrases depuis le Bloc 0 ADN — pourquoi ce métier,
+      ce qui l'a amenée là, ce qu'elle transmet.]
+    </p>
+    <div class="hero-btns">
+      <a href="[LIEN_RDV]" class="btn-primary" target="_blank" rel="noopener">Réserver une séance</a>
+      <a href="/[slug-soins]" class="btn-ghost">Découvrir les soins</a>
+    </div>
+    <span class="hero-deco">[Ville] · [Titre court]</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BANDEAU TICKER
+     ============================================================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">[Valeur 1 — ex : Authenticité]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 2 — ex : Bienveillance]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 3 — ex : Excellence]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Mot différenciateur — ex : Thérapeutique]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 4]</span><span class="ticker-dot">·</span>
+    <!-- Dupliqué pour boucle continue -->
+    <span class="ticker-item">[Valeur 1 — ex : Authenticité]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 2 — ex : Bienveillance]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 3 — ex : Excellence]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 1]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Soin 2]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Ville]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Mot différenciateur — ex : Thérapeutique]</span><span class="ticker-dot">·</span>
+    <span class="ticker-item">[Valeur 4]</span><span class="ticker-dot">·</span>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     S1 — MON HISTOIRE
+     → Remplacer .histoire-img-placeholder par :
+       <img src="URL" alt="..." class="histoire-img" loading="lazy">
+     ============================================================ -->
+<section class="section reveal" style="background:var(--ivory);">
+  <div class="inner">
+    <div class="histoire-grid">
+      <div>
+        <span class="label">Mon histoire</span>
+        <h2 class="h2">[Ce qui m'a amenée<br>à ce métier] — <em>[accroche]</em></h2>
+        <div class="rule"></div>
+        <blockquote class="histoire-quote">
+          « [Citation tirée du Bloc 0 ADN —
+          la phrase qui résume le pourquoi de son métier.
+          Entre guillemets, au mot près.] »
+        </blockquote>
+        <p class="p">
+          [Paragraphe 1 — depuis le Bloc 0 "Pourquoi tu fais ce métier".
+          Écrire à la première personne, avec les mots exacts de la praticienne.
+          Pas de jargon. Concret, sincère, humain.]
+        </p>
+        <p class="p">
+          [Paragraphe 2 — depuis le Bloc 0 "Ce qui t'a amenée là".
+          Le déclic, le moment qui a tout changé.
+          Expérience antérieure si pertinente (Bloc 9).]
+        </p>
+        <div class="note">
+          <strong>[Ce que je veux que vous emportiez]</strong>
+          [Depuis le Bloc 0 "Ce que tu veux qu'elles emportent après".
+          Pas la version marketing — la vraie.]
+        </div>
+        <p class="p">
+          [Paragraphe 3 — depuis le Bloc 0 "Ce qui te rend fière"
+          et "Ce sur quoi tu ne feras jamais de compromis".]
+        </p>
+      </div>
+      <div class="histoire-img-wrap d1 reveal">
+        <!-- Remplacer par : <img src="URL" alt="[Prénom] [titre] [Ville]" class="histoire-img" loading="lazy"> -->
+        <div class="histoire-img-placeholder">[URL_PHOTO_HISTOIRE — Portrait en situation, naturel]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S2 — MES VALEURS
+     → 3 à 5 valeurs depuis le Bloc 0 ADN du dossier client
+     ============================================================ -->
+<section class="section valeurs-section reveal">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:16px;">
+      <div>
+        <span class="label">Mes valeurs</span>
+        <h2 class="h2">Ce qui guide<br><em>chaque séance</em></h2>
+        <div class="rule"></div>
+      </div>
+      <p class="p" style="padding-bottom:4px;">
+        [Depuis le Bloc 0 ADN — "Les 3 à 5 valeurs qui guident vraiment ta façon de travailler".
+        Phrase d'intro courte, dans ses mots.]
+      </p>
+    </div>
+    <div class="valeurs-grid">
+
+      <div class="valeur-card">
+        <div class="valeur-num">01</div>
+        <div class="valeur-name">[Valeur 1 — ex : Authenticité]</div>
+        <p class="valeur-desc">
+          [Depuis Bloc 0 "Valeur 1 — et ce que ça veut dire concrètement dans ta pratique".
+          Écrire ce que ça veut dire dans le quotidien de la séance, pas une définition du dictionnaire.]
+        </p>
+      </div>
+
+      <div class="valeur-card">
+        <div class="valeur-num">02</div>
+        <div class="valeur-name">[Valeur 2]</div>
+        <p class="valeur-desc">
+          [Depuis Bloc 0 "Valeur 2 — et ce que ça veut dire concrètement".]
+        </p>
+      </div>
+
+      <div class="valeur-card">
+        <div class="valeur-num">03</div>
+        <div class="valeur-name">[Valeur 3]</div>
+        <p class="valeur-desc">
+          [Depuis Bloc 0 "Valeur 3".]
+        </p>
+      </div>
+
+      <!-- Ajouter ou supprimer des .valeur-card selon le nombre de valeurs renseignées -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S3 — MA MÉTHODE DE TRAVAIL (fond sombre)
+     → Remplacer .methode-img-placeholder par :
+       <img src="URL" alt="..." class="methode-img" loading="lazy">
+     ============================================================ -->
+<section class="section methode-section reveal">
+  <div class="inner">
+    <div class="methode-grid">
+      <div>
+        <span class="label label-light">Mon approche</span>
+        <h2 class="h2 h2-light">Comment je travaille —<br><em>[accroche méthode]</em></h2>
+        <div class="rule"></div>
+        <p class="p p-light">
+          [Depuis Bloc 0 "Ce que tu fais différemment" et Bloc 5 descriptions des soins.
+          Expliquer l'approche globale — pas soin par soin, mais la philosophie de travail.]
+        </p>
+        <div class="methode-steps">
+
+          <div class="methode-step">
+            <div class="methode-step-num">01</div>
+            <div>
+              <div class="methode-step-t">[Étape ou pilier 1 de la méthode]</div>
+              <p class="methode-step-p">
+                [Description concrète — ce que ça veut dire dans la pratique.
+                Depuis Bloc 0 ADN ou Bloc 5 selon le contenu fourni.]
+              </p>
+            </div>
+          </div>
+
+          <div class="methode-step">
+            <div class="methode-step-num">02</div>
+            <div>
+              <div class="methode-step-t">[Étape ou pilier 2]</div>
+              <p class="methode-step-p">
+                [Description concrète.]
+              </p>
+            </div>
+          </div>
+
+          <div class="methode-step">
+            <div class="methode-step-num">03</div>
+            <div>
+              <div class="methode-step-t">[Étape ou pilier 3]</div>
+              <p class="methode-step-p">
+                [Description concrète.]
+              </p>
+            </div>
+          </div>
+
+          <div class="methode-step">
+            <div class="methode-step-num">04</div>
+            <div>
+              <div class="methode-step-t">[Étape ou pilier 4]</div>
+              <p class="methode-step-p">
+                [Description concrète.]
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="methode-aside">
+        <!-- Remplacer par : <img src="URL" alt="..." class="methode-img" loading="lazy"> -->
+        <div class="methode-img-placeholder">[URL_PHOTO_METHODE — Soin en cours ou cabinet]</div>
+        <div class="methode-encart">
+          <div class="methode-encart-label">Ce que disent les clientes</div>
+          <div class="methode-encart-val">
+            « [Depuis Bloc 13 "Ce que mes clientes disent le plus souvent après une séance".
+            Citer mot pour mot si disponible.] »
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S4 — MES FORMATIONS ET CERTIFICATIONS
+     → Depuis Bloc 9 du dossier client — ne jamais inventer
+     → Dupliquer / supprimer des .formation-item selon le nombre réel
+     ============================================================ -->
+<section class="section formations-section reveal">
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:16px;">
+      <div>
+        <span class="label">Formations & certifications</span>
+        <h2 class="h2">Mon parcours<br><em>professionnel</em></h2>
+        <div class="rule"></div>
+      </div>
+      <p class="p" style="padding-bottom:4px;">
+        [Depuis Bloc 9 "Années d'expérience" et "Nombre de clientes accompagnées".
+        1-2 phrases contextuelles si fourni — jamais inventer de chiffres.]
+      </p>
+    </div>
+    <div class="formations-grid">
+
+      <div class="formation-item">
+        <div class="formation-year">[Année]</div>
+        <div class="formation-content">
+          <div class="formation-name">[Nom exact de la formation 1]</div>
+          <div class="formation-org">[Organisme / École]</div>
+          <p class="formation-desc">[Description si fournie dans le dossier — sinon ne pas inventer. Laisser vide si absent.]</p>
+        </div>
+      </div>
+
+      <div class="formation-item">
+        <div class="formation-year">[Année]</div>
+        <div class="formation-content">
+          <div class="formation-name">[Nom exact de la formation 2]</div>
+          <div class="formation-org">[Organisme / École]</div>
+          <p class="formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="formation-item">
+        <div class="formation-year">[Année]</div>
+        <div class="formation-content">
+          <div class="formation-name">[Nom exact de la formation 3]</div>
+          <div class="formation-org">[Organisme / École]</div>
+          <p class="formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="formation-item">
+        <div class="formation-year">[Année]</div>
+        <div class="formation-content">
+          <div class="formation-name">[Certification officielle ou autre formation]</div>
+          <div class="formation-org">[Organisme]</div>
+          <p class="formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <!-- Dupliquer autant que nécessaire selon Bloc 9 -->
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S5 — GALERIE PHOTOS
+     → Remplacer les placeholders par :
+       <img src="URL" alt="..." class="galerie-photo [galerie-photo-large]" loading="lazy">
+     ============================================================ -->
+<section class="section galerie-section reveal">
+  <div class="inner">
+    <span class="label">Univers</span>
+    <h2 class="h2" style="margin-bottom:8px;">[Mon cabinet] —<br><em>[Ville]</em></h2>
+    <div class="rule"></div>
+    <div class="galerie-grid">
+      <!-- Photo large — occupe 2 colonnes -->
+      <div class="galerie-photo-placeholder galerie-photo-large">[URL_PHOTO_CABINET_1 — Vue d'ensemble]</div>
+      <div class="galerie-photo-placeholder">[URL_PHOTO_CABINET_2]</div>
+      <div class="galerie-photo-placeholder">[URL_PHOTO_CABINET_3]</div>
+      <div class="galerie-photo-placeholder">[URL_PHOTO_SOIN_1]</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S6 — FAQ À PROPOS
+     ============================================================ -->
+<section class="section faq-section reveal">
+  <div class="inner" style="text-align:center;">
+    <span class="label label-center" style="display:block;">Questions fréquentes</span>
+    <h2 class="h2" style="text-align:center;">[Prénom Nom] à [Ville] —<br><em>vos questions</em></h2>
+    <div class="rule rule-center"></div>
+  </div>
+  <div class="faq-wrap" style="text-align:left;">
+
+    <details class="faq-item">
+      <summary>Quel est votre parcours et vos formations ?</summary>
+      <div class="faq-ans">
+        [Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans.
+        [Liste formations principales depuis Bloc 9 — 2-3 max pour la FAQ].
+        Pour découvrir son parcours complet, consultez <a href="/[slug-a-propos]">la page À propos</a>.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Quelle est votre approche et ce qui vous différencie ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 0 "Ce que tu fais différemment de toutes les autres praticientes".
+        Réponse directe, dans les mots de la praticienne, 3-4 phrases maximum.]
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Pour quel type de clientèle travaillez-vous ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 0 "Le type de clientes avec qui tu travailles le mieux".
+        Décrire le profil idéal précisément — qui elle est, où elle en est dans sa vie.]
+        Pour en savoir plus sur les soins proposés, consultez <a href="/[slug-soins]">la page prestations</a>.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Depuis combien de temps exercez-vous à [Ville] ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 9 "Année de lancement" et "Années d'expérience".
+        Contexte de l'installation à [Ville], ancrage local si pertinent.]
+        Le cabinet est situé au <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">[adresse]</a>.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Comment se passe une première séance avec vous ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 5 déroulement de la prestation principale.
+        Rassurer sur ce à quoi s'attendre — pas de protocole figé, écoute, sur-mesure.]
+        Vous pouvez réserver directement en ligne : <a href="[LIEN_RDV]">prendre rendez-vous →</a>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Proposez-vous des séances à domicile ou à distance ?</summary>
+      <div class="faq-ans">
+        [Depuis Bloc 5 disponibilités des prestations.
+        Domicile : oui/non + rayon + villes desservies.
+        Visio : oui/non + modalités.]
+      </div>
+    </details>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <span class="label label-light label-center" style="display:block;">[Prénom Nom] · [Ville]</span>
+    <h2 class="cta-h2">
+      [Accroche CTA — depuis Bloc 0 phrase ADN]<br>
+      <em>[suite en italique]</em>
+    </h2>
+    <p class="cta-sub">
+      [Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous
+    </p>
+    <a href="[LIEN_RDV]" class="cta-btn" target="_blank" rel="noopener">Réserver ma séance</a>
+    <p class="cta-contact">
+      Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAILLAGE — soins et villes
+     ============================================================ -->
+<section class="section maillage-section reveal">
+  <div class="inner">
+    <span class="label">À découvrir aussi</span>
+    <h2 class="h2" style="margin-bottom:8px;">Toutes les prestations<br><em>à [Ville]</em></h2>
+    <div class="rule" style="margin-bottom:32px;"></div>
+    <div class="maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-1]-[ville2]" class="maillage-pill">[Soin 1] à [Ville 2]</a>
+      <a href="/[slug-soin-2]-[ville2]" class="maillage-pill">[Soin 2] à [Ville 2]</a>
+      <a href="/[slug-soin-1]-[ville3]" class="maillage-pill">[Soin 1] à [Ville 3]</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "[Prénom Nom]",
+    "jobTitle": "[Titre professionnel]",
+    "description": "[Bio courte depuis Bloc 9 — 2-3 phrases. Texte brut, pas de HTML.]",
+    "url": "https://[votre-domaine].fr/[slug-a-propos]",
+    "image": "[URL_PHOTO_PORTRAIT]",
+    "telephone": "[+33XXXXXXXXX]",
+    "email": "[email]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "alumniOf": [
+      {"@type": "EducationalOrganization", "name": "[Organisme formation 1]"},
+      {"@type": "EducationalOrganization", "name": "[Organisme formation 2]"}
+    ],
+    "hasCredential": [
+      {"@type": "EducationalOccupationalCredential", "name": "[Certification 1]"},
+      {"@type": "EducationalOccupationalCredential", "name": "[Certification 2]"}
+    ],
+    "knowsAbout": ["[Soin 1]", "[Soin 2]", "[Soin 3]", "[Spécialité]"],
+    "worksFor": {
+      "@type": "LocalBusiness",
+      "name": "[Prénom Nom] — [Titre professionnel]",
+      "url": "https://[votre-domaine].fr"
+    },
+    "sameAs": ["[URL Instagram]", "[URL Facebook]", "[URL LinkedIn si disponible]"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quel est le parcours et les formations de [Prénom Nom] ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans. [Formations principales depuis Bloc 9]."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est l'approche de [Prénom Nom] et ce qui la différencie ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Depuis Bloc 0 différenciation — texte brut, pas de HTML.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pour quel type de clientèle travaille [Prénom Nom] ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Depuis Bloc 0 profil cliente idéale — texte brut.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Depuis combien de temps [Prénom Nom] exerce-t-elle à [Ville] ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Depuis Bloc 9 année de lancement et années d'expérience. Le cabinet est situé [adresse].]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment se passe une première séance avec [Prénom Nom] ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Depuis Bloc 5 déroulement — texte brut, rassurant, concret.]"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] propose-t-elle des séances à domicile ou à distance ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "[Depuis Bloc 5 disponibilités — domicile oui/non + rayon + villes. Visio oui/non + modalités.]"
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://[votre-domaine].fr/"},
+      {"@type": "ListItem", "position": 2, "name": "À propos", "item": "https://[votre-domaine].fr/[slug-a-propos]"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Titre professionnel]",
+    "description": "[Description courte — soins, approche, zone géographique. 150-200 caractères.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "priceRange": "€€",
+    "image": "[URL_PHOTO_PORTRAIT]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "sameAs": ["[URL Google Maps]", "[URL Instagram]", "[URL Facebook]"]
+  }
+]
+</script>
+
+
+<script>
+/* Reveal au scroll */
+(function(){
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); }
+    });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

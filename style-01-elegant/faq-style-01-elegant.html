@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ — [Prénom Nom], [Titre professionnel] à [Ville] · Toutes vos questions</title>
+<meta name="description" content="Toutes les réponses aux questions sur [Soin 1], [Soin 2] et [Soin 3] à [Ville]. Tarifs, déroulement, contre-indications, réservation. [Prénom Nom], [titre professionnel].">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ─────────────────────────────────────────────────
+   Remplacée automatiquement par le skill dossier-to-template
+   à partir du Bloc 4 du dossier client.
+   ──────────────────────────────────────────────────────────── */
+:root {
+  --terra:  #C4735A;
+  --terra2: #E0A08B;
+  --petal:  #F5E8E0;
+  --ivory:  #FBF8F5;
+  --sand:   #EDE4DA;
+  --sage:   #A8A898;
+  --sage-l: #D6D3C8;
+  --ink:    #2E2420;
+  --muted:  #7A6E68;
+  --line:   rgba(168,168,152,.2);
+
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Jost', sans-serif;
+  --max:     1100px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--ivory); color: var(--ink);
+  padding-bottom: 72px; overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── STICKY ─────────────────────────────────────────────── */
+.sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--ink); display: flex; align-items: center;
+  justify-content: space-between; padding: 13px 40px; gap: 16px;
+}
+.sticky-txt { color: rgba(251,248,245,.6); font-size: .8rem; line-height: 1.5; }
+.sticky-txt strong { display: block; color: var(--petal); font-weight: 400; font-size: .86rem; }
+.sticky-btns { display: flex; gap: 10px; flex-shrink: 0; margin-left: auto; }
+.sticky-cta {
+  background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 11px 28px; flex-shrink: 0;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.sticky-cta:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+.sticky-gift {
+  background: transparent; color: var(--sand);
+  font-size: .72rem; font-weight: 400; letter-spacing: .14em;
+  text-transform: uppercase; padding: 11px 20px; flex-shrink: 0;
+  border: 1px solid rgba(237,228,218,.3); transition: all .3s;
+}
+.sticky-gift:hover { border-color: var(--sand); }
+@media(max-width:600px){
+  .sticky { padding: 12px 16px; gap: 8px; justify-content: center; }
+  .sticky-txt { display: none; }
+  .sticky-btns { margin-left: 0; gap: 8px; }
+  .sticky-cta, .sticky-gift { flex: 1; text-align: center; }
+}
+
+/* ─── HERO FAQ ────────────────────────────────────────────── */
+.hero-faq {
+  background: var(--ink); padding: 96px 8% 80px;
+  position: relative; overflow: hidden;
+}
+.hero-faq::before {
+  content: '';
+  position: absolute; top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  border: 1px solid rgba(196,115,90,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.hero-faq::after {
+  content: '';
+  position: absolute; bottom: -60px; left: -60px;
+  width: 280px; height: 280px;
+  border: 1px solid rgba(196,115,90,.07); border-radius: 50%;
+  pointer-events: none;
+}
+.hero-faq-inner {
+  max-width: var(--max); margin: 0 auto;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 64px; align-items: center;
+}
+.hero-faq-eyebrow {
+  font-size: .62rem; font-weight: 500; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--terra2);
+  display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+}
+.hero-faq-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--terra2); }
+.hero-faq-h1 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  line-height: 1.12; letter-spacing: -.01em;
+  color: var(--ivory); margin-bottom: 24px;
+}
+.hero-faq-h1 em { font-style: italic; color: var(--terra2); }
+.hero-faq-intro {
+  font-size: .92rem; color: rgba(251,248,245,.6);
+  line-height: 1.9; max-width: 520px; margin-bottom: 36px;
+}
+/* Sommaire des catégories */
+.hero-faq-nav {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.hero-faq-nav-link {
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(251,248,245,.6); padding: 7px 16px;
+  border: 1px solid rgba(251,248,245,.15); transition: all .25s;
+}
+.hero-faq-nav-link:hover { color: var(--ivory); border-color: var(--terra2); }
+/* Encart stats */
+.hero-faq-stats {
+  background: rgba(251,248,245,.05);
+  border: 1px solid rgba(251,248,245,.1);
+  padding: 28px 24px; display: flex; flex-direction: column; gap: 0;
+}
+.hero-faq-stat {
+  padding: 14px 0; border-bottom: 1px solid rgba(251,248,245,.08);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+}
+.hero-faq-stat:last-child { border-bottom: none; }
+.hero-faq-stat-label {
+  font-size: .6rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(251,248,245,.45);
+}
+.hero-faq-stat-val {
+  font-family: var(--f-serif); font-size: 1rem;
+  color: var(--ivory); text-align: right;
+}
+.hero-faq-stat-val em { font-style: normal; color: var(--terra2); }
+@media(max-width:860px){
+  .hero-faq-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-faq-stats { display: none; }
+}
+
+/* ─── SECTIONS COMMUNES ───────────────────────────────────── */
+.section { padding: 80px 8%; }
+.inner { max-width: var(--max); margin: 0 auto; }
+
+.label {
+  display: block; font-size: .62rem; font-weight: 500;
+  letter-spacing: .26em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.label-light { color: var(--terra2); }
+
+.h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  line-height: 1.18; letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 32px;
+}
+.h2 em { font-style: italic; color: var(--terra); }
+
+/* ─── LAYOUT FAQ : SIDEBAR + CONTENU ─────────────────────── */
+.faq-layout {
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 56px; align-items: start;
+  max-width: var(--max); margin: 0 auto;
+}
+/* Sidebar navigation sticky */
+.faq-sidebar {
+  position: sticky; top: 24px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.faq-sidebar-title {
+  font-size: .6rem; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--sage);
+  margin-bottom: 12px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.faq-sidebar-link {
+  font-size: .78rem; color: var(--muted); padding: 7px 0 7px 12px;
+  border-left: 2px solid transparent; transition: all .2s; line-height: 1.4;
+}
+.faq-sidebar-link:hover { color: var(--terra); border-left-color: var(--terra2); }
+.faq-sidebar-link.active { color: var(--terra); border-left-color: var(--terra); font-weight: 500; }
+@media(max-width:860px){ .faq-layout { grid-template-columns: 1fr; } .faq-sidebar { display: none; } }
+
+/* ─── CATÉGORIE FAQ ───────────────────────────────────────── */
+.faq-category { margin-bottom: 64px; }
+.faq-category:last-child { margin-bottom: 0; }
+.faq-category-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.faq-category-num {
+  font-family: var(--f-serif); font-size: 2rem;
+  color: var(--terra); opacity: .25; line-height: 1; flex-shrink: 0;
+}
+.faq-category-title {
+  font-family: var(--f-serif); font-size: 1.3rem; font-weight: 400;
+  color: var(--ink); line-height: 1.2;
+}
+.faq-category-title em { font-style: italic; color: var(--terra); }
+
+/* ─── ITEM FAQ ────────────────────────────────────────────── */
+details.faq-item {
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+details.faq-item summary {
+  padding: 20px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 20px; font-size: .91rem; font-weight: 400; color: var(--ink);
+  line-height: 1.5;
+}
+details.faq-item summary::-webkit-details-marker { display: none; }
+details.faq-item summary::after {
+  content: '+'; font-size: 1.1rem; color: var(--terra);
+  flex-shrink: 0; transition: transform .25s; margin-top: 2px;
+}
+details.faq-item[open] summary { color: var(--terra); }
+details.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-ans {
+  padding: 0 0 24px 0;
+  font-size: .88rem; color: var(--muted); line-height: 2;
+}
+.faq-ans p { margin-bottom: 10px; }
+.faq-ans p:last-child { margin-bottom: 0; }
+.faq-ans a {
+  color: var(--ink); font-weight: 500;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.faq-ans strong { color: var(--ink); font-weight: 500; }
+.faq-ans ul {
+  margin: 10px 0 10px 18px; display: flex; flex-direction: column; gap: 5px;
+}
+.faq-ans ul li { font-size: .87rem; color: var(--muted); line-height: 1.75; }
+.faq-note {
+  background: var(--petal); border-left: 2px solid var(--terra);
+  padding: 12px 16px; margin-top: 12px;
+  font-size: .84rem; color: var(--muted); line-height: 1.85;
+  font-style: italic;
+}
+
+/* ─── ENCART INTERMÉDIAIRE CTA ────────────────────────────── */
+.faq-cta-mid {
+  background: var(--ink); padding: 36px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 28px; margin: 64px 0;
+}
+.faq-cta-mid-txt { color: rgba(251,248,245,.7); font-size: .88rem; line-height: 1.7; }
+.faq-cta-mid-txt strong { display: block; color: var(--ivory); font-size: .94rem; margin-bottom: 4px; font-weight: 400; }
+.faq-cta-mid-btn {
+  display: inline-block; background: var(--terra); color: var(--ivory);
+  font-size: .72rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; padding: 12px 28px; flex-shrink: 0;
+  border: 1px solid var(--terra); transition: all .3s;
+}
+.faq-cta-mid-btn:hover { background: transparent; color: var(--terra2); border-color: var(--terra2); }
+@media(max-width:680px){
+  .faq-cta-mid { flex-direction: column; padding: 28px 24px; text-align: center; }
+  .faq-cta-mid-btn { width: 100%; text-align: center; }
+}
+
+/* ─── CTA FINAL ───────────────────────────────────────────── */
+.cta-section {
+  background: var(--terra); padding: 120px 8%;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ''; position: absolute; top: -120px; left: -120px;
+  width: 480px; height: 480px;
+  border: 1px solid rgba(251,248,245,.12); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-section::after {
+  content: ''; position: absolute; bottom: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border: 1px solid rgba(251,248,245,.1); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+.cta-h2 {
+  font-family: var(--f-serif); font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  color: var(--ivory); line-height: 1.12; margin-bottom: 22px;
+  letter-spacing: -.01em;
+}
+.cta-h2 em { font-style: italic; color: rgba(251,248,245,.75); }
+.cta-sub { font-size: .9rem; color: rgba(251,248,245,.7); line-height: 1.9; margin-bottom: 44px; }
+.cta-btn {
+  display: inline-block; background: var(--ivory); color: var(--terra);
+  font-size: .76rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; padding: 17px 52px; transition: all .3s;
+}
+.cta-btn:hover { background: var(--ink); color: var(--ivory); }
+.cta-contact { margin-top: 22px; font-size: .8rem; color: rgba(251,248,245,.55); }
+.cta-contact a { color: rgba(251,248,245,.75); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ─── MAILLAGE ────────────────────────────────────────────── */
+.maillage-section { background: var(--sand); }
+.maillage-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+.maillage-pill {
+  display: inline-block; padding: 10px 20px;
+  border: 1px solid var(--sage-l); color: var(--muted);
+  font-size: .8rem; letter-spacing: .06em; transition: all .25s;
+}
+.maillage-pill:hover { border-color: var(--terra); color: var(--terra); background: var(--petal); }
+
+/* ─── REVEAL ──────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+
+<!-- ============================================================
+     STICKY
+     ============================================================ -->
+<div class="sticky">
+  <div class="sticky-txt">
+    <strong>[Prénom Nom] — [Titre professionnel]</strong>
+    [Ville] · Réservation en ligne 24h/24
+  </div>
+  <div class="sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="sticky-gift" target="_blank" rel="noopener">Offrir</a>
+    <a href="[LIEN_RDV]" class="sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     HERO FAQ
+     ============================================================ -->
+<section class="hero-faq">
+  <div class="hero-faq-inner">
+    <div>
+      <p class="hero-faq-eyebrow">Questions fréquentes · [Ville]</p>
+      <h1 class="hero-faq-h1 s1-custom">
+        Tout ce que vous voulez savoir<br>
+        <em>sur [Soin 1], [Soin 2]<br>et [Soin 3] à [Ville]</em>
+      </h1>
+      <p class="hero-faq-intro">
+        Tarifs, déroulement, contre-indications, réservation, cartes cadeaux —
+        toutes les réponses aux questions que vous vous posez avant de prendre rendez-vous
+        avec [Prénom Nom] à [Ville].
+      </p>
+      <!-- Liens d'ancrage vers les catégories -->
+      <nav class="hero-faq-nav" aria-label="Catégories de questions">
+        <a href="#generalites" class="hero-faq-nav-link">Généralités</a>
+        <a href="#soins" class="hero-faq-nav-link">Les soins</a>
+        <a href="#tarifs" class="hero-faq-nav-link">Tarifs</a>
+        <a href="#deroulement" class="hero-faq-nav-link">Déroulement</a>
+        <a href="#indications" class="hero-faq-nav-link">Indications & CI</a>
+        <a href="#reservation" class="hero-faq-nav-link">Réservation</a>
+        <a href="#praticienne" class="hero-faq-nav-link">La praticienne</a>
+        <a href="#cabinet" class="hero-faq-nav-link">Cabinet & accès</a>
+        <a href="#cadeaux" class="hero-faq-nav-link">Cartes cadeaux</a>
+        <a href="#apres" class="hero-faq-nav-link">Après la séance</a>
+      </nav>
+    </div>
+    <div class="hero-faq-stats">
+      <div class="hero-faq-stat">
+        <span class="hero-faq-stat-label">Soins proposés</span>
+        <span class="hero-faq-stat-val"><em>[X]</em> prestations</span>
+      </div>
+      <div class="hero-faq-stat">
+        <span class="hero-faq-stat-label">Avis Google</span>
+        <span class="hero-faq-stat-val"><em>[X.X]</em> · [X] avis</span>
+      </div>
+      <div class="hero-faq-stat">
+        <span class="hero-faq-stat-label">Expérience</span>
+        <span class="hero-faq-stat-val"><em>[X]</em> ans</span>
+      </div>
+      <div class="hero-faq-stat">
+        <span class="hero-faq-stat-label">Réservation</span>
+        <span class="hero-faq-stat-val">En ligne 24h/24</span>
+      </div>
+      <div class="hero-faq-stat">
+        <span class="hero-faq-stat-label">Ville</span>
+        <span class="hero-faq-stat-val">[Ville] · [Dpt]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CORPS DE LA FAQ — LAYOUT SIDEBAR + CONTENU
+     ============================================================ -->
+<div class="section">
+<div class="faq-layout">
+
+  <!-- ── SIDEBAR NAVIGATION ── -->
+  <aside class="faq-sidebar">
+    <div class="faq-sidebar-title">Catégories</div>
+    <a href="#generalites" class="faq-sidebar-link">01 · Généralités</a>
+    <a href="#soins" class="faq-sidebar-link">02 · Les soins</a>
+    <a href="#tarifs" class="faq-sidebar-link">03 · Tarifs & paiement</a>
+    <a href="#deroulement" class="faq-sidebar-link">04 · Déroulement</a>
+    <a href="#indications" class="faq-sidebar-link">05 · Indications & CI</a>
+    <a href="#reservation" class="faq-sidebar-link">06 · Réservation</a>
+    <a href="#praticienne" class="faq-sidebar-link">07 · La praticienne</a>
+    <a href="#cabinet" class="faq-sidebar-link">08 · Cabinet & accès</a>
+    <a href="#cadeaux" class="faq-sidebar-link">09 · Cartes cadeaux</a>
+    <a href="#apres" class="faq-sidebar-link">10 · Après la séance</a>
+  </aside>
+
+  <!-- ── CONTENU FAQ ── -->
+  <div>
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 01 — GÉNÉRALITÉS
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="generalites">
+      <div class="faq-category-header">
+        <div class="faq-category-num">01</div>
+        <div class="faq-category-title">Généralités — <em>[Prénom Nom] à [Ville]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>[Prénom Nom] est [titre professionnel exact] installée à [Ville] depuis [année de lancement]. Elle propose [liste des soins principaux] au cabinet de [Ville], ainsi que [visio/domicile si applicable].</p>
+          <p>[Phrase de différenciation depuis Bloc 0 ADN — ce qui la distingue des autres praticiennes de sa zone.]</p>
+          <p>Pour en savoir plus sur son parcours : <a href="/[slug-a-propos]">À propos de [Prénom] →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quelle est la différence entre [Soin 1] et [Soin 2] ?</summary>
+        <div class="faq-ans">
+          <p><strong>[Soin 1]</strong> : [description courte depuis Bloc 5 — ce que c'est, comment ça agit, pour qui].</p>
+          <p><strong>[Soin 2]</strong> : [description courte depuis Bloc 5 — ce que c'est, comment ça agit, pour qui].</p>
+          <p>Les deux soins peuvent être complémentaires selon votre situation. [Prénom] vous guide lors du premier contact vers la prestation la plus adaptée à votre état du moment.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ces soins sont-ils reconnus ou remboursés par la Sécurité sociale ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse adaptée selon le type de soins — généralement non remboursés par la Sécu. Certaines mutuelles prennent en charge partiellement les médecines douces. Vérifier avec sa mutuelle.]</p>
+          <p>Certaines mutuelles remboursent les séances de [type de soin] dans le cadre des médecines douces. Il est conseillé de vérifier directement auprès de votre organisme complémentaire.</p>
+          <div class="faq-note">Ces soins ne se substituent pas à un suivi médical. En cas de pathologie, consultez d'abord votre médecin.</div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment savoir quel soin est fait pour moi ?</summary>
+        <div class="faq-ans">
+          <p>[Prénom] adapte chaque séance à l'état du moment de la cliente. Si vous hésitez entre plusieurs soins, vous pouvez la contacter directement au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> ou lui envoyer un message avant de réserver.</p>
+          <p>En règle générale :</p>
+          <ul>
+            <li>[Soin 1] est particulièrement adapté pour [indication principale 1]</li>
+            <li>[Soin 2] est recommandé pour [indication principale 2]</li>
+            <li>[Soin 3] convient à [indication principale 3]</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ces soins sont-ils adaptés aux hommes ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse depuis le dossier client — Bloc 0 "clientèle que tu ne veux PAS accueillir" et profil clientèle idéale. Si elle reçoit des hommes, le préciser. Si elle travaille principalement avec des femmes, l'expliquer sans exclure.]</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 01 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 02 — LES SOINS
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="soins">
+      <div class="faq-category-header">
+        <div class="faq-category-num">02</div>
+        <div class="faq-category-title">Les soins — <em>ce qui se passe concrètement</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>En quoi consiste [Soin 1] exactement ?</summary>
+        <div class="faq-ans">
+          <p>[Description complète depuis Bloc 5 prestation 1 — ce que c'est, comment ça fonctionne, sur quoi ça agit. Minimum 3-4 phrases. Dans les mots de la praticienne depuis Bloc 0.]</p>
+          <p>Pour découvrir le détail du soin : <a href="/[slug-soin-1]-[ville]">[Soin 1] à [Ville] →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>En quoi consiste [Soin 2] exactement ?</summary>
+        <div class="faq-ans">
+          <p>[Description complète depuis Bloc 5 prestation 2.]</p>
+          <p>Pour découvrir le détail du soin : <a href="/[slug-soin-2]-[ville]">[Soin 2] à [Ville] →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>En quoi consiste [Soin 3] exactement ?</summary>
+        <div class="faq-ans">
+          <p>[Description complète depuis Bloc 5 prestation 3.]</p>
+          <p>Pour découvrir le détail du soin : <a href="/[slug-soin-3]-[ville]">[Soin 3] à [Ville] →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quels sont les bienfaits concrets de [Soin 1] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 et Bloc 0 "Ce que tu veux qu'elles emportent après". Bienfaits concrets, pas de jargon. Avant/après.]</p>
+          <ul>
+            <li>[Bienfait 1 — concret, mesurable si possible]</li>
+            <li>[Bienfait 2]</li>
+            <li>[Bienfait 3]</li>
+            <li>[Bienfait 4]</li>
+          </ul>
+          <div class="faq-note">Les résultats varient selon les personnes et leur état de santé. Ces soins ne se substituent pas à un avis médical.</div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Combien de séances faut-il pour voir des résultats ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 "Fréquence conseillée" et Bloc 13 "Ce que mes clientes disent".]</p>
+          <p>Pour [Soin 1] : [recommandation nombre de séances]. Pour [Soin 2] : [recommandation]. Pour [Soin 3] : [recommandation].</p>
+          <p>[Prénom] vous guidera lors de la première séance vers le protocole le plus adapté à votre situation.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ces soins sont-ils douloureux ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse personnalisée selon les soins — généralement non, mais préciser les sensations possibles. Depuis Bloc 5 ou connaissances sur les soins pratiqués.]</p>
+          <p>[Prénom] adapte constamment la pression et l'intensité de son travail en fonction de votre ressenti en temps réel. Vous pouvez lui signaler à tout moment si une sensation vous est inconfortable.</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 02 -->
+
+
+    <!-- CTA INTERMÉDIAIRE -->
+    <div class="faq-cta-mid reveal">
+      <div class="faq-cta-mid-txt">
+        <strong>Votre question n'est pas listée ici ?</strong>
+        Contactez [Prénom] directement — elle répond à toutes vos questions avant réservation.
+      </div>
+      <a href="tel:[+33XXXXXXXXX]" class="faq-cta-mid-btn">Appeler [Prénom]</a>
+    </div>
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 03 — TARIFS & PAIEMENT
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="tarifs">
+      <div class="faq-category-header">
+        <div class="faq-category-num">03</div>
+        <div class="faq-category-title">Tarifs & paiement — <em>à [Ville]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Quels sont les tarifs des soins à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>Voici les tarifs pratiqués par [Prénom Nom] à [Ville] :</p>
+          <ul>
+            <li><strong>[Soin 1]</strong> : [Tarif]€ · [Durée]</li>
+            <li><strong>[Soin 2]</strong> : [Tarif]€ · [Durée]</li>
+            <li><strong>[Soin 3]</strong> : [Tarif]€ · [Durée]</li>
+          </ul>
+          <p>Les tarifs sont communiqués en toute transparence avant toute réservation. Consultez <a href="/[slug-soins]">la page prestations</a> pour le détail complet.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quels moyens de paiement sont acceptés ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis dossier client si précisé — espèces, carte bancaire, virement, chèque. Si non précisé, laisser le placeholder.]</p>
+          <p>[Moyens de paiement acceptés : à compléter selon Bloc 6 ou informations communiquées par la praticienne.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Proposez-vous le paiement en plusieurs fois ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 "Paiement en plusieurs fois disponible" et Bloc 6 "Packs".]</p>
+          <p>[Si oui : expliquer les modalités et donner le lien. Si non : le préciser et orienter vers les packs si disponibles.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Y a-t-il des packs ou des forfaits plusieurs séances ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 6 "Packs" — lister tous les packs disponibles avec nom, contenu, tarif, lien d'achat. Si aucun pack : recommandation de protocole 3 séances si applicable.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quelle est la politique d'annulation ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis dossier client si précisé. Sinon : formulation standard — délai de prévenance recommandé, conditions d'annulation via la plateforme de réservation utilisée.]</p>
+          <p>Pour toute annulation ou modification de rendez-vous, merci de me contacter au minimum [X] heures à l'avance au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> ou directement via <a href="[LIEN_RDV]">la plateforme de réservation</a>.</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 03 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 04 — DÉROULEMENT
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="deroulement">
+      <div class="faq-category-header">
+        <div class="faq-category-num">04</div>
+        <div class="faq-category-title">Déroulement — <em>avant, pendant, après</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Comment se déroule une première séance avec [Prénom] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 déroulement de la prestation principale et Bloc 0 ADN approche.]</p>
+          <p>La première séance commence toujours par un temps d'échange pour comprendre votre situation, votre état du moment et vos objectifs. [Prénom] adapte ensuite le soin en temps réel à ce qu'elle perçoit.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Que faut-il apporter ou prévoir avant la séance ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 ou informations pratiques de la praticienne. Ex : tenue confortable, arriver quelques minutes avant, ne pas avoir mangé juste avant, etc.]</p>
+          <ul>
+            <li>[Conseil pratique 1]</li>
+            <li>[Conseil pratique 2]</li>
+            <li>[Conseil pratique 3]</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quelle est la durée exacte d'une séance de [Soin 1] ?</summary>
+        <div class="faq-ans">
+          <p>Une séance de [Soin 1] dure [durée exacte depuis Bloc 5]. Ce temps comprend [détail : échange initial + soin + temps d'intégration si applicable].</p>
+          <p>Prévoyez [durée + 10 minutes] pour votre venue au cabinet afin d'arriver sereinement sans vous presser.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Est-ce que je dois me déshabiller pour le soin ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse précise selon les soins pratiqués — depuis Bloc 5 ou type de soin. Ex : habillé, tenue légère, vêtements confortables, etc.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Est-ce que [Prénom] travaille sur le visage / le corps / les deux ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 descriptions des soins — zones du corps travaillées pour chaque prestation.]</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 04 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 05 — INDICATIONS & CI
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="indications">
+      <div class="faq-category-header">
+        <div class="faq-category-num">05</div>
+        <div class="faq-category-title">Indications & contre-indications</div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Pour qui ces soins sont-ils particulièrement recommandés ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 0 profil cliente idéale et Bloc 5 indications des soins.]</p>
+          <ul>
+            <li>[Indication / profil 1]</li>
+            <li>[Indication / profil 2]</li>
+            <li>[Indication / profil 3]</li>
+            <li>[Indication / profil 4]</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Y a-t-il des contre-indications à [Soin 1] ?</summary>
+        <div class="faq-ans">
+          <p>[Contre-indications depuis Bloc 5 prestation 1 — être précis et complet.]</p>
+          <div class="faq-note">En cas de doute sur votre situation médicale, contactez [Prénom] avant de réserver au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>. Ces soins ne se substituent pas à un suivi médical.</div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ces soins sont-ils adaptés aux femmes enceintes ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse précise depuis Bloc 5 ou informations de la praticienne. Préciser à partir de quel trimestre si applicable, et les précautions particulières.]</p>
+          <div class="faq-note">En cas de grossesse à risque ou de suivi médical particulier, consultez votre médecin ou sage-femme avant de prendre rendez-vous.</div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ces soins conviennent-ils aux enfants et adolescents ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 0 "clientèle que tu ne veux PAS accueillir" et Bloc 5 âge minimum/maximum. Être précis sur les tranches d'âge acceptées ou non.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Puis-je venir en séance si je suis sous traitement médical ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse prudente et complète. Recommander de signaler tout traitement en cours lors de la réservation ou au début de séance.]</p>
+          <p>Signalez toujours à [Prénom] vos traitements médicaux en cours avant la séance. Dans certains cas, un avis médical préalable peut être recommandé.</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 05 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 06 — RÉSERVATION
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="reservation">
+      <div class="faq-category-header">
+        <div class="faq-category-num">06</div>
+        <div class="faq-category-title">Réservation — <em>comment prendre rendez-vous à [Ville]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Comment prendre rendez-vous avec [Prénom Nom] à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>La réservation se fait directement en ligne, 24h/24 et 7j/7 sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>. Vous choisissez votre prestation, votre créneau et vous recevez une confirmation automatique.</p>
+          <p>Vous pouvez aussi contacter [Prénom] directement au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> si vous avez des questions avant de réserver.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quelles sont les disponibilités de [Prénom Nom] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 10 horaires — détailler les jours et horaires de réception au cabinet. Préciser si des créneaux du soir ou weekend sont disponibles.]</p>
+          <p>Les disponibilités en temps réel sont visibles directement sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">la plateforme de réservation</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Faut-il confirmer son rendez-vous ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis l'outil de réservation utilisé — Acuity, Calendly, Doctolib, Fresha… Expliquer la confirmation automatique et les rappels si disponibles.]</p>
+          <p>Vous recevez une confirmation par email et [SMS si applicable] dès votre réservation. Un rappel est envoyé [X heures/jours] avant votre séance.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment annuler ou modifier mon rendez-vous ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis la politique d'annulation de la praticienne. Préciser le délai minimum, comment annuler via la plateforme et/ou par téléphone.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Proposez-vous des séances à distance ou en visio ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 disponibilités — visio : oui/non. Si oui : modalités, types de soins concernés, lien de réservation spécifique.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Proposez-vous des séances à domicile à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 disponibilités et Bloc 1 rayon de déplacement. Villes desservies, tarif éventuel de déplacement, types de soins concernés.]</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 06 -->
+
+
+    <!-- CTA INTERMÉDIAIRE -->
+    <div class="faq-cta-mid reveal">
+      <div class="faq-cta-mid-txt">
+        <strong>Prête à réserver votre séance ?</strong>
+        Disponibilités en temps réel — réservation en ligne en 2 minutes.
+      </div>
+      <a href="[LIEN_RDV]" class="faq-cta-mid-btn" target="_blank" rel="noopener">Prendre rendez-vous</a>
+    </div>
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 07 — LA PRATICIENNE
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="praticienne">
+      <div class="faq-category-header">
+        <div class="faq-category-num">07</div>
+        <div class="faq-category-title">La praticienne — <em>[Prénom Nom]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Quelles sont les formations et certifications de [Prénom Nom] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 9 formations certifications — lister toutes les formations avec nom exact, organisme, année. Jamais inventer.]</p>
+          <ul>
+            <li>[Formation 1] — [Organisme] ([Année])</li>
+            <li>[Formation 2] — [Organisme] ([Année])</li>
+            <li>[Formation 3] — [Organisme] ([Année])</li>
+          </ul>
+          <p>Pour découvrir son parcours complet : <a href="/[slug-a-propos]">À propos de [Prénom] →</a></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Depuis combien de temps [Prénom Nom] pratique-t-elle à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 9 année de lancement et années d'expérience. Contexte de l'installation à [Ville].]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Qu'est-ce qui différencie l'approche de [Prénom Nom] des autres praticiennes ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 0 "Ce que tu fais différemment" et "Ce qu'une cliente ne trouvera nulle part ailleurs qu'avec toi". Dans ses mots exacts, pas de réécriture générique.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Est-il possible de contacter [Prénom] avant de prendre rendez-vous ?</summary>
+        <div class="faq-ans">
+          <p>Oui, [Prénom] est disponible pour répondre à vos questions avant toute réservation. Vous pouvez la contacter par téléphone au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>[ou par email à <a href="mailto:[email]">[email]</a> si disponible].</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 07 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 08 — CABINET & ACCÈS
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="cabinet">
+      <div class="faq-category-header">
+        <div class="faq-category-num">08</div>
+        <div class="faq-category-title">Cabinet & accès — <em>[Ville]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Où se situe le cabinet de [Prénom Nom] à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>Le cabinet est situé au [adresse complète depuis Bloc 2], à [Ville]. <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Google Maps →</a></p>
+          <p>[Informations d'accès si pertinentes : parking, transports en commun, repères visuels.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Y a-t-il un parking à proximité du cabinet ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis informations de la praticienne ou déduire de l'adresse. Si non renseigné : laisser le placeholder.]</p>
+          <p>[Informations parking depuis dossier client ou adresse fournie.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Le cabinet est-il accessible aux personnes à mobilité réduite ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis informations de la praticienne. Si non renseigné : recommander de contacter [Prénom] directement pour vérifier l'accessibilité.]</p>
+          <p>Pour toute question d'accessibilité, contactez [Prénom] directement au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Le cabinet reçoit-il dans d'autres villes autour de [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 1 villes secondaires et Bloc 2 cabinet 2 si applicable. Préciser les villes, les jours de présence dans chaque lieu.]</p>
+          <p>[Prénom] reçoit principalement à [Ville principale]. [Si villes secondaires : elle est également présente à [Ville 2] le [jours], et à [Ville 3] le [jours].]</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 08 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 09 — CARTES CADEAUX
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="cadeaux">
+      <div class="faq-category-header">
+        <div class="faq-category-num">09</div>
+        <div class="faq-category-title">Cartes cadeaux — <em>offrir une séance à [Ville]</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Comment offrir une séance en cadeau à [Ville] ?</summary>
+        <div class="faq-ans">
+          <p>Des cartes cadeaux sont disponibles pour toutes les prestations directement en ligne sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Après l'achat, vous recevez un bon unique que la bénéficiaire utilise pour réserver sa séance directement en ligne, sans rien débourser.</p>
+          <p>C'est un cadeau idéal pour un anniversaire, la fête des mères, une naissance ou simplement pour offrir un moment à quelqu'un qui en a besoin.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Les cartes cadeaux sont-elles valables pour tous les soins ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 6 cartes cadeaux — préciser si valable pour toutes les prestations ou seulement certaines. Donner les liens spécifiques si plusieurs cartes cadeaux différentes.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Quelle est la durée de validité d'une carte cadeau ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis informations de la plateforme de réservation utilisée — Acuity, Fresha, etc. Si non précisé : laisser le placeholder.]</p>
+          <p>[Durée de validité des cartes cadeaux à compléter selon la plateforme de réservation utilisée.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment la bénéficiaire utilise-t-elle sa carte cadeau ?</summary>
+        <div class="faq-ans">
+          <p>Après l'achat, un code unique est généré. La bénéficiaire le saisit directement sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">la plateforme de réservation</a> au moment de choisir son créneau. Elle n'a rien à payer — le bon couvre l'intégralité du soin.</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 09 -->
+
+
+    <!-- ════════════════════════════════════════
+         CATÉGORIE 10 — APRÈS LA SÉANCE
+         ════════════════════════════════════════ -->
+    <div class="faq-category reveal" id="apres">
+      <div class="faq-category-header">
+        <div class="faq-category-num">10</div>
+        <div class="faq-category-title">Après la séance — <em>conseils et suivi</em></div>
+      </div>
+
+      <details class="faq-item">
+        <summary>Que ressent-on après une séance de [Soin 1] ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 0 "Ce que tu veux qu'elles emportent après" et Bloc 13 "Ce que mes clientes disent". Concret, honnête, pas de promesses excessives.]</p>
+          <div class="faq-note">Les effets varient d'une personne à l'autre selon l'état initial, la sensibilité et le nombre de séances.</div>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Y a-t-il des recommandations à suivre après la séance ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 "recommandations après séance" si renseigné. Conseils pratiques pour prolonger les effets du soin.]</p>
+          <ul>
+            <li>[Conseil post-séance 1 — ex : boire beaucoup d'eau]</li>
+            <li>[Conseil post-séance 2]</li>
+            <li>[Conseil post-séance 3]</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Puis-je reprendre mes activités normales juste après ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 "reprise d'activité" ou type de soin. Généralement : oui pour la plupart des soins bien-être, avec quelques précautions selon le soin.]</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Est-ce normal de ressentir de la fatigue ou des émotions après la séance ?</summary>
+        <div class="faq-ans">
+          <p>[Réponse professionnelle et rassurante. Réactions de détoxination ou d'intégration normales selon le type de soin. Recommander de se ménager si possible après la séance.]</p>
+          <p>Ces réactions font partie du processus de régulation du corps. Si une réaction vous inquiète, n'hésitez pas à contacter [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Comment assurer un suivi sur le long terme ?</summary>
+        <div class="faq-ans">
+          <p>[Depuis Bloc 5 fréquence conseillée et approche de la praticienne. Expliquer le travail en profondeur vs la séance ponctuelle. Protocoles si disponibles.]</p>
+          <p>[Prénom] propose [protocoles / suivi / fréquence recommandée selon les soins]. Elle vous guidera lors de chaque séance selon l'évolution de votre état.</p>
+        </div>
+      </details>
+
+    </div><!-- /catégorie 10 -->
+
+  </div><!-- /contenu -->
+</div><!-- /faq-layout -->
+</div><!-- /section -->
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-section reveal">
+  <div class="cta-inner">
+    <span class="label label-light label-center" style="display:block;">[Prénom Nom] · [Ville]</span>
+    <h2 class="cta-h2">
+      [Accroche — depuis Bloc 0 ADN]<br>
+      <em>[suite en italique]</em>
+    </h2>
+    <p class="cta-sub">
+      [Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous
+    </p>
+    <a href="[LIEN_RDV]" class="cta-btn" target="_blank" rel="noopener">Réserver ma séance</a>
+    <p class="cta-contact">
+      Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MAILLAGE
+     ============================================================ -->
+<section class="section maillage-section reveal">
+  <div class="inner">
+    <span class="label">À découvrir aussi</span>
+    <h2 class="h2" style="margin-bottom:8px;">Toutes les prestations<br><em>à [Ville]</em></h2>
+    <div style="width:36px;height:1px;background:var(--terra);margin:18px 0 32px;"></div>
+    <div class="maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-1]-[ville2]" class="maillage-pill">[Soin 1] à [Ville 2]</a>
+      <a href="/[slug-soin-2]-[ville2]" class="maillage-pill">[Soin 2] à [Ville 2]</a>
+      <a href="/[slug-soin-1]-[ville3]" class="maillage-pill">[Soin 1] à [Ville 3]</a>
+      <a href="/[slug-a-propos]" class="maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-soins]" class="maillage-pill">Toutes les prestations</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SCHEMAS JSON-LD — FAQPage ultra détaillé
+     50 questions/réponses couvrant toutes les catégories
+     ============================================================ -->
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+
+      {
+        "@type": "Question",
+        "name": "Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Prénom Nom] est [titre professionnel] à [Ville] depuis [année]. Elle propose [liste soins]. [Phrase différenciation Bloc 0]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la différence entre [Soin 1] et [Soin 2] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Soin 1] : [description courte]. [Soin 2] : [description courte]. Les deux peuvent être complémentaires selon votre situation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Les soins de [Prénom Nom] sont-ils remboursés par la Sécurité sociale ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ces soins ne sont pas remboursés par la Sécurité sociale. Certaines mutuelles prennent en charge partiellement les séances de [type de soin]. Vérifiez directement auprès de votre organisme complémentaire." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment savoir quel soin de [Prénom Nom] est fait pour moi ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Contactez [Prénom] au [Téléphone] avant de réserver. [Soin 1] est recommandé pour [indication 1]. [Soin 2] pour [indication 2]. [Soin 3] pour [indication 3]. Elle adapte toujours la séance à l'état du moment." }
+      },
+      {
+        "@type": "Question",
+        "name": "En quoi consiste [Soin 1] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Description complète Soin 1 depuis Bloc 5 — minimum 3-4 phrases. Ce que c'est, comment ça fonctionne, sur quoi ça agit, pour qui.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "En quoi consiste [Soin 2] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Description complète Soin 2 depuis Bloc 5.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "En quoi consiste [Soin 3] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Description complète Soin 3 depuis Bloc 5.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont les bienfaits concrets de [Soin 1] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Bienfaits depuis Bloc 5 et Bloc 0 transformation : bienfait 1, bienfait 2, bienfait 3, bienfait 4. Concrets, mesurables si possible.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de séances de [Soin 1] faut-il pour voir des résultats à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 fréquence conseillée. Résultats dès la première séance pour certains. Protocole recommandé pour un travail en profondeur.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Les soins de [Prénom Nom] sont-ils douloureux ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Réponse précise selon les soins. [Prénom] adapte constamment l'intensité en fonction du ressenti de la cliente.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel est le tarif de [Soin 1] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Soin 1] est au tarif de [Tarif]€ pour une séance de [Durée] à [Ville]. Réservation en ligne sur [URL_RDV]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel est le tarif de [Soin 2] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Soin 2] est au tarif de [Tarif]€ pour une séance de [Durée] à [Ville]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel est le tarif de [Soin 3] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Soin 3] est au tarif de [Tarif]€ pour une séance de [Durée] à [Ville]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels moyens de paiement sont acceptés chez [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Moyens de paiement acceptés depuis dossier client — espèces, CB, virement, chèque.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] propose-t-elle des packs ou forfaits plusieurs séances ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 6 packs — nom, contenu, tarif. Si aucun pack : protocoles recommandés.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la politique d'annulation de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Pour toute annulation ou modification, merci de prévenir au minimum [X] heures à l'avance au [Téléphone] ou via la plateforme de réservation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment se déroule une première séance avec [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 déroulement. La séance commence par un échange, [Prénom] adapte le soin en temps réel à l'état du moment de la cliente.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la durée d'une séance de [Soin 1] chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Une séance de [Soin 1] avec [Prénom Nom] à [Ville] dure [durée]. Prévoyez [durée + 10 minutes] pour votre venue." }
+      },
+      {
+        "@type": "Question",
+        "name": "Que faut-il prévoir avant une séance chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Conseils pratiques depuis Bloc 5 : tenue, repas, arrivée, etc.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Pour qui les soins de [Prénom Nom] sont-ils recommandés à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 profil cliente idéale et Bloc 5 indications. Profil principal, problématiques fréquentes.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Y a-t-il des contre-indications à [Soin 1] chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Contre-indications précises depuis Bloc 5. En cas de doute, contacter [Prénom] au [Téléphone] avant de réserver. Ces soins ne se substituent pas à un suivi médical.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Les soins de [Prénom Nom] sont-ils adaptés aux femmes enceintes ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Réponse précise depuis Bloc 5. Préciser le trimestre si applicable. Recommander l'avis du médecin en cas de grossesse à risque.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Les soins de [Prénom Nom] conviennent-ils aux enfants ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 clientèle non souhaitée et Bloc 5 âge minimum. Réponse précise sur les tranches d'âge.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment prendre rendez-vous avec [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "La réservation se fait en ligne 24h/24 sur [URL_RDV]. Vous pouvez aussi contacter [Prénom] au [Téléphone]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelles sont les disponibilités de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Prénom Nom] reçoit à [Ville] [jours et horaires depuis Bloc 10]. Les disponibilités en temps réel sont sur [URL_RDV]." }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] propose-t-elle des séances à domicile à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 et Bloc 1 — domicile oui/non, rayon km, villes desservies.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] propose-t-elle des séances à distance ou en visio ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 — visio oui/non, types de soins concernés, modalités de réservation.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelles sont les formations de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 9 — toutes les formations avec nom, organisme, année. Jamais inventer.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Depuis combien de temps [Prénom Nom] pratique-t-elle à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 9 — année de lancement et années d'expérience.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Où se situe le cabinet de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Le cabinet est situé au [adresse complète], [code postal] [Ville]. Ouvert [jours et horaires]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Y a-t-il un parking à proximité du cabinet de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Informations parking depuis dossier ou adresse.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Le cabinet de [Prénom Nom] est-il accessible aux personnes à mobilité réduite ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Informations accessibilité depuis dossier. Si non précisé : recommander de contacter [Prénom] au [Téléphone].]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment offrir une séance de [Soin 1] en cadeau à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Des cartes cadeaux sont disponibles en ligne sur [URL_CARTE_CADEAU]. Après l'achat, la bénéficiaire reçoit un code unique pour réserver sa séance directement en ligne." }
+      },
+      {
+        "@type": "Question",
+        "name": "Les cartes cadeaux de [Prénom Nom] sont-elles valables pour tous les soins ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 6 cartes cadeaux — validité pour toutes prestations ou certaines seulement. Liens spécifiques si plusieurs cartes différentes.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la durée de validité des cartes cadeaux de [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis la plateforme de réservation utilisée — durée de validité exacte.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Que ressent-on après une séance de [Soin 1] chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 transformation et Bloc 13 — effets ressentis concrets. Honnête, pas de promesses excessives.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Y a-t-il des recommandations à suivre après une séance chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Conseils post-séance depuis Bloc 5 : hydratation, repos, à éviter. Si non précisé : conseils généraux selon le type de soin.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Peut-on reprendre ses activités normales après une séance de [Soin 1] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 reprise d'activité. Généralement oui, avec quelques précautions selon le soin.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-il normal de ressentir de la fatigue après une séance chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Certaines personnes ressentent de la fatigue ou des émotions après une séance — c'est une réaction normale de régulation du corps. Si une réaction vous inquiète, contactez [Prénom] au [Téléphone]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment assurer un suivi sur le long terme avec [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 fréquence conseillée et approche de la praticienne. Protocoles si disponibles. [Prénom] vous guide à chaque séance selon l'évolution de votre état.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] reçoit-elle dans d'autres villes autour de [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 1 villes secondaires et Bloc 2 cabinet 2. Préciser les villes et jours de présence.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-il possible de contacter [Prénom Nom] avant de prendre rendez-vous ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oui, [Prénom] répond à toutes les questions avant réservation. Contactez-la au [Téléphone] [ou par email à [email] si disponible]." }
+      },
+      {
+        "@type": "Question",
+        "name": "Qu'est-ce qui différencie [Prénom Nom] des autres praticiennes de [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 différenciation — dans les mots exacts de la praticienne.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Peut-on venir en séance chez [Prénom Nom] si l'on est sous traitement médical ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Signalez toujours à [Prénom] vos traitements en cours avant la séance. Dans certains cas, un avis médical préalable peut être recommandé. Contactez-la au [Téléphone] en cas de doute." }
+      },
+      {
+        "@type": "Question",
+        "name": "Les soins de [Prénom Nom] sont-ils adaptés aux personnes en burn-out ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 profil cliente idéale et Bloc 5. Réponse spécifique si burn-out est une indication principale, sinon adapter à la problématique principale de la praticienne.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Faut-il se déshabiller pour une séance chez [Prénom Nom] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 ou type de soin — préciser exactement : habillé, tenue légère, etc.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "À quelle fréquence consulter [Prénom Nom] pour des séances de [Soin 1] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 fréquence conseillée pour le soin 1. Différencier première approche vs suivi régulier.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "[Prénom Nom] propose-t-elle du paiement en plusieurs fois à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 5 et Bloc 6 — paiement en plusieurs fois oui/non, conditions, lien si disponible.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment [Prénom Nom] travaille-t-elle — quelle est son approche ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 0 méthode de travail, approche globale corps-esprit-émotions si applicable. Dans les mots de la praticienne.]" }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont les horaires d'ouverture du cabinet de [Prénom Nom] à [Ville] ?",
+        "acceptedAnswer": { "@type": "Answer", "text": "[Depuis Bloc 10 horaires complets. Préciser les jours et horaires exacts. Réservation en ligne 24h/24 sur [URL_RDV].]" }
+      }
+
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "[Prénom Nom] — [Titre professionnel]",
+    "description": "[Description — soins, approche, zone géographique. 150-200 caractères.]",
+    "url": "https://[votre-domaine].fr",
+    "telephone": "[+33XXXXXXXXX]",
+    "email": "[email]",
+    "priceRange": "€€",
+    "image": "[URL_PHOTO_PRATICIENNE]",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "[Numéro et rue]",
+      "addressLocality": "[Ville]",
+      "postalCode": "[Code postal]",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "[Latitude]",
+      "longitude": "[Longitude]"
+    },
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "[Jour]", "opens": "[HH:MM]", "closes": "[HH:MM]"}
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "[X.X]",
+      "reviewCount": "[X]",
+      "bestRating": "5"
+    },
+    "sameAs": ["[URL Google Maps]", "[URL Instagram]", "[URL Facebook]"]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://[votre-domaine].fr/"},
+      {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://[votre-domaine].fr/[slug-faq]"}
+    ]
+  }
+]
+</script>
+
+
+<script>
+/* Reveal au scroll */
+(function(){
+  var io = new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); }
+    });
+  }, {threshold: 0.06});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+
+/* Sidebar : highlight catégorie active au scroll */
+(function(){
+  var links = document.querySelectorAll('.faq-sidebar-link');
+  var cats  = document.querySelectorAll('.faq-category');
+  if(!links.length || !cats.length) return;
+  var io2 = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        var id = e.target.getAttribute('id');
+        var active = document.querySelector('.faq-sidebar-link[href="#'+id+'"]');
+        if(active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.35 });
+  cats.forEach(function(c){ io2.observe(c); });
+})();
+</script>
+
+</body>
+</html>
