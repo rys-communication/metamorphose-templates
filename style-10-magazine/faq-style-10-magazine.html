@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ — [Prénom Nom], [Titre professionnel] à [Ville] · Toutes vos questions</title>
+<meta name="description" content="Toutes les réponses sur [Soin 1], [Soin 2] et [Soin 3] à [Ville]. Tarifs, déroulement, contre-indications, réservation. [Prénom Nom], [titre professionnel].">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-faq]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FAFAF8;
+  --gris:    #F2F0EB;
+  --encre:   #121212;
+  --accent:  #B08D57;
+  --accent2: #D4B483;
+  --muted:   #8A8580;
+  --line:    rgba(18,18,18,.09);
+  --line-md: rgba(18,18,18,.15);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Barlow', sans-serif;
+  --max: 1400px;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-sans); font-weight: 300; background: var(--blanc); color: var(--encre); padding-bottom: 68px; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* STICKY */
+.s10-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: var(--blanc); border-top: 1px solid var(--line-md); display: flex; align-items: center; justify-content: space-between; padding: 14px 56px; gap: 16px; }
+.s10-sticky-id { font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s10-sticky-id strong { font-style: normal; font-weight: 700; color: var(--encre); }
+.s10-sticky-btns { display: flex; gap: 0; }
+.s10-btn-primary { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 12px 32px; border: 1px solid var(--encre); transition: all .3s; }
+.s10-btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.s10-btn-ghost { display: inline-block; background: transparent; color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; padding: 12px 24px; border: 1px solid var(--line-md); transition: all .3s; margin-left: -1px; }
+.s10-btn-ghost:hover { border-color: var(--encre); color: var(--encre); }
+.s10-btn-accent { display: inline-block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--accent); transition: all .3s; }
+.s10-btn-accent:hover { background: transparent; color: var(--accent); }
+@media(max-width:600px){ .s10-sticky { padding: 12px 20px; } .s10-sticky-id { display: none; } .s10-sticky-btns { width: 100%; } .s10-btn-primary, .s10-btn-ghost { flex: 1; text-align: center; } }
+
+/* HERO FOND ENCRE PLEIN ÉCRAN */
+.s10-hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 0 8% 68px; background: var(--encre); }
+.s10-hero-bg { position: absolute; inset: -8%; background-size: cover; background-position: center top; opacity: .28; transform: scale(1.08); transition: transform 10s ease; }
+.s10-hero-bg.loaded { transform: scale(1); }
+.s10-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,18,18,.97) 0%, rgba(18,18,18,.3) 60%, transparent 100%); }
+.s10-hero-rom { position: absolute; top: 0; right: 4%; font-family: var(--f-serif); font-weight: 900; font-size: 22vw; color: rgba(255,255,255,.025); line-height: 1; pointer-events: none; letter-spacing: -.05em; }
+.s10-hero-content { position: relative; z-index: 2; max-width: var(--max); width: 100%; }
+.s10-hero-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: rgba(176,141,87,.7); margin-bottom: 24px; opacity: 0; animation: fadeUp .8s .2s var(--ease) forwards; }
+.s10-hero-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.s10-hero h1 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(3rem,6vw,6.5rem); line-height: .9; letter-spacing: -.03em; color: #fff; margin-bottom: 28px; opacity: 0; animation: fadeUp 1s .3s var(--ease) forwards; }
+.s10-hero h1 em { font-style: italic; font-weight: 400; color: var(--accent2); }
+/* Nav pills */
+.s10-hero-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 32px; opacity: 0; animation: fadeUp .8s .5s var(--ease) forwards; }
+.s10-hero-nav-link { display: inline-block; border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.45); font-family: var(--f-sans); font-size: .54rem; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; padding: 7px 16px; transition: all .25s; }
+.s10-hero-nav-link:hover { border-color: var(--accent); color: var(--accent); }
+/* Stats */
+.s10-hero-stats { display: flex; gap: 1px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .65s var(--ease) forwards; }
+.s10-hero-stat { background: rgba(255,255,255,.04); padding: 14px 28px; display: flex; align-items: baseline; gap: 10px; }
+.s10-hero-stat-num { font-family: var(--f-serif); font-weight: 900; font-size: 1.4rem; color: var(--accent); line-height: 1; }
+.s10-hero-stat-lbl { font-family: var(--f-sans); font-size: .5rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media(max-width:768px){ .s10-hero { padding: 0 5% 56px; } .s10-hero h1 { font-size: clamp(2.6rem,10vw,4rem); } .s10-hero-rom { display: none; } }
+
+/* FAQ LAYOUT */
+.s10-faq-wrap { background: var(--blanc); }
+.s10-faq-layout { display: grid; grid-template-columns: 240px 1fr; gap: 64px; align-items: start; max-width: var(--max); margin: 0 auto; padding: 96px 8%; }
+/* Sidebar */
+.s10-faq-sidebar { position: sticky; top: 28px; }
+.s10-faq-sidebar-title { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; padding-bottom: 14px; border-bottom: 2px solid var(--line); display: block; }
+.s10-faq-sidebar-link { display: flex; align-items: center; gap: 10px; font-family: var(--f-sans); font-size: .74rem; font-weight: 300; color: var(--muted); padding: 9px 0 9px 14px; border-left: 2px solid transparent; transition: all .22s; }
+.s10-faq-sidebar-link:hover { color: var(--encre); border-left-color: var(--line-md); }
+.s10-faq-sidebar-link.active { color: var(--encre); border-left-color: var(--accent); font-weight: 400; }
+.s10-faq-sidebar-rom { font-family: var(--f-serif); font-style: italic; font-size: .66rem; color: var(--accent); flex-shrink: 0; }
+@media(max-width:860px){ .s10-faq-layout { grid-template-columns: 1fr; padding: 64px 5%; } .s10-faq-sidebar { display: none; } }
+
+/* CATÉGORIE */
+.s10-faq-category { margin-bottom: 80px; }
+.s10-faq-category:last-child { margin-bottom: 0; }
+.s10-faq-cat-header { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.s10-faq-cat-rom { font-family: var(--f-serif); font-weight: 900; font-size: 3rem; color: var(--accent); opacity: .22; line-height: 1; flex-shrink: 0; }
+.s10-faq-cat-title { font-family: var(--f-serif); font-weight: 700; font-size: 1.8rem; line-height: 1.1; color: var(--encre); }
+.s10-faq-cat-title em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+/* ITEMS FAQ */
+details.s10-faq-item { border-bottom: 1px solid var(--line); }
+details.s10-faq-item summary { padding: 22px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; font-family: var(--f-serif); font-size: 1.05rem; font-weight: 400; color: var(--encre); line-height: 1.4; transition: color .2s; }
+details.s10-faq-item summary::-webkit-details-marker { display: none; }
+details.s10-faq-item summary::after { content: '+'; font-family: var(--f-sans); font-size: 1.2rem; color: var(--accent); flex-shrink: 0; transition: transform .3s; line-height: 1; margin-top: 2px; font-weight: 300; }
+details.s10-faq-item[open] summary { color: var(--accent); }
+details.s10-faq-item[open] summary::after { transform: rotate(45deg); }
+.s10-faq-ans { padding: 0 0 24px; font-family: var(--f-sans); font-size: .86rem; font-weight: 300; color: var(--muted); line-height: 2; }
+.s10-faq-ans p { margin-bottom: 10px; }
+.s10-faq-ans p:last-child { margin-bottom: 0; }
+.s10-faq-ans a { color: var(--encre); border-bottom: 1px solid var(--line-md); transition: border-color .2s; }
+.s10-faq-ans a:hover { border-bottom-color: var(--encre); }
+.s10-faq-ans ul { margin: 10px 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.s10-faq-ans ul li { font-size: .84rem; color: var(--muted); padding-left: 20px; position: relative; line-height: 1.75; }
+.s10-faq-ans ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); font-size: .7rem; }
+.s10-faq-note { background: var(--gris); border-left: 2px solid var(--accent); padding: 12px 16px; margin-top: 12px; font-size: .84rem; color: var(--muted); line-height: 1.85; font-style: italic; font-family: var(--f-serif); }
+
+/* CTA INTERMÉDIAIRE */
+.s10-faq-cta-mid { background: var(--encre); padding: 28px 36px; margin: 64px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-left: 2px solid var(--accent); }
+.s10-faq-cta-mid-txt { font-family: var(--f-sans); font-size: .86rem; color: rgba(250,250,248,.55); line-height: 1.75; }
+.s10-faq-cta-mid-txt strong { display: block; color: #fff; font-size: .9rem; font-weight: 400; margin-bottom: 4px; font-family: var(--f-serif); }
+.s10-faq-cta-mid-btn { display: inline-block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 11px 24px; flex-shrink: 0; border: 1px solid var(--accent); transition: all .3s; }
+.s10-faq-cta-mid-btn:hover { background: transparent; color: var(--accent); }
+@media(max-width:680px){ .s10-faq-cta-mid { flex-direction: column; padding: 24px; } .s10-faq-cta-mid-btn { width: 100%; text-align: center; } }
+
+/* CTA FINAL */
+.s10-cta { background: var(--blanc); padding: 140px 8%; text-align: center; position: relative; border-top: 1px solid var(--line); }
+.s10-cta-fond { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-serif); font-weight: 900; font-size: clamp(8rem,22vw,26rem); color: rgba(18,18,18,.025); white-space: nowrap; pointer-events: none; letter-spacing: -.05em; line-height: 1; }
+.s10-cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.s10-cta-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; justify-content: center; }
+.s10-cta-eyebrow::before, .s10-cta-eyebrow::after { content: ''; width: 22px; height: 2px; background: var(--accent); }
+.s10-cta h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.6rem,6vw,5.5rem); line-height: 1.0; letter-spacing: -.03em; color: var(--encre); margin-bottom: 24px; }
+.s10-cta h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-cta-sub { font-family: var(--f-sans); font-size: .88rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 44px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.s10-cta-contact { margin-top: 20px; font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s10-cta-contact a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+
+/* MAILLAGE */
+.s10-maillage { background: var(--gris); padding: 56px 8%; border-top: 1px solid var(--line); }
+.s10-maillage-inner { max-width: var(--max); margin: 0 auto; }
+.s10-maillage-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: block; }
+.s10-maillage-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.s10-maillage-pill { display: inline-block; padding: 8px 16px; border: 1px solid var(--line-md); color: var(--muted); font-family: var(--f-sans); font-size: .7rem; font-weight: 300; letter-spacing: .06em; transition: all .25s; }
+.s10-maillage-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+.s10-reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.s10-reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<div class="s10-sticky">
+  <div class="s10-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s10-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s10-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s10-btn-primary" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s10-hero">
+  <div class="s10-hero-bg" id="heroBg" style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  <div class="s10-hero-overlay"></div>
+  <div class="s10-hero-rom" aria-hidden="true">III</div>
+  <div class="s10-hero-content">
+    <div class="s10-hero-eyebrow">Questions fréquentes · [Ville]</div>
+    <h1>Tout ce que vous<br>voulez savoir —<br><em>[Soin 1], [Soin 2],<br>[Soin 3] à [Ville]</em></h1>
+    <nav class="s10-hero-nav" aria-label="Catégories">
+      <a href="#generalites"  class="s10-hero-nav-link">I · Généralités</a>
+      <a href="#soins"        class="s10-hero-nav-link">II · Les soins</a>
+      <a href="#tarifs"       class="s10-hero-nav-link">III · Tarifs</a>
+      <a href="#deroulement"  class="s10-hero-nav-link">IV · Déroulement</a>
+      <a href="#indications"  class="s10-hero-nav-link">V · Indications</a>
+      <a href="#reservation"  class="s10-hero-nav-link">VI · Réservation</a>
+      <a href="#praticienne"  class="s10-hero-nav-link">VII · La praticienne</a>
+      <a href="#cabinet"      class="s10-hero-nav-link">VIII · Cabinet</a>
+      <a href="#cadeaux"      class="s10-hero-nav-link">IX · Cadeaux</a>
+      <a href="#apres"        class="s10-hero-nav-link">X · Après</a>
+    </nav>
+    <div class="s10-hero-stats">
+      <div class="s10-hero-stat"><span class="s10-hero-stat-num">[X]</span><span class="s10-hero-stat-lbl">Prestations</span></div>
+      <div class="s10-hero-stat"><span class="s10-hero-stat-num">[X.X] ★</span><span class="s10-hero-stat-lbl">Note Google</span></div>
+      <div class="s10-hero-stat"><span class="s10-hero-stat-num">[X] ans</span><span class="s10-hero-stat-lbl">Expérience</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ BODY -->
+<div class="s10-faq-wrap">
+<div class="s10-faq-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="s10-faq-sidebar">
+    <span class="s10-faq-sidebar-title">Catégories</span>
+    <a href="#generalites" class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">I.</span>Généralités</a>
+    <a href="#soins"       class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">II.</span>Les soins</a>
+    <a href="#tarifs"      class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">III.</span>Tarifs & paiement</a>
+    <a href="#deroulement" class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">IV.</span>Déroulement</a>
+    <a href="#indications" class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">V.</span>Indications & CI</a>
+    <a href="#reservation" class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">VI.</span>Réservation</a>
+    <a href="#praticienne" class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">VII.</span>La praticienne</a>
+    <a href="#cabinet"     class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">VIII.</span>Cabinet & accès</a>
+    <a href="#cadeaux"     class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">IX.</span>Cartes cadeaux</a>
+    <a href="#apres"       class="s10-faq-sidebar-link"><span class="s10-faq-sidebar-rom">X.</span>Après la séance</a>
+  </aside>
+
+  <!-- CONTENU -->
+  <div>
+
+    <!-- I — GÉNÉRALITÉS -->
+    <div class="s10-faq-category" id="generalites">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">I</div><div class="s10-faq-cat-title">Généralités — <em>[Prénom Nom] à [Ville]</em></div></div>
+      <details class="s10-faq-item"><summary>Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?</summary><div class="s10-faq-ans"><p>[Prénom Nom] est [titre professionnel] à [Ville] depuis [X] ans. Elle propose [soins]. <a href="/[slug-a-propos]">En savoir plus →</a></p></div></details>
+      <details class="s10-faq-item"><summary>Quelle est la différence entre [Soin 1] et [Soin 2] ?</summary><div class="s10-faq-ans"><p>[Soin 1] : [description courte]. [Soin 2] : [description courte]. [Prénom] vous guide vers le soin le plus adapté.</p></div></details>
+      <details class="s10-faq-item"><summary>Ces soins sont-ils remboursés par la Sécurité sociale ?</summary><div class="s10-faq-ans"><p>[Réponse adaptée. Certaines mutuelles prennent en charge partiellement.]</p><div class="s10-faq-note">Ces soins ne se substituent pas à un suivi médical.</div></div></details>
+      <details class="s10-faq-item"><summary>Comment savoir quel soin est fait pour moi ?</summary><div class="s10-faq-ans"><p>Contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> avant de réserver. Elle répondra à toutes vos questions.</p></div></details>
+      <details class="s10-faq-item"><summary>Ces soins sont-ils adaptés aux hommes ?</summary><div class="s10-faq-ans"><p>[Réponse depuis Bloc 0 profil clientèle.]</p></div></details>
+    </div>
+
+    <!-- II — LES SOINS -->
+    <div class="s10-faq-category" id="soins">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">II</div><div class="s10-faq-cat-title">Les soins — <em>ce qui se passe concrètement</em></div></div>
+      <details class="s10-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 — description complète.]</p></div></details>
+      <details class="s10-faq-item"><summary>En quoi consiste [Soin 2] à [Ville] ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+      <details class="s10-faq-item"><summary>Ces soins sont-ils adaptés aux femmes enceintes ?</summary><div class="s10-faq-ans"><p>[Réponse depuis Bloc 5 — précautions grossesse et post-partum.]</p><div class="s10-faq-note">En cas de grossesse ou de condition médicale, consultez votre médecin avant.</div></div></details>
+      <details class="s10-faq-item"><summary>Ces soins sont-ils adaptés aux personnes âgées ?</summary><div class="s10-faq-ans"><p>[Réponse depuis Bloc 5.]</p></div></details>
+      <details class="s10-faq-item"><summary>Combien de séances sont recommandées ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 fréquence et nombre de séances conseillés. [Prénom] adapte toujours le suivi.]</p></div></details>
+    </div>
+
+    <!-- III — TARIFS -->
+    <div class="s10-faq-category" id="tarifs">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">III</div><div class="s10-faq-cat-title">Tarifs & paiement — <em>toute la transparence</em></div></div>
+      <details class="s10-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s10-faq-ans"><p>[Soin 1] : [tarif]€ · [durée]. [Soin 2] : [tarif]€ · [durée]. [Soin 3] : [tarif]€ · [durée].</p></div></details>
+      <details class="s10-faq-item"><summary>Quels moyens de paiement sont acceptés ?</summary><div class="s10-faq-ans"><p>[CB · Espèces · Virement — depuis Bloc 6.]</p></div></details>
+      <details class="s10-faq-item"><summary>Y a-t-il des packs ou forfaits ?</summary><div class="s10-faq-ans"><p>[Packs disponibles depuis Bloc 6. Si non : préciser qu'une carte cadeau peut être offerte.] <a href="/[slug-offrir]">Voir les packs →</a></p></div></details>
+    </div>
+
+    <!-- CTA INTERMÉDIAIRE -->
+    <div class="s10-faq-cta-mid">
+      <div class="s10-faq-cta-mid-txt">
+        <strong>Prêt(e) à réserver ?</strong>
+        [Prénom Nom] · [Titre professionnel] · [Ville] · Sur rendez-vous
+      </div>
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-faq-cta-mid-btn">Réserver en ligne →</a>
+    </div>
+
+    <!-- IV — DÉROULEMENT -->
+    <div class="s10-faq-category" id="deroulement">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">IV</div><div class="s10-faq-cat-title">Déroulement — <em>à quoi s'attendre</em></div></div>
+      <details class="s10-faq-item"><summary>Comment se déroule une première séance ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 déroulement complet en 3-4 étapes.]</p></div></details>
+      <details class="s10-faq-item"><summary>Combien de temps dure une séance ?</summary><div class="s10-faq-ans"><p>[Durée(s) selon les soins depuis Bloc 5.]</p></div></details>
+      <details class="s10-faq-item"><summary>Que porter pour la séance ?</summary><div class="s10-faq-ans"><p>[Conseils pratiques depuis Bloc 5.]</p></div></details>
+      <details class="s10-faq-item"><summary>Faut-il arriver tôt avant sa séance ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 — recommandations arrivée.]</p></div></details>
+    </div>
+
+    <!-- V — INDICATIONS -->
+    <div class="s10-faq-category" id="indications">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">V</div><div class="s10-faq-cat-title">Indications & CI — <em>pour qui, pour qui pas</em></div></div>
+      <details class="s10-faq-item"><summary>Y a-t-il des contre-indications à [Soin 1] ?</summary><div class="s10-faq-ans"><p>[CI depuis Bloc 5.]</p><div class="s10-faq-note">En cas de doute, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> avant de réserver.</div></div></details>
+      <details class="s10-faq-item"><summary>Ces soins conviennent-ils en cas de [problème de santé courant] ?</summary><div class="s10-faq-ans"><p>[Réponse rassurante avec précaution médicale appropriée.]</p></div></details>
+      <details class="s10-faq-item"><summary>Est-ce adapté aux enfants ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 — âge minimum, adaptations éventuelles.]</p></div></details>
+    </div>
+
+    <!-- VI — RÉSERVATION -->
+    <div class="s10-faq-category" id="reservation">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">VI</div><div class="s10-faq-cat-title">Réservation — <em>simple et rapide</em></div></div>
+      <details class="s10-faq-item"><summary>Comment prendre rendez-vous à [Ville] ?</summary><div class="s10-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>. Par téléphone au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> pendant les horaires d'ouverture.</p></div></details>
+      <details class="s10-faq-item"><summary>Comment annuler ou déplacer un rendez-vous ?</summary><div class="s10-faq-ans"><p>[Délai minimum et procédure d'annulation depuis Bloc 6.]</p></div></details>
+      <details class="s10-faq-item"><summary>Proposez-vous des séances à domicile ou à distance ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 — domicile oui/non + rayon. Visio oui/non + modalités.]</p></div></details>
+    </div>
+
+    <!-- VII — PRATICIENNE -->
+    <div class="s10-faq-category" id="praticienne">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">VII</div><div class="s10-faq-cat-title">La praticienne — <em>[Prénom Nom]</em></div></div>
+      <details class="s10-faq-item"><summary>Quelles sont les formations de [Prénom Nom] ?</summary><div class="s10-faq-ans"><p>[Formations principales depuis Bloc 9]. <a href="/[slug-a-propos]">Parcours complet →</a></p></div></details>
+      <details class="s10-faq-item"><summary>Depuis combien de temps [Prénom] pratique à [Ville] ?</summary><div class="s10-faq-ans"><p>[X] ans d'expérience depuis [année].</p></div></details>
+      <details class="s10-faq-item"><summary>Qu'est-ce qui différencie [Prénom Nom] ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 0 différenciation — dans ses mots.]</p></div></details>
+    </div>
+
+    <!-- VIII — CABINET -->
+    <div class="s10-faq-category" id="cabinet">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">VIII</div><div class="s10-faq-cat-title">Cabinet & accès — <em>[Ville]</em></div></div>
+      <details class="s10-faq-item"><summary>Où se trouve le cabinet à [Ville] ?</summary><div class="s10-faq-ans"><p>[Adresse complète depuis Bloc 2]. <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Google Maps →</a></p></div></details>
+      <details class="s10-faq-item"><summary>Y a-t-il un parking à proximité ?</summary><div class="s10-faq-ans"><p>[Infos parking depuis Bloc 2.]</p></div></details>
+      <details class="s10-faq-item"><summary>Quels sont les horaires d'ouverture ?</summary><div class="s10-faq-ans"><p>[Horaires depuis Bloc 10.] La réservation en ligne est disponible 24h/24.</p></div></details>
+    </div>
+
+    <!-- IX — CADEAUX -->
+    <div class="s10-faq-category" id="cadeaux">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">IX</div><div class="s10-faq-cat-title">Cartes cadeaux — <em>offrir un moment</em></div></div>
+      <details class="s10-faq-item"><summary>Comment offrir une séance en cadeau à [Ville] ?</summary><div class="s10-faq-ans"><p>Cartes cadeaux disponibles sur <a href="[LIEN_CARTE_CADEAU]">ce lien</a>. Code immédiat par email. Valable 1 an.</p></div></details>
+      <details class="s10-faq-item"><summary>Quelle est la durée de validité d'une carte cadeau ?</summary><div class="s10-faq-ans"><p>1 an à compter de la date d'achat.</p></div></details>
+      <details class="s10-faq-item"><summary>Peut-on cumuler plusieurs cartes cadeaux ?</summary><div class="s10-faq-ans"><p>[Réponse depuis politique commerciale.]</p></div></details>
+    </div>
+
+    <!-- X — APRÈS LA SÉANCE -->
+    <div class="s10-faq-category" id="apres">
+      <div class="s10-faq-cat-header"><div class="s10-faq-cat-rom">X</div><div class="s10-faq-cat-title">Après la séance — <em>conseils et suivi</em></div></div>
+      <details class="s10-faq-item"><summary>Que ressent-on après une séance de [Soin 1] ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 0 transformation + Bloc 5.]</p><div class="s10-faq-note">Les effets varient selon l'état initial et la sensibilité de chaque personne.</div></div></details>
+      <details class="s10-faq-item"><summary>Y a-t-il des recommandations à suivre après ?</summary><div class="s10-faq-ans"><ul><li>[Conseil post-séance 1]</li><li>[Conseil post-séance 2]</li><li>[Conseil post-séance 3]</li></ul></div></details>
+      <details class="s10-faq-item"><summary>Est-il normal de ressentir de la fatigue après ?</summary><div class="s10-faq-ans"><p>[Réponse rassurante sur les réactions de détoxination.] Si une réaction vous inquiète, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s10-faq-item"><summary>Comment assurer un suivi long terme ?</summary><div class="s10-faq-ans"><p>[Depuis Bloc 5 fréquence conseillée. [Prénom] vous guidera à chaque séance.]</p></div></details>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- CTA FINAL -->
+<section class="s10-cta">
+  <div class="s10-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s10-cta-inner s10-reveal">
+    <div class="s10-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche depuis<br>Bloc 0 ADN]<br><em>[suite]</em></h2>
+    <p class="s10-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-accent">Réserver ma séance</a>
+    <p class="s10-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+
+<div class="s10-maillage">
+  <div class="s10-maillage-inner">
+    <span class="s10-maillage-label">À découvrir</span>
+    <div class="s10-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s10-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s10-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s10-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soins]" class="s10-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-a-propos]" class="s10-maillage-pill">À propos de [Prénom]</a>
+    </div>
+  </div>
+</div>
+
+
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Qui est [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre] à [Ville] depuis [X] ans. Elle propose [soins]."}},
+  {"@type":"Question","name":"Quelle est la différence entre [Soin 1] et [Soin 2] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [description courte]. [Soin 2] : [description courte]."}},
+  {"@type":"Question","name":"Ces soins sont-ils remboursés ?","acceptedAnswer":{"@type":"Answer","text":"[Réponse remboursement.]"}},
+  {"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [tarif]€. [Soin 2] : [tarif]€. [Soin 3] : [tarif]€."}},
+  {"@type":"Question","name":"Comment se déroule une première séance ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 déroulement.]"}},
+  {"@type":"Question","name":"Y a-t-il des contre-indications à [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]."}},
+  {"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]. Cabinet [adresse], [Ville]."}},
+  {"@type":"Question","name":"Y a-t-il un parking à proximité ?","acceptedAnswer":{"@type":"Answer","text":"[Infos parking]."}},
+  {"@type":"Question","name":"Comment offrir une séance en cadeau à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Cartes cadeaux sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},
+  {"@type":"Question","name":"Que ressent-on après une séance de [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[Effets depuis Bloc 0 transformation.]"}}
+]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+  {"@type":"ListItem","position":2,"name":"FAQ","item":"https://[votre-domaine].fr/[slug-faq]"}
+]}]
+</script>
+
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s10-reveal').forEach(function(el){io.observe(el);});})();
+(function(){var links=document.querySelectorAll('.s10-faq-sidebar-link');var cats=document.querySelectorAll('.s10-faq-category');if(!links.length||!cats.length)return;var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('active');});var id=e.target.getAttribute('id');var a=document.querySelector('.s10-faq-sidebar-link[href="#'+id+'"]');if(a)a.classList.add('active');}});},{threshold:.35});cats.forEach(function(c){io.observe(c);});})();
+</script>
+</body>
+</html>

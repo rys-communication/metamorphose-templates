@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Footer — [Prénom Nom] [Titre professionnel] [Ville]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blanc:#FAFAF8;--encre:#121212;--accent:#B08D57;--accent2:#D4B483;--gris:#F2F0EB;--muted:#8A8580;--line:rgba(18,18,18,.1);--line-md:rgba(18,18,18,.16);--f-serif:'Playfair Display',Georgia,serif;--f-sans:'Barlow',sans-serif;--max:1400px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);}
+a{color:inherit;text-decoration:none;}
+.s10-footer{border-top:2px solid var(--encre);padding:80px 8% 40px;}
+.s10-footer-inner{max-width:var(--max);margin:0 auto;}
+.s10-footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid var(--line-md);}
+.s10-brand-nom{font-family:var(--f-serif);font-weight:900;font-size:2rem;letter-spacing:-.03em;color:var(--encre);margin-bottom:4px;line-height:1;}
+.s10-brand-titre{font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.s10-brand-bio{font-size:.76rem;font-weight:300;color:var(--muted);line-height:2;margin-bottom:16px;max-width:280px;}
+.s10-socials{display:flex;gap:0;}
+.s10-social{display:inline-block;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:7px 14px;border:1px solid var(--line-md);transition:all .3s;margin-right:-1px;}
+.s10-social:hover{color:var(--encre);border-color:var(--encre);}
+.s10-col-title{font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--encre);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.s10-col-title::before{content:'';width:14px;height:2px;background:var(--accent);display:inline-block;}
+.s10-col-links{display:flex;flex-direction:column;gap:10px;}
+.s10-col-link{font-size:.76rem;font-weight:300;color:var(--muted);transition:color .25s;}
+.s10-col-link:hover{color:var(--accent);}
+.s10-col-link-accent{color:var(--accent);}
+.s10-footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;gap:20px;flex-wrap:wrap;}
+.s10-copy{font-size:.56rem;color:var(--muted);}
+.s10-signature{font-family:var(--f-serif);font-style:italic;font-size:.72rem;color:rgba(18,18,18,.2);}
+.s10-legal{display:flex;gap:16px;}
+.s10-legal a{font-size:.56rem;color:var(--muted);}
+.s10-legal a:hover{color:var(--encre);}
+@media(max-width:900px){.s10-footer-top{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:480px){.s10-footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<footer class="s10-footer" itemscope itemtype="https://schema.org/LocalBusiness">
+  <div class="s10-footer-inner">
+    <div class="s10-footer-top">
+      <div>
+        <div class="s10-brand-nom" itemprop="name">[Prénom Nom]</div>
+        <div class="s10-brand-titre" itemprop="jobTitle">[Titre professionnel] · [Ville]</div>
+        <p class="s10-brand-bio" itemprop="description">[Depuis Bloc 0 — phrase ADN courte, ce que la praticienne apporte.]</p>
+        <div class="s10-socials">
+          <a href="[Instagram]" target="_blank" rel="noopener" class="s10-social">Instagram</a>
+          <a href="[Facebook]" target="_blank" rel="noopener" class="s10-social">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <div class="s10-col-title">Soins</div>
+        <div class="s10-col-links">
+          <a href="/[slug-soin-1]-[ville]" class="s10-col-link">[Soin 1] à [Ville]</a>
+          <a href="/[slug-soin-2]-[ville]" class="s10-col-link">[Soin 2] à [Ville]</a>
+          <a href="/[slug-soin-3]-[ville]" class="s10-col-link">[Soin 3] à [Ville]</a>
+          <a href="/[slug-soins]" class="s10-col-link">Toutes les prestations</a>
+        </div>
+      </div>
+      <div>
+        <div class="s10-col-title">Informations</div>
+        <div class="s10-col-links">
+          <a href="/[slug-a-propos]" class="s10-col-link">À propos</a>
+          <a href="/[slug-faq]" class="s10-col-link">FAQ</a>
+          <a href="/[slug-offrir]" class="s10-col-link">Cartes cadeaux</a>
+          <a href="/[slug-blog]" class="s10-col-link">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div class="s10-col-title">Contact</div>
+        <div class="s10-col-links">
+          <a href="tel:[+33XXXXXXXXX]" class="s10-col-link" itemprop="telephone">[Téléphone]</a>
+          <a href="mailto:[email]" class="s10-col-link" itemprop="email">[Email]</a>
+          <span class="s10-col-link" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="streetAddress">[Adresse]</span><br>
+            <span itemprop="postalCode">[Code postal]</span> <span itemprop="addressLocality">[Ville]</span>
+          </span>
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-col-link s10-col-link-accent">Réserver en ligne →</a>
+        </div>
+      </div>
+    </div>
+    <div class="s10-footer-bottom">
+      <span class="s10-copy">© [Année] <span itemprop="name">[Prénom Nom]</span> · Tous droits réservés · [Ville]</span>
+      <span class="s10-signature">Construit avec Métamorphose V2 · RYS Communication</span>
+      <div class="s10-legal">
+        <a href="/[slug-mentions-legales]">Mentions légales</a>
+        <a href="/[slug-politique-confidentialite]">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

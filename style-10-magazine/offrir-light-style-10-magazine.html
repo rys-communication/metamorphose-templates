@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offrir — Cartes Cadeaux [Ville] | [Prénom Nom]</title>
+<meta name="description" content="Offrez un soin à [Ville] — cartes cadeaux [Soin 1], [Soin 2]. Code envoyé immédiatement. Valable 1 an.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FAFAF8;
+  --gris:    #F2F0EB;
+  --encre:   #121212;
+  --accent:  #B08D57;
+  --accent2: #D4B483;
+  --muted:   #8A8580;
+  --line:    rgba(18,18,18,.09);
+  --line-md: rgba(18,18,18,.15);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Barlow', sans-serif;
+  --max: 1400px;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-sans); font-weight: 300; background: var(--blanc); color: var(--encre); overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── BASE ────────────────────── */
+.s10-section { padding: 100px 8%; }
+.s10-inner { max-width: var(--max); margin: 0 auto; }
+.s10-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.s10-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.s10-h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2rem,4vw,4.5rem); line-height: .9; letter-spacing: -.025em; color: var(--encre); }
+.s10-h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-p { font-family: var(--f-sans); font-size: .86rem; font-weight: 300; line-height: 2; color: var(--muted); margin-bottom: 14px; }
+.s10-btn-primary { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--encre); transition: all .3s; }
+.s10-btn-primary:hover { background: transparent; color: var(--encre); }
+.s10-btn-accent { display: inline-block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--accent); transition: all .3s; }
+.s10-btn-accent:hover { background: transparent; color: var(--accent); }
+
+/* ── HERO FOND ACCENT ────────────────────── */
+.s10-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+.s10-hero-txt { background: var(--accent); display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 72px; position: relative; overflow: hidden; }
+.s10-hero-deco { position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; border: 1px solid rgba(18,18,18,.07); pointer-events: none; }
+.s10-hero-rom { position: absolute; top: 0; left: 0; font-family: var(--f-serif); font-size: 22vw; font-weight: 900; color: rgba(18,18,18,.05); line-height: 1; pointer-events: none; letter-spacing: -.05em; }
+.s10-hero-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .56rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: rgba(18,18,18,.5); margin-bottom: 24px; opacity: 0; animation: fadeUp .8s .2s var(--ease) forwards; position: relative; z-index: 1; }
+.s10-hero-eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--encre); opacity: .4; }
+.s10-hero h1 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.8rem,5vw,5.5rem); line-height: .9; letter-spacing: -.03em; color: var(--encre); margin-bottom: 20px; opacity: 0; animation: fadeUp 1s .35s var(--ease) forwards; position: relative; z-index: 1; }
+.s10-hero h1 em { font-style: italic; font-weight: 400; }
+.s10-hero-trait { width: 40px; height: 2px; background: var(--encre); opacity: .35; margin-bottom: 24px; opacity: 0; animation: expandW .8s .5s var(--ease) forwards; position: relative; z-index: 1; }
+@keyframes expandW { from { width: 0; opacity: 0; } to { width: 40px; opacity: .35; } }
+.s10-hero-pills { display: flex; flex-direction: column; gap: 9px; opacity: 0; animation: fadeUp .8s .6s var(--ease) forwards; position: relative; z-index: 1; }
+.s10-hero-pill { display: flex; align-items: center; gap: 12px; font-family: var(--f-sans); font-size: .8rem; font-weight: 300; color: rgba(18,18,18,.6); }
+.s10-hero-pill::before { content: '—'; color: rgba(18,18,18,.35); font-size: .7rem; flex-shrink: 0; }
+.s10-hero-pill strong { color: var(--encre); font-weight: 500; }
+.s10-hero-img-col { position: relative; overflow: hidden; }
+.s10-hero-img-bg { position: absolute; inset: 0; background-image: url('[URL_PHOTO_OFFRIR]'); background-size: cover; background-position: center; transform: scale(1.08); transition: transform 10s ease; filter: brightness(.78) saturate(.88); }
+.s10-hero-img-bg.loaded { transform: scale(1); }
+.s10-hero-img-col::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(18,18,18,.2), transparent); z-index: 2; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media(max-width:860px){ .s10-hero { grid-template-columns: 1fr; min-height: auto; } .s10-hero-img-col { height: 55vw; order: -1; } .s10-hero-img-col::before { display: none; } .s10-hero-txt { padding: 48px 6% 64px; } }
+
+/* ── CARTES ────────────────────── */
+.s10-cartes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.s10-carte-card { background: var(--blanc); padding: 44px 36px; display: flex; flex-direction: column; gap: 14px; transition: background .35s; position: relative; overflow: hidden; }
+.s10-carte-card:hover { background: var(--gris); }
+.s10-carte-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.s10-carte-card:hover::before { transform: scaleX(1); }
+.s10-carte-rom { font-family: var(--f-serif); font-style: italic; font-size: .76rem; color: var(--accent); letter-spacing: .1em; }
+.s10-carte-nom { font-family: var(--f-serif); font-weight: 700; font-size: 1.35rem; color: var(--encre); line-height: 1.15; }
+.s10-carte-nom em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-carte-tagline { font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s10-carte-trait { width: 18px; height: 2px; background: var(--accent); transition: width .3s; }
+.s10-carte-card:hover .s10-carte-trait { width: 36px; }
+.s10-carte-infos { display: flex; gap: 16px; flex-wrap: wrap; }
+.s10-carte-info span { display: block; font-family: var(--f-sans); font-size: .5rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.s10-carte-info strong { font-family: var(--f-serif); font-size: .9rem; font-weight: 400; color: var(--encre); }
+.s10-carte-note { font-family: var(--f-serif); font-style: italic; font-size: .74rem; color: var(--muted); }
+.s10-carte-footer { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+.s10-carte-prix { font-family: var(--f-serif); font-weight: 700; font-size: 1.8rem; color: var(--accent); line-height: 1; }
+.s10-carte-prix sup { font-size: .9rem; vertical-align: super; font-weight: 400; }
+.s10-carte-btn { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .6rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 9px 18px; border: 1px solid var(--encre); transition: all .3s; flex-shrink: 0; }
+.s10-carte-btn:hover { background: var(--accent); border-color: var(--accent); }
+@media(max-width:860px){ .s10-cartes-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:540px){ .s10-cartes-grid { grid-template-columns: 1fr; } }
+
+/* ── COMMENT ÇA MARCHE ────────────────────── */
+.s10-comment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.s10-steps-list { display: flex; flex-direction: column; gap: 0; }
+.s10-step-item { display: grid; grid-template-columns: 48px 1fr; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.s10-step-item:last-child { border-bottom: none; }
+.s10-step-rom { font-family: var(--f-serif); font-style: italic; font-size: .9rem; color: var(--accent); padding-top: 2px; }
+.s10-step-titre { font-family: var(--f-serif); font-weight: 700; font-size: 1.05rem; color: var(--encre); margin-bottom: 4px; }
+.s10-step-p { font-family: var(--f-sans); font-size: .82rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+.s10-reas-aside { display: flex; flex-direction: column; gap: 1px; }
+.s10-reas-item { background: var(--gris); padding: 24px 22px; border-top: 2px solid transparent; transition: border-color .25s; }
+.s10-reas-item:hover { border-top-color: var(--accent); }
+.s10-reas-titre { font-family: var(--f-serif); font-weight: 700; font-size: 1rem; color: var(--encre); margin-bottom: 4px; }
+.s10-reas-txt { font-family: var(--f-sans); font-size: .8rem; font-weight: 300; color: var(--muted); line-height: 1.75; }
+@media(max-width:768px){ .s10-comment-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ── OCCASIONS ────────────────────── */
+.s10-occasions-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--line); margin-top: 56px; }
+.s10-occasion { background: var(--blanc); padding: 36px 28px; position: relative; overflow: hidden; transition: background .3s; }
+.s10-occasion:hover { background: var(--gris); }
+.s10-occasion::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
+.s10-occasion:hover::before { transform: scaleX(1); }
+.s10-occasion-rom { font-family: var(--f-serif); font-style: italic; font-size: .78rem; color: var(--accent); margin-bottom: 10px; }
+.s10-occasion-titre { font-family: var(--f-serif); font-weight: 700; font-size: 1.15rem; color: var(--encre); margin-bottom: 8px; line-height: 1.15; }
+.s10-occasion-txt { font-family: var(--f-sans); font-size: .82rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+@media(max-width:760px){ .s10-occasions-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:460px){ .s10-occasions-grid { grid-template-columns: 1fr; } }
+
+/* ── FAQ ────────────────────── */
+.s10-faq-wrap { max-width: 900px; margin: 0 auto; margin-top: 56px; }
+details.s10-faq-item { border-bottom: 1px solid var(--line-md); }
+details.s10-faq-item:first-of-type { border-top: 1px solid var(--line-md); }
+details.s10-faq-item summary { padding: 20px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; font-family: var(--f-serif); font-size: 1rem; font-weight: 400; color: var(--encre); line-height: 1.4; transition: color .2s; }
+details.s10-faq-item summary::-webkit-details-marker { display: none; }
+details.s10-faq-item summary::after { content: '+'; font-family: var(--f-sans); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; transition: transform .3s; line-height: 1; margin-top: 2px; font-weight: 300; }
+details.s10-faq-item[open] summary { color: var(--accent); }
+details.s10-faq-item[open] summary::after { transform: rotate(45deg); }
+.s10-faq-ans { padding: 0 0 20px; font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 2; }
+.s10-faq-ans a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+
+/* ── CTA ────────────────────── */
+.s10-cta { background: var(--encre); padding: 100px 8%; position: relative; overflow: hidden; }
+.s10-cta-fond { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-serif); font-weight: 900; font-size: clamp(8rem,18vw,22rem); color: rgba(255,255,255,.02); pointer-events: none; white-space: nowrap; letter-spacing: -.04em; }
+.s10-cta-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.s10-cta-eyebrow { font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: rgba(212,180,131,.5); }
+.s10-cta h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.5rem,5vw,6rem); line-height: .9; color: #fff; letter-spacing: -.03em; }
+.s10-cta h2 em { font-style: italic; font-weight: 400; color: var(--accent2); }
+.s10-cta-sub { font-family: var(--f-sans); font-size: .82rem; font-weight: 300; color: rgba(255,255,255,.35); }
+
+/* ── MAILLAGE ────────────────────── */
+.s10-maillage { background: var(--gris); padding: 28px 8%; border-top: 1px solid var(--line); }
+.s10-maillage-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.s10-maillage-label { font-family: var(--f-sans); font-size: .5rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+.s10-maillage-pill { display: inline-block; padding: 5px 14px; border: 1px solid var(--line-md); color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 300; transition: all .25s; }
+.s10-maillage-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── REVEAL ────────────────────── */
+.s10-reveal, .s10-reveal-left, .s10-reveal-right { opacity: 0; transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.s10-reveal { transform: translateY(24px); }
+.s10-reveal-left { transform: translateX(-24px); }
+.s10-reveal-right { transform: translateX(24px); }
+.s10-reveal.in, .s10-reveal-left.in, .s10-reveal-right.in { opacity: 1; transform: none; }
+.s10-d1 { transition-delay: .1s; } .s10-d2 { transition-delay: .2s; } .s10-d3 { transition-delay: .3s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="s10-hero" aria-label="Offrir une carte cadeau [Ville]">
+  <div class="s10-hero-txt">
+    <div class="s10-hero-deco" aria-hidden="true"></div>
+    <div class="s10-hero-rom" aria-hidden="true">♡</div>
+    <div class="s10-hero-eyebrow">Cartes cadeaux · [Ville]</div>
+    <h1>Offrez un moment<br><em>rien que pour elle.</em></h1>
+    <div class="s10-hero-trait"></div>
+    <div class="s10-hero-pills">
+      <div class="s10-hero-pill">Code envoyé <strong>immédiatement</strong> par email</div>
+      <div class="s10-hero-pill">Valable <strong>1 an</strong> à compter de l'achat</div>
+      <div class="s10-hero-pill">Réservation en ligne <strong>24h/24</strong></div>
+    </div>
+  </div>
+  <div class="s10-hero-img-col">
+    <div class="s10-hero-img-bg" id="heroBg"></div>
+  </div>
+</section>
+
+
+<!-- S1 — CARTES -->
+<section class="s10-section">
+  <div class="s10-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid var(--line);" class="s10-reveal">
+      <div>
+        <div class="s10-eyebrow">I — Cartes cadeaux</div>
+        <h2 class="s10-h2">Choisissez <em>votre carte</em></h2>
+      </div>
+      <p class="s10-p">[Depuis Bloc 6 — phrase d'intro. Ce que ça représente d'offrir ce type de soin.]</p>
+    </div>
+    <div class="s10-cartes-grid">
+      <div class="s10-carte-card s10-reveal s10-d1">
+        <span class="s10-carte-rom">I.</span>
+        <div class="s10-carte-nom">[Nom du<br><em>soin 1</em>]</div>
+        <div class="s10-carte-tagline">[Accroche sensorielle — Bloc 5]</div>
+        <div class="s10-carte-trait"></div>
+        <div class="s10-carte-infos">
+          <div class="s10-carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="s10-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div>
+        </div>
+        <p class="s10-carte-note">Envoi immédiat · Valable 1 an</p>
+        <div class="s10-carte-footer">
+          <div class="s10-carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_1]" class="s10-carte-btn" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+      <div class="s10-carte-card s10-reveal s10-d2">
+        <span class="s10-carte-rom">II.</span>
+        <div class="s10-carte-nom">[Nom du<br><em>soin 2</em>]</div>
+        <div class="s10-carte-tagline">[Accroche sensorielle]</div>
+        <div class="s10-carte-trait"></div>
+        <div class="s10-carte-infos">
+          <div class="s10-carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="s10-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div>
+        </div>
+        <p class="s10-carte-note">Envoi immédiat · Valable 1 an</p>
+        <div class="s10-carte-footer">
+          <div class="s10-carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_2]" class="s10-carte-btn" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+      <div class="s10-carte-card s10-reveal s10-d3">
+        <span class="s10-carte-rom">III.</span>
+        <div class="s10-carte-nom">[Nom du<br><em>soin 3</em>]</div>
+        <div class="s10-carte-tagline">[Accroche sensorielle]</div>
+        <div class="s10-carte-trait"></div>
+        <div class="s10-carte-infos">
+          <div class="s10-carte-info"><span>Durée</span><strong>[X]h</strong></div>
+          <div class="s10-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div>
+        </div>
+        <p class="s10-carte-note">Envoi immédiat · Valable 1 an</p>
+        <div class="s10-carte-footer">
+          <div class="s10-carte-prix"><sup>€</sup>[Tarif]</div>
+          <a href="[LIEN_CARTE_CADEAU_SOIN_3]" class="s10-carte-btn" target="_blank" rel="noopener">Offrir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S2 — COMMENT ÇA MARCHE -->
+<section class="s10-section" style="background:var(--gris);">
+  <div class="s10-inner">
+    <div class="s10-comment-grid">
+      <div class="s10-reveal-left">
+        <div class="s10-eyebrow">II — Comment ça marche</div>
+        <h2 class="s10-h2" style="margin-bottom:32px;">Simple, immédiat,<br><em>sans surprise.</em></h2>
+        <div class="s10-steps-list">
+          <div class="s10-step-item">
+            <span class="s10-step-rom">I.</span>
+            <div>
+              <div class="s10-step-titre">Vous choisissez votre carte</div>
+              <p class="s10-step-p">Sélectionnez le soin dans le catalogue ci-dessus.</p>
+            </div>
+          </div>
+          <div class="s10-step-item">
+            <span class="s10-step-rom">II.</span>
+            <div>
+              <div class="s10-step-titre">Vous payez en ligne</div>
+              <p class="s10-step-p">Règlement intégral sécurisé. Aucun montant sur place.</p>
+            </div>
+          </div>
+          <div class="s10-step-item">
+            <span class="s10-step-rom">III.</span>
+            <div>
+              <div class="s10-step-titre">Code unique par email</div>
+              <p class="s10-step-p">Immédiatement après l'achat. À imprimer ou transmettre par message.</p>
+            </div>
+          </div>
+          <div class="s10-step-item">
+            <span class="s10-step-rom">IV.</span>
+            <div>
+              <div class="s10-step-titre">La bénéficiaire réserve</div>
+              <p class="s10-step-p">Elle choisit son créneau en ligne 24h/24. Valable 1 an.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="s10-reas-aside s10-reveal-right">
+        <div class="s10-reas-item"><div class="s10-reas-titre">Code immédiat</div><p class="s10-reas-txt">Dès la validation dans votre boîte email.</p></div>
+        <div class="s10-reas-item"><div class="s10-reas-titre">Valable 1 an</div><p class="s10-reas-txt">La bénéficiaire a 12 mois pour réserver.</p></div>
+        <div class="s10-reas-item"><div class="s10-reas-titre">Aucun montant sur place</div><p class="s10-reas-txt">Le bon couvre l'intégralité du soin.</p></div>
+        <div class="s10-reas-item"><div class="s10-reas-titre">[X.X] ★ · [X] avis</div><p class="s10-reas-txt">[Prénom] accompagne depuis [X] ans à [Ville].</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S3 — OCCASIONS -->
+<section class="s10-section s10-reveal" style="text-align:center;">
+  <div class="s10-inner">
+    <div class="s10-eyebrow" style="justify-content:center;">III — Pour qui ?</div>
+    <h2 class="s10-h2" style="text-align:center;">Les meilleures occasions<br><em>pour offrir une séance</em></h2>
+    <div class="s10-occasions-grid">
+      <div class="s10-occasion">
+        <div class="s10-occasion-rom">I.</div>
+        <div class="s10-occasion-titre">Anniversaire</div>
+        <p class="s10-occasion-txt">Un cadeau qui marque vraiment. Pour elle qui mérite une pause.</p>
+      </div>
+      <div class="s10-occasion">
+        <div class="s10-occasion-rom">II.</div>
+        <div class="s10-occasion-titre">Fête des mères</div>
+        <p class="s10-occasion-txt">Du temps pour soi à une maman qui s'oublie.</p>
+      </div>
+      <div class="s10-occasion">
+        <div class="s10-occasion-rom">III.</div>
+        <div class="s10-occasion-titre">Naissance</div>
+        <p class="s10-occasion-txt">[Adapter selon les soins proposés — prénatal, postnatal, etc.]</p>
+      </div>
+      <div class="s10-occasion">
+        <div class="s10-occasion-rom">IV.</div>
+        <div class="s10-occasion-titre">Sans occasion</div>
+        <p class="s10-occasion-txt">Parce qu'on n'a pas besoin de prétexte pour prendre soin de soi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — FAQ -->
+<section class="s10-section s10-reveal" style="background:var(--gris);text-align:center;">
+  <div class="s10-inner">
+    <div class="s10-eyebrow" style="justify-content:center;">IV — Questions fréquentes</div>
+    <h2 class="s10-h2" style="text-align:center;margin-bottom:0;">Tout savoir avant <em>de commander</em></h2>
+  </div>
+  <div class="s10-faq-wrap" style="text-align:left;">
+    <details class="s10-faq-item"><summary>Comment fonctionne la carte cadeau ?</summary><div class="s10-faq-ans">Achat en ligne, code par email immédiatement, réservation en ligne. Valable 1 an. Aucun montant sur place.</div></details>
+    <details class="s10-faq-item"><summary>Comment la carte est-elle transmise ?</summary><div class="s10-faq-ans">Par email dès la validation. À imprimer ou envoyer par message.</div></details>
+    <details class="s10-faq-item"><summary>Combien de temps est valable la carte cadeau ?</summary><div class="s10-faq-ans">1 an à compter de la date d'achat.</div></details>
+    <details class="s10-faq-item"><summary>Comment la bénéficiaire prend-elle rendez-vous ?</summary><div class="s10-faq-ans">Elle réserve sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">la plateforme</a> 24h/24. Elle saisit le code — aucun paiement demandé.</div></details>
+    <details class="s10-faq-item"><summary>Y a-t-il des contre-indications à signaler ?</summary><div class="s10-faq-ans">[Synthèse depuis Bloc 5. En cas de doute : <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.]</div></details>
+    <details class="s10-faq-item"><summary>Peut-on cumuler plusieurs cartes ?</summary><div class="s10-faq-ans">Oui. Chaque code est indépendant et peut être cumulé.</div></details>
+  </div>
+  <div style="margin-top:36px;"><a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s10-btn-primary">Choisir une carte cadeau</a></div>
+</section>
+
+
+<!-- CTA -->
+<div class="s10-cta">
+  <div class="s10-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s10-cta-inner s10-reveal">
+    <div class="s10-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche Bloc 0]<br><em>[suite]</em></h2>
+    <p class="s10-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville]</p>
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s10-btn-accent">Commander une carte cadeau</a>
+  </div>
+</div>
+
+<nav class="s10-maillage">
+  <div class="s10-maillage-inner">
+    <span class="s10-maillage-label">À découvrir</span>
+    <a href="/[slug-soin-1]-[ville]" class="s10-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s10-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soins]" class="s10-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-faq]" class="s10-maillage-pill">Questions fréquentes</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Comment fonctionne une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Achat en ligne, code par email, réservation sur [URL_RDV]. Valable 1 an."}},
+    {"@type":"Question","name":"Durée de validité d'une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"1 an à compter de la date d'achat."}},
+    {"@type":"Question","name":"Comment offrir [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU_SOIN_1]. Code immédiat."}},
+    {"@type":"Question","name":"Comment la bénéficiaire réserve-t-elle ?","acceptedAnswer":{"@type":"Answer","text":"Elle saisit le code sur [URL_RDV]. Aucun paiement demandé."}},
+    {"@type":"Question","name":"Peut-on cumuler des cartes cadeaux ?","acceptedAnswer":{"@type":"Answer","text":"Oui, chaque code est indépendant."}},
+    {"@type":"Question","name":"Y a-t-il des contre-indications ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]. Contacter [Prénom] au [Téléphone] en cas de doute."}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"Offrir","item":"https://[votre-domaine].fr/[slug-offrir]"}
+  ]}
+]
+</script>
+
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s10-reveal,.s10-reveal-left,.s10-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — À propos · [Titre professionnel] à [Ville]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. Son histoire, son approche, ses formations et ses valeurs.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-a-propos]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FAFAF8;
+  --gris:    #F2F0EB;
+  --encre:   #121212;
+  --accent:  #B08D57;
+  --accent2: #D4B483;
+  --muted:   #8A8580;
+  --line:    rgba(18,18,18,.09);
+  --line-md: rgba(18,18,18,.15);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Barlow', sans-serif;
+  --max: 1400px;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-sans); font-weight: 300; background: var(--blanc); color: var(--encre); padding-bottom: 68px; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* STICKY */
+.s10-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: var(--blanc); border-top: 1px solid var(--line-md); display: flex; align-items: center; justify-content: space-between; padding: 14px 56px; gap: 16px; }
+.s10-sticky-id { font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s10-sticky-id strong { font-style: normal; font-weight: 700; color: var(--encre); }
+.s10-sticky-btns { display: flex; gap: 0; }
+.s10-btn-primary { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 12px 32px; border: 1px solid var(--encre); transition: all .3s; }
+.s10-btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+.s10-btn-ghost { display: inline-block; background: transparent; color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; padding: 12px 24px; border: 1px solid var(--line-md); transition: all .3s; margin-left: -1px; }
+.s10-btn-ghost:hover { border-color: var(--encre); color: var(--encre); }
+.s10-btn-accent { display: inline-block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--accent); transition: all .3s; }
+.s10-btn-accent:hover { background: transparent; color: var(--accent); }
+@media(max-width:600px){ .s10-sticky { padding: 12px 20px; } .s10-sticky-id { display: none; } .s10-sticky-btns { width: 100%; } .s10-btn-primary, .s10-btn-ghost { flex: 1; text-align: center; } }
+
+/* BASE */
+.s10-section { padding: 100px 8%; }
+.s10-inner { max-width: var(--max); margin: 0 auto; }
+.s10-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px; }
+.s10-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.s10-h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2rem,4vw,4.5rem); line-height: .9; letter-spacing: -.025em; color: var(--encre); }
+.s10-h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-p { font-family: var(--f-sans); font-size: .88rem; font-weight: 300; line-height: 1.95; color: var(--muted); margin-bottom: 14px; }
+.s10-trait { width: 36px; height: 2px; background: var(--accent); margin: 20px 0; }
+
+/* HERO SPLIT */
+.s10-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; }
+.s10-hero-img { position: relative; overflow: hidden; }
+.s10-hero-img-bg { position: absolute; inset: -8%; background-size: cover; background-position: center top; transform: scale(1.08); transition: transform 10s ease; }
+.s10-hero-img-bg.loaded { transform: scale(1); }
+.s10-hero-img::after { content: ''; position: absolute; top: 12%; right: 0; bottom: 12%; width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: .5; }
+.s10-hero-txt { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 80px 72px; background: var(--gris); position: relative; border-left: 1px solid var(--line); }
+.s10-hero-rom { position: absolute; top: 0; right: 0; font-family: var(--f-serif); font-size: clamp(12rem,18vw,22rem); font-weight: 900; color: rgba(18,18,18,.025); line-height: 1; pointer-events: none; letter-spacing: -.05em; white-space: nowrap; }
+.s10-hero-eyebrow { display: flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .56rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; opacity: 0; animation: fadeUp .8s .2s var(--ease) forwards; }
+.s10-hero-eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--accent); }
+.s10-hero h1 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(3rem,5.5vw,6rem); line-height: .9; letter-spacing: -.03em; color: var(--encre); margin-bottom: 24px; opacity: 0; animation: fadeUp 1s .35s var(--ease) forwards; }
+.s10-hero h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-hero-trait { width: 44px; height: 2px; background: var(--accent); margin-bottom: 24px; opacity: 0; animation: expandW .8s .5s var(--ease) forwards; }
+@keyframes expandW { from { width: 0; opacity: 0; } to { width: 44px; opacity: 1; } }
+.s10-hero-intro { font-family: var(--f-serif); font-style: italic; font-size: 1.05rem; color: var(--muted); line-height: 1.9; max-width: 380px; margin-bottom: 36px; opacity: 0; animation: fadeUp .9s .55s var(--ease) forwards; }
+.s10-hero-btns { display: flex; gap: 0; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .7s var(--ease) forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media(max-width:860px){ .s10-hero { grid-template-columns: 1fr; min-height: auto; } .s10-hero-img { height: 60vw; } .s10-hero-img::after { display: none; } .s10-hero-txt { padding: 40px 6% 60px; border-left: none; border-top: 1px solid var(--line); } .s10-hero-rom { display: none; } }
+
+/* CHIFFRES CLÉS */
+.s10-chiffres { background: var(--gris); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.s10-chiffres-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.s10-chiffre-item { padding: 48px 40px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.s10-chiffre-item:last-child { border-right: none; }
+.s10-chiffre-rom { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); }
+.s10-chiffre-val { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.4rem,4vw,4rem); color: var(--encre); line-height: 1; letter-spacing: -.035em; }
+.s10-chiffre-val em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-chiffre-lbl { font-family: var(--f-sans); font-size: .7rem; font-weight: 300; color: var(--muted); line-height: 1.5; }
+@media(max-width:760px){ .s10-chiffres-grid { grid-template-columns: 1fr 1fr; } .s10-chiffre-item:nth-child(2){ border-right: none; } .s10-chiffre-item:nth-child(3){ border-right: none; border-top: 1px solid var(--line); } .s10-chiffre-item:nth-child(4){ border-top: 1px solid var(--line); } }
+@media(max-width:460px){ .s10-chiffres-grid { grid-template-columns: 1fr; } .s10-chiffre-item { border-right: none !important; border-top: 1px solid var(--line) !important; } .s10-chiffre-item:first-child { border-top: none !important; } }
+
+/* S1 — HISTOIRE */
+.s10-histoire-grid { display: grid; grid-template-columns: 1fr 480px; gap: 96px; align-items: start; }
+.s10-histoire-quote { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(1.4rem,2.5vw,2rem); line-height: 1.45; color: var(--encre); border-left: 2px solid var(--accent); padding-left: 28px; margin: 32px 0; }
+.s10-histoire-img-wrap { position: relative; overflow: hidden; }
+.s10-histoire-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--gris); display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 20px; transition: transform .8s ease; }
+.s10-histoire-img-wrap:hover .s10-histoire-placeholder { transform: scale(1.04); }
+.s10-histoire-legend { padding: 14px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.s10-histoire-legend-txt { font-family: var(--f-serif); font-style: italic; font-size: .82rem; color: var(--muted); }
+.s10-histoire-legend-rom { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); }
+@media(max-width:860px){ .s10-histoire-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* S2 — CITATION PLEIN ÉCRAN */
+.s10-citation-full { background: var(--encre); padding: 96px 8%; text-align: center; position: relative; overflow: hidden; }
+.s10-citation-full-deco { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-serif); font-size: 28vw; font-weight: 900; color: rgba(255,255,255,.025); white-space: nowrap; pointer-events: none; line-height: 1; letter-spacing: -.05em; }
+.s10-citation-full-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+.s10-citation-full-rom { font-family: var(--f-sans); font-size: .56rem; font-weight: 500; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 28px; }
+.s10-citation-full-txt { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(1.8rem,4vw,3.5rem); line-height: 1.38; color: #fff; letter-spacing: -.01em; }
+.s10-citation-full-auteur { font-family: var(--f-sans); font-size: .54rem; font-weight: 400; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-top: 28px; display: block; }
+
+/* S3 — VALEURS */
+.s10-valeurs-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid var(--line); }
+.s10-valeurs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.s10-valeur-card { background: var(--blanc); padding: 48px 36px; display: flex; flex-direction: column; gap: 14px; transition: background .3s; position: relative; overflow: hidden; }
+.s10-valeur-card:hover { background: var(--gris); }
+.s10-valeur-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+.s10-valeur-card:hover::before { transform: scaleX(1); }
+.s10-valeur-rom { font-family: var(--f-serif); font-style: italic; font-size: .78rem; color: var(--accent); letter-spacing: .1em; }
+.s10-valeur-nom { font-family: var(--f-serif); font-weight: 700; font-size: 1.5rem; color: var(--encre); line-height: 1.1; }
+.s10-valeur-nom em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-valeur-trait { width: 20px; height: 2px; background: var(--accent); transition: width .3s; }
+.s10-valeur-card:hover .s10-valeur-trait { width: 40px; }
+.s10-valeur-desc { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.9; }
+@media(max-width:860px){ .s10-valeurs-grid { grid-template-columns: 1fr 1fr; } .s10-valeurs-header { grid-template-columns: 1fr; } }
+@media(max-width:520px){ .s10-valeurs-grid { grid-template-columns: 1fr; } }
+
+/* S4 — MÉTHODE */
+.s10-methode-grid { display: grid; grid-template-columns: 480px 1fr; gap: 96px; align-items: start; }
+.s10-methode-img-wrap { position: relative; overflow: hidden; }
+.s10-methode-placeholder { width: 100%; aspect-ratio: 4/5; background: var(--gris); display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 20px; transition: transform .8s ease; }
+.s10-methode-img-wrap:hover .s10-methode-placeholder { transform: scale(1.04); }
+.s10-methode-encart { background: var(--encre); padding: 22px 24px; margin-top: 1px; }
+.s10-methode-encart-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; display: block; }
+.s10-methode-encart-txt { font-family: var(--f-serif); font-style: italic; font-size: .96rem; color: rgba(250,250,248,.5); line-height: 1.85; }
+.s10-methode-steps { display: flex; flex-direction: column; }
+.s10-methode-step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.s10-methode-step:first-child { padding-top: 0; }
+.s10-methode-step:last-child { border-bottom: none; }
+.s10-methode-step-rom { font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--accent); padding-top: 4px; }
+.s10-methode-step-titre { font-family: var(--f-serif); font-weight: 700; font-size: 1.15rem; color: var(--encre); margin-bottom: 6px; }
+.s10-methode-step-p { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.9; }
+@media(max-width:860px){ .s10-methode-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* S5 — FORMATIONS */
+.s10-formations-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid var(--line); }
+.s10-formations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+.s10-formation-item { background: var(--blanc); padding: 36px 32px; display: grid; grid-template-columns: 72px 1fr; gap: 20px; transition: background .3s; }
+.s10-formation-item:hover { background: var(--gris); }
+.s10-formation-annee { font-family: var(--f-serif); font-style: italic; font-size: .82rem; color: var(--accent); writing-mode: vertical-rl; letter-spacing: .1em; border-right: 1px solid var(--line); padding-right: 14px; align-self: start; }
+.s10-formation-nom { font-family: var(--f-serif); font-weight: 700; font-size: 1.1rem; color: var(--encre); margin-bottom: 4px; line-height: 1.2; }
+.s10-formation-nom em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-formation-org { font-family: var(--f-sans); font-size: .58rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.s10-formation-desc { font-family: var(--f-sans); font-size: .8rem; font-weight: 300; color: var(--muted); line-height: 1.8; }
+@media(max-width:680px){ .s10-formations-grid { grid-template-columns: 1fr; } .s10-formations-header { grid-template-columns: 1fr; } }
+
+/* S6 — GALERIE */
+.s10-galerie-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 360px 240px; gap: 1px; background: var(--line); margin-top: 56px; }
+.s10-galerie-item { position: relative; overflow: hidden; }
+.s10-galerie-placeholder { width: 100%; height: 100%; background: var(--gris); display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: .54rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 12px; transition: transform .8s ease; }
+.s10-galerie-wide { grid-column: span 2; }
+.s10-galerie-item:hover .s10-galerie-placeholder { transform: scale(1.04); }
+.s10-galerie-item::after { content: ''; position: absolute; inset: 0; background: var(--accent); opacity: 0; transition: opacity .4s; mix-blend-mode: multiply; }
+.s10-galerie-item:hover::after { opacity: .08; }
+@media(max-width:680px){ .s10-galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 160px; } }
+
+/* S7 — FAQ */
+.s10-faq-layout { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start; }
+.s10-faq-aside { position: sticky; top: 40px; }
+.s10-faq-aside-p { font-family: var(--f-serif); font-style: italic; font-size: 1.05rem; color: var(--muted); line-height: 1.85; margin-top: 20px; }
+details.s10-faq-item { border-bottom: 1px solid var(--line); }
+details.s10-faq-item summary { padding: 24px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; font-family: var(--f-serif); font-size: 1.05rem; font-weight: 400; color: var(--encre); line-height: 1.4; transition: color .2s; }
+details.s10-faq-item summary::-webkit-details-marker { display: none; }
+details.s10-faq-item summary::after { content: '+'; font-family: var(--f-sans); font-size: 1.2rem; color: var(--accent); flex-shrink: 0; transition: transform .3s; line-height: 1; margin-top: 2px; font-weight: 300; }
+details.s10-faq-item[open] summary { color: var(--accent); }
+details.s10-faq-item[open] summary::after { transform: rotate(45deg); }
+.s10-faq-ans { padding: 0 0 24px; font-family: var(--f-sans); font-size: .86rem; font-weight: 300; color: var(--muted); line-height: 2; }
+.s10-faq-ans a { color: var(--encre); border-bottom: 1px solid var(--line-md); transition: border-color .2s; }
+.s10-faq-ans a:hover { border-bottom-color: var(--encre); }
+@media(max-width:860px){ .s10-faq-layout { grid-template-columns: 1fr; gap: 40px; } .s10-faq-aside { position: static; } }
+
+/* CTA FINAL */
+.s10-cta { background: var(--blanc); padding: 140px 8%; text-align: center; position: relative; border-top: 1px solid var(--line); }
+.s10-cta-fond { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-serif); font-weight: 900; font-size: clamp(8rem,22vw,26rem); color: rgba(18,18,18,.025); white-space: nowrap; pointer-events: none; letter-spacing: -.05em; line-height: 1; }
+.s10-cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.s10-cta-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; justify-content: center; }
+.s10-cta-eyebrow::before, .s10-cta-eyebrow::after { content: ''; width: 22px; height: 2px; background: var(--accent); }
+.s10-cta h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.6rem,6vw,6rem); line-height: 1.0; letter-spacing: -.03em; color: var(--encre); margin-bottom: 24px; }
+.s10-cta h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-cta-sub { font-family: var(--f-sans); font-size: .88rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 44px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.s10-cta-contact { margin-top: 20px; font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s10-cta-contact a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+
+/* MAILLAGE */
+.s10-maillage { background: var(--gris); padding: 56px 8%; border-top: 1px solid var(--line); }
+.s10-maillage-inner { max-width: var(--max); margin: 0 auto; }
+.s10-maillage-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: block; }
+.s10-maillage-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.s10-maillage-pill { display: inline-block; padding: 8px 16px; border: 1px solid var(--line-md); color: var(--muted); font-family: var(--f-sans); font-size: .7rem; font-weight: 300; letter-spacing: .06em; transition: all .25s; }
+.s10-maillage-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* REVEAL */
+.s10-reveal, .s10-reveal-left, .s10-reveal-right { opacity: 0; transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.s10-reveal { transform: translateY(24px); }
+.s10-reveal-left { transform: translateX(-24px); }
+.s10-reveal-right { transform: translateX(24px); }
+.s10-reveal.in, .s10-reveal-left.in, .s10-reveal-right.in { opacity: 1; transform: none; }
+.s10-d1 { transition-delay: .12s; } .s10-d2 { transition-delay: .22s; } .s10-d3 { transition-delay: .32s; } .s10-d4 { transition-delay: .42s; }
+</style>
+</head>
+<body>
+
+<div class="s10-sticky">
+  <div class="s10-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s10-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s10-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s10-btn-primary" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s10-hero">
+  <div class="s10-hero-img">
+    <div class="s10-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+  </div>
+  <div class="s10-hero-txt">
+    <div class="s10-hero-rom" aria-hidden="true">II</div>
+    <div class="s10-hero-eyebrow">[Titre professionnel] · [Ville]</div>
+    <h1>[Prénom Nom],<br><em>[titre ou accroche]</em></h1>
+    <div class="s10-hero-trait"></div>
+    <p class="s10-hero-intro">[Depuis Bloc 0 ADN — 1-2 phrases qui résument l'essence de la praticienne. Dans ses mots.]</p>
+    <div class="s10-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-accent">Prendre rendez-vous</a>
+      <a href="/[slug-soins]" class="s10-btn-ghost" style="margin-left:12px;">Les soins</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CHIFFRES CLÉS -->
+<div class="s10-chiffres s10-reveal">
+  <div class="s10-chiffres-grid">
+    <div class="s10-chiffre-item">
+      <span class="s10-chiffre-rom">I</span>
+      <div class="s10-chiffre-val">[X] <em>ans</em></div>
+      <span class="s10-chiffre-lbl">D'expérience à [Ville]</span>
+    </div>
+    <div class="s10-chiffre-item">
+      <span class="s10-chiffre-rom">II</span>
+      <div class="s10-chiffre-val">[X]</div>
+      <span class="s10-chiffre-lbl">Soins disponibles</span>
+    </div>
+    <div class="s10-chiffre-item">
+      <span class="s10-chiffre-rom">III</span>
+      <div class="s10-chiffre-val">[X.X] <em>★</em></div>
+      <span class="s10-chiffre-lbl">Note Google · [X] avis</span>
+    </div>
+    <div class="s10-chiffre-item">
+      <span class="s10-chiffre-rom">IV</span>
+      <div class="s10-chiffre-val">[X]</div>
+      <span class="s10-chiffre-lbl">Formations certifiantes</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- S1 — HISTOIRE -->
+<section class="s10-section">
+  <div class="s10-inner">
+    <div class="s10-histoire-grid">
+      <div class="s10-reveal-left">
+        <div class="s10-eyebrow">I — Mon histoire</div>
+        <h2 class="s10-h2" style="margin-bottom:0;">Ce qui m'a amenée<br><em>à ce métier</em></h2>
+        <blockquote class="s10-histoire-quote">« [Citation depuis Bloc 0 ADN — la phrase qui résume le pourquoi. Mot pour mot.] »</blockquote>
+        <p class="s10-p">[Paragraphe 1 — depuis Bloc 0 "Pourquoi tu fais ce métier". À la première personne.]</p>
+        <div class="s10-trait"></div>
+        <p class="s10-p">[Paragraphe 2 — depuis Bloc 0 "Ce qui t'a amenée là". Le déclic.]</p>
+        <div class="s10-trait"></div>
+        <p class="s10-p">[Paragraphe 3 — depuis Bloc 0 "Ce qui te rend fière".]</p>
+        <div style="margin-top:32px;">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-accent">Prendre rendez-vous</a>
+        </div>
+      </div>
+      <div class="s10-reveal-right">
+        <div class="s10-histoire-img-wrap">
+          <div class="s10-histoire-placeholder">[URL_PHOTO_HISTOIRE — Portrait naturel]</div>
+        </div>
+        <div class="s10-histoire-legend">
+          <span class="s10-histoire-legend-txt">[Prénom Nom] · [Ville]</span>
+          <span class="s10-histoire-legend-rom">— I —</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S2 — CITATION PLEINE LARGEUR -->
+<section class="s10-citation-full s10-reveal">
+  <div class="s10-citation-full-deco" aria-hidden="true">[Prénom]</div>
+  <div class="s10-citation-full-inner">
+    <span class="s10-citation-full-rom">— II —</span>
+    <blockquote class="s10-citation-full-txt">« [Depuis Bloc 0 "Ce que tu veux qu'elles emportent après". La vraie version, dans ses mots.] »</blockquote>
+    <span class="s10-citation-full-auteur">— [Prénom Nom] · [Titre professionnel]</span>
+  </div>
+</section>
+
+
+<!-- S3 — VALEURS -->
+<section class="s10-section" style="background:var(--gris);">
+  <div class="s10-inner">
+    <div class="s10-valeurs-header s10-reveal">
+      <div>
+        <div class="s10-eyebrow">III — Mes valeurs</div>
+        <h2 class="s10-h2">Ce qui guide<br><em>chaque séance</em></h2>
+      </div>
+      <p class="s10-p">[Depuis Bloc 0 — phrase d'intro sur ce que représentent ses valeurs dans la pratique concrète.]</p>
+    </div>
+    <div class="s10-valeurs-grid">
+      <div class="s10-valeur-card s10-reveal s10-d1">
+        <span class="s10-valeur-rom">I.</span>
+        <div class="s10-valeur-nom">[Valeur 1<br><em>depuis Bloc 0</em>]</div>
+        <div class="s10-valeur-trait"></div>
+        <p class="s10-valeur-desc">[Ce que cette valeur veut dire concrètement dans la pratique.]</p>
+      </div>
+      <div class="s10-valeur-card s10-reveal s10-d2">
+        <span class="s10-valeur-rom">II.</span>
+        <div class="s10-valeur-nom">[Valeur 2<br><em>depuis Bloc 0</em>]</div>
+        <div class="s10-valeur-trait"></div>
+        <p class="s10-valeur-desc">[Description concrète.]</p>
+      </div>
+      <div class="s10-valeur-card s10-reveal s10-d3">
+        <span class="s10-valeur-rom">III.</span>
+        <div class="s10-valeur-nom">[Valeur 3<br><em>depuis Bloc 0</em>]</div>
+        <div class="s10-valeur-trait"></div>
+        <p class="s10-valeur-desc">[Description concrète.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — MÉTHODE -->
+<section class="s10-section">
+  <div class="s10-inner">
+    <div class="s10-methode-grid">
+      <div class="s10-reveal-left">
+        <div class="s10-methode-img-wrap">
+          <div class="s10-methode-placeholder">[URL_PHOTO_SOIN — Soin en cours]</div>
+        </div>
+        <div class="s10-methode-encart">
+          <span class="s10-methode-encart-label">Ce que disent les clientes</span>
+          <p class="s10-methode-encart-txt">« [Depuis Bloc 0 "Ce que mes clientes disent le plus souvent". Verbatim.] »</p>
+        </div>
+      </div>
+      <div class="s10-reveal-right">
+        <div class="s10-eyebrow">IV — Mon approche</div>
+        <h2 class="s10-h2" style="margin-bottom:12px;">Comment je travaille —<br><em>[accroche méthode]</em></h2>
+        <div class="s10-trait"></div>
+        <p class="s10-p" style="margin-bottom:36px;">[Depuis Bloc 0 "Ce que tu fais différemment". Philosophie globale.]</p>
+        <div class="s10-methode-steps">
+          <div class="s10-methode-step">
+            <span class="s10-methode-step-rom">I.</span>
+            <div><div class="s10-methode-step-titre">[Pilier 1 de la méthode]</div><p class="s10-methode-step-p">[Description concrète depuis Bloc 0 ou Bloc 5.]</p></div>
+          </div>
+          <div class="s10-methode-step">
+            <span class="s10-methode-step-rom">II.</span>
+            <div><div class="s10-methode-step-titre">[Pilier 2]</div><p class="s10-methode-step-p">[Description concrète.]</p></div>
+          </div>
+          <div class="s10-methode-step">
+            <span class="s10-methode-step-rom">III.</span>
+            <div><div class="s10-methode-step-titre">[Pilier 3]</div><p class="s10-methode-step-p">[Description concrète.]</p></div>
+          </div>
+          <div class="s10-methode-step">
+            <span class="s10-methode-step-rom">IV.</span>
+            <div><div class="s10-methode-step-titre">[Pilier 4]</div><p class="s10-methode-step-p">[Description concrète.]</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — FORMATIONS -->
+<section class="s10-section" style="background:var(--gris);">
+  <div class="s10-inner">
+    <div class="s10-formations-header s10-reveal">
+      <div>
+        <div class="s10-eyebrow">V — Formations & certifications</div>
+        <h2 class="s10-h2">Mon parcours<br><em>professionnel</em></h2>
+      </div>
+      <p class="s10-p">[Depuis Bloc 9 "Années d'expérience" — 1-2 phrases contextuelles.]</p>
+    </div>
+    <div class="s10-formations-grid">
+      <div class="s10-formation-item s10-reveal s10-d1">
+        <span class="s10-formation-annee">[Année]</span>
+        <div>
+          <div class="s10-formation-nom">[Nom exact formation 1]</div>
+          <div class="s10-formation-org">[Organisme / École]</div>
+          <p class="s10-formation-desc">[Description si fournie — sinon laisser vide.]</p>
+        </div>
+      </div>
+      <div class="s10-formation-item s10-reveal s10-d2">
+        <span class="s10-formation-annee">[Année]</span>
+        <div>
+          <div class="s10-formation-nom">[Nom exact formation 2]</div>
+          <div class="s10-formation-org">[Organisme]</div>
+          <p class="s10-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+      <div class="s10-formation-item s10-reveal s10-d3">
+        <span class="s10-formation-annee">[Année]</span>
+        <div>
+          <div class="s10-formation-nom">[Nom exact formation 3]</div>
+          <div class="s10-formation-org">[Organisme]</div>
+          <p class="s10-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+      <div class="s10-formation-item s10-reveal s10-d4">
+        <span class="s10-formation-annee">[Année]</span>
+        <div>
+          <div class="s10-formation-nom">[Formation 4 / Certification]</div>
+          <div class="s10-formation-org">[Organisme]</div>
+          <p class="s10-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S6 — GALERIE -->
+<section class="s10-section">
+  <div class="s10-inner">
+    <div class="s10-reveal">
+      <div class="s10-eyebrow">VI — Cabinet & univers</div>
+      <h2 class="s10-h2">[Mon cabinet] — <em>[Ville]</em></h2>
+    </div>
+    <div class="s10-galerie-grid">
+      <div class="s10-galerie-item s10-galerie-wide">
+        <div class="s10-galerie-placeholder">[URL_PHOTO_CABINET_1 — Vue d'ensemble]</div>
+      </div>
+      <div class="s10-galerie-item">
+        <div class="s10-galerie-placeholder">[URL_PHOTO_CABINET_2]</div>
+      </div>
+      <div class="s10-galerie-item">
+        <div class="s10-galerie-placeholder">[URL_PHOTO_SOIN_1]</div>
+      </div>
+      <div class="s10-galerie-item">
+        <div class="s10-galerie-placeholder">[URL_PHOTO_CABINET_3]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S7 — FAQ -->
+<section class="s10-section" style="background:var(--gris);">
+  <div class="s10-inner">
+    <div class="s10-faq-layout">
+      <div class="s10-faq-aside s10-reveal-left">
+        <div class="s10-eyebrow">VII — Questions</div>
+        <h2 class="s10-h2">Vos<br><em>questions</em></h2>
+        <p class="s10-faq-aside-p">[Prénom] répond avant toute réservation. Contactez-la au <a href="tel:[+33XXXXXXXXX]" style="color:var(--accent);border-bottom:1px solid var(--accent);">[Téléphone]</a>.</p>
+        <div style="margin-top:28px;">
+          <a href="/[slug-faq]" class="s10-btn-ghost">Toutes les questions</a>
+        </div>
+      </div>
+      <div class="s10-reveal-right">
+        <details class="s10-faq-item"><summary>Quel est votre parcours et vos formations ?</summary><div class="s10-faq-ans">[Prénom Nom] est [titre] à [Ville] depuis [X] ans. [Formations principales depuis Bloc 9]. <a href="/[slug-a-propos]">Parcours complet →</a></div></details>
+        <details class="s10-faq-item"><summary>Quelle est votre approche et ce qui vous différencie ?</summary><div class="s10-faq-ans">[Depuis Bloc 0 "Ce que tu fais différemment". Dans ses mots.]</div></details>
+        <details class="s10-faq-item"><summary>Pour quel type de clientèle travaillez-vous ?</summary><div class="s10-faq-ans">[Depuis Bloc 0 profil cliente idéale.] <a href="/[slug-soins]">Découvrir les soins →</a></div></details>
+        <details class="s10-faq-item"><summary>Comment se passe une première séance ?</summary><div class="s10-faq-ans">[Depuis Bloc 5 déroulement.] <a href="[LIEN_RDV]" target="_blank" rel="noopener">Réserver →</a></div></details>
+        <details class="s10-faq-item"><summary>Proposez-vous des séances à domicile ou à distance ?</summary><div class="s10-faq-ans">[Depuis Bloc 5 — domicile oui/non + rayon. Visio oui/non + modalités.]</div></details>
+        <details class="s10-faq-item"><summary>Puis-je vous contacter avant de réserver ?</summary><div class="s10-faq-ans">Oui — [Prénom] répond à toutes vos questions. <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="s10-cta">
+  <div class="s10-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s10-cta-inner s10-reveal">
+    <div class="s10-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche depuis<br>Bloc 0 ADN]<br><em>[suite]</em></h2>
+    <p class="s10-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-accent">Prendre rendez-vous</a>
+    <p class="s10-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+
+<div class="s10-maillage">
+  <div class="s10-maillage-inner">
+    <span class="s10-maillage-label">À découvrir aussi</span>
+    <div class="s10-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s10-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s10-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soins]" class="s10-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-faq]" class="s10-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","description":"[Bio courte — 2 phrases.]","url":"https://[votre-domaine].fr/[slug-a-propos]","image":"[URL_PHOTO_PORTRAIT]","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","streetAddress":"[Numéro et rue]","addressLocality":"[Ville]","postalCode":"[Code postal]","addressCountry":"FR"},"alumniOf":[{"@type":"EducationalOrganization","name":"[Organisme 1]"},{"@type":"EducationalOrganization","name":"[Organisme 2]"}],"knowsAbout":["[Soin 1]","[Soin 2]","[Soin 3]"],"sameAs":["[URL Instagram]","[URL Facebook]"]},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Quel est le parcours de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre] à [Ville] depuis [X] ans. [Formations principales]."}},
+    {"@type":"Question","name":"Quelle est l'approche de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0 différenciation.]"}},
+    {"@type":"Question","name":"Comment se passe une première séance ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 déroulement.]"}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"À propos","item":"https://[votre-domaine].fr/[slug-a-propos]"}
+  ]}
+]
+</script>
+
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s10-reveal,.s10-reveal-left,.s10-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

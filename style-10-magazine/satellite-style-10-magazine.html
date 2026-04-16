@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Réservez votre [Nom du soin] à [Ville secondaire] — [Prénom Nom]</title>
+<meta name="description" content="[Nom du soin] à [Ville secondaire] avec [Prénom Nom], [titre professionnel]. Cabinet à [Ville principale], à [X] min. [Tarif]€. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-soin]-[ville-secondaire]">
+<meta property="og:type" content="website"><meta property="og:title" content="[Nom du soin] à [Ville secondaire] — [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-soin]-[ville-secondaire]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FAFAF8;
+  --gris:    #F2F0EB;
+  --encre:   #121212;
+  --accent:  #B08D57;
+  --accent2: #D4B483;
+  --muted:   #8A8580;
+  --line:    rgba(18,18,18,.09);
+  --line-md: rgba(18,18,18,.15);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Barlow', sans-serif;
+  --max: 1400px;
+  --ease: cubic-bezier(.25,.46,.45,.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-sans); font-weight: 300; background: var(--blanc); color: var(--encre); padding-bottom: 68px; overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── STICKY ────────────────────── */
+.s10-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: var(--blanc); border-top: 1px solid var(--line-md); display: flex; align-items: center; justify-content: space-between; padding: 14px 56px; gap: 16px; }
+.s10-sticky-id { font-family: var(--f-serif); font-style: italic; font-size: .9rem; color: var(--muted); }
+.s10-sticky-id strong { font-style: normal; font-weight: 700; color: var(--encre); }
+.s10-sticky-btns { display: flex; gap: 0; }
+.s10-btn-ghost { display: inline-block; background: transparent; color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; padding: 12px 22px; border: 1px solid var(--line-md); transition: all .3s; }
+.s10-btn-ghost:hover { color: var(--encre); border-color: var(--encre); }
+.s10-btn-cta { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 12px 28px; border: 1px solid var(--encre); transition: all .3s; margin-left: -1px; }
+.s10-btn-cta:hover { background: var(--accent); border-color: var(--accent); }
+@media(max-width:600px){ .s10-sticky { padding: 12px 20px; } .s10-sticky-id { display: none; } .s10-sticky-btns { width: 100%; } .s10-btn-ghost, .s10-btn-cta { flex: 1; text-align: center; } }
+
+/* ── BASE ────────────────────── */
+.s10-section { padding: 80px 8%; }
+.s10-inner { max-width: var(--max); margin: 0 auto; }
+.s10-label { font-family: var(--f-sans); font-size: .54rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.s10-label::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.s10-h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2rem,4vw,4rem); line-height: .92; color: var(--encre); margin-bottom: 20px; letter-spacing: -.025em; }
+.s10-h2 em { font-style: italic; font-weight: 400; color: var(--accent); }
+.s10-p { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 2.1; margin-bottom: 10px; }
+.s10-lien { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-sans); font-size: .58rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--encre); border-bottom: 1px solid var(--line-md); padding-bottom: 3px; transition: all .3s; margin-top: 16px; }
+.s10-lien:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── HERO MAGAZINE SPLIT ────────────────────── */
+.s10-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; }
+.s10-hero-txt { display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 6% 80px 8%; border-right: 1px solid var(--line-md); background: var(--gris); }
+.s10-breadcrumb { display: flex; align-items: center; gap: 8px; font-family: var(--f-sans); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; flex-wrap: wrap; }
+.s10-breadcrumb a:hover { color: var(--encre); }
+.s10-issue { font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.s10-issue::before { content: ''; width: 20px; height: 2px; background: var(--accent); }
+.s10-hero-meta { display: flex; align-items: center; gap: 0; border-top: 1px solid var(--line-md); padding-top: 24px; margin-top: 28px; }
+.s10-meta { padding: 0 24px; border-right: 1px solid var(--line-md); display: flex; flex-direction: column; gap: 3px; }
+.s10-meta:first-child { padding-left: 0; }
+.s10-meta:last-child { border-right: none; }
+.s10-meta-lbl { font-family: var(--f-sans); font-size: .48rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.s10-meta-val { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: .95rem; color: var(--encre); }
+.s10-hero-img { position: relative; overflow: hidden; }
+.s10-hero-img-bg { position: absolute; inset: 0; background-image: url('[URL_PHOTO_SOIN]'); background-size: cover; background-position: center; filter: brightness(.78) saturate(.88); }
+@media(max-width:768px){ .s10-hero { grid-template-columns: 1fr; min-height: auto; } .s10-hero-txt { padding: 60px 6%; border-right: none; border-bottom: 1px solid var(--line-md); } .s10-hero-img { min-height: 60vw; } }
+
+/* ── ACCÈS ────────────────────── */
+.s10-acces-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.s10-acces-table { border-top: 1px solid var(--line-md); margin-top: 24px; }
+.s10-acces-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.s10-acces-key { font-family: var(--f-sans); font-size: .52rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.s10-acces-val { font-family: var(--f-sans); font-size: .82rem; font-weight: 300; color: var(--encre); }
+.s10-acces-val a { color: var(--encre); text-decoration: underline; text-underline-offset: 4px; }
+.s10-geo-note { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-sans); font-size: .54rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); background: rgba(176,141,87,.07); padding: 6px 14px; border: 1px solid rgba(176,141,87,.2); margin-bottom: 20px; }
+@media(max-width:768px){ .s10-acces-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ── BÉNÉFICES ────────────────────── */
+.s10-benefices { border-top: 1px solid var(--line-md); }
+.s10-benefices-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.s10-benefices-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--line-md); }
+.s10-benefice-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.s10-benefice-item:last-child { border-bottom: none; }
+.s10-benefice-num { font-family: var(--f-serif); font-style: italic; font-size: .9rem; color: var(--accent); flex-shrink: 0; min-width: 20px; padding-top: 2px; }
+.s10-benefice-txt { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+@media(max-width:768px){ .s10-benefices-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ── SOIN ────────────────────── */
+.s10-soin-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.s10-soin-img { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+.s10-soin-img-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(.82) saturate(.9); }
+@media(max-width:768px){ .s10-soin-inner { grid-template-columns: 1fr; } .s10-soin-img { aspect-ratio: 16/9; } }
+
+/* ── FAQ ────────────────────── */
+.s10-faq-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; }
+details.s10-item { border-bottom: 1px solid var(--line-md); }
+details.s10-item:first-of-type { border-top: 1px solid var(--line-md); }
+details.s10-item summary { padding: 20px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: .98rem; color: var(--encre); line-height: 1.5; transition: color .2s; }
+details.s10-item summary::-webkit-details-marker { display: none; }
+details.s10-item summary::after { content: '+'; font-family: var(--f-sans); font-size: 1.1rem; color: var(--accent); flex-shrink: 0; transition: transform .3s; font-style: normal; font-weight: 300; }
+details.s10-item[open] summary::after { transform: rotate(45deg); }
+details.s10-item[open] summary { color: var(--accent); }
+.s10-faq-ans { padding: 0 0 20px; font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 2.1; }
+.s10-faq-ans a { color: var(--encre); text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width:768px){ .s10-faq-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ── CTA ────────────────────── */
+.s10-cta { background: var(--encre); padding: 80px 8%; }
+.s10-cta-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.s10-cta h2 { font-family: var(--f-serif); font-weight: 900; font-size: clamp(2.5rem,5vw,5rem); color: var(--blanc); line-height: .9; letter-spacing: -.03em; }
+.s10-cta h2 em { font-style: italic; font-weight: 400; color: var(--accent2); }
+.s10-cta-right { display: flex; flex-direction: column; gap: 16px; }
+.s10-cta-sub { font-family: var(--f-sans); font-size: .8rem; font-weight: 300; color: rgba(250,250,248,.35); line-height: 2; }
+.s10-cta-btns { display: flex; gap: 0; }
+.s10-btn-main { display: inline-block; background: var(--blanc); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; padding: 16px 36px; border: 1px solid var(--blanc); transition: all .3s; }
+.s10-btn-main:hover { background: var(--accent); border-color: var(--accent); color: var(--blanc); }
+.s10-btn-sec { display: inline-block; background: transparent; color: rgba(250,250,248,.35); font-family: var(--f-sans); font-size: .62rem; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; padding: 16px 24px; border: 1px solid rgba(250,250,248,.15); transition: all .3s; margin-left: -1px; }
+.s10-btn-sec:hover { color: var(--blanc); border-color: rgba(250,250,248,.4); }
+@media(max-width:768px){ .s10-cta-inner { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ── MAILLAGE ────────────────────── */
+.s10-maillage { background: var(--gris); padding: 28px 8%; border-top: 1px solid var(--line-md); }
+.s10-maillage-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.s10-maillage-lbl { font-family: var(--f-sans); font-size: .5rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+.s10-maillage-pill { display: inline-block; padding: 5px 14px; border: 1px solid var(--line-md); color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 300; transition: all .25s; }
+.s10-maillage-pill:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── REVEAL ────────────────────── */
+.s10-reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.s10-reveal.in { opacity: 1; transform: none; }
+.s10-d1 { transition-delay: .15s; } .s10-d2 { transition-delay: .3s; }
+</style>
+</head>
+<body>
+
+<div class="s10-sticky">
+  <div class="s10-sticky-id"><strong>[Nom du soin]</strong> — <em>[Ville secondaire] · [Prénom Nom]</em></div>
+  <div class="s10-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s10-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-cta">Réserver</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="s10-hero" aria-label="[Nom du soin] à [Ville secondaire]">
+  <div class="s10-hero-txt">
+    <nav class="s10-breadcrumb">
+      <a href="/">Accueil</a><span>/</span>
+      <a href="/[slug-soins]">Soins</a><span>/</span>
+      <a href="/[slug-soin]-[ville-principale]">[Ville principale]</a><span>/</span>
+      <span>[Ville secondaire]</span>
+    </nav>
+    <div class="s10-issue">[Titre professionnel] · Cabinet à [Ville principale]</div>
+    <h1 class="s10-h2" style="font-size:clamp(3rem,6vw,7rem);line-height:.9;margin-bottom:28px;">Votre <em>[Nom<br>du soin]</em><br>à [Ville secondaire]</h1>
+    <div class="s10-hero-meta">
+      <div class="s10-meta"><span class="s10-meta-lbl">Tarif</span><span class="s10-meta-val">[Tarif] €</span></div>
+      <div class="s10-meta"><span class="s10-meta-lbl">Durée</span><span class="s10-meta-val">[Durée]</span></div>
+      <div class="s10-meta"><span class="s10-meta-lbl">Accès</span><span class="s10-meta-val">[X] min</span></div>
+    </div>
+  </div>
+  <div class="s10-hero-img"><div class="s10-hero-img-bg"></div></div>
+</section>
+
+
+<!-- ACCÈS -->
+<section class="s10-section s10-reveal" style="background:var(--gris);">
+  <div class="s10-acces-inner">
+    <div>
+      <div class="s10-geo-note">Cabinet à [Ville principale] · [X] min de [Ville secondaire]</div>
+      <div class="s10-label">Le soin près de vous</div>
+      <h2 class="s10-h2">[Nom du soin]<br><em>à [Ville secondaire]</em></h2>
+      <p class="s10-p">[Depuis recherche web — contexte géographique unique de [Ville secondaire] : quartier, ambiance, ce qui caractérise la ville. 2-3 phrases locales.]</p>
+      <p class="s10-p">[Prénom] reçoit les clientes de [Ville secondaire] dans son cabinet de [Ville principale], à [X] minutes seulement.</p>
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-lien">Réserver depuis [Ville secondaire] →</a>
+    </div>
+    <div class="s10-reveal s10-d1">
+      <div class="s10-label">Accès depuis [Ville secondaire]</div>
+      <div class="s10-acces-table">
+        <div class="s10-acces-row"><span class="s10-acces-key">Cabinet</span><span class="s10-acces-val">[Adresse — Bloc 2]</span></div>
+        <div class="s10-acces-row"><span class="s10-acces-key">Trajet</span><span class="s10-acces-val">[X] min · [Transport]</span></div>
+        <div class="s10-acces-row"><span class="s10-acces-key">Parking</span><span class="s10-acces-val">[Depuis Bloc 2]</span></div>
+        <div class="s10-acces-row"><span class="s10-acces-key">Itinéraire</span><span class="s10-acces-val"><a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Google Maps →</a></span></div>
+        <div class="s10-acces-row"><span class="s10-acces-key">Réservation</span><span class="s10-acces-val"><a href="[LIEN_RDV]" target="_blank" rel="noopener">En ligne 24h/24</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SOIN + PRATICIENNE -->
+<section class="s10-section s10-reveal">
+  <div class="s10-soin-inner">
+    <div class="s10-soin-img"><div class="s10-soin-img-bg" style="background-image:url('[URL_PHOTO_SOIN_2]')"></div></div>
+    <div>
+      <div class="s10-label">Le soin</div>
+      <h2 class="s10-h2">En quoi consiste <em>[Nom du soin] ?</em></h2>
+      <p class="s10-p">[Depuis Bloc 5 — 3 phrases MAX. Contenu unique, différent du pilier.]</p>
+      <p class="s10-p">[Depuis Bloc 0 — 1 phrase sur l'approche de la praticienne.]</p>
+      <a href="/[slug-soin]-[ville-principale]" class="s10-lien">Tout savoir sur [Soin] à [Ville principale] →</a>
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--line-md);">
+        <div class="s10-label">La praticienne</div>
+        <p class="s10-p">[Depuis Bloc 9 — 2 phrases bio courte. Expérience, certifications.]</p>
+        <a href="/[slug-a-propos]" class="s10-lien">Son parcours complet →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BÉNÉFICES (anti-cannibalisation : 3 max, lien vers pilier) -->
+<section class="s10-section s10-benefices" style="background:var(--gris);">
+  <div class="s10-inner">
+    <div class="s10-benefices-inner s10-reveal">
+      <div>
+        <div class="s10-label">Les bénéfices</div>
+        <h2 class="s10-h2">Ce que [Nom du soin]<br><em>peut vous apporter</em></h2>
+        <p class="s10-p">[Depuis Bloc 5 — phrase d'intro sur les bienfaits globaux.]</p>
+        <a href="/[slug-soin]-[ville-principale]" class="s10-lien">Découvrir tous les bienfaits →</a>
+      </div>
+      <div class="s10-benefices-list">
+        <div class="s10-benefice-item">
+          <span class="s10-benefice-num">I.</span>
+          <span class="s10-benefice-txt">[Depuis Bloc 5 — bénéfice 1 en 1 phrase courte. Concret.]</span>
+        </div>
+        <div class="s10-benefice-item">
+          <span class="s10-benefice-num">II.</span>
+          <span class="s10-benefice-txt">[Bénéfice 2 en 1 phrase courte.]</span>
+        </div>
+        <div class="s10-benefice-item">
+          <span class="s10-benefice-num">III.</span>
+          <span class="s10-benefice-txt">[Bénéfice 3 en 1 phrase courte.]</span>
+        </div>
+        <p style="font-family:var(--f-serif);font-style:italic;font-size:.78rem;color:var(--muted);padding-top:16px;border-top:1px solid var(--line);">Ces soins de bien-être ne se substituent pas à un suivi médical.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section class="s10-section">
+  <div class="s10-faq-inner">
+    <div class="s10-reveal">
+      <div class="s10-label">Questions fréquentes</div>
+      <h2 class="s10-h2">Depuis <em>[Ville secondaire]</em></h2>
+      <a href="/[slug-faq]" class="s10-lien" style="margin-top:10px;">Toutes les questions →</a>
+    </div>
+    <div class="s10-reveal s10-d1">
+      <details class="s10-item"><summary>Où trouver [Nom du soin] près de [Ville secondaire] ?</summary><div class="s10-faq-ans"><p>[Prénom] reçoit à [Ville principale], à [X] min de [Ville secondaire]. <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Itinéraire →</a></p></div></details>
+      <details class="s10-item"><summary>Quel est le trajet depuis [Ville secondaire] ?</summary><div class="s10-faq-ans"><p>[X] min en [moyen de transport]. [Adresse du cabinet — Bloc 2].</p></div></details>
+      <details class="s10-item"><summary>Quel est le tarif depuis [Ville secondaire] ?</summary><div class="s10-faq-ans"><p>[Tarif]€ · [Durée]. <a href="[LIEN_RDV]">Réserver directement →</a></p></div></details>
+      <details class="s10-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s10-faq-ans"><p>[CI depuis Bloc 5.] <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> répond à vos questions avant réservation.</p></div></details>
+      <details class="s10-item"><summary>Comment réserver depuis [Ville secondaire] ?</summary><div class="s10-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>, ou par téléphone au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="s10-cta">
+  <div class="s10-cta-inner s10-reveal">
+    <h2>[Nom du soin]<br><em>à [Ville secondaire]</em></h2>
+    <div class="s10-cta-right">
+      <p class="s10-cta-sub">[Tarif]€ · [Durée] · [X] min depuis [Ville secondaire]</p>
+      <div class="s10-cta-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s10-btn-main">Réserver ce soin</a>
+        <a href="/[slug-soin]-[ville-principale]" class="s10-btn-sec">Page [Ville principale] →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<nav class="s10-maillage" aria-label="Navigation">
+  <div class="s10-maillage-inner">
+    <span class="s10-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin]-[ville-principale]" class="s10-maillage-pill">[Soin] à [Ville principale]</a>
+    <a href="/[slug-soin-2]-[ville-principale]" class="s10-maillage-pill">[Soin 2] à [Ville principale]</a>
+    <a href="/[slug-soins]" class="s10-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-faq]" class="s10-maillage-pill">FAQ</a>
+    <a href="/[slug-a-propos]" class="s10-maillage-pill">À propos</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"Service","name":"[Nom du soin] à [Ville secondaire]","description":"[Prénom Nom] reçoit les clientes de [Ville secondaire] à [Ville principale], à [X] minutes.","url":"https://[votre-domaine].fr/[slug-soin]-[ville-secondaire]","provider":{"@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","url":"https://[votre-domaine].fr/[slug-a-propos]","address":{"@type":"PostalAddress","streetAddress":"[Adresse]","postalCode":"[Code postal]","addressLocality":"[Ville principale]","addressCountry":"FR"}},"areaServed":[{"@type":"City","name":"[Ville principale]"},{"@type":"City","name":"[Ville secondaire]"}],"offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"[LIEN_RDV]"}},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Où trouver [Nom du soin] près de [Ville secondaire] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] reçoit à [Ville principale], à [X] min de [Ville secondaire]."}},
+    {"@type":"Question","name":"Comment réserver depuis [Ville secondaire] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV] ou au [Téléphone]."}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"Soins","item":"https://[votre-domaine].fr/[slug-soins]"},
+    {"@type":"ListItem","position":3,"name":"[Soin] à [Ville principale]","item":"https://[votre-domaine].fr/[slug-soin]-[ville-principale]"},
+    {"@type":"ListItem","position":4,"name":"[Soin] à [Ville secondaire]","item":"https://[votre-domaine].fr/[slug-soin]-[ville-secondaire]"}
+  ]}
+]
+</script>
+
+<script>
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s10-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
