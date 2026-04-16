@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offrir une séance — [Prénom Nom]</title><link rel="canonical" href="https://[votre-domaine].fr/[slug-offrir]"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>:root{--noir:#0C0C0C;--blanc:#F7F5F0;--accent:#C8A96E;--accent2:#E8D5A8;--line:rgba(200,169,110,.2);--line-s:rgba(200,169,110,.08);--f-display:'Tenor Sans',Georgia,serif;--f-body:'Jost',sans-serif;--ease:cubic-bezier(.25,.46,.45,.94);}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}body{font-family:var(--f-body);font-weight:300;background:var(--noir);color:var(--blanc);overflow-x:hidden;cursor:none;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 6%;}a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.wrap{max-width:680px;width:100%;border:1px solid var(--line-s);padding:64px;}
+.s9-label{font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.s9-label::before{content:'';width:22px;height:1px;background:var(--accent);}
+h1{font-family:var(--f-display);font-size:clamp(2.4rem,6vw,5rem);line-height:.9;color:var(--blanc);letter-spacing:-.02em;margin-bottom:24px;}
+h1 em{font-style:italic;color:var(--accent2);}
+.sub{font-size:.82rem;font-weight:300;color:rgba(247,245,240,.4);line-height:2.1;margin-bottom:40px;}
+.bandes{display:flex;flex-direction:column;gap:0;}
+.bande{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line-s);}
+.bande:first-child{border-top:1px solid var(--line-s);}
+.bande-left{display:flex;flex-direction:column;gap:3px;}
+.bande-nom{font-family:var(--f-display);font-size:1rem;color:var(--blanc);}
+.bande-infos{display:flex;align-items:center;gap:12px;}
+.bande-prix{font-family:var(--f-display);font-size:.9rem;color:var(--accent);}
+.bande-sep{width:1px;height:12px;background:var(--line);}
+.bande-duree{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,245,240,.2);}
+.bande-btn{display:inline-block;background:transparent;color:var(--accent);font-family:var(--f-body);font-size:.54rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:9px 18px;border:1px solid rgba(200,169,110,.25);transition:all .3s;white-space:nowrap;flex-shrink:0;}
+.bande-btn:hover{background:var(--accent);color:var(--noir);}
+.footer{margin-top:32px;padding-top:24px;border-top:1px solid var(--line-s);display:flex;gap:0;}
+.btn-rdv{display:inline-block;background:var(--accent);color:var(--noir);font-family:var(--f-body);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 32px;border:1px solid var(--accent);transition:all .3s;flex:1;text-align:center;}
+.btn-rdv:hover{background:transparent;color:var(--accent);}
+.btn-back{display:inline-block;background:transparent;color:rgba(247,245,240,.3);font-family:var(--f-body);font-size:.6rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:14px 24px;border:1px solid rgba(247,245,240,.08);transition:all .3s;margin-left:-1px;}
+.btn-back:hover{color:var(--blanc);border-color:rgba(247,245,240,.3);}
+</style></head><body>
+<div class="cursor" id="cursor"></div>
+<div class="wrap">
+  <div class="s9-label">Cartes cadeaux</div>
+  <h1>Offrez un moment<br><em>de bien-être.</em></h1>
+  <p class="sub">Envoi immédiat · Valable 1 an · Réservation en ligne</p>
+  <div class="bandes">
+    <div class="bande"><div class="bande-left"><div class="bande-nom">[Soin 1]</div><div class="bande-infos"><span class="bande-prix">[Tarif]€</span><span class="bande-sep"></span><span class="bande-duree">[Durée]</span></div></div><a href="[URL_CARTE_CADEAU_SOIN_1]" target="_blank" rel="noopener" class="bande-btn">Offrir →</a></div>
+    <div class="bande"><div class="bande-left"><div class="bande-nom">[Soin 2]</div><div class="bande-infos"><span class="bande-prix">[Tarif]€</span><span class="bande-sep"></span><span class="bande-duree">[Durée]</span></div></div><a href="[URL_CARTE_CADEAU_SOIN_2]" target="_blank" rel="noopener" class="bande-btn">Offrir →</a></div>
+    <div class="bande"><div class="bande-left"><div class="bande-nom">[Soin 3]</div><div class="bande-infos"><span class="bande-prix">[Tarif]€</span><span class="bande-sep"></span><span class="bande-duree">[Durée]</span></div></div><a href="[URL_CARTE_CADEAU_SOIN_3]" target="_blank" rel="noopener" class="bande-btn">Offrir →</a></div>
+    <div class="bande"><div class="bande-left"><div class="bande-nom">Carte libre</div><div class="bande-infos"><span class="bande-prix">Montant libre</span></div></div><a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="bande-btn">Offrir →</a></div>
+  </div>
+  <div class="footer">
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="btn-rdv">Réserver pour moi</a>
+    <a href="/[slug-soins]" class="btn-back">← Tous les soins</a>
+  </div>
+</div>
+<script>(function(){var c=document.getElementById('cursor');if(!c)return;document.addEventListener('mousemove',function(e){c.style.left=e.clientX+'px';c.style.top=e.clientY+'px';});})();</script>
+</body></html>

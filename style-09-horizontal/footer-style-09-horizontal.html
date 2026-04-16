@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Footer — [Prénom Nom] [Titre professionnel] [Ville]</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>:root{--noir:#0C0C0C;--blanc:#F7F5F0;--accent:#C8A96E;--accent2:#E8D5A8;--line:rgba(200,169,110,.2);--line-s:rgba(200,169,110,.08);--f-display:'Tenor Sans',Georgia,serif;--f-body:'Jost',sans-serif;--max:1320px;}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}body{font-family:var(--f-body);font-weight:300;background:var(--noir);color:var(--blanc);}a{color:inherit;text-decoration:none;}
+.s9-footer{border-top:1px solid var(--line-s);padding:80px 8% 40px;}
+.s9-footer-inner{max-width:var(--max);margin:0 auto;}
+.s9-footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid var(--line-s);}
+.s9-footer-brand{display:flex;flex-direction:column;gap:16px;}
+.s9-footer-nom{font-family:var(--f-display);font-size:1.8rem;color:var(--blanc);line-height:1;}
+.s9-footer-titre{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+.s9-footer-bio{font-size:.76rem;font-weight:300;color:rgba(247,245,240,.3);line-height:2;}
+.s9-footer-socials{display:flex;gap:0;margin-top:8px;}
+.s9-social{display:inline-block;font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(200,169,110,.4);padding:7px 14px;border:1px solid rgba(200,169,110,.12);transition:all .3s;margin-right:-1px;}
+.s9-social:hover{border-color:var(--accent);color:var(--accent);}
+.s9-footer-col h3{font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.s9-footer-col h3::before{content:'';width:12px;height:1px;background:var(--accent);}
+.s9-footer-links{display:flex;flex-direction:column;gap:10px;}
+.s9-footer-link{font-size:.76rem;font-weight:300;color:rgba(247,245,240,.3);transition:color .25s;}
+.s9-footer-link:hover{color:var(--accent);}
+.s9-footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;gap:20px;flex-wrap:wrap;}
+.s9-footer-copy{font-size:.58rem;color:rgba(247,245,240,.15);letter-spacing:.06em;}
+.s9-footer-legal{display:flex;gap:16px;}
+.s9-footer-legal a{font-size:.58rem;color:rgba(247,245,240,.15);transition:color .25s;}
+.s9-footer-legal a:hover{color:rgba(247,245,240,.4);}
+.s9-schema-tag{font-family:var(--f-display);font-style:italic;font-size:.72rem;color:rgba(200,169,110,.15);}
+@media(max-width:860px){.s9-footer-top{grid-template-columns:1fr 1fr;gap:32px;}}
+@media(max-width:480px){.s9-footer-top{grid-template-columns:1fr;}}
+</style></head><body>
+<footer class="s9-footer" itemscope itemtype="https://schema.org/LocalBusiness">
+  <div class="s9-footer-inner">
+    <div class="s9-footer-top">
+      <div class="s9-footer-brand">
+        <div class="s9-footer-nom" itemprop="name">[Prénom Nom]</div>
+        <div class="s9-footer-titre" itemprop="jobTitle">[Titre professionnel] · [Ville]</div>
+        <p class="s9-footer-bio" itemprop="description">[Depuis Bloc 0 — phrase ADN courte.]</p>
+        <div class="s9-footer-socials">
+          <a href="[Instagram]" target="_blank" rel="noopener" class="s9-social">Instagram</a>
+          <a href="[Facebook]" target="_blank" rel="noopener" class="s9-social">Facebook</a>
+        </div>
+      </div>
+      <div class="s9-footer-col">
+        <h3>Soins</h3>
+        <div class="s9-footer-links">
+          <a href="/[slug-soin-1]-[ville]" class="s9-footer-link">[Soin 1] à [Ville]</a>
+          <a href="/[slug-soin-2]-[ville]" class="s9-footer-link">[Soin 2] à [Ville]</a>
+          <a href="/[slug-soin-3]-[ville]" class="s9-footer-link">[Soin 3] à [Ville]</a>
+          <a href="/[slug-soins]" class="s9-footer-link">Toutes les prestations</a>
+        </div>
+      </div>
+      <div class="s9-footer-col">
+        <h3>Informations</h3>
+        <div class="s9-footer-links">
+          <a href="/[slug-a-propos]" class="s9-footer-link">À propos</a>
+          <a href="/[slug-faq]" class="s9-footer-link">FAQ</a>
+          <a href="/[slug-offrir]" class="s9-footer-link">Cartes cadeaux</a>
+          <a href="/[slug-blog]" class="s9-footer-link">Blog</a>
+        </div>
+      </div>
+      <div class="s9-footer-col">
+        <h3>Contact</h3>
+        <div class="s9-footer-links">
+          <a href="tel:[+33XXXXXXXXX]" class="s9-footer-link" itemprop="telephone">[Téléphone]</a>
+          <a href="mailto:[email]" class="s9-footer-link" itemprop="email">[Email]</a>
+          <span class="s9-footer-link" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">[Adresse]</span>, <span itemprop="postalCode">[Code postal]</span> <span itemprop="addressLocality">[Ville]</span></span>
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-footer-link" style="color:var(--accent);">Réserver en ligne →</a>
+        </div>
+      </div>
+    </div>
+    <div class="s9-footer-bottom">
+      <span class="s9-footer-copy">© [Année] <span itemprop="name">[Prénom Nom]</span> · Tous droits réservés · <span itemprop="addressLocality">[Ville]</span></span>
+      <span class="s9-schema-tag">Construit avec Métamorphose V2 · RYS Communication</span>
+      <div class="s9-footer-legal">
+        <a href="/[slug-mentions-legales]">Mentions légales</a>
+        <a href="/[slug-politique-confidentialite]">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body></html>

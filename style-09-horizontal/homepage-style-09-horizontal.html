@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Soin principal] à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="[Titre professionnel] à [Ville]. [Bénéfice principal]. [Soin 1], [Soin 2], [Soin 3]. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/">
+<meta property="og:type" content="website"><meta property="og:title" content="[Prénom Nom] — [Titre professionnel] à [Ville]"><meta property="og:url" content="https://[votre-domaine].fr/"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noir:#0C0C0C;--blanc:#F7F5F0;--accent:#C8A96E;--accent2:#E8D5A8;
+  --muted:#6B6560;--line:rgba(200,169,110,.2);--line-s:rgba(200,169,110,.08);
+  --f-display:'Tenor Sans',Georgia,serif;--f-body:'Jost',sans-serif;
+  --max:1320px;--ease:cubic-bezier(.25,.46,.45,.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-body);font-weight:300;background:var(--noir);color:var(--blanc);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(200,169,110,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .4s var(--ease);}
+.cursor.hover{width:4px;height:4px;}
+.cursor-ring.hover{width:52px;height:52px;border-color:rgba(200,169,110,.7);}
+
+/* STICKY */
+.s9-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(12,12,12,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s9-sticky-id{font-family:var(--f-body);font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,245,240,.3);}
+.s9-sticky-id strong{color:var(--accent);font-weight:400;}
+.s9-sticky-btns{display:flex;gap:0;}
+.s9-btn-ghost{background:transparent;color:rgba(247,245,240,.3);font-family:var(--f-body);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(200,169,110,.2);transition:all .3s;display:inline-block;}
+.s9-btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.s9-btn-cta{background:var(--accent);color:var(--noir);font-family:var(--f-body);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--accent);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s9-btn-cta:hover{background:transparent;color:var(--accent);}
+@media(max-width:600px){.s9-sticky{padding:12px 20px;}.s9-sticky-id{display:none;}.s9-sticky-btns{width:100%;}.s9-btn-ghost,.s9-btn-cta{flex:1;text-align:center;}}
+
+/* HERO PLEIN ÉCRAN */
+.s9-hero{position:relative;height:100vh;min-height:600px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+.s9-hero-bg{position:absolute;inset:-10% 0;background-image:url('[URL_PHOTO_HERO]');background-size:cover;background-position:center;filter:brightness(.45) saturate(.8);will-change:transform;}
+.s9-hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,12,12,.95) 0%,rgba(12,12,12,.3) 50%,rgba(12,12,12,.1) 100%);}
+.s9-hero-inner{position:relative;z-index:2;padding:0 8% 80px;max-width:var(--max);margin:0 auto;width:100%;}
+.s9-hero-tag{font-family:var(--f-body);font-size:.56rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s var(--ease) forwards;}
+.s9-hero-tag::before{content:'';width:28px;height:1px;background:var(--accent);}
+.s9-hero h1{font-family:var(--f-display);font-size:clamp(4rem,10vw,13rem);line-height:.88;color:var(--blanc);letter-spacing:-.02em;opacity:0;animation:fadeUp 1.2s .35s var(--ease) forwards;}
+.s9-hero h1 em{font-style:italic;color:var(--accent2);}
+.s9-hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line);opacity:0;animation:fadeUp .9s .6s var(--ease) forwards;}
+.s9-hero-desc{font-size:.82rem;font-weight:300;color:rgba(247,245,240,.4);line-height:2.1;max-width:420px;}
+.s9-scroll-hint{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
+.s9-scroll-line{width:1px;height:48px;background:var(--accent);animation:scrollPulse 2s ease-in-out infinite;}
+.s9-scroll-txt{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(200,169,110,.5);writing-mode:vertical-rl;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:.6;}50%{transform:scaleY(.5);opacity:1;}}
+@media(max-width:768px){.s9-hero h1{font-size:clamp(3rem,14vw,6rem);}.s9-hero-bottom{flex-direction:column;align-items:flex-start;}.s9-scroll-hint{display:none;}}
+
+/* BASE */
+.s9-label{font-family:var(--f-body);font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.s9-label::before{content:'';width:22px;height:1px;background:var(--accent);}
+.s9-h2{font-family:var(--f-display);font-size:clamp(2.4rem,5vw,6rem);line-height:.9;color:var(--blanc);letter-spacing:-.02em;margin-bottom:20px;}
+.s9-h2 em{font-style:italic;color:var(--accent2);}
+.s9-p{font-size:.84rem;font-weight:300;color:rgba(247,245,240,.45);line-height:2.1;margin-bottom:12px;}
+
+/* ═══════════════════════════
+   S1 SOINS — SCROLL HORIZONTAL
+═══════════════════════════ */
+.s9-soins{padding:100px 0 0;}
+.s9-soins-header{max-width:var(--max);margin:0 auto;padding:0 8% 56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;}
+.s9-soins-header p{font-size:.84rem;font-weight:300;color:rgba(247,245,240,.35);line-height:2.1;}
+.s9-track-wrap{position:relative;overflow:hidden;}
+.s9-track-wrap::before{content:'';position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(90deg,var(--noir),transparent);z-index:2;pointer-events:none;}
+.s9-track-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:120px;background:linear-gradient(-90deg,var(--noir),transparent);z-index:2;pointer-events:none;}
+.s9-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 8%;cursor:grab;}
+.s9-track:active{cursor:grabbing;}
+.s9-track::-webkit-scrollbar{display:none;}
+.s9-soin{flex:0 0 420px;height:560px;position:relative;overflow:hidden;scroll-snap-align:start;border-right:1px solid var(--line-s);}
+.s9-soin:last-child{border-right:none;}
+.s9-soin-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.5) saturate(.8);transition:transform .9s var(--ease),filter .9s;}
+.s9-soin:hover .s9-soin-bg{transform:scale(1.06);filter:brightness(.35) saturate(.7);}
+.s9-soin-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,12,12,.97) 0%,rgba(12,12,12,.1) 55%);pointer-events:none;}
+.s9-soin-content{position:absolute;bottom:0;left:0;right:0;padding:32px 28px;display:flex;flex-direction:column;transition:transform .5s var(--ease);}
+.s9-soin:hover .s9-soin-content{transform:translateY(-8px);}
+.s9-soin-num{font-family:var(--f-display);font-size:5rem;line-height:1;color:rgba(200,169,110,.06);position:absolute;top:20px;right:20px;pointer-events:none;}
+.s9-soin-index{font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,169,110,.5);margin-bottom:10px;}
+.s9-soin-nom{font-family:var(--f-display);font-size:1.6rem;color:var(--blanc);margin-bottom:10px;line-height:1.1;}
+.s9-soin-desc{font-size:.76rem;font-weight:300;color:rgba(247,245,240,.4);line-height:1.9;max-height:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .4s;opacity:0;}
+.s9-soin:hover .s9-soin-desc{max-height:80px;opacity:1;}
+.s9-soin-footer{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);}
+.s9-soin-prix{font-family:var(--f-display);font-size:1.1rem;color:var(--accent);}
+.s9-soin-arrow{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(200,169,110,.4);transition:all .3s;}
+.s9-soin:hover .s9-soin-arrow{color:var(--accent);transform:translateX(4px);}
+.s9-track-nav{max-width:var(--max);margin:0 auto;padding:24px 8% 80px;display:flex;align-items:center;justify-content:space-between;}
+.s9-track-dots{display:flex;gap:8px;}
+.s9-dot{width:24px;height:2px;background:rgba(200,169,110,.2);transition:all .3s;cursor:pointer;}
+.s9-dot.active{background:var(--accent);width:40px;}
+.s9-track-arrows{display:flex;gap:0;}
+.s9-arrow-btn{width:44px;height:44px;border:1px solid rgba(200,169,110,.2);background:transparent;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .3s;color:rgba(200,169,110,.5);font-size:.9rem;}
+.s9-arrow-btn:hover{border-color:var(--accent);color:var(--accent);}
+.s9-arrow-btn:last-child{margin-left:-1px;}
+@media(max-width:860px){.s9-soins-header{grid-template-columns:1fr;}.s9-soin{flex:0 0 85vw;height:480px;}}
+
+/* ═══════════════════════════
+   S2 ACCROCHE PLEIN ÉCRAN
+═══════════════════════════ */
+.s9-accroche{position:relative;min-height:70vh;display:flex;align-items:center;overflow:hidden;}
+.s9-accroche-bg{position:absolute;inset:-10% 0;background-image:url('[URL_PHOTO_ACCROCHE]');background-size:cover;background-position:center;filter:brightness(.2) saturate(.6);}
+.s9-accroche-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;padding:80px 8%;}
+.s9-citation{font-family:var(--f-display);font-size:clamp(1.8rem,3.5vw,4rem);line-height:1.2;color:var(--blanc);max-width:820px;}
+.s9-citation em{font-style:italic;color:var(--accent2);}
+.s9-citation-meta{margin-top:32px;padding-top:24px;border-top:1px solid var(--line);display:flex;align-items:center;gap:24px;}
+.s9-citation-nom{font-size:.82rem;font-weight:400;color:rgba(247,245,240,.7);}
+.s9-citation-titre{font-size:.72rem;font-weight:300;color:rgba(247,245,240,.3);letter-spacing:.06em;}
+
+/* ═══════════════════════════
+   S3 PRATICIENNE SPLIT
+═══════════════════════════ */
+.s9-prat{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;}
+.s9-prat-img{position:relative;overflow:hidden;}
+.s9-prat-photo{position:absolute;inset:0;background-image:url('[URL_PHOTO_PORTRAIT]');background-size:cover;background-position:center top;filter:brightness(.7) saturate(.85);transition:transform 12s var(--ease);}
+.s9-prat:hover .s9-prat-photo{transform:scale(1.04);}
+.s9-prat-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,12,12,0) 0%,rgba(12,12,12,.5) 100%);}
+.s9-prat-txt{background:var(--noir);border-left:1px solid var(--line-s);padding:80px 72px;display:flex;flex-direction:column;justify-content:center;}
+.s9-prat-nom{font-family:var(--f-display);font-size:clamp(2.2rem,4vw,5rem);line-height:.9;color:var(--blanc);margin-bottom:8px;letter-spacing:-.02em;}
+.s9-prat-nom em{font-style:italic;color:var(--accent2);}
+.s9-prat-titre{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;}
+.s9-prat-stats{display:flex;gap:0;border-top:1px solid var(--line-s);margin-top:28px;padding-top:28px;}
+.s9-stat{flex:1;padding-right:24px;border-right:1px solid var(--line-s);}
+.s9-stat:last-child{border-right:none;padding-right:0;padding-left:24px;}
+.s9-stat-num{font-family:var(--f-display);font-size:2.2rem;color:var(--accent);line-height:1;}
+.s9-stat-lbl{font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,240,.25);margin-top:4px;}
+.s9-prat-certifs{margin-top:24px;display:flex;flex-direction:column;gap:0;}
+.s9-certif{font-size:.76rem;font-weight:300;color:rgba(247,245,240,.35);padding:8px 0;border-bottom:1px solid var(--line-s);}
+.s9-certif:last-child{border-bottom:none;}
+.s9-certif::before{content:'→ ';color:var(--accent);}
+@media(max-width:860px){.s9-prat{grid-template-columns:1fr;min-height:auto;}.s9-prat-img{min-height:60vw;}.s9-prat-txt{padding:56px 6%;border-left:none;border-top:1px solid var(--line-s);}}
+
+/* ═══════════════════════════
+   MARQUEE
+═══════════════════════════ */
+.s9-marquee{background:var(--accent);padding:15px 0;overflow:hidden;border-top:1px solid rgba(200,169,110,.4);}
+.s9-marquee-track{display:flex;animation:marquee 26s linear infinite;width:max-content;}
+.s9-marquee-item{display:flex;align-items:center;gap:24px;padding:0 32px;white-space:nowrap;font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--noir);}
+.s9-marquee-item strong{font-style:normal;}
+.s9-marquee-sep{font-size:.8rem;color:rgba(12,12,12,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ═══════════════════════════
+   S4 TÉMOIGNAGES
+═══════════════════════════ */
+.s9-temo{background:var(--noir);padding:100px 8%;border-top:1px solid var(--line-s);}
+.s9-temo-inner{max-width:var(--max);margin:0 auto;}
+.s9-temo-header{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px;padding-bottom:40px;border-bottom:1px solid var(--line-s);}
+.s9-temo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s9-temo-card{padding:36px 32px;border-right:1px solid var(--line-s);}
+.s9-temo-card:last-child{border-right:none;}
+.s9-stars{display:flex;gap:4px;margin-bottom:20px;}
+.s9-star{width:10px;height:10px;background:var(--accent);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s9-temo-txt{font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--blanc);line-height:1.8;margin-bottom:24px;}
+.s9-temo-sep{width:20px;height:1px;background:var(--accent);margin-bottom:14px;}
+.s9-temo-author{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,245,240,.3);}
+@media(max-width:760px){.s9-temo-header{grid-template-columns:1fr;}.s9-temo-grid{grid-template-columns:1fr;}.s9-temo-card{border-right:none;border-bottom:1px solid var(--line-s);}.s9-temo-card:last-child{border-bottom:none;}}
+
+/* ═══════════════════════════
+   S5 INFOS PRATIQUES
+═══════════════════════════ */
+.s9-infos{padding:100px 8%;border-top:1px solid var(--line-s);}
+.s9-infos-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+.s9-infos-col{padding:0 48px;border-right:1px solid var(--line-s);}
+.s9-infos-col:first-child{padding-left:0;}
+.s9-infos-col:last-child{border-right:none;}
+.s9-infos-title{font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.s9-infos-title::before{content:'';width:16px;height:1px;background:var(--accent);}
+.s9-infos-item{display:flex;flex-direction:column;gap:2px;padding:12px 0;border-bottom:1px solid var(--line-s);}
+.s9-infos-item:last-child{border-bottom:none;}
+.s9-infos-lbl{font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,240,.2);}
+.s9-infos-val{font-size:.8rem;font-weight:300;color:rgba(247,245,240,.6);}
+.s9-infos-val a{color:var(--accent);}
+@media(max-width:768px){.s9-infos-inner{grid-template-columns:1fr;}.s9-infos-col{border-right:none;border-bottom:1px solid var(--line-s);padding:40px 0;}.s9-infos-col:last-child{border-bottom:none;}}
+
+/* ═══════════════════════════
+   S6 FAQ
+═══════════════════════════ */
+.s9-faq{background:var(--noir);padding:100px 8%;border-top:1px solid var(--line-s);}
+.s9-faq-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start;}
+details.s9-faq-item{border-bottom:1px solid var(--line-s);}
+details.s9-faq-item:first-of-type{border-top:1px solid var(--line-s);}
+details.s9-faq-item summary{padding:20px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--blanc);line-height:1.5;transition:color .2s;}
+details.s9-faq-item summary::-webkit-details-marker{display:none;}
+details.s9-faq-item summary::after{content:'＋';font-family:var(--f-body);font-size:1.1rem;color:var(--accent);flex-shrink:0;transition:transform .35s;font-style:normal;font-weight:300;}
+details.s9-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s9-faq-item[open] summary{color:var(--accent2);}
+.s9-faq-ans{padding:0 0 20px;font-size:.82rem;font-weight:300;color:rgba(247,245,240,.4);line-height:2.1;}
+.s9-faq-ans a{color:var(--accent);}
+@media(max-width:768px){.s9-faq-inner{grid-template-columns:1fr;gap:40px;}}
+
+/* CTA */
+.s9-cta{position:relative;min-height:70vh;display:flex;align-items:center;overflow:hidden;padding:0 8%;}
+.s9-cta-bg{position:absolute;inset:0;background-image:url('[URL_PHOTO_CTA]');background-size:cover;background-position:center;filter:brightness(.18) saturate(.6);}
+.s9-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s9-cta-h2{font-family:var(--f-display);font-size:clamp(3rem,7vw,9rem);line-height:.88;color:var(--blanc);letter-spacing:-.02em;}
+.s9-cta-h2 em{font-style:italic;color:var(--accent2);}
+.s9-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s9-cta-sub{font-size:.82rem;font-weight:300;color:rgba(247,245,240,.3);line-height:2.1;}
+.s9-cta-btns{display:flex;flex-direction:column;gap:0;width:fit-content;}
+.s9-btn-main{display:block;background:var(--accent);color:var(--noir);font-family:var(--f-body);font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--accent);transition:all .35s;text-align:center;}
+.s9-btn-main:hover{background:transparent;color:var(--accent);}
+.s9-btn-sub{display:block;background:transparent;color:rgba(247,245,240,.3);font-family:var(--f-body);font-size:.62rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid rgba(247,245,240,.1);transition:all .35s;text-align:center;margin-top:-1px;}
+.s9-btn-sub:hover{border-color:rgba(247,245,240,.4);color:var(--blanc);}
+@media(max-width:768px){.s9-cta-inner{grid-template-columns:1fr;gap:40px;}}
+
+/* MAILLAGE */
+.s9-maillage{background:var(--noir);padding:32px 8%;border-top:1px solid var(--line-s);}
+.s9-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.s9-maillage-lbl{font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,169,110,.25);margin-right:8px;}
+.s9-maillage-pill{display:inline-block;padding:5px 14px;border:1px solid rgba(200,169,110,.12);color:rgba(247,245,240,.25);font-size:.62rem;font-weight:300;transition:all .25s;}
+.s9-maillage-pill:hover{border-color:var(--accent);color:var(--accent);}
+
+.s9-reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.s9-reveal.in{opacity:1;transform:none;}
+.s9-d1{transition-delay:.1s;}.s9-d2{transition-delay:.2s;}.s9-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="s9-sticky">
+  <div class="s9-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s9-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-btn-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="s9-hero" aria-label="[Titre professionnel] à [Ville]">
+  <div class="s9-hero-bg" id="heroBg"></div>
+  <div class="s9-hero-overlay"></div>
+  <div class="s9-hero-inner">
+    <div class="s9-hero-tag">[Titre professionnel] · [Ville]</div>
+    <h1>Réservez<br>votre <em>[soin<br>principal]</em><br>à [Ville]</h1>
+    <div class="s9-hero-bottom">
+      <p class="s9-hero-desc">[Depuis Bloc 0 ADN — accroche sensorielle en 1 phrase.]</p>
+      <div class="s9-scroll-hint" aria-hidden="true">
+        <div class="s9-scroll-line"></div>
+        <span class="s9-scroll-txt">Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S1 SOINS SCROLL HORIZONTAL -->
+<div class="s9-soins" id="soins">
+  <div class="s9-soins-header s9-reveal">
+    <div>
+      <div class="s9-label">Les soins à [Ville]</div>
+      <h2 class="s9-h2">Prenez soin<br><em>de vous.</em></h2>
+    </div>
+    <p>[Depuis Bloc 5 — intro sur l'offre en 1-2 phrases dans les mots de la praticienne.]</p>
+  </div>
+  <div class="s9-track-wrap">
+    <div class="s9-track" id="soinsTrack">
+      <a href="/[slug-soin-1]-[ville]" class="s9-soin">
+        <div class="s9-soin-bg" style="background-image:url('[URL_PHOTO_SOIN_1]')"></div>
+        <div class="s9-soin-overlay"></div>
+        <div class="s9-soin-num" aria-hidden="true">I</div>
+        <div class="s9-soin-content">
+          <span class="s9-soin-index">Soin 01</span>
+          <div class="s9-soin-nom">[Nom du soin 1]</div>
+          <p class="s9-soin-desc">[Accroche sensorielle depuis Bloc 5.]</p>
+          <div class="s9-soin-footer">
+            <span class="s9-soin-prix">[Tarif] €</span>
+            <span class="s9-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/[slug-soin-2]-[ville]" class="s9-soin">
+        <div class="s9-soin-bg" style="background-image:url('[URL_PHOTO_SOIN_2]')"></div>
+        <div class="s9-soin-overlay"></div>
+        <div class="s9-soin-num" aria-hidden="true">II</div>
+        <div class="s9-soin-content">
+          <span class="s9-soin-index">Soin 02</span>
+          <div class="s9-soin-nom">[Nom du soin 2]</div>
+          <p class="s9-soin-desc">[Accroche.]</p>
+          <div class="s9-soin-footer">
+            <span class="s9-soin-prix">[Tarif] €</span>
+            <span class="s9-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s9-soin">
+        <div class="s9-soin-bg" style="background-image:url('[URL_PHOTO_SOIN_3]')"></div>
+        <div class="s9-soin-overlay"></div>
+        <div class="s9-soin-num" aria-hidden="true">III</div>
+        <div class="s9-soin-content">
+          <span class="s9-soin-index">Soin 03</span>
+          <div class="s9-soin-nom">[Nom du soin 3]</div>
+          <p class="s9-soin-desc">[Accroche.]</p>
+          <div class="s9-soin-footer">
+            <span class="s9-soin-prix">[Tarif] €</span>
+            <span class="s9-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s9-soin">
+        <div class="s9-soin-bg" style="background-image:url('[URL_PHOTO_SOIN_4]')"></div>
+        <div class="s9-soin-overlay"></div>
+        <div class="s9-soin-num" aria-hidden="true">IV</div>
+        <div class="s9-soin-content">
+          <span class="s9-soin-index">Soin 04</span>
+          <div class="s9-soin-nom">[Nom du soin 4]</div>
+          <p class="s9-soin-desc">[Accroche.]</p>
+          <div class="s9-soin-footer">
+            <span class="s9-soin-prix">[Tarif] €</span>
+            <span class="s9-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="s9-track-nav">
+    <div class="s9-track-dots" id="trackDots">
+      <div class="s9-dot active" onclick="scrollToSoin(0)"></div>
+      <div class="s9-dot" onclick="scrollToSoin(1)"></div>
+      <div class="s9-dot" onclick="scrollToSoin(2)"></div>
+      <div class="s9-dot" onclick="scrollToSoin(3)"></div>
+    </div>
+    <div class="s9-track-arrows">
+      <button class="s9-arrow-btn" onclick="slideTrack(-1)" aria-label="Précédent">←</button>
+      <button class="s9-arrow-btn" onclick="slideTrack(1)" aria-label="Suivant">→</button>
+    </div>
+  </div>
+</div>
+
+<!-- S2 ACCROCHE -->
+<div class="s9-accroche s9-reveal">
+  <div class="s9-accroche-bg" style="background-image:url('[URL_PHOTO_ACCROCHE]')"></div>
+  <div class="s9-accroche-inner">
+    <p class="s9-citation">« <em>[Depuis Bloc 0 — citation ou phrase ADN principale, sensoriellement forte.]</em> »</p>
+    <div class="s9-citation-meta">
+      <div>
+        <div class="s9-citation-nom">[Prénom Nom]</div>
+        <div class="s9-citation-titre">[Titre professionnel] · [Ville] depuis [X] ans</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 PRATICIENNE -->
+<div class="s9-prat s9-reveal">
+  <div class="s9-prat-img">
+    <div class="s9-prat-photo"></div>
+    <div class="s9-prat-overlay"></div>
+  </div>
+  <div class="s9-prat-txt">
+    <div class="s9-label">La praticienne</div>
+    <div class="s9-prat-nom">[Prénom<br><em>Nom]</em></div>
+    <div class="s9-prat-titre">[Titre professionnel] · [Ville]</div>
+    <p class="s9-p">[Depuis Bloc 9 — bio courte en 2 phrases, personnelle.]</p>
+    <p class="s9-p">[Depuis Bloc 0 "Ce que je fais différemment" — 1 phrase différenciante.]</p>
+    <div class="s9-prat-certifs">
+      <div class="s9-certif">[Formation 1 — Bloc 9]</div>
+      <div class="s9-certif">[Formation 2 — Bloc 9]</div>
+      <div class="s9-certif">[Formation 3 — Bloc 9]</div>
+    </div>
+    <div class="s9-prat-stats">
+      <div class="s9-stat"><div class="s9-stat-num">[X]+</div><div class="s9-stat-lbl">Années</div></div>
+      <div class="s9-stat"><div class="s9-stat-num">[X]+</div><div class="s9-stat-lbl">Clientes</div></div>
+      <div class="s9-stat"><div class="s9-stat-num">[X.X]★</div><div class="s9-stat-lbl">Google</div></div>
+    </div>
+    <a href="/[slug-a-propos]" style="display:inline-block;background:transparent;color:var(--accent);font-family:var(--f-body);font-size:.6rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(200,169,110,.2);transition:all .35s;text-decoration:none;margin-top:24px;width:fit-content;">Mon parcours complet →</a>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="s9-marquee" aria-hidden="true">
+  <div class="s9-marquee-track">
+    <div class="s9-marquee-item"><strong>[Prénom Nom]</strong><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item">[Titre professionnel]<span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><em>[Soin 1]</em><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><strong>[Ville]</strong><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item">[Valeur 1]<span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><em>[Valeur 2]</em><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><strong>[Prénom Nom]</strong><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item">[Titre professionnel]<span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><em>[Soin 1]</em><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><strong>[Ville]</strong><span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item">[Valeur 1]<span class="s9-marquee-sep">·</span></div>
+    <div class="s9-marquee-item"><em>[Valeur 2]</em><span class="s9-marquee-sep">·</span></div>
+  </div>
+</div>
+
+<!-- S4 TÉMOIGNAGES -->
+<div class="s9-temo s9-reveal">
+  <div class="s9-temo-inner">
+    <div class="s9-temo-header">
+      <div>
+        <div class="s9-label">Témoignages</div>
+        <h2 class="s9-h2">Ce qu'elles disent<br><em>de [Prénom]</em></h2>
+      </div>
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:var(--accent);font-family:var(--f-body);font-size:.6rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(200,169,110,.2);transition:all .35s;text-decoration:none;width:fit-content;align-self:flex-end;">[X.X] ★ · Avis Google →</a>
+    </div>
+    <div class="s9-temo-grid">
+      <article class="s9-temo-card s9-reveal s9-d1"><div class="s9-stars"><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span></div><p class="s9-temo-txt">« [Témoignage 1 — Bloc 11.] »</p><div class="s9-temo-sep"></div><span class="s9-temo-author">[Prénom N.] · [Soin]</span></article>
+      <article class="s9-temo-card s9-reveal s9-d2"><div class="s9-stars"><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span></div><p class="s9-temo-txt">« [Témoignage 2.] »</p><div class="s9-temo-sep"></div><span class="s9-temo-author">[Prénom N.] · [Soin]</span></article>
+      <article class="s9-temo-card s9-reveal s9-d3"><div class="s9-stars"><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span><span class="s9-star"></span></div><p class="s9-temo-txt">« [Témoignage 3.] »</p><div class="s9-temo-sep"></div><span class="s9-temo-author">[Prénom N.] · [Soin]</span></article>
+    </div>
+  </div>
+</div>
+
+<!-- S5 INFOS -->
+<div class="s9-infos s9-reveal">
+  <div class="s9-infos-inner">
+    <div class="s9-infos-col">
+      <div class="s9-infos-title">Cabinet</div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Adresse</span><span class="s9-infos-val">[Adresse depuis Bloc 2]</span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Téléphone</span><span class="s9-infos-val"><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a></span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Email</span><span class="s9-infos-val"><a href="mailto:[email]">[Email]</a></span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Parking</span><span class="s9-infos-val">[Depuis Bloc 2]</span></div>
+    </div>
+    <div class="s9-infos-col">
+      <div class="s9-infos-title">Horaires</div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">[Jours 1]</span><span class="s9-infos-val">[Horaire — Bloc 10]</span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">[Jours 2]</span><span class="s9-infos-val">[Horaire — Bloc 10]</span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">[Jours 3]</span><span class="s9-infos-val">[Horaire — Bloc 10]</span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Réservation</span><span class="s9-infos-val"><a href="[LIEN_RDV]" target="_blank" rel="noopener">En ligne 24h/24</a></span></div>
+    </div>
+    <div class="s9-infos-col">
+      <div class="s9-infos-title">Itinéraire</div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Google Maps</span><span class="s9-infos-val"><a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir l'itinéraire →</a></span></div>
+      <div class="s9-infos-item"><span class="s9-infos-lbl">Avis Google</span><span class="s9-infos-val"><a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener">[X.X] ★ · [X] avis</a></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- S6 FAQ -->
+<div class="s9-faq">
+  <div class="s9-faq-inner">
+    <div class="s9-reveal">
+      <div class="s9-label">Questions fréquentes</div>
+      <h2 class="s9-h2" style="margin-bottom:24px;">Tout savoir<br><em>avant de réserver</em></h2>
+      <a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--accent);font-family:var(--f-body);font-size:.6rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;padding:14px 28px;border:1px solid rgba(200,169,110,.2);transition:all .35s;text-decoration:none;margin-top:8px;">Toutes les questions</a>
+    </div>
+    <div class="s9-reveal s9-d1">
+      <details class="s9-faq-item"><summary>Comment réserver votre [Soin principal] à [Ville] ?</summary><div class="s9-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s9-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s9-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+      <details class="s9-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s9-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée].</p></div></details>
+      <details class="s9-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s9-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez <a href="tel:[+33XXXXXXXXX]">[Prénom]</a>.</p></div></details>
+      <details class="s9-faq-item"><summary>Comment offrir une séance en cadeau à [Ville] ?</summary><div class="s9-faq-ans"><p>Carte cadeau sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code envoyé immédiatement. Valable 1 an.</p></div></details>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="s9-cta">
+  <div class="s9-cta-bg" style="background-image:url('[URL_PHOTO_CTA]')"></div>
+  <div class="s9-cta-inner s9-reveal">
+    <h2 class="s9-cta-h2">Prenez<br>soin de<br><em>vous.</em></h2>
+    <div class="s9-cta-right">
+      <p class="s9-cta-sub">[Ville] · [Soin 1] · [Soin 2] · [Soin 3]<br>Réservation en ligne · 24h/24</p>
+      <div class="s9-cta-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-btn-main">Prendre rendez-vous</a>
+        <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-btn-sub">Offrir une séance</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<nav class="s9-maillage" aria-label="Navigation thématique">
+  <div class="s9-maillage-inner">
+    <span class="s9-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin-1]-[ville]" class="s9-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s9-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soins]" class="s9-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-a-propos]" class="s9-maillage-pill">À propos</a>
+    <a href="/[slug-faq]" class="s9-maillage-pill">FAQ</a>
+    <a href="/[slug-offrir]" class="s9-maillage-pill">Cartes cadeaux</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"LocalBusiness","name":"[Prénom Nom]","description":"[Depuis Bloc 0 ADN]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","email":"[email]","image":"[URL_PHOTO_PORTRAIT]","priceRange":"[Tarif min]€ – [Tarif max]€","address":{"@type":"PostalAddress","streetAddress":"[Adresse]","postalCode":"[Code postal]","addressLocality":"[Ville]","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":"[Latitude]","longitude":"[Longitude]"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["[Jours]"],"opens":"[HH:MM]","closes":"[HH:MM]"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"},"sameAs":["[Instagram]","[Facebook]","[Fiche Google]"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment réserver [Soin principal] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},{"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€."}}]}]</script>
+
+<script>
+(function(){
+  var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');
+  if(!c||!r)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,details summary').forEach(function(el){
+    el.addEventListener('mouseenter',function(){c.classList.add('hover');r.classList.add('hover');});
+    el.addEventListener('mouseleave',function(){c.classList.remove('hover');r.classList.remove('hover');});
+  });
+})();
+
+(function(){
+  var bg=document.getElementById('heroBg');
+  if(!bg)return;
+  function onScroll(){bg.style.transform='translateY('+window.pageYOffset*.4+'px)';}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+
+var trackEl=document.getElementById('soinsTrack');
+function slideTrack(dir){
+  if(!trackEl)return;
+  trackEl.scrollBy({left:dir*420,behavior:'smooth'});
+}
+function scrollToSoin(idx){
+  if(!trackEl)return;
+  trackEl.scrollTo({left:idx*420,behavior:'smooth'});
+}
+if(trackEl){
+  var dots=document.querySelectorAll('.s9-dot');
+  trackEl.addEventListener('scroll',function(){
+    var idx=Math.round(trackEl.scrollLeft/420);
+    dots.forEach(function(d,i){d.classList.toggle('active',i===idx);});
+  },{passive:true});
+  trackEl.addEventListener('mousedown',function(e){
+    var startX=e.pageX,scrollLeft=trackEl.scrollLeft,isDragging=true;
+    document.addEventListener('mousemove',function drag(ev){if(!isDragging)return;trackEl.scrollLeft=scrollLeft-(ev.pageX-startX);});
+    document.addEventListener('mouseup',function(){isDragging=false;},{once:true});
+  });
+}
+
+(function(){
+  var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});
+  document.querySelectorAll('.s9-reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

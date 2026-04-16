@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ — [Titre professionnel] à [Ville] · [Prénom Nom]</title>
+<meta name="description" content="Toutes vos questions sur [Soin 1], [Soin 2] à [Ville]. Tarifs, durées, contre-indications, réservation. [Prénom Nom], [Titre professionnel].">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-faq]">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--noir:#0C0C0C;--blanc:#F7F5F0;--accent:#C8A96E;--accent2:#E8D5A8;--muted:#6B6560;--line:rgba(200,169,110,.2);--line-s:rgba(200,169,110,.08);--f-display:'Tenor Sans',Georgia,serif;--f-body:'Jost',sans-serif;--max:1320px;--ease:cubic-bezier(.25,.46,.45,.94);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-body);font-weight:300;background:var(--noir);color:var(--blanc);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(200,169,110,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .4s var(--ease);}
+.s9-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(12,12,12,.9);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s9-sticky-id{font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,245,240,.3);}
+.s9-sticky-id strong{color:var(--accent);font-weight:400;}
+.s9-sticky-btns{display:flex;gap:0;}
+.s9-btn-ghost{background:transparent;color:rgba(247,245,240,.3);font-family:var(--f-body);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(200,169,110,.2);transition:all .3s;display:inline-block;}
+.s9-btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.s9-btn-cta{background:var(--accent);color:var(--noir);font-family:var(--f-body);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--accent);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s9-btn-cta:hover{background:transparent;color:var(--accent);}
+@media(max-width:600px){.s9-sticky{padding:12px 20px;}.s9-sticky-id{display:none;}.s9-sticky-btns{width:100%;}.s9-btn-ghost,.s9-btn-cta{flex:1;text-align:center;}}
+.s9-label{font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.s9-label::before{content:'';width:22px;height:1px;background:var(--accent);}
+.s9-h2{font-family:var(--f-display);font-size:clamp(2.4rem,5vw,6rem);line-height:.9;color:var(--blanc);letter-spacing:-.02em;margin-bottom:20px;}
+.s9-h2 em{font-style:italic;color:var(--accent2);}
+.s9-p{font-size:.84rem;font-weight:300;color:rgba(247,245,240,.45);line-height:2.1;margin-bottom:12px;}
+
+/* HERO */
+.s9-hero{padding:120px 8% 80px;border-bottom:1px solid var(--line-s);}
+.s9-hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;}
+.s9-breadcrumb{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,240,.2);margin-bottom:32px;display:flex;gap:8px;}
+.s9-breadcrumb a:hover{color:var(--accent);}
+.s9-hero-num{font-family:var(--f-display);font-size:clamp(6rem,15vw,18rem);line-height:1;color:rgba(200,169,110,.04);text-align:right;letter-spacing:-.05em;}
+@media(max-width:768px){.s9-hero-inner{grid-template-columns:1fr;gap:20px;}.s9-hero-num{display:none;}}
+
+/* FAQ */
+.s9-faq-section{padding:0 8% 100px;}
+.s9-faq-inner{max-width:var(--max);margin:0 auto;}
+.s9-faq-cat{margin-bottom:60px;}
+.s9-faq-cat-title{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:0;padding:20px 0;border-bottom:1px solid var(--line-s);display:flex;align-items:center;gap:12px;}
+.s9-faq-cat-title::before{content:'';width:16px;height:1px;background:var(--accent);}
+details.s9-faq-item{border-bottom:1px solid var(--line-s);}
+details.s9-faq-item summary{padding:22px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-display);font-style:italic;font-size:1rem;color:var(--blanc);line-height:1.5;transition:color .2s;}
+details.s9-faq-item summary::-webkit-details-marker{display:none;}
+details.s9-faq-item summary::after{content:'＋';font-family:var(--f-body);font-size:1.1rem;color:var(--accent);flex-shrink:0;transition:transform .35s;font-style:normal;font-weight:300;}
+details.s9-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s9-faq-item[open] summary{color:var(--accent2);}
+.s9-faq-ans{padding:0 0 22px;font-size:.82rem;font-weight:300;color:rgba(247,245,240,.4);line-height:2.1;}
+.s9-faq-ans a{color:var(--accent);}
+
+/* CTA */
+.s9-cta-band{background:var(--accent);padding:60px 8%;}
+.s9-cta-band-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.s9-cta-band h2{font-family:var(--f-display);font-size:clamp(2rem,4vw,4rem);color:var(--noir);line-height:.95;letter-spacing:-.02em;}
+.s9-cta-band h2 em{font-style:italic;}
+.s9-cta-band-btns{display:flex;gap:0;flex-shrink:0;}
+.s9-cta-dark{display:inline-block;background:var(--noir);color:var(--accent);font-family:var(--f-body);font-size:.62rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:16px 36px;border:1px solid var(--noir);transition:all .35s;}
+.s9-cta-dark:hover{background:transparent;color:var(--noir);border-color:var(--noir);}
+.s9-cta-ghost-dark{display:inline-block;background:transparent;color:var(--noir);font-family:var(--f-body);font-size:.62rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:16px 28px;border:1px solid rgba(12,12,12,.3);transition:all .35s;margin-left:-1px;}
+.s9-cta-ghost-dark:hover{border-color:var(--noir);}
+
+.s9-maillage{padding:32px 8%;border-top:1px solid var(--line-s);}
+.s9-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.s9-maillage-lbl{font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,169,110,.25);margin-right:8px;}
+.s9-maillage-pill{display:inline-block;padding:5px 14px;border:1px solid rgba(200,169,110,.12);color:rgba(247,245,240,.25);font-size:.62rem;font-weight:300;transition:all .25s;}
+.s9-maillage-pill:hover{border-color:var(--accent);color:var(--accent);}
+
+.s9-reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.s9-reveal.in{opacity:1;transform:none;}
+.s9-d1{transition-delay:.1s;}.s9-d2{transition-delay:.2s;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="s9-sticky">
+  <div class="s9-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s9-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-btn-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+<main>
+<div class="s9-hero">
+  <div class="s9-hero-inner">
+    <div>
+      <nav class="s9-breadcrumb"><a href="/">Accueil</a><span>›</span><span>FAQ</span></nav>
+      <div class="s9-label">Questions fréquentes</div>
+      <h1 class="s9-h2">Tout savoir<br><em>avant de réserver</em></h1>
+      <p class="s9-p">[Prénom Nom] · [Titre professionnel] à [Ville]</p>
+    </div>
+    <div class="s9-hero-num" aria-hidden="true">?</div>
+  </div>
+</div>
+
+<div class="s9-faq-section s9-reveal">
+  <div class="s9-faq-inner">
+
+    <div class="s9-faq-cat">
+      <div class="s9-faq-cat-title">Réservation & tarifs</div>
+      <details class="s9-faq-item"><summary>Comment réserver une séance à [Ville] ?</summary><div class="s9-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>, ou par téléphone au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s9-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s9-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée]. [Soin 3] : [Tarif]€ · [Durée].</p></div></details>
+      <details class="s9-faq-item"><summary>Puis-je annuler ou déplacer mon rendez-vous ?</summary><div class="s9-faq-ans"><p>[Politique d'annulation depuis Bloc 6 ou à préciser.]</p></div></details>
+      <details class="s9-faq-item"><summary>Comment offrir une séance en cadeau ?</summary><div class="s9-faq-ans"><p>Carte cadeau disponible sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Envoi immédiat. Valable 1 an.</p></div></details>
+    </div>
+
+    <div class="s9-faq-cat">
+      <div class="s9-faq-cat-title">Les soins</div>
+      <details class="s9-faq-item"><summary>En quoi consiste [Soin 1] ?</summary><div class="s9-faq-ans"><p>[Description depuis Bloc 5.]</p></div></details>
+      <details class="s9-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s9-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> avant de réserver.</p></div></details>
+      <details class="s9-faq-item"><summary>Ces soins se substituent-ils à un suivi médical ?</summary><div class="s9-faq-ans"><p>Non. Ces soins de bien-être sont complémentaires à un suivi médical et ne le remplacent pas.</p></div></details>
+    </div>
+
+    <div class="s9-faq-cat">
+      <div class="s9-faq-cat-title">Cabinet & accès</div>
+      <details class="s9-faq-item"><summary>Où se trouve le cabinet à [Ville] ?</summary><div class="s9-faq-ans"><p>[Adresse depuis Bloc 2.] <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir l'itinéraire →</a></p></div></details>
+      <details class="s9-faq-item"><summary>Y a-t-il un parking ?</summary><div class="s9-faq-ans"><p>[Info parking depuis Bloc 2.]</p></div></details>
+      <details class="s9-faq-item"><summary>Quels sont les horaires ?</summary><div class="s9-faq-ans"><p>[Horaires depuis Bloc 10.]</p></div></details>
+    </div>
+
+  </div>
+</div>
+
+<div class="s9-cta-band s9-reveal">
+  <div class="s9-cta-band-inner">
+    <h2>Prête à<br><em>réserver ?</em></h2>
+    <div class="s9-cta-band-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-cta-dark">Prendre rendez-vous</a>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-cta-ghost-dark">Offrir →</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<nav class="s9-maillage">
+  <div class="s9-maillage-inner">
+    <span class="s9-maillage-lbl">Explorer</span>
+    <a href="/" class="s9-maillage-pill">Accueil</a>
+    <a href="/[slug-soins]" class="s9-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-a-propos]" class="s9-maillage-pill">À propos</a>
+    <a href="/[slug-offrir]" class="s9-maillage-pill">Cartes cadeaux</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment réserver une séance à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV] ou au [Téléphone]."}},{"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€."}},{"@type":"Question","name":"Où se trouve le cabinet à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Adresse]."}}]}</script>
+<script>
+(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s9-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

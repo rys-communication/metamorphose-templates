@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Carte cadeau [Titre professionnel] à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="Offrez une séance de [Soin 1] ou [Soin 2] à [Ville]. Carte cadeau [Prénom Nom], [Titre professionnel]. Envoi immédiat. Valable 1 an.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-offrir]">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--noir:#0C0C0C;--blanc:#F7F5F0;--accent:#C8A96E;--accent2:#E8D5A8;--line:rgba(200,169,110,.2);--line-s:rgba(200,169,110,.08);--f-display:'Tenor Sans',Georgia,serif;--f-body:'Jost',sans-serif;--max:1320px;--ease:cubic-bezier(.25,.46,.45,.94);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-body);font-weight:300;background:var(--noir);color:var(--blanc);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(200,169,110,.4);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:all .4s var(--ease);}
+.s9-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(12,12,12,.9);backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s9-sticky-id{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,245,240,.3);}
+.s9-sticky-id strong{color:var(--accent);}
+.s9-sticky-btns{display:flex;gap:0;}
+.s9-btn-ghost{background:transparent;color:rgba(247,245,240,.3);font-family:var(--f-body);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(200,169,110,.2);transition:all .3s;display:inline-block;}
+.s9-btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+.s9-btn-cta{background:var(--accent);color:var(--noir);font-family:var(--f-body);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--accent);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s9-btn-cta:hover{background:transparent;color:var(--accent);}
+@media(max-width:600px){.s9-sticky{padding:12px 20px;}.s9-sticky-id{display:none;}.s9-sticky-btns{width:100%;}.s9-btn-ghost,.s9-btn-cta{flex:1;text-align:center;}}
+.s9-label{font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.s9-label::before{content:'';width:22px;height:1px;background:var(--accent);}
+.s9-h2{font-family:var(--f-display);font-size:clamp(2.4rem,5vw,6rem);line-height:.9;color:var(--blanc);letter-spacing:-.02em;margin-bottom:20px;}
+.s9-h2 em{font-style:italic;color:var(--accent2);}
+.s9-p{font-size:.84rem;font-weight:300;color:rgba(247,245,240,.45);line-height:2.1;margin-bottom:12px;}
+
+/* HERO */
+.s9-hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;overflow:hidden;}
+.s9-hero-bg{position:absolute;inset:0;background-image:url('[URL_PHOTO_OFFRIR]');background-size:cover;background-position:center;filter:brightness(.35) saturate(.7);}
+.s9-hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,12,12,.98) 0%,rgba(12,12,12,.2) 60%);}
+.s9-hero-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;padding:0 8% 80px;}
+.s9-breadcrumb{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,245,240,.2);margin-bottom:32px;display:flex;gap:8px;}
+.s9-breadcrumb a:hover{color:var(--accent);}
+
+/* BANDES OFFRIR */
+.s9-offrir{padding:80px 8%;}
+.s9-offrir-inner{max-width:var(--max);margin:0 auto;display:flex;flex-direction:column;gap:0;}
+.s9-bande{display:grid;grid-template-columns:1fr auto;align-items:center;padding:32px 0;border-bottom:1px solid var(--line-s);gap:32px;transition:background .3s;}
+.s9-bande:first-child{border-top:1px solid var(--line-s);}
+.s9-bande:hover{background:rgba(200,169,110,.03);}
+.s9-bande-info{display:flex;flex-direction:column;gap:6px;}
+.s9-bande-nom{font-family:var(--f-display);font-size:1.4rem;color:var(--blanc);}
+.s9-bande-desc{font-size:.76rem;font-weight:300;color:rgba(247,245,240,.35);line-height:1.9;}
+.s9-bande-meta{display:flex;align-items:center;gap:0;margin-top:8px;}
+.s9-bande-prix{font-family:var(--f-display);font-size:1.1rem;color:var(--accent);padding-right:20px;border-right:1px solid var(--line-s);}
+.s9-bande-duree{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,245,240,.2);padding-left:20px;}
+.s9-bande-btn{display:inline-block;background:transparent;color:var(--accent);font-family:var(--f-body);font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;border:1px solid rgba(200,169,110,.25);transition:all .3s;white-space:nowrap;flex-shrink:0;}
+.s9-bande-btn:hover{background:var(--accent);color:var(--noir);}
+@media(max-width:600px){.s9-bande{grid-template-columns:1fr;}.s9-bande-btn{width:100%;text-align:center;}}
+
+/* POURQUOI */
+.s9-pourquoi{padding:80px 8%;border-top:1px solid var(--line-s);}
+.s9-pourquoi-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+.s9-raison{padding:0 40px;border-right:1px solid var(--line-s);}
+.s9-raison:first-child{padding-left:0;}
+.s9-raison:last-child{border-right:none;}
+.s9-raison-num{font-family:var(--f-display);font-size:3rem;line-height:1;color:rgba(200,169,110,.08);margin-bottom:8px;}
+.s9-raison-titre{font-family:var(--f-display);font-size:1.1rem;color:var(--accent2);margin-bottom:8px;}
+@media(max-width:768px){.s9-pourquoi-inner{grid-template-columns:1fr;}.s9-raison{border-right:none;border-bottom:1px solid var(--line-s);padding:24px 0;}.s9-raison:first-child{padding-top:0;}.s9-raison:last-child{border-bottom:none;}}
+
+.s9-maillage{padding:32px 8%;border-top:1px solid var(--line-s);}
+.s9-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.s9-maillage-lbl{font-size:.5rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(200,169,110,.25);margin-right:8px;}
+.s9-maillage-pill{display:inline-block;padding:5px 14px;border:1px solid rgba(200,169,110,.12);color:rgba(247,245,240,.25);font-size:.62rem;transition:all .25s;}
+.s9-maillage-pill:hover{border-color:var(--accent);color:var(--accent);}
+
+.s9-reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.s9-reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="s9-sticky">
+  <div class="s9-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s9-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s9-btn-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+<main>
+<div class="s9-hero">
+  <div class="s9-hero-bg"></div>
+  <div class="s9-hero-overlay"></div>
+  <div class="s9-hero-inner">
+    <nav class="s9-breadcrumb"><a href="/">Accueil</a><span>›</span><span>Offrir</span></nav>
+    <div class="s9-label">Cartes cadeaux</div>
+    <h1 class="s9-h2">Offrez un moment<br><em>de bien-être.</em></h1>
+  </div>
+</div>
+
+<div class="s9-offrir s9-reveal">
+  <div class="s9-offrir-inner">
+    <div class="s9-bande">
+      <div class="s9-bande-info">
+        <div class="s9-bande-nom">[Nom soin 1]</div>
+        <p class="s9-bande-desc">[Depuis Bloc 5 — description courte.]</p>
+        <div class="s9-bande-meta"><span class="s9-bande-prix">[Tarif]€</span><span class="s9-bande-duree">[Durée]</span></div>
+      </div>
+      <a href="[URL_CARTE_CADEAU_SOIN_1]" target="_blank" rel="noopener" class="s9-bande-btn">Offrir ce soin →</a>
+    </div>
+    <div class="s9-bande">
+      <div class="s9-bande-info">
+        <div class="s9-bande-nom">[Nom soin 2]</div>
+        <p class="s9-bande-desc">[Description courte.]</p>
+        <div class="s9-bande-meta"><span class="s9-bande-prix">[Tarif]€</span><span class="s9-bande-duree">[Durée]</span></div>
+      </div>
+      <a href="[URL_CARTE_CADEAU_SOIN_2]" target="_blank" rel="noopener" class="s9-bande-btn">Offrir ce soin →</a>
+    </div>
+    <div class="s9-bande">
+      <div class="s9-bande-info">
+        <div class="s9-bande-nom">[Nom soin 3]</div>
+        <p class="s9-bande-desc">[Description courte.]</p>
+        <div class="s9-bande-meta"><span class="s9-bande-prix">[Tarif]€</span><span class="s9-bande-duree">[Durée]</span></div>
+      </div>
+      <a href="[URL_CARTE_CADEAU_SOIN_3]" target="_blank" rel="noopener" class="s9-bande-btn">Offrir ce soin →</a>
+    </div>
+    <div class="s9-bande">
+      <div class="s9-bande-info">
+        <div class="s9-bande-nom">Carte cadeau libre</div>
+        <p class="s9-bande-desc">La destinataire choisit elle-même son soin parmi toutes les prestations.</p>
+        <div class="s9-bande-meta"><span class="s9-bande-prix">Montant libre</span></div>
+      </div>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s9-bande-btn">Offrir →</a>
+    </div>
+  </div>
+</div>
+
+<div class="s9-pourquoi s9-reveal">
+  <div class="s9-pourquoi-inner">
+    <div class="s9-raison"><div class="s9-raison-num">I</div><div class="s9-raison-titre">Envoi immédiat</div><p class="s9-p" style="font-size:.76rem;">Code envoyé par email dès la commande.</p></div>
+    <div class="s9-raison"><div class="s9-raison-num">II</div><div class="s9-raison-titre">Valable 1 an</div><p class="s9-p" style="font-size:.76rem;">La destinataire réserve à la date de son choix.</p></div>
+    <div class="s9-raison"><div class="s9-raison-num">III</div><div class="s9-raison-titre">Réservation en ligne</div><p class="s9-p" style="font-size:.76rem;">Directement sur <a href="[LIEN_RDV]" style="color:var(--accent);">ce lien</a>, 24h/24.</p></div>
+  </div>
+</div>
+</main>
+
+<nav class="s9-maillage">
+  <div class="s9-maillage-inner">
+    <span class="s9-maillage-lbl">Explorer</span>
+    <a href="/" class="s9-maillage-pill">Accueil</a>
+    <a href="/[slug-soins]" class="s9-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-faq]" class="s9-maillage-pill">FAQ</a>
+    <a href="/[slug-a-propos]" class="s9-maillage-pill">À propos</a>
+  </div>
+</nav>
+
+<script>
+(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s9-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
