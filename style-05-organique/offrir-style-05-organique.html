@@ -1,0 +1,354 @@
+<!-- ============================================================
+     OFFRIR PREMIUM — Style 05 Organique
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offrir — Cartes Cadeaux & Packs [Ville] | [Prénom Nom]</title>
+<meta name="description" content="Offrez un soin à [Ville] — cartes cadeaux et packs [Soin 1], [Soin 2]. Code immédiat. Valable 1 an.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-offrir]">
+<meta property="og:type" content="website"><meta property="og:title" content="Offrir — Cartes Cadeaux [Ville] | [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-offrir]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--creme:#FAF6F0;--blanc:#FFFFFF;--sable:#F0E8DC;--beige:#E4D5C0;--terra:#C4714A;--terra2:#E8A882;--mauve:#9B7FA6;--mauve2:#C5AED0;--encre:#2A2118;--muted:#8A7868;--line:rgba(42,33,24,.08);--f-serif:'Playfair Display',Georgia,serif;--f-sans:'Plus Jakarta Sans',sans-serif;--max:1200px;--r-sm:16px;--r-md:32px;--r-lg:48px;--r-xl:80px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--creme);color:var(--encre);overflow-x:hidden;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+/* HERO */
+.s5-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+.s5-hero-txt{background:var(--mauve);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 72px;position:relative;overflow:hidden;}
+.s5-hero-txt::before{content:'';position:absolute;bottom:-20%;right:-20%;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none;}
+.s5-hero-txt::after{content:'';position:absolute;top:-10%;left:-10%;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;}
+.s5-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);color:#fff;font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-xl);margin-bottom:20px;width:fit-content;opacity:0;animation:fadeUp .7s .2s ease forwards;position:relative;z-index:1;}
+.s5-hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:#fff;opacity:.7;}
+.s5-hero h1{font-family:var(--f-serif);font-weight:400;font-size:clamp(2.8rem,5vw,5.5rem);line-height:.97;letter-spacing:-.02em;color:#fff;margin-bottom:20px;opacity:0;animation:fadeUp 1s .3s ease forwards;position:relative;z-index:1;}
+.s5-hero h1 em{font-style:italic;}
+.s5-hero-pills{display:flex;flex-direction:column;gap:10px;opacity:0;animation:fadeUp .8s .5s ease forwards;position:relative;z-index:1;}
+.s5-hero-pill{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.7);}
+.s5-hero-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0;}
+.s5-hero-pill strong{color:#fff;font-weight:500;}
+.s5-hero-img-col{position:relative;overflow:hidden;background:var(--sable);}
+.s5-hero-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform 10s ease;}
+.s5-hero-img-bg.loaded{transform:scale(1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s5-hero{grid-template-columns:1fr;min-height:auto;}.s5-hero-img-col{height:55vw;order:-1;}.s5-hero-txt{padding:48px 6% 64px;}}
+
+/* BASE */
+.s5-section{padding:100px 6%;}.s5-inner{max-width:var(--max);margin:0 auto;}
+.s5-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(196,113,74,.1);color:var(--terra);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-xl);margin-bottom:16px;}
+.s5-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+.s5-tag.mauve{background:rgba(155,127,166,.12);color:var(--mauve);}
+.s5-h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2rem,4vw,3.8rem);line-height:1.1;letter-spacing:-.015em;color:var(--encre);}
+.s5-h2 em{font-style:italic;color:var(--terra);}
+.s5-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:2;color:var(--muted);margin-bottom:14px;}
+.s5-btn{display:inline-flex;align-items:center;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-btn:hover{background:transparent;color:var(--terra);}
+.s5-btn-mauve{background:var(--mauve);border-color:var(--mauve);}
+.s5-btn-mauve:hover{background:transparent;color:var(--mauve);}
+.s5-btn-ghost{display:inline-flex;align-items:center;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 28px;border-radius:var(--r-xl);border:2px solid var(--beige);transition:all .3s;}
+.s5-btn-ghost:hover{border-color:var(--terra);color:var(--terra);}
+
+/* FILTRES */
+.s5-filtres{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;}
+.s5-filtre-btn{font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:10px 22px;cursor:pointer;border-radius:var(--r-xl);border:2px solid var(--beige);color:var(--muted);background:transparent;transition:all .25s;}
+.s5-filtre-btn:hover{border-color:var(--terra);color:var(--terra);}
+.s5-filtre-btn.actif{background:var(--terra);color:#fff;border-color:var(--terra);}
+
+/* CARTES CADEAUX */
+.s5-cartes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.s5-carte-card{background:var(--blanc);border-radius:var(--r-lg);padding:36px 28px;display:flex;flex-direction:column;gap:14px;transition:transform .35s,box-shadow .35s;position:relative;overflow:hidden;}
+.s5-carte-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(42,33,24,.1);}
+.s5-carte-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--mauve),var(--terra));border-radius:var(--r-xl) var(--r-xl) 0 0;transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.s5-carte-card:hover::before{transform:scaleX(1);}
+.s5-carte-card.masque{display:none;}
+.s5-carte-nom{font-family:var(--f-serif);font-size:1.3rem;font-weight:400;color:var(--encre);line-height:1.2;}
+.s5-carte-nom em{font-style:italic;}
+.s5-carte-tagline{font-family:var(--f-serif);font-style:italic;font-size:.9rem;color:var(--muted);}
+.s5-carte-infos{display:flex;gap:12px;flex-wrap:wrap;}
+.s5-carte-info span{display:block;font-family:var(--f-sans);font-size:.5rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.s5-carte-info strong{font-family:var(--f-sans);font-size:.86rem;font-weight:500;color:var(--encre);}
+.s5-carte-note{font-family:var(--f-serif);font-style:italic;font-size:.78rem;color:var(--muted);}
+.s5-carte-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);}
+.s5-carte-prix{font-family:var(--f-serif);font-size:2rem;font-weight:400;color:var(--terra);line-height:1;}
+.s5-carte-prix sup{font-size:.9rem;vertical-align:super;}
+.s5-carte-btn{display:inline-block;background:var(--encre);color:#fff;font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-xl);border:2px solid var(--encre);transition:all .3s;}
+.s5-carte-btn:hover{background:transparent;color:var(--encre);}
+@media(max-width:860px){.s5-cartes-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.s5-cartes-grid{grid-template-columns:1fr;}}
+
+/* PACKS */
+.s5-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.s5-pack-card{background:rgba(255,255,255,.06);border-radius:var(--r-lg);padding:32px 28px;display:flex;flex-direction:column;gap:12px;position:relative;border:1px solid rgba(255,255,255,.06);transition:border-color .3s;}
+.s5-pack-card:hover{border-color:var(--terra2);}
+.s5-pack-card.masque{display:none;}
+.s5-pack-badge{position:absolute;top:-1px;right:24px;background:var(--terra2);color:var(--encre);font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:0 0 var(--r-md) var(--r-md);}
+.s5-pack-nom{font-family:var(--f-serif);font-size:1.15rem;font-weight:400;color:#fff;line-height:1.2;}
+.s5-pack-nom em{font-style:italic;color:var(--terra2);}
+.s5-pack-tagline{font-family:var(--f-serif);font-style:italic;font-size:.86rem;color:rgba(255,255,255,.35);}
+.s5-pack-contenu{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.s5-pack-contenu li{display:flex;align-items:flex-start;gap:10px;font-family:var(--f-sans);font-size:.82rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.6;}
+.s5-pack-contenu li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra2);flex-shrink:0;margin-top:7px;}
+.s5-pack-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.07);}
+.s5-pack-prix{font-family:var(--f-serif);font-size:1.8rem;font-weight:400;color:var(--terra2);line-height:1;margin-bottom:4px;}
+.s5-pack-prix-alt{font-family:var(--f-sans);font-size:.72rem;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.s5-pack-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.s5-pack-btn-main{display:inline-block;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-pack-btn-main:hover{background:transparent;color:var(--terra);}
+.s5-pack-btn-2x{display:inline-block;background:transparent;color:rgba(255,255,255,.35);font-family:var(--f-sans);font-size:.62rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border-radius:var(--r-xl);border:2px solid rgba(255,255,255,.1);transition:all .3s;}
+.s5-pack-btn-2x:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7);}
+@media(max-width:860px){.s5-packs-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.s5-packs-grid{grid-template-columns:1fr;}}
+
+/* RÉASSURANCE */
+.s5-reas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+.s5-reas-block{background:rgba(255,255,255,.05);border-radius:var(--r-lg);padding:24px;}
+.s5-reas-block:first-child{background:var(--terra2);border-radius:var(--r-lg);}
+.s5-reas-titre{font-family:var(--f-serif);font-weight:400;font-size:1rem;color:#fff;margin-bottom:6px;}
+.s5-reas-block:first-child .s5-reas-titre{color:var(--encre);}
+.s5-reas-txt{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;}
+.s5-reas-block:first-child .s5-reas-txt{color:rgba(42,33,24,.6);}
+@media(max-width:760px){.s5-reas-grid{grid-template-columns:1fr 1fr;}}
+
+/* FAQ 2 COLS */
+.s5-faq-2cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;max-width:980px;margin:40px auto 0;}
+.s5-faq-groupe-titre{font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid var(--sable);display:block;}
+details.s5-faq-item{background:var(--blanc);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;}
+details.s5-faq-item summary{padding:18px 20px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.86rem;font-weight:500;color:var(--encre);line-height:1.4;}
+details.s5-faq-item summary::-webkit-details-marker{display:none;}
+details.s5-faq-item summary::after{content:'+';width:24px;height:24px;border-radius:50%;background:var(--sable);display:inline-flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--terra);flex-shrink:0;transition:transform .3s,background .3s;}
+details.s5-faq-item[open] summary{color:var(--terra);}
+details.s5-faq-item[open] summary::after{transform:rotate(45deg);background:var(--terra);color:#fff;}
+.s5-faq-ans{padding:0 20px 16px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:var(--muted);line-height:2;}
+.s5-faq-ans a{color:var(--terra);font-weight:500;}
+@media(max-width:680px){.s5-faq-2cols{grid-template-columns:1fr;}}
+
+/* QUESTIONNAIRE */
+.s5-quiz-wrap{max-width:500px;margin:0 auto;}
+.s5-quiz-step{display:none;}.s5-quiz-step.actif{display:block;}
+.s5-quiz-q{font-family:var(--f-serif);font-weight:400;font-size:1.3rem;color:#fff;margin-bottom:22px;line-height:1.4;}
+.s5-quiz-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.s5-quiz-opt{display:flex;align-items:center;gap:12px;padding:13px 18px;border-radius:var(--r-xl);cursor:pointer;background:rgba(255,255,255,.06);font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:rgba(255,255,255,.6);text-align:left;transition:all .22s;width:100%;border:2px solid transparent;}
+.s5-quiz-opt:hover{background:rgba(255,255,255,.1);color:#fff;}
+.s5-quiz-opt.selected{background:rgba(196,113,74,.15);border-color:var(--terra2);color:#fff;}
+.s5-quiz-check{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:2px solid rgba(255,255,255,.2);transition:all .22s;}
+.s5-quiz-opt.selected .s5-quiz-check{background:var(--terra2);border-color:var(--terra2);}
+.s5-quiz-nav{display:flex;gap:10px;align-items:center;}
+.s5-quiz-btn{display:inline-block;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.64rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:12px 24px;border-radius:var(--r-xl);cursor:pointer;border:2px solid var(--terra);transition:all .3s;}
+.s5-quiz-btn:hover{background:transparent;color:var(--terra);}
+.s5-quiz-btn-ghost{background:transparent;color:rgba(255,255,255,.4);font-family:var(--f-sans);font-size:.64rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;padding:12px 18px;border-radius:var(--r-xl);cursor:pointer;border:2px solid rgba(255,255,255,.1);transition:all .3s;}
+.s5-quiz-btn-ghost:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7);}
+.s5-quiz-progress{font-family:var(--f-sans);font-size:.6rem;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.1em;margin-left:auto;}
+.s5-quiz-resultats{display:none;}.s5-quiz-resultats.actif{display:block;}
+.s5-quiz-reco-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.s5-quiz-reco-card{background:rgba(255,255,255,.07);border-radius:var(--r-lg);padding:20px;display:flex;flex-direction:column;gap:8px;border-top:2px solid var(--terra2);}
+.s5-quiz-reco-nom{font-family:var(--f-serif);font-weight:400;font-size:1rem;color:#fff;}
+.s5-quiz-reco-prix{font-family:var(--f-serif);font-size:1.3rem;color:var(--terra2);}
+.s5-quiz-reco-btn{display:inline-block;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;margin-top:4px;}
+.s5-quiz-reco-btn:hover{background:transparent;color:var(--terra);}
+.s5-quiz-reset{font-family:var(--f-sans);font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;}
+
+/* CTA + MAILLAGE */
+.s5-cta{background:var(--terra);padding:100px 6%;text-align:center;position:relative;overflow:hidden;}
+.s5-cta::before{content:'';position:absolute;top:-30%;right:-15%;width:380px;height:380px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;}
+.s5-cta-inner{position:relative;z-index:1;max-width:580px;margin:0 auto;}
+.s5-cta-inner h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2.2rem,5vw,5rem);line-height:1.06;color:#fff;margin-bottom:16px;}
+.s5-cta-inner h2 em{font-style:italic;}
+.s5-cta-sub{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.9;margin-bottom:36px;}
+.s5-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.s5-cta-btn-blanc{display:inline-flex;background:#fff;color:var(--terra);font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r-xl);border:2px solid #fff;transition:all .3s;}
+.s5-cta-btn-blanc:hover{background:transparent;color:#fff;}
+.s5-maillage{background:var(--creme);padding:56px 6%;border-top:1px solid var(--line);}
+.s5-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s5-maillage-label{font-family:var(--f-sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;}
+.s5-maillage-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.s5-maillage-pill{display:inline-block;padding:9px 18px;border-radius:var(--r-xl);border:2px solid var(--beige);color:var(--muted);font-family:var(--f-sans);font-size:.72rem;transition:all .25s;}
+.s5-maillage-pill:hover{border-color:var(--terra);color:var(--terra);}
+.s5-reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal.in{opacity:1;transform:none;}
+.s5-d1{transition-delay:.1s;}.s5-d2{transition-delay:.2s;}.s5-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+
+<section class="s5-hero">
+  <div class="s5-hero-txt">
+    <div class="s5-hero-tag">Cartes cadeaux & packs · [Ville]</div>
+    <h1 class="s5-custom-h1">Offrir,<br><em>prendre soin.</em></h1>
+    <div class="s5-hero-pills">
+      <div class="s5-hero-pill"><strong>Code cadeau</strong> envoyé immédiatement</div>
+      <div class="s5-hero-pill">Valable <strong>1 an</strong></div>
+      <div class="s5-hero-pill">Paiement en <strong>2 fois</strong> sur les packs</div>
+      <div class="s5-hero-pill"><strong>Aucun montant</strong> sur place</div>
+    </div>
+  </div>
+  <div class="s5-hero-img-col">
+    <div class="s5-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+  </div>
+</section>
+
+<main>
+
+<!-- CARTES CADEAUX -->
+<section class="s5-section" style="background:var(--creme);">
+  <div class="s5-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;" class="s5-reveal">
+      <div><div class="s5-tag mauve">— Cartes cadeaux</div><h2 class="s5-h2" style="color:var(--encre);">Offrir avec <em>intention</em></h2></div>
+      <p class="s5-p">[Depuis Bloc 6 — 1 phrase sur ce que représente offrir une séance.]</p>
+    </div>
+    <div class="s5-filtres" id="filtres-cartes">
+      <button class="s5-filtre-btn actif" data-filtre-cartes="tout">Toutes</button>
+      <button class="s5-filtre-btn" data-filtre-cartes="[cat-1-slug]">[Catégorie 1]</button>
+      <button class="s5-filtre-btn" data-filtre-cartes="[cat-2-slug]">[Catégorie 2]</button>
+    </div>
+    <div class="s5-cartes-grid">
+      <div class="s5-carte-card s5-reveal s5-d1" data-cat="[cat-1-slug]"><div class="s5-carte-nom">[Nom du<br><em>soin 1</em>]</div><div class="s5-carte-tagline">[Accroche évocatrice]</div><div class="s5-carte-infos"><div class="s5-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s5-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div></div><p class="s5-carte-note">Envoi immédiat · Valable 1 an</p><div class="s5-carte-footer"><div class="s5-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_1]" class="s5-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+      <div class="s5-carte-card s5-reveal s5-d2" data-cat="[cat-1-slug]"><div class="s5-carte-nom">[Nom du<br><em>soin 2</em>]</div><div class="s5-carte-tagline">[Accroche]</div><div class="s5-carte-infos"><div class="s5-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s5-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div></div><p class="s5-carte-note">Envoi immédiat · Valable 1 an</p><div class="s5-carte-footer"><div class="s5-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_2]" class="s5-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+      <div class="s5-carte-card s5-reveal s5-d3" data-cat="[cat-2-slug]"><div class="s5-carte-nom">[Nom du<br><em>soin 3</em>]</div><div class="s5-carte-tagline">[Accroche]</div><div class="s5-carte-infos"><div class="s5-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s5-carte-info"><span>Lieu</span><strong>[Cabinet · Visio]</strong></div></div><p class="s5-carte-note">Envoi immédiat · Valable 1 an</p><div class="s5-carte-footer"><div class="s5-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_3]" class="s5-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKS fond encre -->
+<section style="background:var(--encre);padding:100px 6%;border-radius:var(--r-xl) var(--r-xl) 0 0;">
+  <div class="s5-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;" class="s5-reveal">
+      <div><div class="s5-tag" style="background:rgba(196,113,74,.15);color:var(--terra2);">— Packs</div><h2 class="s5-h2" style="color:#fff;">Des soins pensés <em style="color:var(--terra2);">ensemble</em></h2></div>
+      <p style="font-family:var(--f-sans);font-size:.88rem;color:rgba(255,255,255,.4);line-height:2;">[Depuis Bloc 6 — phrase sur les packs et ce qu'ils représentent.]</p>
+    </div>
+    <div class="s5-filtres" id="filtres-packs">
+      <button class="s5-filtre-btn actif" data-filtre-packs="tout" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5);">Tous les prix</button>
+      <button class="s5-filtre-btn" data-filtre-packs="moins200" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.35);">Moins de 200 €</button>
+      <button class="s5-filtre-btn" data-filtre-packs="200-300" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.35);">200 – 300 €</button>
+      <button class="s5-filtre-btn" data-filtre-packs="plus300" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.35);">Plus de 300 €</button>
+    </div>
+    <div class="s5-packs-grid">
+      <div class="s5-pack-card s5-reveal s5-d1" data-prix="moins200"><span class="s5-pack-nom">[Nom du <em>pack 1</em>]</span><span class="s5-pack-tagline">[Accroche]</span><ul class="s5-pack-contenu"><li>[Soin inclus 1]</li><li>[Soin inclus 2]</li></ul><div class="s5-pack-footer"><div class="s5-pack-prix">[Tarif]€</div><div class="s5-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s5-pack-btns"><a href="[LIEN_PACK_1_1X]" class="s5-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_1_2X]" class="s5-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+      <div class="s5-pack-card s5-reveal s5-d2" data-prix="moins200"><div class="s5-pack-badge">Populaire</div><span class="s5-pack-nom">[Nom du <em>pack 2</em>]</span><span class="s5-pack-tagline">[Accroche]</span><ul class="s5-pack-contenu"><li>[Soin 1]</li><li>[Soin 2]</li><li>[Soin 3]</li></ul><div class="s5-pack-footer"><div class="s5-pack-prix">[Tarif]€</div><div class="s5-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s5-pack-btns"><a href="[LIEN_PACK_2_1X]" class="s5-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_2_2X]" class="s5-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+      <div class="s5-pack-card s5-reveal s5-d3" data-prix="200-300"><span class="s5-pack-nom">[Nom du <em>pack 3</em>]</span><span class="s5-pack-tagline">[Accroche]</span><ul class="s5-pack-contenu"><li>[Soin 1]</li><li>[Soin 2]</li><li>[Soin 3]</li></ul><div class="s5-pack-footer"><div class="s5-pack-prix">[Tarif]€</div><div class="s5-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s5-pack-btns"><a href="[LIEN_PACK_3_1X]" class="s5-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_3_2X]" class="s5-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+    </div>
+    <div class="s5-reas-grid s5-reveal">
+      <div class="s5-reas-block"><div class="s5-reas-titre">Paiement sécurisé</div><p class="s5-reas-txt">En ligne. Aucun montant sur place.</p></div>
+      <div class="s5-reas-block"><div class="s5-reas-titre">Paiement en 2 fois</div><p class="s5-reas-txt">Sur tous les packs, sans frais.</p></div>
+      <div class="s5-reas-block"><div class="s5-reas-titre">Code immédiat</div><p class="s5-reas-txt">Par email dès validation. Valable 1 an.</p></div>
+      <div class="s5-reas-block"><div class="s5-reas-titre">[X.X]★ · [X] avis</div><p class="s5-reas-txt">[Prénom] accompagne depuis [X] ans.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ 2 COLS -->
+<section class="s5-section s5-reveal" style="background:var(--sable);text-align:center;">
+  <div class="s5-inner">
+    <div class="s5-tag" style="margin:0 auto 14px;">— Questions fréquentes</div>
+    <h2 class="s5-h2" style="text-align:center;margin-bottom:0;">Tout comprendre avant <em>de commander</em></h2>
+  </div>
+  <div class="s5-faq-2cols" style="text-align:left;">
+    <div>
+      <span class="s5-faq-groupe-titre">Cartes cadeaux</span>
+      <details class="s5-faq-item"><summary>Comment fonctionne une carte cadeau ?</summary><div class="s5-faq-ans">Achat en ligne, code par email immédiatement, réservation sur <a href="[LIEN_RDV]">la plateforme</a>. Valable 1 an. Aucun montant sur place.</div></details>
+      <details class="s5-faq-item"><summary>Comment la carte est-elle transmise ?</summary><div class="s5-faq-ans">Par email dès la validation. À imprimer ou envoyer par message.</div></details>
+      <details class="s5-faq-item"><summary>Durée de validité ?</summary><div class="s5-faq-ans">1 an à compter de la date d'achat.</div></details>
+      <details class="s5-faq-item"><summary>Peut-on cumuler plusieurs cartes ?</summary><div class="s5-faq-ans">Oui, chaque code est indépendant.</div></details>
+      <details class="s5-faq-item"><summary>Valable pour tous les soins ?</summary><div class="s5-faq-ans">[Depuis Bloc 6 — valide pour toutes ou certaines.]</div></details>
+      <details class="s5-faq-item"><summary>Que se passe-t-il si la bénéficiaire a une CI ?</summary><div class="s5-faq-ans">Elle contacte [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> avant de réserver.</div></details>
+      <details class="s5-faq-item"><summary>Comment la bénéficiaire réserve-t-elle ?</summary><div class="s5-faq-ans">Elle saisit le code sur <a href="[LIEN_RDV]">la plateforme</a>. Aucun paiement demandé.</div></details>
+      <details class="s5-faq-item"><summary>Peut-on offrir un pack en cadeau ?</summary><div class="s5-faq-ans">Absolument — le code se transmet facilement par email.</div></details>
+    </div>
+    <div>
+      <span class="s5-faq-groupe-titre">Packs</span>
+      <details class="s5-faq-item"><summary>Comment fonctionne un pack ?</summary><div class="s5-faq-ans">Code unique par email. Chaque séance se réserve en ligne dans l'ordre souhaité.</div></details>
+      <details class="s5-faq-item"><summary>Comment fonctionne le paiement en 2 fois ?</summary><div class="s5-faq-ans">Via la plateforme. Deux prélèvements sans frais supplémentaires.</div></details>
+      <details class="s5-faq-item"><summary>Peut-on choisir l'ordre des séances ?</summary><div class="s5-faq-ans">Oui — vous réservez chaque prestation quand vous le souhaitez.</div></details>
+      <details class="s5-faq-item"><summary>Les séances d'un pack ont-elles une validité ?</summary><div class="s5-faq-ans">[Durée de validité depuis politique commerciale.]</div></details>
+      <details class="s5-faq-item"><summary>Un pack peut-il être partagé ?</summary><div class="s5-faq-ans">[Depuis politique commerciale — partageable oui/non.]</div></details>
+      <details class="s5-faq-item"><summary>Peut-on combiner plusieurs soins différents ?</summary><div class="s5-faq-ans">[Depuis Bloc 6 — composition des packs.]</div></details>
+      <details class="s5-faq-item"><summary>Que se passe-t-il si je ne peux pas utiliser toutes les séances ?</summary><div class="s5-faq-ans">[Politique d'annulation / report depuis dossier client.]</div></details>
+      <details class="s5-faq-item"><summary>Y a-t-il des packs sur mesure ?</summary><div class="s5-faq-ans">Contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> pour une offre personnalisée.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONNAIRE fond encre -->
+<section style="background:var(--encre);padding:100px 6%;text-align:center;border-radius:var(--r-xl) var(--r-xl) 0 0;">
+  <div class="s5-inner">
+    <div class="s5-tag mauve" style="margin:0 auto 14px;background:rgba(155,127,166,.15);color:var(--mauve2);">— Outil de recommandation</div>
+    <h2 class="s5-h2" style="color:#fff;text-align:center;margin-bottom:40px;">Quel pack est <em style="color:var(--terra2);">fait pour vous ?</em></h2>
+    <div class="s5-quiz-wrap">
+      <div class="s5-quiz-step actif" data-step="1">
+        <p class="s5-quiz-q">Ce soin, c'est pour…</p>
+        <div class="s5-quiz-opts">
+          <button class="s5-quiz-opt" data-val="soi"><span class="s5-quiz-check"></span>Pour moi</button>
+          <button class="s5-quiz-opt" data-val="offrir"><span class="s5-quiz-check"></span>Pour offrir</button>
+          <button class="s5-quiz-opt" data-val="les-deux"><span class="s5-quiz-check"></span>Les deux</button>
+        </div>
+        <div class="s5-quiz-nav"><button class="s5-quiz-btn" onclick="quizSuivant(1)">Continuer</button><span class="s5-quiz-progress">1 / 3</span></div>
+      </div>
+      <div class="s5-quiz-step" data-step="2">
+        <p class="s5-quiz-q">Quel type de soin ?</p>
+        <div class="s5-quiz-opts">
+          <button class="s5-quiz-opt" data-val="[cat-1-slug]"><span class="s5-quiz-check"></span>[Catégorie 1]</button>
+          <button class="s5-quiz-opt" data-val="[cat-2-slug]"><span class="s5-quiz-check"></span>[Catégorie 2]</button>
+          <button class="s5-quiz-opt" data-val="[cat-3-slug]"><span class="s5-quiz-check"></span>[Catégorie 3]</button>
+        </div>
+        <div class="s5-quiz-nav"><button class="s5-quiz-btn-ghost" onclick="quizPrecedent(2)">Retour</button><button class="s5-quiz-btn" onclick="quizSuivant(2)">Continuer</button><span class="s5-quiz-progress">2 / 3</span></div>
+      </div>
+      <div class="s5-quiz-step" data-step="3">
+        <p class="s5-quiz-q">Votre budget ?</p>
+        <div class="s5-quiz-opts">
+          <button class="s5-quiz-opt" data-val="moins200"><span class="s5-quiz-check"></span>Moins de 200 €</button>
+          <button class="s5-quiz-opt" data-val="200-300"><span class="s5-quiz-check"></span>200 – 300 €</button>
+          <button class="s5-quiz-opt" data-val="plus300"><span class="s5-quiz-check"></span>Plus de 300 €</button>
+        </div>
+        <div class="s5-quiz-nav"><button class="s5-quiz-btn-ghost" onclick="quizPrecedent(3)">Retour</button><button class="s5-quiz-btn" onclick="quizResultats()">Voir mes recommandations</button><span class="s5-quiz-progress">3 / 3</span></div>
+      </div>
+      <div class="s5-quiz-resultats" id="quizResultats">
+        <h3 style="font-family:var(--f-serif);font-weight:400;font-size:1.4rem;color:#fff;margin-bottom:8px;">Vos packs <em style="color:var(--terra2);">recommandés</em></h3>
+        <p id="quizSub" style="font-family:var(--f-sans);font-size:.78rem;color:rgba(255,255,255,.3);margin-bottom:24px;">En fonction de vos réponses.</p>
+        <div class="s5-quiz-reco-grid" id="quizPacks"></div>
+        <button class="s5-quiz-reset" onclick="quizReset()">Recommencer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="s5-cta" aria-label="Prise de rendez-vous">
+  <div class="s5-cta-inner s5-reveal">
+    <h2>[Accroche<br><em>Bloc 0]</em></h2>
+    <p class="s5-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville]</p>
+    <div class="s5-cta-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-cta-btn-blanc">Prendre rendez-vous</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<nav class="s5-maillage" aria-label="Navigation thématique">
+  <div class="s5-maillage-inner">
+    <span class="s5-maillage-label">À découvrir</span>
+    <div class="s5-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s5-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s5-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soins]" class="s5-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-faq]" class="s5-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</nav>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment fonctionne une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Achat en ligne, code par email, réservation sur [URL_RDV]. Valable 1 an."}},{"@type":"Question","name":"Comment la carte est transmise ?","acceptedAnswer":{"@type":"Answer","text":"Par email immédiatement."}},{"@type":"Question","name":"Durée de validité d'une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"1 an à compter de la date d'achat."}},{"@type":"Question","name":"Comment fonctionne un pack ?","acceptedAnswer":{"@type":"Answer","text":"Code unique par email. Chaque séance se réserve en ligne."}},{"@type":"Question","name":"Le paiement en 2 fois est-il disponible ?","acceptedAnswer":{"@type":"Answer","text":"Oui sur tous les packs, sans frais."}},{"@type":"Question","name":"Un pack peut-il être offert ?","acceptedAnswer":{"@type":"Answer","text":"Oui — le code se transmet facilement."}},{"@type":"Question","name":"Peut-on choisir l'ordre des séances ?","acceptedAnswer":{"@type":"Answer","text":"Oui, chaque prestation se réserve quand vous le souhaitez."}},{"@type":"Question","name":"Comment offrir [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Offrir","item":"https://[votre-domaine].fr/[slug-offrir]"}]}]</script>
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s5-reveal').forEach(function(el){io.observe(el);});})();
+(function(){document.querySelectorAll('[data-filtre-cartes]').forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre-cartes');document.querySelectorAll('[data-filtre-cartes]').forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');document.querySelectorAll('.s5-carte-card').forEach(function(c){c.classList.toggle('masque',f!=='tout'&&c.getAttribute('data-cat')!==f);});});});})();
+(function(){document.querySelectorAll('[data-filtre-packs]').forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre-packs');document.querySelectorAll('[data-filtre-packs]').forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');document.querySelectorAll('.s5-pack-card').forEach(function(c){c.classList.toggle('masque',f!=='tout'&&c.getAttribute('data-prix')!==f);});});});})();
+var quizRep={};
+document.querySelectorAll('.s5-quiz-opt').forEach(function(opt){opt.addEventListener('click',function(){var step=opt.closest('.s5-quiz-step');step.querySelectorAll('.s5-quiz-opt').forEach(function(o){o.classList.remove('selected');});opt.classList.add('selected');quizRep['step'+step.getAttribute('data-step')]=opt.getAttribute('data-val');});});
+function quizSuivant(s){if(!quizRep['step'+s])return;var a=document.querySelector('.s5-quiz-step[data-step="'+s+'"]');var n=document.querySelector('.s5-quiz-step[data-step="'+(s+1)+'"]');if(!n)return;a.classList.remove('actif');n.classList.add('actif');}
+function quizPrecedent(s){var a=document.querySelector('.s5-quiz-step[data-step="'+s+'"]');var p=document.querySelector('.s5-quiz-step[data-step="'+(s-1)+'"]');if(!p)return;a.classList.remove('actif');p.classList.add('actif');}
+function quizResultats(){if(!quizRep['step3'])return;document.querySelectorAll('.s5-quiz-step').forEach(function(s){s.classList.remove('actif');});document.getElementById('quizResultats').classList.add('actif');var budget=quizRep['step3'];var cards=document.querySelectorAll('.s5-pack-card');var matches=[];cards.forEach(function(p){if(p.getAttribute('data-prix')===budget)matches.push(p);});var container=document.getElementById('quizPacks');container.innerHTML='';if(!matches.length){container.innerHTML='<p style="grid-column:span 2;font-family:var(--f-sans);font-size:.84rem;color:rgba(255,255,255,.4);">Contactez [Prénom] pour une recommandation personnalisée.</p>';return;}matches.slice(0,2).forEach(function(p){var nom=p.querySelector('.s5-pack-nom')?p.querySelector('.s5-pack-nom').textContent:'';var prix=p.querySelector('.s5-pack-prix')?p.querySelector('.s5-pack-prix').textContent:'';var lien=p.querySelector('.s5-pack-btn-main')?p.querySelector('.s5-pack-btn-main').getAttribute('href'):'#';container.innerHTML+='<div class="s5-quiz-reco-card"><div class="s5-quiz-reco-nom">'+nom+'</div><div class="s5-quiz-reco-prix">'+prix+'</div><a href="'+lien+'" class="s5-quiz-reco-btn" target="_blank" rel="noopener">Commander</a></div>';});}
+function quizReset(){quizRep={};document.querySelectorAll('.s5-quiz-opt').forEach(function(o){o.classList.remove('selected');});document.getElementById('quizResultats').classList.remove('actif');document.querySelectorAll('.s5-quiz-step').forEach(function(s){s.classList.remove('actif');});document.querySelector('.s5-quiz-step[data-step="1"]').classList.add('actif');}
+</script>
+</body>
+</html>

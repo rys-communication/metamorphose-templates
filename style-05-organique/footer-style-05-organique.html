@@ -1,0 +1,137 @@
+<!-- ============================================================
+     FOOTER — Style 05 Organique
+     Bloc HTML standalone — coller dans Squarespace footer
+     ============================================================ -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap');
+:root{
+  --creme:#FAF6F0;--blanc:#FFFFFF;--sable:#F0E8DC;--beige:#E4D5C0;
+  --terra:#C4714A;--terra2:#E8A882;--mauve:#9B7FA6;
+  --encre:#2A2118;--muted:#8A7868;--line:rgba(42,33,24,.08);
+  --f-serif:'Playfair Display',Georgia,serif;
+  --f-sans:'Plus Jakarta Sans',sans-serif;
+  --r-xl:80px;--r-lg:48px;--r-md:32px;
+}
+
+.s5-footer{font-family:var(--f-sans);font-weight:300;background:var(--encre);border-radius:var(--r-xl) var(--r-xl) 0 0;padding:72px 8% 40px;position:relative;overflow:hidden;}
+
+/* Blobs décoratifs */
+.s5-footer::before{content:'';position:absolute;top:-20%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(ellipse,var(--terra) 0%,var(--mauve) 55%,transparent 75%);opacity:.06;pointer-events:none;}
+.s5-footer::after{content:'';position:absolute;bottom:-15%;left:-5%;width:280px;height:280px;border-radius:50%;background:radial-gradient(ellipse,var(--mauve),transparent 70%);opacity:.05;pointer-events:none;}
+
+/* GRILLE 4 COLONNES */
+.s5-footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.07);position:relative;z-index:1;}
+
+/* Colonne identité */
+.s5-footer-nom{font-family:var(--f-serif);font-weight:400;font-size:1.4rem;color:#fff;line-height:1.15;margin-bottom:4px;}
+.s5-footer-nom em{font-style:italic;color:var(--terra2);}
+.s5-footer-tagline{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:18px;}
+.s5-footer-desc{font-family:var(--f-serif);font-style:italic;font-size:.9rem;color:rgba(255,255,255,.3);line-height:1.9;max-width:260px;margin-bottom:24px;}
+.s5-footer-rdv{display:inline-block;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:11px 24px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;text-decoration:none;margin-bottom:24px;}
+.s5-footer-rdv:hover{background:transparent;color:var(--terra);}
+
+/* Réseaux sociaux */
+.s5-footer-socials{display:flex;gap:8px;}
+.s5-footer-social{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.1);color:rgba(255,255,255,.35);transition:all .25s;text-decoration:none;}
+.s5-footer-social:hover{border-color:var(--terra2);color:var(--terra2);background:rgba(196,113,74,.1);}
+.s5-footer-social svg{width:13px;height:13px;fill:currentColor;}
+
+/* Colonnes liens */
+.s5-footer-col-title{font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terra2);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid rgba(255,255,255,.07);display:block;}
+.s5-footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.s5-footer-links a{font-family:var(--f-sans);font-size:.82rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .22s;line-height:1.4;font-weight:300;}
+.s5-footer-links a:hover{color:rgba(255,255,255,.7);}
+.s5-footer-links .s5-footer-address{font-family:var(--f-sans);font-size:.8rem;color:rgba(255,255,255,.2);line-height:1.7;font-weight:300;}
+
+/* BARRE BASSE */
+.s5-footer-bottom{max-width:1200px;margin:0 auto;padding-top:28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:relative;z-index:1;}
+.s5-footer-copyright{font-family:var(--f-sans);font-size:.72rem;color:rgba(255,255,255,.18);line-height:1.6;}
+.s5-footer-copyright strong{color:rgba(255,255,255,.28);font-weight:400;}
+.s5-footer-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.s5-footer-meta a{font-family:var(--f-sans);font-size:.68rem;color:rgba(255,255,255,.18);text-decoration:none;letter-spacing:.04em;transition:color .22s;}
+.s5-footer-meta a:hover{color:rgba(255,255,255,.5);}
+.s5-footer-sep{width:1px;height:10px;background:rgba(255,255,255,.08);}
+.s5-footer-rys{display:flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:.68rem;color:rgba(255,255,255,.18);letter-spacing:.04em;}
+.s5-footer-rys a{color:var(--terra2);text-decoration:none;transition:opacity .22s;opacity:.6;}
+.s5-footer-rys a:hover{opacity:1;}
+
+@media(max-width:860px){.s5-footer-grid{grid-template-columns:1fr 1fr;gap:36px;}.s5-footer-brand{grid-column:span 2;}}
+@media(max-width:540px){.s5-footer{padding:56px 6% 32px;border-radius:var(--r-lg) var(--r-lg) 0 0;}.s5-footer-grid{grid-template-columns:1fr;gap:32px;}.s5-footer-brand{grid-column:span 1;}.s5-footer-bottom{flex-direction:column;align-items:flex-start;gap:12px;}}
+</style>
+
+<footer class="s5-footer">
+  <div class="s5-footer-grid">
+
+    <!-- Colonne identité -->
+    <div class="s5-footer-brand">
+      <div class="s5-footer-nom">[Prénom Nom]<br><em>[Titre professionnel]</em></div>
+      <div class="s5-footer-tagline">[Ville] · Sur rendez-vous</div>
+      <p class="s5-footer-desc">[Depuis Bloc 0 ADN — 1-2 phrases qui résument l'essence de l'activité.]</p>
+      <a href="[LIEN_RDV]" class="s5-footer-rdv" target="_blank" rel="noopener">Prendre rendez-vous</a>
+      <div class="s5-footer-socials">
+        <a href="[URL_INSTAGRAM]" class="s5-footer-social" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="[URL_FACEBOOK]" class="s5-footer-social" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="[URL_LINKEDIN]" class="s5-footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Colonne soins -->
+    <div>
+      <span class="s5-footer-col-title">Soins</span>
+      <ul class="s5-footer-links">
+        <li><a href="/[slug-soin-1]-[ville]">[Nom du soin 1]</a></li>
+        <li><a href="/[slug-soin-2]-[ville]">[Nom du soin 2]</a></li>
+        <li><a href="/[slug-soin-3]-[ville]">[Nom du soin 3]</a></li>
+        <li><a href="/[slug-soin-4]-[ville]">[Nom du soin 4]</a></li>
+        <li><a href="/[slug-soins]">Toutes les prestations</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne navigation -->
+    <div>
+      <span class="s5-footer-col-title">Navigation</span>
+      <ul class="s5-footer-links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/[slug-a-propos]">À propos</a></li>
+        <li><a href="/[slug-faq]">Questions fréquentes</a></li>
+        <li><a href="/[slug-offrir]">Cartes cadeaux</a></li>
+        <li><a href="/[slug-contact]">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Colonne contact -->
+    <div>
+      <span class="s5-footer-col-title">Contact</span>
+      <ul class="s5-footer-links">
+        <li><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a></li>
+        <li><a href="mailto:[email]">[Email]</a></li>
+        <li><span class="s5-footer-address">[Numéro et rue]<br>[Code postal] [Ville]</span></li>
+        <li><a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Google Maps →</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- BARRE BASSE -->
+  <div class="s5-footer-bottom">
+    <div class="s5-footer-copyright">
+      © [Année] <strong>[Prénom Nom]</strong> · [Titre professionnel] · [Ville]<br>
+      SIRET [Numéro SIRET] · Micro-entreprise
+    </div>
+    <div class="s5-footer-meta">
+      <a href="/[slug-mentions-legales]">Mentions légales</a>
+      <div class="s5-footer-sep"></div>
+      <a href="/[slug-confidentialite]">Confidentialité</a>
+      <div class="s5-footer-sep"></div>
+      <a href="/[slug-cgv]">CGV</a>
+      <div class="s5-footer-sep"></div>
+      <div class="s5-footer-rys">Site réalisé par <a href="https://www.rys-communication.com/" target="_blank" rel="noopener">RYS Communication</a></div>
+    </div>
+  </div>
+</footer>

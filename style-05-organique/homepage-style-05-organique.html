@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — [Titre professionnel] à [Ville]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3]. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="[Prénom Nom] — [Titre professionnel] à [Ville]">
+<meta property="og:description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3]. Réservation en ligne 24h/24.">
+<meta property="og:url" content="https://[votre-domaine].fr/">
+<meta property="og:image" content="[URL_OG_IMAGE]">
+<meta property="og:locale" content="fr_FR">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[Prénom Nom] — [Titre professionnel] à [Ville]">
+<meta name="twitter:description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3].">
+<meta name="twitter:image" content="[URL_OG_IMAGE]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --creme:   #FAF6F0;
+  --blanc:   #FFFFFF;
+  --sable:   #F0E8DC;
+  --beige:   #E4D5C0;
+  --terra:   #C4714A;
+  --terra2:  #E8A882;
+  --mauve:   #9B7FA6;
+  --mauve2:  #C5AED0;
+  --encre:   #2A2118;
+  --muted:   #8A7868;
+  --line:    rgba(42,33,24,.08);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Plus Jakarta Sans', sans-serif;
+  --max:     1200px;
+  --r-sm:    16px;
+  --r-md:    32px;
+  --r-lg:    48px;
+  --r-xl:    80px;
+  --r-blob:  60% 40% 55% 45% / 50% 60% 40% 50%;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--creme);color:var(--encre);padding-bottom:72px;overflow-x:hidden;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+/* PAS DE CURSEUR CUSTOM — curseur natif */
+
+/* STICKY */
+.s5-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--encre);border-radius:var(--r-xl) var(--r-xl) 0 0;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;gap:16px;}
+.s5-sticky-txt{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:rgba(255,255,255,.45);white-space:nowrap;}
+.s5-sticky-txt strong{color:#fff;font-weight:500;}
+.s5-sticky-btns{display:flex;gap:8px;flex-shrink:0;}
+.s5-sticky-cta{background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:10px 26px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-sticky-cta:hover{background:transparent;color:var(--terra);}
+.s5-sticky-ghost{background:transparent;color:rgba(255,255,255,.5);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-xl);border:2px solid rgba(255,255,255,.15);transition:all .3s;}
+.s5-sticky-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+@media(max-width:600px){.s5-sticky{padding:12px 16px;border-radius:var(--r-lg) var(--r-lg) 0 0;}.s5-sticky-txt{display:none;}.s5-sticky-btns{width:100%;gap:8px;}.s5-sticky-cta,.s5-sticky-ghost{flex:1;text-align:center;}}
+
+/* HERO */
+.s5-hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:80px 6% 80px;background:var(--sable);}
+/* Blob décoratif fond */
+.s5-hero::before{content:'';position:absolute;top:-15%;right:-10%;width:65vw;height:65vw;max-width:700px;max-height:700px;background:radial-gradient(ellipse,var(--terra2) 0%,var(--mauve2) 55%,transparent 75%);border-radius:var(--r-blob);opacity:.28;pointer-events:none;animation:blobFloat 12s ease-in-out infinite;}
+.s5-hero::after{content:'';position:absolute;bottom:-10%;left:-5%;width:45vw;height:45vw;max-width:480px;max-height:480px;background:radial-gradient(ellipse,var(--mauve) 0%,transparent 70%);border-radius:55% 45% 60% 40% / 45% 55% 45% 55%;opacity:.12;pointer-events:none;animation:blobFloat 15s 3s ease-in-out infinite;}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) rotate(0deg);}33%{transform:translate(2%,2%) rotate(4deg);}66%{transform:translate(-2%,1%) rotate(-3deg);}}
+
+.s5-hero-inner{max-width:var(--max);width:100%;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1;}
+.s5-hero-txt{display:flex;flex-direction:column;gap:0;}
+.s5-hero-bubble{display:inline-flex;align-items:center;gap:10px;background:var(--blanc);border-radius:var(--r-xl);padding:8px 18px 8px 10px;margin-bottom:28px;width:fit-content;opacity:0;animation:popIn .7s .2s cubic-bezier(.34,1.56,.64,1) forwards;}
+.s5-hero-bubble-dot{width:8px;height:8px;border-radius:50%;background:var(--terra);}
+.s5-hero-bubble-txt{font-family:var(--f-sans);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.s5-hero h1{font-family:var(--f-serif);font-weight:400;font-size:clamp(3rem,5.5vw,6rem);line-height:1.02;letter-spacing:-.02em;color:var(--encre);margin-bottom:20px;opacity:0;animation:fadeUp 1s .3s ease forwards;}
+.s5-hero h1 em{font-style:italic;color:var(--terra);}
+.s5-hero-sub{font-family:var(--f-sans);font-size:.92rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:32px;max-width:400px;opacity:0;animation:fadeUp .8s .45s ease forwards;}
+.s5-hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .55s ease forwards;}
+.s5-hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:fadeUp .8s .65s ease forwards;}
+.s5-hero-tag{display:inline-block;background:rgba(196,113,74,.1);color:var(--terra);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:var(--r-xl);}
+.s5-hero-tag.mauve{background:rgba(155,127,166,.12);color:var(--mauve);}
+
+/* Hero image côté droit */
+.s5-hero-img-wrap{position:relative;}
+.s5-hero-img{width:100%;aspect-ratio:4/5;background:var(--beige);border-radius:60% 40% 55% 45% / 50% 55% 45% 50%;overflow:hidden;position:relative;animation:popIn .9s .2s cubic-bezier(.34,1.2,.64,1) forwards;opacity:0;}
+.s5-hero-img img,.s5-hero-img-bg{width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center top;position:absolute;inset:0;}
+/* Badge flottant */
+.s5-hero-badge{position:absolute;top:5%;right:-8%;background:var(--blanc);border-radius:50%;width:110px;height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(42,33,24,.12);animation:float 4s ease-in-out infinite;}
+.s5-hero-badge-num{font-family:var(--f-serif);font-size:1.8rem;font-weight:400;color:var(--terra);line-height:1;}
+.s5-hero-badge-lbl{font-family:var(--f-sans);font-size:.48rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;}
+/* Badge 2 */
+.s5-hero-badge2{position:absolute;bottom:8%;left:-10%;background:var(--encre);border-radius:var(--r-lg);padding:14px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(42,33,24,.2);animation:float 4s 1.5s ease-in-out infinite;}
+.s5-hero-badge2-stars{display:flex;gap:2px;}
+.s5-hero-badge2-star{width:8px;height:8px;background:var(--terra2);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s5-hero-badge2-txt{font-family:var(--f-sans);font-size:.7rem;font-weight:500;color:#fff;white-space:nowrap;}
+.s5-hero-badge2-sub{font-family:var(--f-sans);font-size:.56rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;display:block;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes popIn{from{opacity:0;transform:scale(.85);}to{opacity:1;transform:scale(1);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s5-hero-inner{grid-template-columns:1fr;gap:48px;}.s5-hero-img{aspect-ratio:3/2;border-radius:var(--r-xl);}.s5-hero-badge{width:88px;height:88px;top:-5%;right:5%;}.s5-hero-badge2{bottom:-5%;left:5%;}}
+@media(max-width:520px){.s5-hero{padding:60px 5% 60px;}.s5-hero h1{font-size:clamp(2.6rem,10vw,4rem);}}
+
+/* MARQUEE */
+.s5-marquee{background:var(--encre);padding:18px 0;overflow:hidden;border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:-1px;}
+.s5-marquee-track{display:flex;gap:0;animation:marquee 22s linear infinite;width:max-content;}
+.s5-marquee-item{display:flex;align-items:center;gap:20px;padding:0 24px;white-space:nowrap;font-family:var(--f-sans);font-size:.7rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.s5-marquee-item strong{color:var(--terra2);font-weight:500;}
+.s5-marquee-sep{width:6px;height:6px;border-radius:50%;background:var(--terra);opacity:.6;flex-shrink:0;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* BASE SECTIONS */
+.s5-section{padding:100px 6%;}.s5-inner{max-width:var(--max);margin:0 auto;}
+.s5-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(196,113,74,.1);color:var(--terra);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-xl);margin-bottom:18px;}
+.s5-tag.mauve{background:rgba(155,127,166,.12);color:var(--mauve);}
+.s5-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.s5-h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2rem,4vw,4rem);line-height:1.1;letter-spacing:-.015em;color:var(--encre);}
+.s5-h2 em{font-style:italic;color:var(--terra);}
+.s5-h2-mauve em{color:var(--mauve);}
+.s5-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:2;color:var(--muted);margin-bottom:14px;}
+
+/* BOUTONS */
+.s5-btn{display:inline-flex;align-items:center;gap:10px;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-btn:hover{background:transparent;color:var(--terra);}
+.s5-btn-mauve{background:var(--mauve);border-color:var(--mauve);color:#fff;}
+.s5-btn-mauve:hover{background:transparent;color:var(--mauve);}
+.s5-btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 28px;border-radius:var(--r-xl);border:2px solid var(--beige);transition:all .3s;}
+.s5-btn-ghost:hover{border-color:var(--terra);color:var(--terra);}
+.s5-btn-ghost-blanc{color:#fff;border-color:rgba(255,255,255,.25);}
+.s5-btn-ghost-blanc:hover{border-color:#fff;color:#fff;}
+
+/* S1 — CITATION ADN */
+.s5-citation{background:var(--blanc);padding:96px 6%;border-radius:0 0 var(--r-xl) var(--r-xl);}
+.s5-citation-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;}
+.s5-citation-img{position:relative;}
+.s5-citation-img-blob{width:100%;aspect-ratio:1;background:var(--sable);border-radius:45% 55% 60% 40% / 55% 45% 55% 45%;overflow:hidden;position:relative;}
+.s5-citation-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;}
+.s5-citation-img-deco{position:absolute;bottom:-16px;right:-16px;width:80px;height:80px;border-radius:50%;background:var(--terra2);opacity:.35;}
+.s5-citation-img-deco2{position:absolute;top:-10px;left:-10px;width:48px;height:48px;border-radius:50%;background:var(--mauve2);opacity:.4;}
+blockquote.s5-quote{font-family:var(--f-serif);font-style:italic;font-size:clamp(1.4rem,2.5vw,2.2rem);line-height:1.55;color:var(--encre);margin-bottom:28px;position:relative;padding-left:28px;}
+blockquote.s5-quote::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:3px;background:linear-gradient(to bottom,var(--terra),var(--mauve));border-radius:var(--r-xl);}
+.s5-valeurs{display:flex;flex-direction:column;gap:12px;margin-top:28px;}
+.s5-valeur{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.88rem;color:var(--muted);}
+.s5-valeur-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.s5-valeur-dot.terra{background:var(--terra);}
+.s5-valeur-dot.mauve{background:var(--mauve);}
+.s5-valeur-dot.beige{background:var(--beige);}
+@media(max-width:768px){.s5-citation-inner{grid-template-columns:1fr;gap:40px;}.s5-citation-img{max-width:320px;margin:0 auto;}}
+
+/* S2 — STATS */
+.s5-stats{background:var(--terra);padding:64px 6%;border-radius:var(--r-xl);}
+.s5-stats-inner{max-width:var(--max);margin:0 auto;}
+.s5-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.s5-stat-block{background:rgba(255,255,255,.1);border-radius:var(--r-md);padding:32px 24px;text-align:center;transition:background .3s;}
+.s5-stat-block:hover{background:rgba(255,255,255,.18);}
+.s5-stat-num{font-family:var(--f-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;color:#fff;line-height:1;display:block;margin-bottom:8px;}
+.s5-stat-num em{font-style:italic;}
+.s5-stat-lbl{font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+@media(max-width:760px){.s5-stats-grid{grid-template-columns:1fr 1fr;gap:8px;}}
+
+/* S3 — SOINS */
+.s5-soins{background:var(--creme);padding:100px 6%;}
+.s5-soins-header{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px;}
+.s5-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.s5-soin-card{background:var(--blanc);border-radius:var(--r-lg);padding:36px 28px;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;transition:transform .35s,box-shadow .35s;position:relative;overflow:hidden;}
+.s5-soin-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(42,33,24,.1);}
+.s5-soin-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--terra),var(--mauve));border-radius:var(--r-xl) var(--r-xl) 0 0;transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.s5-soin-card:hover::before{transform:scaleX(1);}
+.s5-soin-num{font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:var(--terra);opacity:.6;}
+.s5-soin-name{font-family:var(--f-serif);font-size:1.3rem;font-weight:400;color:var(--encre);line-height:1.25;flex:1;}
+.s5-soin-name em{font-style:italic;}
+.s5-soin-desc{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.8;}
+.s5-soin-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line);}
+.s5-soin-prix{font-family:var(--f-serif);font-size:1.1rem;color:var(--terra);}
+.s5-soin-dur{font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.s5-soin-arrow{width:32px;height:32px;border-radius:50%;background:var(--sable);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--muted);transition:all .3s;}
+.s5-soin-card:hover .s5-soin-arrow{background:var(--terra);color:#fff;}
+@media(max-width:860px){.s5-soins-header{grid-template-columns:1fr;gap:24px;}.s5-soins-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.s5-soins-grid{grid-template-columns:1fr;}}
+
+/* S4 — PRATICIENNE */
+.s5-prat{background:var(--encre);padding:100px 6%;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-prat-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s5-prat-img-wrap{position:relative;}
+.s5-prat-img{width:100%;aspect-ratio:3/4;background:rgba(255,255,255,.06);border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;overflow:hidden;position:relative;}
+.s5-prat-img-bg{position:absolute;inset:0;background-size:cover;background-position:center top;width:100%;height:100%;}
+.s5-prat-img-blob{position:absolute;bottom:-24px;right:-20px;width:120px;height:120px;border-radius:50%;background:var(--terra);opacity:.3;}
+.s5-prat-img-blob2{position:absolute;top:-16px;left:-16px;width:72px;height:72px;border-radius:50%;background:var(--mauve);opacity:.25;}
+.s5-prat-nom{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.8rem,3.5vw,3.2rem);color:#fff;line-height:1.1;margin-bottom:6px;}
+.s5-prat-nom em{font-style:italic;color:var(--terra2);}
+.s5-prat-titre{font-family:var(--f-sans);font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:28px;}
+.s5-prat-bio{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);line-height:2;margin-bottom:28px;}
+.s5-prat-certifs{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;}
+.s5-prat-certif{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.45);}
+.s5-prat-certif::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--terra2);flex-shrink:0;}
+.s5-prat-quote{font-family:var(--f-serif);font-style:italic;font-size:1rem;color:rgba(255,255,255,.3);line-height:1.7;border-left:2px solid var(--terra);padding-left:18px;margin-top:24px;}
+@media(max-width:768px){.s5-prat-inner{grid-template-columns:1fr;gap:48px;}.s5-prat-img{aspect-ratio:4/3;border-radius:var(--r-xl);}}
+
+/* S5 — AVIS */
+.s5-avis{background:var(--creme);padding:100px 6%;}
+.s5-avis-inner{max-width:var(--max);margin:0 auto;}
+.s5-avis-header{text-align:center;margin-bottom:56px;}
+.s5-avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.s5-avis-card{background:var(--blanc);border-radius:var(--r-lg);padding:32px 28px;display:flex;flex-direction:column;gap:14px;}
+.s5-avis-stars{display:flex;gap:4px;}
+.s5-avis-star{width:12px;height:12px;background:var(--terra);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s5-avis-txt{font-family:var(--f-serif);font-style:italic;font-size:.96rem;color:var(--encre);line-height:1.85;flex:1;}
+.s5-avis-sep{width:24px;height:2px;background:linear-gradient(to right,var(--terra),var(--mauve));border-radius:var(--r-xl);}
+.s5-avis-author{font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+@media(max-width:768px){.s5-avis-grid{grid-template-columns:1fr;gap:14px;}}
+
+/* S6 — CARTES CADEAUX */
+.s5-cadeaux{background:var(--sable);padding:100px 6%;border-radius:var(--r-xl);}
+.s5-cadeaux-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.s5-cadeaux-img{position:relative;}
+.s5-cadeaux-img-blob{width:100%;aspect-ratio:1;background:var(--beige);border-radius:40% 60% 45% 55% / 55% 45% 55% 45%;overflow:hidden;position:relative;}
+.s5-cadeaux-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;}
+.s5-cadeaux-deco{position:absolute;top:-20px;right:-20px;width:90px;height:90px;border-radius:50%;background:var(--terra2);opacity:.35;}
+.s5-cadeaux-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blanc);border-radius:var(--r-xl);padding:8px 16px;width:fit-content;margin-bottom:14px;}
+.s5-cadeaux-pill span{font-family:var(--f-sans);font-size:.68rem;font-weight:500;color:var(--terra);}
+.s5-cadeaux-avantages{display:flex;flex-direction:column;gap:10px;margin:24px 0 32px;}
+.s5-cadeaux-avantage{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:var(--muted);}
+.s5-cadeaux-avantage::before{content:'';width:20px;height:20px;border-radius:50%;background:var(--terra);flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10l4 4 6-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-size:cover;}
+@media(max-width:768px){.s5-cadeaux-inner{grid-template-columns:1fr;gap:40px;}.s5-cadeaux-img{max-width:300px;margin:0 auto;}}
+
+/* S7 — CABINET */
+.s5-cabinet{background:var(--creme);padding:100px 6%;}
+.s5-cabinet-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;}
+.s5-cabinet-galerie{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.s5-cabinet-photo{background:var(--sable);border-radius:var(--r-md);overflow:hidden;position:relative;}
+.s5-cabinet-photo:first-child{grid-row:span 2;border-radius:var(--r-lg);}
+.s5-cabinet-photo img,.s5-cabinet-photo-bg{width:100%;height:100%;object-fit:cover;min-height:160px;background-size:cover;background-position:center;}
+.s5-cabinet-infos{display:flex;flex-direction:column;gap:20px;}
+.s5-cabinet-info{display:flex;gap:16px;align-items:flex-start;padding:18px;background:var(--blanc);border-radius:var(--r-md);}
+.s5-cabinet-info-icon{width:40px;height:40px;border-radius:50%;background:var(--sable);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+.s5-icon-loc::after{content:'';display:block;width:10px;height:13px;background:var(--terra);clip-path:polygon(50% 0%,100% 35%,100% 65%,50% 100%,0% 65%,0% 35%);margin-top:-2px;}
+.s5-icon-clock::after{content:'';display:block;width:12px;height:12px;border-radius:50%;border:2px solid var(--terra);position:relative;}
+.s5-icon-clock::before{content:'';position:absolute;width:1.5px;height:5px;background:var(--terra);top:10px;left:calc(50%);border-radius:2px;}
+.s5-icon-car::after{content:'';display:block;width:14px;height:8px;background:var(--terra);border-radius:3px 3px 2px 2px;}
+.s5-cabinet-info-titre{font-family:var(--f-sans);font-size:.78rem;font-weight:500;color:var(--encre);margin-bottom:2px;}
+.s5-cabinet-info-val{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.6;}
+@media(max-width:768px){.s5-cabinet-inner{grid-template-columns:1fr;gap:40px;}}
+
+/* S8 — FAQ */
+.s5-faq{background:var(--sable);padding:100px 6%;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-faq-inner{max-width:800px;margin:0 auto;}
+.s5-faq-header{text-align:center;margin-bottom:48px;}
+details.s5-faq-item{background:var(--blanc);border-radius:var(--r-md);margin-bottom:10px;overflow:hidden;}
+details.s5-faq-item summary{padding:22px 24px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.9rem;font-weight:500;color:var(--encre);line-height:1.4;transition:color .2s;}
+details.s5-faq-item summary::-webkit-details-marker{display:none;}
+details.s5-faq-item summary::after{content:'+';width:28px;height:28px;border-radius:50%;background:var(--sable);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:300;color:var(--terra);flex-shrink:0;transition:transform .3s,background .3s;line-height:28px;text-align:center;}
+details.s5-faq-item[open] summary{color:var(--terra);}
+details.s5-faq-item[open] summary::after{transform:rotate(45deg);background:var(--terra);color:#fff;}
+.s5-faq-ans{padding:0 24px 22px;font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:var(--muted);line-height:2;}
+.s5-faq-ans p{margin-bottom:8px;}.s5-faq-ans p:last-child{margin-bottom:0;}
+.s5-faq-ans a{color:var(--terra);font-weight:500;}
+.s5-faq-lien{display:block;text-align:center;margin-top:32px;font-family:var(--f-sans);font-size:.78rem;font-weight:500;color:var(--terra);text-decoration:underline;text-underline-offset:3px;}
+
+/* S9 — CTA FINAL */
+.s5-cta{background:var(--encre);padding:120px 6%;text-align:center;border-radius:0;}
+.s5-cta-blob{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:60vw;height:60vw;max-width:600px;border-radius:var(--r-blob);background:radial-gradient(ellipse,var(--terra) 0%,var(--mauve) 60%,transparent 80%);opacity:.08;pointer-events:none;}
+.s5-cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.s5-cta-inner h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2.5rem,6vw,5.5rem);line-height:1.06;color:#fff;margin-bottom:20px;}
+.s5-cta-inner h2 em{font-style:italic;color:var(--terra2);}
+.s5-cta-sub{font-family:var(--f-sans);font-size:.9rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:40px;}
+.s5-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.s5-cta-contact{margin-top:24px;font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:rgba(255,255,255,.3);}
+.s5-cta-contact a{color:var(--terra2);}
+
+/* MAILLAGE */
+.s5-maillage{background:var(--creme);padding:56px 6%;border-top:1px solid var(--line);}
+.s5-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s5-maillage-label{font-family:var(--f-sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;}
+.s5-maillage-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.s5-maillage-pill{display:inline-block;padding:9px 18px;border-radius:var(--r-xl);border:2px solid var(--beige);color:var(--muted);font-family:var(--f-sans);font-size:.72rem;font-weight:400;letter-spacing:.06em;transition:all .25s;}
+.s5-maillage-pill:hover{border-color:var(--terra);color:var(--terra);background:rgba(196,113,74,.06);}
+
+/* REVEAL */
+.s5-reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal.in{opacity:1;transform:none;}
+.s5-reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal-left.in{opacity:1;transform:none;}
+.s5-reveal-right{opacity:0;transform:translateX(28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal-right.in{opacity:1;transform:none;}
+.s5-d1{transition-delay:.1s;}.s5-d2{transition-delay:.2s;}.s5-d3{transition-delay:.3s;}.s5-d4{transition-delay:.4s;}
+</style>
+</head>
+<body>
+<!-- STICKY -->
+<div class="s5-sticky">
+  <div class="s5-sticky-txt"><strong>[Prénom Nom]</strong> — [Titre professionnel] · [Ville] · 24h/24</div>
+  <div class="s5-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s5-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s5-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<main>
+<section class="s5-hero" aria-label="Présentation de [Prénom Nom]">
+  <div class="s5-hero-inner">
+    <div class="s5-hero-txt">
+      <div class="s5-hero-bubble">
+        <div class="s5-hero-bubble-dot"></div>
+        <span class="s5-hero-bubble-txt">[Titre professionnel] · [Ville]</span>
+      </div>
+      <h1 class="s5-custom-h1">
+        [Accroche<br>depuis Bloc 0<br><em>ADN]</em>
+      </h1>
+      <p class="s5-hero-sub">[Depuis Bloc 0 — 1-2 phrases sur la promesse et l'approche unique de la praticienne.]</p>
+      <div class="s5-hero-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-btn">Réserver ma séance</a>
+        <a href="/[slug-soins]" class="s5-btn-ghost">Voir les soins</a>
+      </div>
+      <div class="s5-hero-tags">
+        <span class="s5-hero-tag">[Soin 1]</span>
+        <span class="s5-hero-tag mauve">[Soin 2]</span>
+        <span class="s5-hero-tag">[Soin 3]</span>
+      </div>
+    </div>
+    <div class="s5-hero-img-wrap">
+      <div class="s5-hero-img">
+        <div class="s5-hero-img-bg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+      </div>
+      <div class="s5-hero-badge">
+        <span class="s5-hero-badge-num">[X]+</span>
+        <span class="s5-hero-badge-lbl">Clientes<br>accompagnées</span>
+      </div>
+      <div class="s5-hero-badge2">
+        <div>
+          <div class="s5-hero-badge2-stars">
+            <span class="s5-hero-badge2-star"></span><span class="s5-hero-badge2-star"></span><span class="s5-hero-badge2-star"></span><span class="s5-hero-badge2-star"></span><span class="s5-hero-badge2-star"></span>
+          </div>
+          <span class="s5-hero-badge2-sub">Note Google</span>
+        </div>
+        <span class="s5-hero-badge2-txt">[X.X] / 5</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="s5-marquee">
+  <div class="s5-marquee-track">
+    <div class="s5-marquee-item"><strong>[Soin 1]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Ville]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Soin 2]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Valeur 1]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Soin 3]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Valeur 2]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Soin 1]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Ville]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Soin 2]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Valeur 1]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Soin 3]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Valeur 2]<span class="s5-marquee-sep"></span></div>
+  </div>
+</div>
+
+<!-- S1 — CITATION ADN -->
+<section class="s5-citation">
+  <div class="s5-citation-inner">
+    <div class="s5-citation-img s5-reveal-left">
+      <div class="s5-citation-img-blob">
+        <div class="s5-citation-img-bg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+      </div>
+      <div class="s5-citation-img-deco"></div>
+      <div class="s5-citation-img-deco2"></div>
+    </div>
+    <div class="s5-reveal-right">
+      <div class="s5-tag">— Mon approche</div>
+      <blockquote class="s5-quote">« [Depuis Bloc 0 ADN — citation courte et percutante dans les mots de la praticienne.] »</blockquote>
+      <p class="s5-p">[Depuis Bloc 0 "Ce que tu fais différemment" — 2 phrases max.]</p>
+      <div class="s5-valeurs">
+        <div class="s5-valeur"><span class="s5-valeur-dot terra"></span>[Valeur clé 1]</div>
+        <div class="s5-valeur"><span class="s5-valeur-dot mauve"></span>[Valeur clé 2]</div>
+        <div class="s5-valeur"><span class="s5-valeur-dot beige"></span>[Valeur clé 3]</div>
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/[slug-a-propos]" class="s5-btn-ghost">Mon parcours →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 — STATS -->
+<section class="s5-stats s5-reveal" style="margin:0 6%;border-radius:var(--r-xl);">
+  <div class="s5-stats-inner">
+    <div class="s5-stats-grid">
+      <div class="s5-stat-block">
+        <span class="s5-stat-num" data-count="[X]">[X]</span>
+        <span class="s5-stat-lbl">Années d'expérience</span>
+      </div>
+      <div class="s5-stat-block">
+        <span class="s5-stat-num" data-count="[X]">[X]+</span>
+        <span class="s5-stat-lbl">Clientes accompagnées</span>
+      </div>
+      <div class="s5-stat-block">
+        <span class="s5-stat-num"><em>[X.X]</em> ★</span>
+        <span class="s5-stat-lbl">Note Google</span>
+      </div>
+      <div class="s5-stat-block">
+        <span class="s5-stat-num" data-count="[X]">[X]</span>
+        <span class="s5-stat-lbl">Soins proposés</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 — LES SOINS -->
+<section class="s5-soins">
+  <div class="s5-inner">
+    <div class="s5-soins-header">
+      <div class="s5-reveal-left">
+        <div class="s5-tag">— I — Les soins</div>
+        <h2 class="s5-h2">Prendre soin de soi<br><em>à [Ville]</em></h2>
+      </div>
+      <div class="s5-reveal-right">
+        <p class="s5-p">[Depuis Bloc 5 — présentation générale des soins en 1-2 phrases.]</p>
+        <a href="/[slug-soins]" class="s5-btn-ghost">Voir toutes les prestations →</a>
+      </div>
+    </div>
+    <div class="s5-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s5-soin-card s5-reveal s5-d1">
+        <span class="s5-soin-num">01</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 1</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 1.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-2]-[ville]" class="s5-soin-card s5-reveal s5-d2">
+        <span class="s5-soin-num">02</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 2</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 2.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s5-soin-card s5-reveal s5-d3">
+        <span class="s5-soin-num">03</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 3</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 3.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s5-soin-card s5-reveal s5-d1">
+        <span class="s5-soin-num">04</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 4</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 4.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-5]-[ville]" class="s5-soin-card s5-reveal s5-d2">
+        <span class="s5-soin-num">05</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 5</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 5.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-6]-[ville]" class="s5-soin-card s5-reveal s5-d3">
+        <span class="s5-soin-num">06</span>
+        <div class="s5-soin-name">[Nom du<br><em>soin 6</em>]</div>
+        <p class="s5-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 6.]</p>
+        <div class="s5-soin-footer">
+          <span class="s5-soin-prix">[Tarif]€</span>
+          <span class="s5-soin-dur">[X]h</span>
+          <div class="s5-soin-arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- S4 — LA PRATICIENNE -->
+<section class="s5-prat">
+  <div class="s5-prat-inner">
+    <div class="s5-prat-img-wrap s5-reveal-left">
+      <div class="s5-prat-img">
+        <div class="s5-prat-img-bg" style="background-image:url('[URL_PHOTO_PORTRAIT_2]')"></div>
+      </div>
+      <div class="s5-prat-img-blob"></div>
+      <div class="s5-prat-img-blob2"></div>
+    </div>
+    <div class="s5-reveal-right">
+      <div class="s5-tag" style="background:rgba(196,113,74,.15);color:var(--terra2);">— La praticienne</div>
+      <div class="s5-prat-nom">[Prénom Nom],<br><em>[Titre professionnel]</em></div>
+      <div class="s5-prat-titre">À [Ville] depuis [X] ans</div>
+      <p class="s5-prat-bio">[Depuis Bloc 9 bio courte — 2-3 phrases dans les mots de la praticienne.]</p>
+      <div class="s5-prat-certifs">
+        <div class="s5-prat-certif">[Formation 1] — [Organisme]</div>
+        <div class="s5-prat-certif">[Formation 2] — [Organisme]</div>
+        <div class="s5-prat-certif">[Formation 3] — [Organisme]</div>
+      </div>
+      <a href="/[slug-a-propos]" class="s5-btn" style="background:var(--terra2);border-color:var(--terra2);">Découvrir mon parcours</a>
+      <blockquote class="s5-prat-quote">« [Depuis Bloc 0 ADN — citation courte.] »</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- S5 — AVIS -->
+<section class="s5-avis">
+  <div class="s5-avis-inner">
+    <div class="s5-avis-header s5-reveal">
+      <div class="s5-tag mauve" style="margin:0 auto 16px;">— Témoignages</div>
+      <h2 class="s5-h2 s5-h2-mauve" style="text-align:center;">Ce qu'elles disent<br><em>de leurs séances</em></h2>
+    </div>
+    <div class="s5-avis-grid">
+      <article class="s5-avis-card s5-reveal s5-d1">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 1 depuis Bloc 11 — mot de cliente.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s5-avis-card s5-reveal s5-d2">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 2 depuis Bloc 11.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s5-avis-card s5-reveal s5-d3">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 3 depuis Bloc 11.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:36px;" class="s5-reveal">
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" class="s5-btn-ghost">[X.X] ★ · Voir tous les avis Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- S6 — CARTES CADEAUX -->
+<section class="s5-cadeaux s5-reveal" style="margin:0 4%;border-radius:var(--r-xl);">
+  <div class="s5-cadeaux-inner">
+    <div class="s5-cadeaux-img">
+      <div class="s5-cadeaux-img-blob">
+        <div class="s5-cadeaux-img-bg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+      </div>
+      <div class="s5-cadeaux-deco"></div>
+    </div>
+    <div>
+      <div class="s5-cadeaux-pill"><span>Cartes cadeaux disponibles</span></div>
+      <h2 class="s5-h2" style="margin-bottom:12px;">Offrir une séance,<br><em>un vrai cadeau</em></h2>
+      <p class="s5-p">[Depuis Bloc 6 — 1-2 phrases sur l'offre cadeau.]</p>
+      <div class="s5-cadeaux-avantages">
+        <div class="s5-cadeaux-avantage">Code envoyé immédiatement par email</div>
+        <div class="s5-cadeaux-avantage">Valable 1 an</div>
+        <div class="s5-cadeaux-avantage">Aucun montant à régler sur place</div>
+      </div>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s5-btn-mauve">Offrir une séance</a>
+    </div>
+  </div>
+</section>
+
+<!-- S7 — CABINET -->
+<section class="s5-cabinet">
+  <div class="s5-cabinet-inner">
+    <div class="s5-cabinet-galerie s5-reveal-left">
+      <div class="s5-cabinet-photo" style="min-height:280px;">
+        <div class="s5-cabinet-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_1]');position:absolute;inset:0;background-size:cover;background-position:center;"></div>
+      </div>
+      <div class="s5-cabinet-photo"><div class="s5-cabinet-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_2]');height:100%;min-height:130px;background-size:cover;background-position:center;"></div></div>
+      <div class="s5-cabinet-photo"><div class="s5-cabinet-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_3]');height:100%;min-height:130px;background-size:cover;background-position:center;"></div></div>
+    </div>
+    <div class="s5-reveal-right">
+      <div class="s5-tag">— Cabinet & accès</div>
+      <h2 class="s5-h2" style="margin-bottom:28px;">Un espace<br><em>conçu pour vous</em></h2>
+      <div class="s5-cabinet-infos">
+        <div class="s5-cabinet-info">
+          <div class="s5-cabinet-info-icon s5-icon-loc"></div>
+          <div><div class="s5-cabinet-info-titre">Adresse</div><div class="s5-cabinet-info-val">[Depuis Bloc 2 — adresse complète]</div></div>
+        </div>
+        <div class="s5-cabinet-info">
+          <div class="s5-cabinet-info-icon s5-icon-clock"></div>
+          <div><div class="s5-cabinet-info-titre">Horaires</div><div class="s5-cabinet-info-val">[Depuis Bloc 10 — jours et heures. Sur rendez-vous.]</div></div>
+        </div>
+        <div class="s5-cabinet-info">
+          <div class="s5-cabinet-info-icon s5-icon-car"></div>
+          <div><div class="s5-cabinet-info-titre">Accès & parking</div><div class="s5-cabinet-info-val">[Depuis Bloc 2 — accès transport + parking.]</div></div>
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener" class="s5-btn-ghost">Voir sur Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 — FAQ -->
+<section class="s5-faq">
+  <div class="s5-faq-inner">
+    <div class="s5-faq-header s5-reveal">
+      <div class="s5-tag" style="margin:0 auto 16px;">— Questions fréquentes</div>
+      <h2 class="s5-h2" style="text-align:center;">Vos questions,<br><em>mes réponses</em></h2>
+    </div>
+    <div class="s5-reveal">
+      <details class="s5-faq-item"><summary>Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 9 + Bloc 0 ADN.] <a href="/[slug-a-propos]">En savoir plus →</a></p></div></details>
+      <details class="s5-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 — description courte.] <a href="/[slug-soin-1]-[ville]">Découvrir [Soin 1] →</a></p></div></details>
+      <details class="s5-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s5-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée]. <a href="/[slug-soins]">Voir tous les tarifs →</a></p></div></details>
+      <details class="s5-faq-item"><summary>Comment prendre rendez-vous ?</summary><div class="s5-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s5-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s5-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s5-faq-item"><summary>Ces soins sont-ils remboursés ?</summary><div class="s5-faq-ans"><p>[Depuis dossier client — remboursement mutuelle éventuel.]</p></div></details>
+      <details class="s5-faq-item"><summary>Comment offrir une séance en cadeau ?</summary><div class="s5-faq-ans"><p>Carte cadeau sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code immédiat par email. Valable 1 an.</p></div></details>
+      <details class="s5-faq-item"><summary>Proposez-vous des séances à domicile ou en visio ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 — domicile/visio oui/non, conditions.]</p></div></details>
+      <details class="s5-faq-item"><summary>Quelle est la politique d'annulation ?</summary><div class="s5-faq-ans"><p>[Délai minimum d'annulation — depuis dossier client.]</p></div></details>
+      <details class="s5-faq-item"><summary>Que ressentira-t-on après la séance ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 0 transformation + Bloc 13.]</p></div></details>
+    </div>
+    <a href="/[slug-faq]" class="s5-faq-lien">Voir toutes les questions fréquentes →</a>
+  </div>
+</section>
+
+<!-- S9 — CTA FINAL -->
+<section class="s5-cta" style="position:relative;overflow:hidden;">
+  <div class="s5-cta-blob"></div>
+  <div class="s5-cta-inner s5-reveal">
+    <h2>[Accroche finale<br><em>Bloc 0 ADN]</em></h2>
+    <p class="s5-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <div class="s5-cta-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-btn">Réserver ma séance</a>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s5-btn-ghost s5-btn-ghost-blanc">Offrir une séance</a>
+    </div>
+    <p class="s5-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+<!-- MAILLAGE -->
+</main>
+<nav class="s5-maillage" aria-label="Navigation thématique">
+  <div class="s5-maillage-inner">
+    <span class="s5-maillage-label">À découvrir</span>
+    <div class="s5-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s5-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s5-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s5-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-a-propos]" class="s5-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s5-maillage-pill">Questions fréquentes</a>
+      <a href="/[slug-offrir]" class="s5-maillage-pill">Cartes cadeaux</a>
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"LocalBusiness","name":"[Prénom Nom] — [Titre professionnel]","description":"[Depuis Bloc 0 ADN — 2 phrases.]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","streetAddress":"[Adresse]","addressLocality":"[Ville]","postalCode":"[CP]","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":"[LAT]","longitude":"[LNG]"},"openingHours":["[Horaires]"],"priceRange":"[XX]€ – [XX]€","aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Soins de [Prénom Nom] à [Ville]","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 1] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-1]-[ville]"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 2] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-2]-[ville]"}}]}},
+{"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","url":"https://[votre-domaine].fr/[slug-a-propos]","worksFor":{"@type":"LocalBusiness","name":"[Nom du cabinet]","address":{"@type":"PostalAddress","addressLocality":"[Ville]","addressCountry":"FR"}}},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Qui est [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 9 + ADN]."}},
+  {"@type":"Question","name":"En quoi consiste [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5]."}},
+  {"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [tarif]€. [Soin 2] : [tarif]€."}},
+  {"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},
+  {"@type":"Question","name":"Y a-t-il des contre-indications ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]."}},
+  {"@type":"Question","name":"Ces soins sont-ils remboursés ?","acceptedAnswer":{"@type":"Answer","text":"[Remboursement mutuelle]."}},
+  {"@type":"Question","name":"Comment offrir une séance en cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},
+  {"@type":"Question","name":"Proposez-vous des séances à domicile ?","acceptedAnswer":{"@type":"Answer","text":"[Domicile oui/non, conditions]."}},
+  {"@type":"Question","name":"Quelle est la politique d'annulation ?","acceptedAnswer":{"@type":"Answer","text":"[Délai minimum]."}},
+  {"@type":"Question","name":"Que ressent-on après une séance de [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[Effets post-séance]."}}
+]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"}]}]
+</script>
+
+<script>
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s5-reveal,.s5-reveal-left,.s5-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

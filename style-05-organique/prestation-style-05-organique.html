@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Nom du soin] à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="[Nom du soin] à [Ville] avec [Prénom Nom], [titre professionnel]. [Accroche courte depuis Bloc 5]. Réservation en ligne.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-soin]-[ville]">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[Nom du soin] à [Ville] — [Prénom Nom]">
+<meta property="og:description" content="[Accroche courte depuis Bloc 5]. [Prénom Nom], [titre professionnel] à [Ville].">
+<meta property="og:url" content="https://[votre-domaine].fr/[slug-soin]-[ville]">
+<meta property="og:image" content="[URL_OG_IMAGE]">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[Nom du soin] à [Ville] — [Prénom Nom]">
+<meta name="twitter:image" content="[URL_OG_IMAGE]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --creme:   #FAF6F0;
+  --blanc:   #FFFFFF;
+  --sable:   #F0E8DC;
+  --beige:   #E4D5C0;
+  --terra:   #C4714A;
+  --terra2:  #E8A882;
+  --mauve:   #9B7FA6;
+  --mauve2:  #C5AED0;
+  --encre:   #2A2118;
+  --muted:   #8A7868;
+  --line:    rgba(42,33,24,.08);
+  --f-serif: 'Playfair Display', Georgia, serif;
+  --f-sans:  'Plus Jakarta Sans', sans-serif;
+  --max:     1200px;
+  --r-sm:    16px;
+  --r-md:    32px;
+  --r-lg:    48px;
+  --r-xl:    80px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--creme);color:var(--encre);padding-bottom:72px;overflow-x:hidden;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+/* STICKY */
+.s5-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--encre);border-radius:var(--r-xl) var(--r-xl) 0 0;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;gap:16px;}
+.s5-sticky-txt{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:rgba(255,255,255,.45);white-space:nowrap;}
+.s5-sticky-txt strong{color:#fff;font-weight:500;}
+.s5-sticky-btns{display:flex;gap:8px;flex-shrink:0;}
+.s5-sticky-cta{background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:10px 26px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-sticky-cta:hover{background:transparent;color:var(--terra);}
+.s5-sticky-ghost{background:transparent;color:rgba(255,255,255,.5);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;border-radius:var(--r-xl);border:2px solid rgba(255,255,255,.15);transition:all .3s;}
+.s5-sticky-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+@media(max-width:600px){.s5-sticky{padding:12px 16px;border-radius:var(--r-lg) var(--r-lg) 0 0;}.s5-sticky-txt{display:none;}.s5-sticky-btns{width:100%;}.s5-sticky-cta,.s5-sticky-ghost{flex:1;text-align:center;}}
+
+/* HERO SPLIT */
+.s5-hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+.s5-hero-img-col{position:relative;overflow:hidden;background:var(--sable);}
+.s5-hero-img-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transform:scale(1.06);transition:transform 10s ease;}
+.s5-hero-img-bg.loaded{transform:scale(1);}
+/* blob déco sur l'image */
+.s5-hero-img-col::after{content:'';position:absolute;bottom:-8%;right:-8%;width:260px;height:260px;border-radius:50%;background:radial-gradient(ellipse,var(--terra2),transparent 70%);opacity:.3;pointer-events:none;}
+.s5-hero-txt{background:var(--blanc);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 72px 100px;position:relative;overflow:hidden;}
+/* blob déco fond */
+.s5-hero-txt::before{content:'';position:absolute;top:-12%;left:-12%;width:280px;height:280px;border-radius:50%;background:radial-gradient(ellipse,var(--mauve2),transparent 70%);opacity:.18;pointer-events:none;}
+.s5-hero-breadcrumb{position:relative;z-index:1;display:flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:.64rem;font-weight:400;color:var(--muted);margin-bottom:28px;opacity:0;animation:fadeUp .7s .1s ease forwards;}
+.s5-hero-breadcrumb a{color:var(--muted);transition:color .2s;}
+.s5-hero-breadcrumb a:hover{color:var(--terra);}
+.s5-hero-breadcrumb span{color:var(--beige);}
+.s5-hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(196,113,74,.1);color:var(--terra);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-xl);margin-bottom:18px;width:fit-content;opacity:0;animation:fadeUp .7s .15s ease forwards;position:relative;z-index:1;}
+.s5-hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra);}
+.s5-hero h1{font-family:var(--f-serif);font-weight:400;font-size:clamp(2.4rem,4.5vw,5rem);line-height:1.04;letter-spacing:-.02em;color:var(--encre);margin-bottom:14px;opacity:0;animation:fadeUp .9s .25s ease forwards;position:relative;z-index:1;}
+.s5-hero h1 em{font-style:italic;color:var(--terra);}
+.s5-hero-tagline{font-family:var(--f-serif);font-style:italic;font-size:1rem;color:var(--muted);margin-bottom:28px;opacity:0;animation:fadeUp .8s .35s ease forwards;position:relative;z-index:1;line-height:1.6;}
+.s5-hero-infos{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;opacity:0;animation:fadeUp .8s .45s ease forwards;position:relative;z-index:1;}
+.s5-hero-info{background:var(--sable);border-radius:var(--r-xl);padding:8px 16px;display:flex;flex-direction:column;gap:2px;}
+.s5-hero-info-label{font-family:var(--f-sans);font-size:.5rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.s5-hero-info-val{font-family:var(--f-sans);font-size:.82rem;font-weight:500;color:var(--encre);}
+.s5-hero-btns{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .55s ease forwards;position:relative;z-index:1;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s5-hero{grid-template-columns:1fr;min-height:auto;}.s5-hero-img-col{height:60vw;}.s5-hero-txt{padding:48px 6% 72px;}.s5-hero h1{font-size:clamp(2.2rem,8vw,3.5rem);}}
+
+/* MARQUEE */
+.s5-marquee{background:var(--encre);padding:16px 0;overflow:hidden;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-marquee-track{display:flex;animation:marquee 22s linear infinite;width:max-content;}
+.s5-marquee-item{display:flex;align-items:center;gap:20px;padding:0 24px;white-space:nowrap;font-family:var(--f-sans);font-size:.68rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.s5-marquee-item strong{color:var(--terra2);font-weight:500;}
+.s5-marquee-sep{width:5px;height:5px;border-radius:50%;background:var(--terra);opacity:.5;flex-shrink:0;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* BASE */
+.s5-section{padding:100px 6%;}.s5-inner{max-width:var(--max);margin:0 auto;}
+.s5-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(196,113,74,.1);color:var(--terra);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:7px 16px;border-radius:var(--r-xl);margin-bottom:16px;}
+.s5-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;}
+.s5-tag.mauve{background:rgba(155,127,166,.12);color:var(--mauve);}
+.s5-h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2rem,4vw,3.8rem);line-height:1.1;letter-spacing:-.015em;color:var(--encre);}
+.s5-h2 em{font-style:italic;color:var(--terra);}
+.s5-h3{font-family:var(--f-serif);font-weight:400;font-size:1.5rem;line-height:1.2;color:var(--encre);}
+.s5-h3 em{font-style:italic;}
+.s5-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:2;color:var(--muted);}
+
+/* BOUTONS */
+.s5-btn{display:inline-flex;align-items:center;gap:10px;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r-xl);border:2px solid var(--terra);transition:all .3s;}
+.s5-btn:hover{background:transparent;color:var(--terra);}
+.s5-btn-mauve{background:var(--mauve);border-color:var(--mauve);}
+.s5-btn-mauve:hover{background:transparent;color:var(--mauve);}
+.s5-btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 28px;border-radius:var(--r-xl);border:2px solid var(--beige);transition:all .3s;}
+.s5-btn-ghost:hover{border-color:var(--terra);color:var(--terra);}
+.s5-btn-ghost-blanc{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2);}
+.s5-btn-ghost-blanc:hover{border-color:#fff;color:#fff;}
+
+/* S1 — DESCRIPTION + ENCART */
+.s5-desc-layout{display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:start;}
+.s5-desc-blocs{display:flex;flex-direction:column;gap:32px;}
+.s5-desc-bloc{display:grid;grid-template-columns:48px 1fr;gap:20px;align-items:start;padding:28px;background:var(--blanc);border-radius:var(--r-lg);}
+.s5-desc-num{font-family:var(--f-serif);font-style:italic;font-size:2rem;color:var(--terra);opacity:.35;line-height:1;text-align:center;}
+.s5-desc-titre{font-family:var(--f-sans);font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:8px;}
+/* Encart sticky */
+.s5-encart{background:var(--encre);border-radius:var(--r-lg);padding:32px;position:sticky;top:24px;}
+.s5-encart-titre{font-family:var(--f-serif);font-weight:400;font-size:1.2rem;color:#fff;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);}
+.s5-encart-titre em{font-style:italic;color:var(--terra2);}
+.s5-encart-infos{display:flex;flex-direction:column;gap:14px;margin-bottom:24px;}
+.s5-encart-info{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.s5-encart-info:last-child{border-bottom:none;}
+.s5-encart-info-label{font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.s5-encart-info-val{font-family:var(--f-sans);font-size:.88rem;font-weight:500;color:#fff;}
+.s5-encart-prix{font-family:var(--f-serif);font-size:2.4rem;font-weight:400;color:var(--terra2);text-align:center;margin-bottom:20px;line-height:1;}
+.s5-encart-prix span{font-size:1rem;vertical-align:super;}
+.s5-encart-btns{display:flex;flex-direction:column;gap:8px;}
+.s5-encart-cta{display:block;background:var(--terra);color:#fff;font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px;border-radius:var(--r-xl);border:2px solid var(--terra);text-align:center;transition:all .3s;}
+.s5-encart-cta:hover{background:transparent;color:var(--terra);}
+.s5-encart-offrir{display:block;background:transparent;color:rgba(255,255,255,.4);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:12px;border-radius:var(--r-xl);border:2px solid rgba(255,255,255,.1);text-align:center;transition:all .3s;}
+.s5-encart-offrir:hover{border-color:rgba(255,255,255,.4);color:rgba(255,255,255,.8);}
+.s5-encart-note{margin-top:16px;font-family:var(--f-serif);font-style:italic;font-size:.78rem;color:rgba(255,255,255,.2);text-align:center;line-height:1.6;}
+@media(max-width:980px){.s5-desc-layout{grid-template-columns:1fr;}.s5-encart{position:static;}}
+
+/* S2 — BIENFAITS */
+.s5-bienfaits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.s5-bienfait-card{background:var(--blanc);border-radius:var(--r-lg);padding:32px 24px;display:flex;flex-direction:column;gap:12px;transition:transform .35s,box-shadow .35s;position:relative;overflow:hidden;}
+.s5-bienfait-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(42,33,24,.09);}
+.s5-bienfait-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--terra),var(--mauve));border-radius:var(--r-xl) var(--r-xl) 0 0;transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.s5-bienfait-card:hover::before{transform:scaleX(1);}
+.s5-bienfait-num{font-family:var(--f-serif);font-style:italic;font-size:2.2rem;color:var(--terra);opacity:.2;line-height:1;}
+.s5-bienfait-titre{font-family:var(--f-sans);font-size:.86rem;font-weight:500;color:var(--encre);}
+.s5-bienfait-txt{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.85;}
+@media(max-width:760px){.s5-bienfaits-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.s5-bienfaits-grid{grid-template-columns:1fr;}}
+
+/* S3 — DÉROULEMENT */
+.s5-deroul{background:var(--encre);border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-deroul-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.s5-deroul-steps{display:flex;flex-direction:column;gap:0;}
+.s5-deroul-step{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.s5-deroul-step:last-child{border-bottom:none;}
+.s5-deroul-num{width:52px;height:52px;border-radius:50%;background:rgba(196,113,74,.15);display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:1.1rem;font-style:italic;color:var(--terra2);flex-shrink:0;}
+.s5-deroul-titre{font-family:var(--f-sans);font-size:.86rem;font-weight:500;color:#fff;margin-bottom:6px;}
+.s5-deroul-txt{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.85;}
+.s5-deroul-img-wrap{position:relative;padding-top:48px;}
+.s5-deroul-img{width:100%;aspect-ratio:3/4;background:rgba(255,255,255,.06);border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;overflow:hidden;position:relative;}
+.s5-deroul-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;}
+/* Encart "À prévoir" */
+.s5-prevoir{background:rgba(196,113,74,.12);border-radius:var(--r-lg);padding:24px;margin-top:24px;border-left:3px solid var(--terra);}
+.s5-prevoir-titre{font-family:var(--f-sans);font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--terra2);margin-bottom:12px;}
+.s5-prevoir-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.s5-prevoir-list li{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(255,255,255,.5);padding-left:16px;position:relative;line-height:1.7;}
+.s5-prevoir-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--terra2);}
+@media(max-width:860px){.s5-deroul-inner{grid-template-columns:1fr;gap:40px;}.s5-deroul-img{aspect-ratio:3/2;border-radius:var(--r-xl);}.s5-deroul-img-wrap{padding-top:0;}}
+
+/* S4 — INDICATIONS & CI */
+.s5-indic-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;}
+.s5-indic-col{background:var(--blanc);border-radius:var(--r-lg);padding:32px;}
+.s5-indic-col.ci{background:rgba(196,113,74,.06);border:1px solid rgba(196,113,74,.15);}
+.s5-indic-titre{font-family:var(--f-sans);font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line);color:var(--encre);}
+.s5-indic-titre.terra{color:var(--terra);}
+.s5-indic-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.s5-indic-list li{display:flex;align-items:flex-start;gap:10px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:1.7;}
+.s5-indic-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.s5-indic-dot.terra{background:var(--terra);}
+.s5-indic-dot.muted{background:var(--beige);}
+/* Encart CI alerte */
+.s5-ci-encart{background:rgba(155,127,166,.1);border-radius:var(--r-lg);padding:24px;margin-top:24px;border:1px solid rgba(155,127,166,.2);}
+.s5-ci-encart-titre{font-family:var(--f-sans);font-size:.7rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mauve);margin-bottom:8px;}
+.s5-ci-encart-txt{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.85;}
+.s5-ci-encart-txt a{color:var(--terra);font-weight:500;}
+@media(max-width:640px){.s5-indic-layout{grid-template-columns:1fr;}}
+
+/* S5 — AVIS */
+.s5-avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.s5-avis-card{background:var(--blanc);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:12px;}
+.s5-avis-stars{display:flex;gap:4px;}
+.s5-avis-star{width:11px;height:11px;background:var(--terra);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s5-avis-txt{font-family:var(--f-serif);font-style:italic;font-size:.94rem;color:var(--encre);line-height:1.85;flex:1;}
+.s5-avis-sep{width:20px;height:2px;background:linear-gradient(to right,var(--terra),var(--mauve));border-radius:var(--r-xl);}
+.s5-avis-author{font-family:var(--f-sans);font-size:.64rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.s5-avis-note{background:var(--sable);border-radius:var(--r-xl);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:24px;flex-wrap:wrap;gap:12px;}
+.s5-avis-note-val{font-family:var(--f-serif);font-size:1.8rem;color:var(--terra);line-height:1;}
+.s5-avis-note-lbl{font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+@media(max-width:760px){.s5-avis-grid{grid-template-columns:1fr;}}
+
+/* S6 — PRATICIENNE */
+.s5-prat{background:var(--encre);padding:100px 6%;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-prat-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s5-prat-img-wrap{position:relative;}
+.s5-prat-img{width:100%;aspect-ratio:3/4;background:rgba(255,255,255,.06);border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;overflow:hidden;position:relative;}
+.s5-prat-img-bg{position:absolute;inset:0;background-size:cover;background-position:center top;width:100%;height:100%;}
+.s5-prat-blob{position:absolute;bottom:-20px;right:-16px;width:100px;height:100px;border-radius:50%;background:var(--terra);opacity:.25;}
+.s5-prat-blob2{position:absolute;top:-12px;left:-12px;width:60px;height:60px;border-radius:50%;background:var(--mauve);opacity:.2;}
+.s5-prat-nom{font-family:var(--f-serif);font-weight:400;font-size:clamp(1.6rem,3vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:4px;}
+.s5-prat-nom em{font-style:italic;color:var(--terra2);}
+.s5-prat-titre{font-family:var(--f-sans);font-size:.66rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:24px;}
+.s5-prat-bio{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);line-height:2;margin-bottom:24px;}
+.s5-prat-certifs{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
+.s5-prat-certifs li{display:flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.82rem;color:rgba(255,255,255,.4);font-weight:300;}
+.s5-prat-certifs li::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--terra2);flex-shrink:0;}
+@media(max-width:768px){.s5-prat-inner{grid-template-columns:1fr;gap:40px;}.s5-prat-img{aspect-ratio:4/3;border-radius:var(--r-xl);}}
+
+/* S7 — FAQ SOIN */
+.s5-faq-layout{display:grid;grid-template-columns:200px 1fr;gap:56px;align-items:start;}
+.s5-faq-sidebar{position:sticky;top:24px;}
+.s5-faq-sidebar-title{font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);margin-bottom:14px;display:block;}
+.s5-faq-sidebar-link{display:flex;align-items:center;font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:var(--muted);padding:9px 0 9px 14px;border-left:2px solid transparent;transition:all .22s;}
+.s5-faq-sidebar-link:hover{color:var(--terra);border-left-color:var(--beige);}
+.s5-faq-sidebar-link.active{color:var(--terra);border-left-color:var(--terra);font-weight:500;}
+details.s5-faq-item{background:var(--blanc);border-radius:var(--r-md);margin-bottom:8px;overflow:hidden;}
+details.s5-faq-item summary{padding:20px 22px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.88rem;font-weight:500;color:var(--encre);line-height:1.4;transition:color .2s;}
+details.s5-faq-item summary::-webkit-details-marker{display:none;}
+details.s5-faq-item summary::after{content:'+';width:26px;height:26px;border-radius:50%;background:var(--sable);display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:300;color:var(--terra);flex-shrink:0;transition:transform .3s,background .3s;}
+details.s5-faq-item[open] summary{color:var(--terra);}
+details.s5-faq-item[open] summary::after{transform:rotate(45deg);background:var(--terra);color:#fff;}
+.s5-faq-ans{padding:0 22px 18px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:2;}
+.s5-faq-ans a{color:var(--terra);font-weight:500;}
+@media(max-width:768px){.s5-faq-layout{grid-template-columns:1fr;}.s5-faq-sidebar{display:none;}}
+
+/* S8 — AUTRES SOINS */
+.s5-autres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+.s5-autre-card{background:var(--blanc);border-radius:var(--r-lg);padding:28px 24px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:transform .35s,box-shadow .35s;}
+.s5-autre-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(42,33,24,.09);}
+.s5-autre-nom{font-family:var(--f-serif);font-size:1.2rem;font-weight:400;color:var(--encre);line-height:1.2;}
+.s5-autre-nom em{font-style:italic;}
+.s5-autre-desc{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.75;flex:1;}
+.s5-autre-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--line);}
+.s5-autre-prix{font-family:var(--f-serif);font-size:1rem;color:var(--terra);}
+.s5-autre-arrow{width:28px;height:28px;border-radius:50%;background:var(--sable);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--muted);transition:all .3s;}
+.s5-autre-card:hover .s5-autre-arrow{background:var(--terra);color:#fff;}
+@media(max-width:640px){.s5-autres-grid{grid-template-columns:1fr 1fr;}}
+
+/* CTA FINAL */
+.s5-cta{background:var(--terra);padding:100px 6%;text-align:center;position:relative;overflow:hidden;border-radius:var(--r-xl) var(--r-xl) 0 0;}
+.s5-cta::before{content:'';position:absolute;top:-30%;right:-15%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;}
+.s5-cta::after{content:'';position:absolute;bottom:-20%;left:-10%;width:300px;height:300px;border-radius:50%;background:rgba(42,33,24,.06);pointer-events:none;}
+.s5-cta-inner{position:relative;z-index:1;max-width:580px;margin:0 auto;}
+.s5-cta-inner h2{font-family:var(--f-serif);font-weight:400;font-size:clamp(2.2rem,5vw,5rem);line-height:1.06;color:#fff;margin-bottom:16px;}
+.s5-cta-inner h2 em{font-style:italic;}
+.s5-cta-sub{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.65);line-height:1.9;margin-bottom:36px;}
+.s5-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.s5-cta-btn-blanc{display:inline-flex;align-items:center;background:#fff;color:var(--terra);font-family:var(--f-sans);font-size:.66rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border-radius:var(--r-xl);border:2px solid #fff;transition:all .3s;}
+.s5-cta-btn-blanc:hover{background:transparent;color:#fff;}
+.s5-cta-contact{margin-top:20px;font-family:var(--f-serif);font-style:italic;font-size:.84rem;color:rgba(255,255,255,.5);}
+.s5-cta-contact a{color:#fff;}
+
+/* MAILLAGE */
+.s5-maillage{background:var(--creme);padding:56px 6%;border-top:1px solid var(--line);}
+.s5-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s5-maillage-label{font-family:var(--f-sans);font-size:.56rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:block;}
+.s5-maillage-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.s5-maillage-pill{display:inline-block;padding:9px 18px;border-radius:var(--r-xl);border:2px solid var(--beige);color:var(--muted);font-family:var(--f-sans);font-size:.72rem;font-weight:400;transition:all .25s;}
+.s5-maillage-pill:hover{border-color:var(--terra);color:var(--terra);}
+
+.s5-reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal.in{opacity:1;transform:none;}
+.s5-reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal-left.in{opacity:1;transform:none;}
+.s5-reveal-right{opacity:0;transform:translateX(28px);transition:opacity 1s ease,transform 1s ease;}.s5-reveal-right.in{opacity:1;transform:none;}
+.s5-d1{transition-delay:.1s;}.s5-d2{transition-delay:.2s;}.s5-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+
+<div class="s5-sticky">
+  <div class="s5-sticky-txt"><strong>[Nom du soin]</strong> à [Ville] · <strong>[Prénom Nom]</strong></div>
+  <div class="s5-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s5-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s5-sticky-cta" target="_blank" rel="noopener">Réserver</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO SPLIT -->
+<section class="s5-hero" aria-label="[Nom du soin] à [Ville]">
+  <div class="s5-hero-img-col">
+    <div class="s5-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_SOIN]')"></div>
+  </div>
+  <div class="s5-hero-txt">
+    <nav class="s5-hero-breadcrumb" aria-label="Fil d'Ariane">
+      <a href="/">Accueil</a>
+      <span>›</span>
+      <a href="/[slug-soins]">Soins</a>
+      <span>›</span>
+      <span style="color:var(--encre);">[Nom du soin]</span>
+    </nav>
+    <div class="s5-hero-tag">[Catégorie du soin]</div>
+    <h1 class="s5-custom-h1">
+      [Nom du soin]<br><em>à [Ville]</em>
+    </h1>
+    <p class="s5-hero-tagline">[Depuis Bloc 5 — accroche courte et évocatrice, 1 phrase.]</p>
+    <div class="s5-hero-infos">
+      <div class="s5-hero-info">
+        <span class="s5-hero-info-label">Durée</span>
+        <span class="s5-hero-info-val">[X]h</span>
+      </div>
+      <div class="s5-hero-info">
+        <span class="s5-hero-info-label">Tarif</span>
+        <span class="s5-hero-info-val">[Tarif] €</span>
+      </div>
+      <div class="s5-hero-info">
+        <span class="s5-hero-info-label">Lieu</span>
+        <span class="s5-hero-info-val">[Cabinet · Visio]</span>
+      </div>
+      <div class="s5-hero-info">
+        <span class="s5-hero-info-label">Note</span>
+        <span class="s5-hero-info-val">[X.X] ★</span>
+      </div>
+    </div>
+    <div class="s5-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-btn">Réserver ma séance</a>
+      <a href="[LIEN_CARTE_CADEAU]" class="s5-btn-ghost">Offrir ce soin</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="s5-marquee" role="marquee" aria-label="Soins proposés">
+  <div class="s5-marquee-track" aria-hidden="true">
+    <div class="s5-marquee-item"><strong>[Nom du soin]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Ville]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Bénéfice 1]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Prénom Nom]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Bénéfice 2]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Titre professionnel]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Nom du soin]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Ville]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Bénéfice 1]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Prénom Nom]<span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item"><strong>[Bénéfice 2]</strong><span class="s5-marquee-sep"></span></div>
+    <div class="s5-marquee-item">[Titre professionnel]<span class="s5-marquee-sep"></span></div>
+  </div>
+</div>
+
+<!-- S1 — DESCRIPTION + ENCART STICKY -->
+<section class="s5-section" style="background:var(--creme);" aria-label="Description du soin">
+  <div class="s5-inner">
+    <div class="s5-desc-layout">
+      <div class="s5-desc-blocs">
+        <div class="s5-reveal">
+          <div class="s5-tag">— Description</div>
+          <h2 class="s5-h2" style="margin-bottom:36px;">[Nom du soin],<br><em>qu'est-ce que c'est ?</em></h2>
+        </div>
+        <div class="s5-desc-bloc s5-reveal s5-d1">
+          <div class="s5-desc-num">1</div>
+          <div>
+            <div class="s5-desc-titre">Qu'est-ce que [Nom du soin] ?</div>
+            <p class="s5-p">[Depuis Bloc 5 — définition complète du soin, origine si pertinent, principe actif.]</p>
+          </div>
+        </div>
+        <div class="s5-desc-bloc s5-reveal s5-d2">
+          <div class="s5-desc-num">2</div>
+          <div>
+            <div class="s5-desc-titre">Pour qui est fait ce soin ?</div>
+            <p class="s5-p">[Depuis Bloc 0 profil clientèle — pour qui c'est, les besoins auxquels ça répond.]</p>
+          </div>
+        </div>
+        <div class="s5-desc-bloc s5-reveal s5-d3">
+          <div class="s5-desc-num">3</div>
+          <div>
+            <div class="s5-desc-titre">L'approche de [Prénom Nom]</div>
+            <p class="s5-p">[Depuis Bloc 0 "Ce que tu fais différemment" — ce qui rend ce soin unique chez cette praticienne.]</p>
+          </div>
+        </div>
+        <div class="s5-desc-bloc s5-reveal">
+          <div class="s5-desc-num">4</div>
+          <div>
+            <div class="s5-desc-titre">Ce qu'on emporte</div>
+            <p class="s5-p">[Depuis Bloc 0 transformation — ce que la cliente ressent, garde, transforme après la séance.]</p>
+          </div>
+        </div>
+      </div>
+      <!-- ENCART STICKY -->
+      <aside class="s5-encart s5-reveal-right" aria-label="Informations et réservation">
+        <div class="s5-encart-titre"><em>[Nom du soin]</em> à [Ville]</div>
+        <div class="s5-encart-prix"><span>€</span>[Tarif]</div>
+        <div class="s5-encart-infos">
+          <div class="s5-encart-info">
+            <span class="s5-encart-info-label">Durée</span>
+            <span class="s5-encart-info-val">[X]h</span>
+          </div>
+          <div class="s5-encart-info">
+            <span class="s5-encart-info-label">Lieu</span>
+            <span class="s5-encart-info-val">[Cabinet · Visio · Domicile]</span>
+          </div>
+          <div class="s5-encart-info">
+            <span class="s5-encart-info-label">Modalités</span>
+            <span class="s5-encart-info-val">[Habillé · Sur table · etc.]</span>
+          </div>
+          <div class="s5-encart-info">
+            <span class="s5-encart-info-label">Paiement</span>
+            <span class="s5-encart-info-val">[CB · Virement · Espèces]</span>
+          </div>
+        </div>
+        <div class="s5-encart-btns">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-encart-cta">Réserver ma séance</a>
+          <a href="[LIEN_CARTE_CADEAU]" class="s5-encart-offrir">Offrir ce soin en cadeau</a>
+        </div>
+        <p class="s5-encart-note">Questions ? Contactez [Prénom] avant de réserver.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- S2 — BIENFAITS -->
+<section class="s5-section" style="background:var(--sable);" aria-label="Bienfaits du soin">
+  <div class="s5-inner">
+    <div class="s5-reveal" style="text-align:center;margin-bottom:0;">
+      <div class="s5-tag mauve" style="margin:0 auto 16px;">— Bienfaits</div>
+      <h2 class="s5-h2" style="text-align:center;">Ce que [Nom du soin]<br><em>apporte concrètement</em></h2>
+    </div>
+    <div class="s5-bienfaits-grid">
+      <div class="s5-bienfait-card s5-reveal s5-d1">
+        <div class="s5-bienfait-num">01</div>
+        <div class="s5-bienfait-titre">[Bienfait 1]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 1 — depuis Bloc 5.]</p>
+      </div>
+      <div class="s5-bienfait-card s5-reveal s5-d2">
+        <div class="s5-bienfait-num">02</div>
+        <div class="s5-bienfait-titre">[Bienfait 2]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 2.]</p>
+      </div>
+      <div class="s5-bienfait-card s5-reveal s5-d3">
+        <div class="s5-bienfait-num">03</div>
+        <div class="s5-bienfait-titre">[Bienfait 3]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 3.]</p>
+      </div>
+      <div class="s5-bienfait-card s5-reveal s5-d1">
+        <div class="s5-bienfait-num">04</div>
+        <div class="s5-bienfait-titre">[Bienfait 4]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 4.]</p>
+      </div>
+      <div class="s5-bienfait-card s5-reveal s5-d2">
+        <div class="s5-bienfait-num">05</div>
+        <div class="s5-bienfait-titre">[Bienfait 5]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 5.]</p>
+      </div>
+      <div class="s5-bienfait-card s5-reveal s5-d3">
+        <div class="s5-bienfait-num">06</div>
+        <div class="s5-bienfait-titre">[Bienfait 6]</div>
+        <p class="s5-bienfait-txt">[Description courte du bienfait 6.]</p>
+      </div>
+    </div>
+    <p style="font-family:var(--f-serif);font-style:italic;font-size:.82rem;color:var(--muted);text-align:center;margin-top:24px;padding:0 10%;">Ces soins ne se substituent pas à un suivi médical. Les résultats varient selon chaque personne.</p>
+  </div>
+</section>
+
+
+<!-- S3 — DÉROULEMENT -->
+<section class="s5-deroul s5-section" aria-label="Déroulement de la séance">
+  <div class="s5-deroul-inner">
+    <div class="s5-reveal-left">
+      <div class="s5-tag" style="background:rgba(196,113,74,.15);color:var(--terra2);">— Déroulement</div>
+      <h2 class="s5-h2" style="color:#fff;margin-bottom:36px;">Comment se passe<br><em style="color:var(--terra2);">votre séance ?</em></h2>
+      <div class="s5-deroul-steps">
+        <div class="s5-deroul-step">
+          <div class="s5-deroul-num">1</div>
+          <div>
+            <div class="s5-deroul-titre">[Étape 1 — ex : Accueil & échange]</div>
+            <p class="s5-deroul-txt">[Depuis Bloc 5 déroulement — description de l'étape 1.]</p>
+          </div>
+        </div>
+        <div class="s5-deroul-step">
+          <div class="s5-deroul-num">2</div>
+          <div>
+            <div class="s5-deroul-titre">[Étape 2 — ex : Installation]</div>
+            <p class="s5-deroul-txt">[Description de l'étape 2.]</p>
+          </div>
+        </div>
+        <div class="s5-deroul-step">
+          <div class="s5-deroul-num">3</div>
+          <div>
+            <div class="s5-deroul-titre">[Étape 3 — le soin]</div>
+            <p class="s5-deroul-txt">[Description de l'étape 3 — le cœur de la séance.]</p>
+          </div>
+        </div>
+        <div class="s5-deroul-step">
+          <div class="s5-deroul-num">4</div>
+          <div>
+            <div class="s5-deroul-titre">[Étape 4 — ex : Intégration & conseils]</div>
+            <p class="s5-deroul-txt">[Description de l'étape 4 — retour, conseils post-séance.]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s5-deroul-img-wrap s5-reveal-right">
+      <div class="s5-deroul-img">
+        <div class="s5-deroul-img-bg" style="background-image:url('[URL_PHOTO_DEROULEMENT]')"></div>
+      </div>
+      <div class="s5-prevoir">
+        <div class="s5-prevoir-titre">À prévoir pour votre séance</div>
+        <ul class="s5-prevoir-list">
+          <li>[Conseil pratique 1 — depuis Bloc 5]</li>
+          <li>[Conseil pratique 2]</li>
+          <li>[Conseil pratique 3]</li>
+          <li>Prévoir [X min] supplémentaires la première fois</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — INDICATIONS & CI -->
+<section class="s5-section" style="background:var(--creme);" aria-label="Indications et contre-indications">
+  <div class="s5-inner">
+    <div class="s5-reveal" style="text-align:center;margin-bottom:0;">
+      <div class="s5-tag" style="margin:0 auto 16px;">— Indications & contre-indications</div>
+      <h2 class="s5-h2" style="text-align:center;">[Nom du soin]<br><em>est-il fait pour vous ?</em></h2>
+    </div>
+    <div class="s5-indic-layout s5-reveal">
+      <div class="s5-indic-col">
+        <div class="s5-indic-titre terra">Pour qui ce soin est recommandé</div>
+        <ul class="s5-indic-list">
+          <li><span class="s5-indic-dot terra"></span>[Indication 1 — depuis Bloc 5]</li>
+          <li><span class="s5-indic-dot terra"></span>[Indication 2]</li>
+          <li><span class="s5-indic-dot terra"></span>[Indication 3]</li>
+          <li><span class="s5-indic-dot terra"></span>[Indication 4]</li>
+          <li><span class="s5-indic-dot terra"></span>[Indication 5]</li>
+        </ul>
+      </div>
+      <div class="s5-indic-col ci">
+        <div class="s5-indic-titre">Contre-indications</div>
+        <ul class="s5-indic-list">
+          <li><span class="s5-indic-dot muted"></span>[CI 1 — depuis Bloc 5]</li>
+          <li><span class="s5-indic-dot muted"></span>[CI 2]</li>
+          <li><span class="s5-indic-dot muted"></span>[CI 3]</li>
+          <li><span class="s5-indic-dot muted"></span>[CI 4]</li>
+        </ul>
+        <div class="s5-ci-encart">
+          <div class="s5-ci-encart-titre">En cas de doute</div>
+          <p class="s5-ci-encart-txt">Contactez [Prénom] avant de réserver — elle vous guidera. <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — TÉMOIGNAGES -->
+<section class="s5-section" style="background:var(--sable);" aria-label="Avis clients">
+  <div class="s5-inner">
+    <div class="s5-reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="s5-tag mauve" style="margin:0 auto 14px;">— Témoignages</div>
+      <h2 class="s5-h2" style="text-align:center;">Elles ont vécu<br><em>[Nom du soin]</em></h2>
+    </div>
+    <div class="s5-avis-grid">
+      <article class="s5-avis-card s5-reveal s5-d1">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 1 depuis Bloc 11 — spécifique à ce soin.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Ville]</span>
+      </article>
+      <article class="s5-avis-card s5-reveal s5-d2">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 2 depuis Bloc 11.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Ville]</span>
+      </article>
+      <article class="s5-avis-card s5-reveal s5-d3">
+        <div class="s5-avis-stars"><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span><span class="s5-avis-star"></span></div>
+        <p class="s5-avis-txt">« [Témoignage 3 depuis Bloc 11.] »</p>
+        <div class="s5-avis-sep"></div>
+        <span class="s5-avis-author">[Prénom N.] · [Ville]</span>
+      </article>
+    </div>
+    <div class="s5-avis-note s5-reveal">
+      <div>
+        <div class="s5-avis-note-val">[X.X] ★</div>
+        <div class="s5-avis-note-lbl">Note Google · [X] avis</div>
+      </div>
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" class="s5-btn-ghost">Voir tous les avis →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- S6 — PRATICIENNE -->
+<section class="s5-prat" aria-label="Présentation de la praticienne">
+  <div class="s5-prat-inner">
+    <div class="s5-prat-img-wrap s5-reveal-left">
+      <div class="s5-prat-img">
+        <div class="s5-prat-img-bg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+      </div>
+      <div class="s5-prat-blob"></div>
+      <div class="s5-prat-blob2"></div>
+    </div>
+    <div class="s5-reveal-right">
+      <div class="s5-tag" style="background:rgba(196,113,74,.15);color:var(--terra2);">— Votre praticienne</div>
+      <div class="s5-prat-nom">[Prénom Nom],<br><em>[Titre professionnel]</em></div>
+      <div class="s5-prat-titre">Spécialiste [Nom du soin] à [Ville] depuis [X] ans</div>
+      <p class="s5-prat-bio">[Depuis Bloc 9 — 2-3 phrases sur le parcours de la praticienne, avec un focus sur ce soin spécifique si possible.]</p>
+      <ul class="s5-prat-certifs">
+        <li>[Formation 1 liée à ce soin] — [Organisme]</li>
+        <li>[Formation 2] — [Organisme]</li>
+        <li>[Formation 3] — [Organisme]</li>
+      </ul>
+      <a href="/[slug-a-propos]" class="s5-btn" style="background:var(--terra2);border-color:var(--terra2);">Découvrir le parcours complet</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- S7 — FAQ SOIN -->
+<section class="s5-section" style="background:var(--creme);" aria-label="Questions fréquentes sur le soin">
+  <div class="s5-inner">
+    <div class="s5-reveal" style="margin-bottom:48px;">
+      <div class="s5-tag">— Questions fréquentes</div>
+      <h2 class="s5-h2">Tout savoir sur<br><em>[Nom du soin]</em></h2>
+    </div>
+    <div class="s5-faq-layout">
+      <aside class="s5-faq-sidebar" aria-label="Navigation FAQ">
+        <span class="s5-faq-sidebar-title">Questions</span>
+        <a href="#faq1" class="s5-faq-sidebar-link active">En quoi ça consiste ?</a>
+        <a href="#faq2" class="s5-faq-sidebar-link">Durée et tarif</a>
+        <a href="#faq3" class="s5-faq-sidebar-link">Contre-indications</a>
+        <a href="#faq4" class="s5-faq-sidebar-link">Première séance</a>
+        <a href="#faq5" class="s5-faq-sidebar-link">Combien de séances ?</a>
+        <a href="#faq6" class="s5-faq-sidebar-link">Peut-on offrir ?</a>
+        <a href="#faq7" class="s5-faq-sidebar-link">Domicile / Visio</a>
+        <a href="#faq8" class="s5-faq-sidebar-link">Après la séance</a>
+      </aside>
+      <div>
+        <details class="s5-faq-item" id="faq1"><summary>En quoi consiste [Nom du soin] exactement ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 — description complète.] <a href="/[slug-soins]">Voir toutes les prestations →</a></p></div></details>
+        <details class="s5-faq-item" id="faq2"><summary>Quelle est la durée et le tarif à [Ville] ?</summary><div class="s5-faq-ans"><p>[Durée] · [Tarif]€. [Modalités paiement — CB, espèces, virement.]</p></div></details>
+        <details class="s5-faq-item" id="faq3"><summary>Y a-t-il des contre-indications ?</summary><div class="s5-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+        <details class="s5-faq-item" id="faq4"><summary>Comment se déroule la première séance ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 déroulement.] Prévoyez [X min] supplémentaires la première fois.</p></div></details>
+        <details class="s5-faq-item" id="faq5"><summary>Combien de séances faut-il pour voir des résultats ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 fréquence conseillée.] [Prénom] vous guidera au fil des séances.</p></div></details>
+        <details class="s5-faq-item" id="faq6"><summary>Peut-on offrir [Nom du soin] en cadeau ?</summary><div class="s5-faq-ans"><p>Oui — carte cadeau disponible sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code immédiat par email. Valable 1 an.</p></div></details>
+        <details class="s5-faq-item" id="faq7"><summary>Proposez-vous ce soin à domicile ou en visio ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 5 — domicile/visio pour ce soin spécifique.]</p></div></details>
+        <details class="s5-faq-item" id="faq8"><summary>Que ressent-on après une séance de [Nom du soin] ?</summary><div class="s5-faq-ans"><p>[Depuis Bloc 0 transformation + Bloc 13.]</p></div></details>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;" class="s5-reveal">
+      <a href="/[slug-faq]" class="s5-btn-ghost">Voir toutes les questions fréquentes →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- S8 — AUTRES SOINS -->
+<section class="s5-section" style="background:var(--sable);" aria-label="Autres soins proposés">
+  <div class="s5-inner">
+    <div class="s5-reveal" style="margin-bottom:0;">
+      <div class="s5-tag">— Autres soins</div>
+      <h2 class="s5-h2">À découvrir aussi<br><em>à [Ville]</em></h2>
+    </div>
+    <div class="s5-autres-grid">
+      <a href="/[slug-soin-2]-[ville]" class="s5-autre-card s5-reveal s5-d1">
+        <div class="s5-autre-nom">[Nom du<br><em>soin 2</em>]</div>
+        <p class="s5-autre-desc">[Accroche courte depuis Bloc 5.]</p>
+        <div class="s5-autre-footer">
+          <span class="s5-autre-prix">[Tarif]€</span>
+          <div class="s5-autre-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s5-autre-card s5-reveal s5-d2">
+        <div class="s5-autre-nom">[Nom du<br><em>soin 3</em>]</div>
+        <p class="s5-autre-desc">[Accroche courte depuis Bloc 5.]</p>
+        <div class="s5-autre-footer">
+          <span class="s5-autre-prix">[Tarif]€</span>
+          <div class="s5-autre-arrow">→</div>
+        </div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s5-autre-card s5-reveal s5-d3">
+        <div class="s5-autre-nom">[Nom du<br><em>soin 4</em>]</div>
+        <p class="s5-autre-desc">[Accroche courte depuis Bloc 5.]</p>
+        <div class="s5-autre-footer">
+          <span class="s5-autre-prix">[Tarif]€</span>
+          <div class="s5-autre-arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="s5-cta" aria-label="Prise de rendez-vous">
+  <div class="s5-cta-inner s5-reveal">
+    <h2>Prête pour votre<br><em>[Nom du soin] ?</em></h2>
+    <p class="s5-cta-sub">[Ville] · Sur rendez-vous · Réservation en ligne 24h/24</p>
+    <div class="s5-cta-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s5-cta-btn-blanc">Réserver ma séance</a>
+      <a href="[LIEN_CARTE_CADEAU]" class="s5-btn-ghost s5-btn-ghost-blanc">Offrir ce soin</a>
+    </div>
+    <p class="s5-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- MAILLAGE -->
+<nav class="s5-maillage" aria-label="Navigation thématique">
+  <div class="s5-maillage-inner">
+    <span class="s5-maillage-label">À découvrir</span>
+    <div class="s5-maillage-grid">
+      <a href="/[slug-soin-2]-[ville]" class="s5-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s5-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-4]-[ville]" class="s5-maillage-pill">[Soin 4] à [Ville]</a>
+      <a href="/[slug-soins]" class="s5-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-a-propos]" class="s5-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s5-maillage-pill">Questions fréquentes</a>
+      <a href="/[slug-offrir]" class="s5-maillage-pill">Cartes cadeaux</a>
+    </div>
+  </div>
+</nav>
+
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"Service","name":"[Nom du soin] à [Ville]","description":"[Depuis Bloc 5 — 2 phrases.]","url":"https://[votre-domaine].fr/[slug-soin]-[ville]","provider":{"@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","url":"https://[votre-domaine].fr/[slug-a-propos]"},"areaServed":{"@type":"City","name":"[Ville]"},"offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"}},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"En quoi consiste [Nom du soin] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 — description complète]."}},
+  {"@type":"Question","name":"Quel est le tarif de [Nom du soin] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Tarif]€ pour [Durée]. Réservation en ligne sur [URL_RDV]."}},
+  {"@type":"Question","name":"Y a-t-il des contre-indications à [Nom du soin] ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]. Contacter [Prénom] au [Téléphone] en cas de doute."}},
+  {"@type":"Question","name":"Comment se déroule la première séance de [Nom du soin] ?","acceptedAnswer":{"@type":"Answer","text":"[Déroulement depuis Bloc 5]."}},
+  {"@type":"Question","name":"Combien de séances faut-il pour [Nom du soin] ?","acceptedAnswer":{"@type":"Answer","text":"[Fréquence conseillée depuis Bloc 5]."}},
+  {"@type":"Question","name":"Peut-on offrir [Nom du soin] en cadeau à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Oui, carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},
+  {"@type":"Question","name":"Proposez-vous [Nom du soin] à domicile à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Domicile oui/non, conditions]."}},
+  {"@type":"Question","name":"Que ressent-on après [Nom du soin] ?","acceptedAnswer":{"@type":"Answer","text":"[Effets post-séance depuis Bloc 0 transformation]."}}
+]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+  {"@type":"ListItem","position":2,"name":"Soins","item":"https://[votre-domaine].fr/[slug-soins]"},
+  {"@type":"ListItem","position":3,"name":"[Nom du soin] à [Ville]","item":"https://[votre-domaine].fr/[slug-soin]-[ville]"}
+]}]
+</script>
+
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s5-reveal,.s5-reveal-left,.s5-reveal-right').forEach(function(el){io.observe(el);});})();
+(function(){var links=document.querySelectorAll('.s5-faq-sidebar-link');var items=document.querySelectorAll('.s5-faq-item');if(!links.length||!items.length)return;var io=new IntersectionObserver(function(e){e.forEach(function(entry){if(entry.isIntersecting){links.forEach(function(l){l.classList.remove('active');});var id=entry.target.getAttribute('id');var a=document.querySelector('.s5-faq-sidebar-link[href="#'+id+'"]');if(a)a.classList.add('active');}});},{threshold:.6});items.forEach(function(item){io.observe(item);});})();
+</script>
+</body>
+</html>
