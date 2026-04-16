@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Nom du soin] à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="[Nom du soin] à [Ville] par [Prénom Nom]. [Accroche courte — bienfaits, durée, tarif]. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FFFFFF;
+  --papier:  #F8F7F5;
+  --encre:   #111111;
+  --accent:  #C4A882;
+  --muted:   #9A9189;
+  --line:    rgba(17,17,17,.08);
+  --line-md: rgba(17,17,17,.14);
+  --f-serif: 'Cormorant Garamond', Georgia, serif;
+  --f-sans:  'DM Sans', sans-serif;
+  --max: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--f-sans); font-weight: 300; background: var(--blanc); color: var(--encre); padding-bottom: 68px; overflow-x: hidden; cursor: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.s4-cursor-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--encre); position: fixed; z-index: 99999; pointer-events: none; transform: translate(-50%,-50%); }
+.s4-cursor-ring { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--encre); position: fixed; z-index: 99998; pointer-events: none; transform: translate(-50%,-50%); transition: width .3s, height .3s, border-color .3s; }
+@media(max-width:860px){ .s4-cursor-dot, .s4-cursor-ring { display:none; } body { cursor:auto; } }
+
+/* STICKY */
+.s4-sticky { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: var(--blanc); border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; gap: 16px; }
+.s4-sticky-id { font-family: var(--f-serif); font-weight: 300; font-size: .88rem; letter-spacing: .08em; color: var(--muted); font-style: italic; }
+.s4-sticky-id strong { color: var(--encre); font-style: normal; font-weight: 400; }
+.s4-sticky-btns { display: flex; gap: 10px; }
+.s4-sticky-cta { background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; padding: 11px 28px; border: 1px solid var(--encre); transition: all .3s; }
+.s4-sticky-cta:hover { background: transparent; color: var(--encre); }
+.s4-sticky-ghost { background: transparent; color: var(--muted); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; padding: 11px 22px; border: 1px solid var(--line-md); transition: all .3s; }
+.s4-sticky-ghost:hover { border-color: var(--encre); color: var(--encre); }
+@media(max-width:600px){ .s4-sticky { padding: 12px 20px; justify-content: center; } .s4-sticky-id { display:none; } .s4-sticky-btns { width:100%; gap:8px; } .s4-sticky-cta, .s4-sticky-ghost { flex:1; text-align:center; } }
+
+/* HERO SPLIT */
+.s4-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+.s4-hero-img { position: relative; overflow: hidden; }
+.s4-hero-img-bg { position: absolute; inset: -8%; background-size: cover; background-position: center top; transform: scale(1.08); transition: transform 10s ease; }
+.s4-hero-img-bg.loaded { transform: scale(1); }
+.s4-hero-img::after { content: ''; position: absolute; top: 12%; right: 0; bottom: 12%; width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: .5; }
+.s4-hero-txt { display: flex; flex-direction: column; justify-content: flex-end; padding: 0 80px 68px 72px; background: var(--blanc); position: relative; }
+.s4-hero-rom { position: absolute; top: 0; right: 0; font-family: var(--f-serif); font-size: clamp(12rem,18vw,22rem); font-weight: 300; color: rgba(17,17,17,.028); line-height: 1; pointer-events: none; letter-spacing: -.04em; }
+.s4-hero-eyebrow { display: flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .58rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; opacity: 0; animation: fadeUp .8s .2s ease forwards; }
+.s4-hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+.s4-hero h1 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(3rem,5vw,5.8rem); line-height: .96; letter-spacing: -.02em; color: var(--encre); margin-bottom: 20px; opacity: 0; animation: fadeUp 1s .35s ease forwards; }
+.s4-hero h1 em { font-style: italic; }
+.s4-hero-tagline { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-size: 1.08rem; color: var(--muted); line-height: 1.85; max-width: 380px; margin-bottom: 28px; opacity: 0; animation: fadeUp .9s .5s ease forwards; }
+.s4-hero-trait { width: 48px; height: 1px; background: var(--accent); margin-bottom: 28px; opacity: 0; animation: expandW .8s .55s ease forwards; }
+@keyframes expandW { from { width:0; opacity:0; } to { width:48px; opacity:1; } }
+/* Infos rapides */
+.s4-hero-infos { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 36px; opacity: 0; animation: fadeUp .8s .65s ease forwards; }
+.s4-hero-info { display: flex; flex-direction: column; gap: 3px; }
+.s4-hero-info-label { font-family: var(--f-sans); font-size: .5rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.s4-hero-info-val { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 300; color: var(--encre); }
+.s4-hero-info-val em { font-style: italic; color: var(--accent); }
+.s4-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; opacity: 0; animation: fadeUp .8s .75s ease forwards; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+@media(max-width:860px){ .s4-hero { grid-template-columns: 1fr; min-height: auto; } .s4-hero-img { height: 60vw; } .s4-hero-img::after { display:none; } .s4-hero-txt { padding: 36px 6% 60px; } .s4-hero h1 { font-size: clamp(2.8rem,10vw,4rem); } .s4-hero-rom { display:none; } }
+
+/* BOUTONS */
+.s4-btn-primary { display: inline-block; background: var(--encre); color: var(--blanc); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--encre); transition: all .3s; }
+.s4-btn-primary:hover { background: transparent; color: var(--encre); }
+.s4-btn-ghost { display: inline-block; background: transparent; color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; padding: 14px 28px; border: 1px solid var(--line-md); transition: all .3s; }
+.s4-btn-ghost:hover { border-color: var(--encre); }
+.s4-btn-accent { display: inline-block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; padding: 14px 36px; border: 1px solid var(--accent); transition: all .3s; }
+.s4-btn-accent:hover { background: transparent; color: var(--accent); }
+
+/* BASE */
+.s4-section { padding: 120px 6%; }
+.s4-inner { max-width: var(--max); margin: 0 auto; }
+.s4-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+.s4-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.s4-h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(2rem,4vw,4rem); line-height: 1.06; letter-spacing: -.02em; color: var(--encre); }
+.s4-h2 em { font-style: italic; }
+.s4-p { font-family: var(--f-sans); font-size: .9rem; font-weight: 300; line-height: 1.95; color: var(--muted); margin-bottom: 14px; }
+.s4-trait { width: 36px; height: 1px; background: var(--accent); margin: 20px 0; }
+
+/* ─── S1 — DESCRIPTION + ENCART ── */
+.s4-description { background: var(--blanc); }
+.s4-description-grid { display: grid; grid-template-columns: 1fr 380px; gap: 96px; align-items: start; }
+
+/* Encart sticky */
+.s4-encart { position: sticky; top: 28px; display: flex; flex-direction: column; gap: 1px; }
+.s4-encart-row { background: var(--papier); padding: 20px 22px; display: grid; grid-template-columns: 100px 1fr; gap: 12px; align-items: start; border-top: 1px solid transparent; transition: border-color .25s; }
+.s4-encart-row:hover { border-top-color: var(--accent); }
+.s4-encart-label { font-family: var(--f-sans); font-size: .5rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.s4-encart-val { font-family: var(--f-serif); font-size: .98rem; font-weight: 300; color: var(--encre); line-height: 1.6; }
+.s4-encart-val a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.s4-encart-val a:hover { border-bottom-color: var(--accent); }
+/* CTA encart */
+.s4-encart-cta { background: var(--encre); padding: 28px 22px; text-align: center; }
+.s4-encart-cta-intro { font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: rgba(255,255,255,.45); line-height: 1.8; display: block; margin-bottom: 16px; }
+.s4-encart-cta-btn { display: block; background: var(--accent); color: var(--encre); font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; padding: 13px 20px; border: 1px solid var(--accent); transition: all .3s; }
+.s4-encart-cta-btn:hover { background: transparent; color: var(--accent); }
+.s4-encart-cta-ghost { display: block; background: transparent; color: rgba(255,255,255,.45); font-family: var(--f-sans); font-size: .58rem; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; padding: 10px 20px; border: 1px solid rgba(255,255,255,.12); transition: all .3s; margin-top: 6px; }
+.s4-encart-cta-ghost:hover { border-color: rgba(255,255,255,.4); color: rgba(255,255,255,.8); }
+
+/* Contenu desc */
+.s4-desc-content { display: flex; flex-direction: column; gap: 0; }
+.s4-desc-block { padding: 36px 0; border-bottom: 1px solid var(--line); }
+.s4-desc-block:first-child { padding-top: 0; }
+.s4-desc-block:last-child { border-bottom: none; }
+.s4-desc-block-rom { font-family: var(--f-serif); font-size: .72rem; font-weight: 300; color: var(--accent); letter-spacing: .2em; display: block; margin-bottom: 10px; }
+.s4-desc-block-titre { font-family: var(--f-serif); font-size: 1.4rem; font-weight: 300; color: var(--encre); margin-bottom: 14px; line-height: 1.2; }
+.s4-desc-block-titre em { font-style: italic; }
+
+@media(max-width:900px){ .s4-description-grid { grid-template-columns: 1fr; gap: 48px; } .s4-encart { position: static; } }
+
+/* ─── S2 — BIENFAITS ── */
+.s4-bienfaits { background: var(--papier); }
+.s4-bienfaits-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+.s4-bienfaits-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.s4-bienfait-card { background: var(--blanc); padding: 44px 32px; display: flex; flex-direction: column; gap: 14px; transition: background .3s; position: relative; overflow: hidden; }
+.s4-bienfait-card:hover { background: var(--papier); }
+.s4-bienfait-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s ease; }
+.s4-bienfait-card:hover::before { transform: scaleX(1); }
+.s4-bienfait-rom { font-family: var(--f-serif); font-size: .72rem; font-weight: 300; color: var(--accent); letter-spacing: .2em; }
+.s4-bienfait-titre { font-family: var(--f-serif); font-size: 1.25rem; font-weight: 300; color: var(--encre); line-height: 1.2; }
+.s4-bienfait-titre em { font-style: italic; }
+.s4-bienfait-trait { width: 18px; height: 1px; background: var(--accent); transition: width .3s; }
+.s4-bienfait-card:hover .s4-bienfait-trait { width: 36px; }
+.s4-bienfait-desc { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.85; }
+@media(max-width:860px){ .s4-bienfaits-grid { grid-template-columns: 1fr 1fr; } .s4-bienfaits-header { grid-template-columns: 1fr; gap: 24px; } }
+@media(max-width:520px){ .s4-bienfaits-grid { grid-template-columns: 1fr; } }
+
+/* ─── S3 — DÉROULEMENT (fond encre) ── */
+.s4-deroulement { background: var(--encre); }
+.s4-deroulement-grid { display: grid; grid-template-columns: 1fr 460px; gap: 96px; align-items: center; }
+.s4-deroulement-steps { display: flex; flex-direction: column; }
+.s4-deroulement-step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.06); align-items: start; transition: border-left-color .25s; border-left: 2px solid transparent; padding-left: 14px; }
+.s4-deroulement-step:last-child { border-bottom: none; }
+.s4-deroulement-step:hover { border-left-color: var(--accent); }
+.s4-deroulement-rom { font-family: var(--f-serif); font-size: .8rem; font-weight: 300; color: var(--accent); opacity: .6; letter-spacing: .12em; padding-top: 4px; }
+.s4-deroulement-titre { font-family: var(--f-serif); font-size: 1.12rem; font-weight: 300; color: #fff; margin-bottom: 6px; }
+.s4-deroulement-p { font-family: var(--f-sans); font-size: .84rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.85; }
+/* Aside photo + encart */
+.s4-deroulement-aside { display: flex; flex-direction: column; gap: 1px; }
+.s4-deroulement-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/5; }
+.s4-deroulement-img-wrap img,
+.s4-deroulement-placeholder { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s; }
+.s4-deroulement-placeholder { background: rgba(255,255,255,.04); display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.2); text-align: center; padding: 24px; }
+.s4-deroulement-img-wrap:hover .s4-deroulement-placeholder { transform: scale(1.04); }
+.s4-deroulement-encart { background: var(--accent); padding: 22px 22px; }
+.s4-deroulement-encart-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: rgba(17,17,17,.55); margin-bottom: 6px; display: block; }
+.s4-deroulement-encart-txt { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-size: .96rem; color: var(--encre); line-height: 1.85; }
+@media(max-width:860px){ .s4-deroulement-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── S4 — INDICATIONS ── */
+.s4-indications { background: var(--blanc); }
+.s4-indications-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.s4-indications-col { display: flex; flex-direction: column; gap: 0; }
+.s4-indications-col-title { font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 10px; }
+.s4-indications-col-title::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+.s4-indication-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.s4-indication-item:last-child { border-bottom: none; }
+.s4-indication-dash { width: 12px; height: 1px; background: var(--accent); flex-shrink: 0; margin-top: 9px; }
+.s4-indication-txt { font-family: var(--f-sans); font-size: .86rem; font-weight: 300; color: var(--muted); line-height: 1.7; }
+/* Encart contre-indication */
+.s4-ci-encart { background: var(--papier); padding: 28px 24px; border-left: 1px solid var(--accent); margin-top: 28px; }
+.s4-ci-encart-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: block; }
+.s4-ci-encart-txt { font-family: var(--f-serif); font-style: italic; font-size: .92rem; color: var(--muted); line-height: 1.9; }
+.s4-ci-encart-txt a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+@media(max-width:768px){ .s4-indications-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── S5 — AVIS ── */
+.s4-avis { background: var(--papier); }
+.s4-avis-header { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+.s4-avis-note { font-family: var(--f-serif); font-size: clamp(3rem,6vw,5.5rem); font-weight: 300; color: var(--accent); line-height: 1; letter-spacing: -.04em; }
+.s4-avis-note-label { font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.s4-avis-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.s4-avis-card { background: var(--blanc); padding: 40px 32px; display: flex; flex-direction: column; gap: 16px; transition: background .3s; }
+.s4-avis-card:hover { background: var(--papier); }
+.s4-avis-stars { display: flex; gap: 3px; }
+.s4-avis-star { width: 10px; height: 10px; background: var(--accent); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.s4-avis-txt { font-family: var(--f-serif); font-style: italic; font-weight: 300; font-size: 1.02rem; color: var(--muted); line-height: 1.85; flex: 1; }
+.s4-avis-sep { width: 24px; height: 1px; background: var(--accent); }
+.s4-avis-author { font-family: var(--f-sans); font-size: .58rem; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--encre); }
+@media(max-width:860px){ .s4-avis-grid { grid-template-columns: 1fr; } .s4-avis-header { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ─── S6 — PRATICIENNE ── */
+.s4-prat { background: var(--encre); padding: 0; }
+.s4-prat-grid { display: grid; grid-template-columns: 1fr 480px; min-height: 560px; }
+.s4-prat-content { padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+.s4-prat-rom-bg { position: absolute; top: 0; right: 0; font-family: var(--f-serif); font-size: 28vw; font-weight: 300; color: rgba(255,255,255,.025); line-height: 1; pointer-events: none; letter-spacing: -.04em; }
+.s4-prat-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: rgba(196,168,130,.6); margin-bottom: 20px; position: relative; z-index: 1; }
+.s4-prat-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.s4-prat h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(1.8rem,3vw,3.2rem); line-height: 1.06; letter-spacing: -.02em; color: #fff; margin-bottom: 4px; position: relative; z-index: 1; }
+.s4-prat h2 em { font-style: italic; color: var(--accent); }
+.s4-prat-trait { width: 32px; height: 1px; background: var(--accent); margin: 18px 0; position: relative; z-index: 1; }
+.s4-prat-p { font-family: var(--f-sans); font-size: .86rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.95; margin-bottom: 10px; position: relative; z-index: 1; }
+.s4-prat-certifs { list-style: none; margin: 16px 0 28px; position: relative; z-index: 1; }
+.s4-prat-certifs li { display: flex; align-items: flex-start; gap: 14px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.05); font-family: var(--f-sans); font-size: .78rem; font-weight: 300; color: rgba(255,255,255,.4); line-height: 1.5; }
+.s4-prat-certifs li::before { content: '—'; color: var(--accent); flex-shrink: 0; font-size: .7rem; }
+.s4-prat-img-col { position: relative; overflow: hidden; }
+.s4-prat-placeholder { width: 100%; height: 100%; min-height: 560px; background: rgba(255,255,255,.03); display: flex; align-items: center; justify-content: center; font-family: var(--f-sans); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.18); text-align: center; padding: 24px; }
+.s4-prat-img-col::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); opacity: .4; z-index: 2; }
+@media(max-width:860px){ .s4-prat-grid { grid-template-columns: 1fr; } .s4-prat-img-col { height: 360px; } .s4-prat-placeholder { min-height: 360px; } .s4-prat-img-col::before { display:none; } .s4-prat-content { padding: 56px 6%; } }
+
+/* ─── S7 — FAQ ── */
+.s4-faq { background: var(--blanc); }
+.s4-faq-layout { display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start; }
+.s4-faq-aside { position: sticky; top: 40px; }
+.s4-faq-aside p { font-family: var(--f-serif); font-style: italic; font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.85; margin-top: 16px; }
+details.s4-faq-item { border-bottom: 1px solid var(--line); }
+details.s4-faq-item summary { padding: 22px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; font-family: var(--f-serif); font-size: 1.05rem; font-weight: 300; color: var(--encre); line-height: 1.4; transition: color .2s; }
+details.s4-faq-item summary::-webkit-details-marker { display: none; }
+details.s4-faq-item summary::after { content: '+'; font-family: var(--f-serif); font-size: 1.4rem; font-weight: 300; color: var(--accent); flex-shrink: 0; transition: transform .3s; line-height: 1; }
+details.s4-faq-item[open] summary { color: var(--accent); }
+details.s4-faq-item[open] summary::after { transform: rotate(45deg); }
+.s4-faq-ans { padding: 0 0 22px; font-family: var(--f-sans); font-size: .86rem; font-weight: 300; color: var(--muted); line-height: 2; }
+.s4-faq-ans a { color: var(--encre); border-bottom: 1px solid var(--line-md); transition: border-color .2s; }
+.s4-faq-ans a:hover { border-bottom-color: var(--encre); }
+@media(max-width:860px){ .s4-faq-layout { grid-template-columns: 1fr; gap: 40px; } .s4-faq-aside { position: static; } }
+
+/* ─── S8 — AUTRES SOINS ── */
+.s4-autres { background: var(--papier); }
+.s4-autres-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); margin-top: 56px; }
+.s4-autre-card { background: var(--blanc); padding: 40px 32px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; color: inherit; transition: background .3s; position: relative; overflow: hidden; }
+.s4-autre-card:hover { background: var(--papier); }
+.s4-autre-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+.s4-autre-card:hover::before { transform: scaleX(1); }
+.s4-autre-rom { font-family: var(--f-serif); font-size: .7rem; font-weight: 300; color: var(--accent); letter-spacing: .2em; }
+.s4-autre-nom { font-family: var(--f-serif); font-size: 1.3rem; font-weight: 300; color: var(--encre); line-height: 1.2; flex: 1; }
+.s4-autre-nom em { font-style: italic; }
+.s4-autre-trait { width: 18px; height: 1px; background: var(--accent); transition: width .3s; }
+.s4-autre-card:hover .s4-autre-trait { width: 36px; }
+.s4-autre-meta { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 14px; border-top: 1px solid var(--line); }
+.s4-autre-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.s4-autre-meta-item span { font-family: var(--f-sans); font-size: .5rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.s4-autre-meta-item strong { font-family: var(--f-serif); font-size: .9rem; font-weight: 300; color: var(--encre); }
+.s4-autre-fleche { font-family: var(--f-serif); font-size: .82rem; color: var(--muted); transition: color .3s, transform .3s; }
+.s4-autre-card:hover .s4-autre-fleche { color: var(--accent); transform: translateX(5px); }
+@media(max-width:760px){ .s4-autres-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:480px){ .s4-autres-grid { grid-template-columns: 1fr; } }
+
+/* ─── CTA ── */
+.s4-cta { background: var(--blanc); padding: 140px 6%; text-align: center; position: relative; border-top: 1px solid var(--line); }
+.s4-cta-fond { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--f-serif); font-size: clamp(8rem,22vw,26rem); font-weight: 300; color: rgba(17,17,17,.025); white-space: nowrap; pointer-events: none; letter-spacing: -.05em; line-height: 1; }
+.s4-cta-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+.s4-cta-eyebrow { display: inline-flex; align-items: center; gap: 14px; font-family: var(--f-sans); font-size: .56rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; justify-content: center; }
+.s4-cta-eyebrow::before, .s4-cta-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--accent); }
+.s4-cta h2 { font-family: var(--f-serif); font-weight: 300; font-size: clamp(2.6rem,6vw,5.8rem); line-height: 1.04; letter-spacing: -.025em; color: var(--encre); margin-bottom: 24px; }
+.s4-cta h2 em { font-style: italic; }
+.s4-cta-sub { font-family: var(--f-sans); font-size: .88rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 44px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.s4-cta-contact { margin-top: 20px; font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted); }
+.s4-cta-contact a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+
+/* MAILLAGE */
+.s4-maillage { background: var(--papier); padding: 56px 6%; border-top: 1px solid var(--line); }
+.s4-maillage-inner { max-width: var(--max); margin: 0 auto; }
+.s4-maillage-label { font-family: var(--f-sans); font-size: .52rem; font-weight: 400; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; display: block; }
+.s4-maillage-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.s4-maillage-pill { display: inline-block; padding: 8px 16px; border: 1px solid var(--line-md); color: var(--muted); font-family: var(--f-sans); font-size: .7rem; font-weight: 300; letter-spacing: .08em; transition: all .25s; }
+.s4-maillage-pill:hover { border-color: var(--encre); color: var(--encre); }
+
+/* REVEAL */
+.s4-reveal { opacity:0; transform:translateY(24px); transition:opacity 1s ease,transform 1s ease; }
+.s4-reveal.in { opacity:1; transform:none; }
+.s4-reveal-left { opacity:0; transform:translateX(-24px); transition:opacity 1s ease,transform 1s ease; }
+.s4-reveal-left.in { opacity:1; transform:none; }
+.s4-reveal-right { opacity:0; transform:translateX(24px); transition:opacity 1s ease,transform 1s ease; }
+.s4-reveal-right.in { opacity:1; transform:none; }
+.s4-d1{transition-delay:.12s;} .s4-d2{transition-delay:.22s;} .s4-d3{transition-delay:.32s;} .s4-d4{transition-delay:.42s;}
+
+</style>
+</head>
+<body>
+
+<div class="s4-cursor-dot" id="cursorDot"></div>
+<div class="s4-cursor-ring" id="cursorRing"></div>
+
+<div class="s4-sticky">
+  <div class="s4-sticky-id"><strong>[Nom du soin]</strong> — <em>[Prénom Nom] · [Ville]</em></div>
+  <div class="s4-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s4-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s4-sticky-cta" target="_blank" rel="noopener">Réserver</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s4-hero">
+  <div class="s4-hero-img">
+    <div class="s4-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_SOIN]')"></div>
+  </div>
+  <div class="s4-hero-txt">
+    <div class="s4-hero-rom" aria-hidden="true">I</div>
+    <div class="s4-hero-eyebrow">[Catégorie du soin] · [Ville]</div>
+    <h1 class="s4-custom-h1">
+      [Nom du soin]<br>
+      <em>à [Ville]</em>
+    </h1>
+    <p class="s4-hero-tagline">
+      [Depuis Bloc 5 — accroche courte sur ce que le soin apporte. 1 phrase évocatrice.]
+    </p>
+    <div class="s4-hero-trait"></div>
+    <div class="s4-hero-infos">
+      <div class="s4-hero-info">
+        <span class="s4-hero-info-label">Durée</span>
+        <span class="s4-hero-info-val">[X]h <em>[X]min</em></span>
+      </div>
+      <div class="s4-hero-info">
+        <span class="s4-hero-info-label">Tarif</span>
+        <span class="s4-hero-info-val">[X] <em>€</em></span>
+      </div>
+      <div class="s4-hero-info">
+        <span class="s4-hero-info-label">Lieu</span>
+        <span class="s4-hero-info-val">[Cabinet · Domicile]</span>
+      </div>
+      <div class="s4-hero-info">
+        <span class="s4-hero-info-label">Note</span>
+        <span class="s4-hero-info-val">[X.X] <em>★</em></span>
+      </div>
+    </div>
+    <div class="s4-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Réserver ce soin</a>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s4-btn-ghost">Offrir en cadeau</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- S1 — DESCRIPTION + ENCART -->
+<section class="s4-section s4-description">
+  <div class="s4-inner">
+    <div class="s4-description-grid">
+
+      <!-- Contenu -->
+      <div class="s4-desc-content s4-reveal-left">
+
+        <div class="s4-desc-block">
+          <span class="s4-desc-block-rom">— I —</span>
+          <div class="s4-desc-block-titre">Qu'est-ce que <em>[Nom du soin]</em> ?</div>
+          <p class="s4-p">[Depuis Bloc 5 — description complète du soin. Ce que c'est, comment ça fonctionne. 3-4 phrases.]</p>
+          <p class="s4-p">[Suite de la description. Ce qui le rend unique dans la pratique de [Prénom].]</p>
+        </div>
+
+        <div class="s4-desc-block">
+          <span class="s4-desc-block-rom">— II —</span>
+          <div class="s4-desc-block-titre">Pour <em>qui</em> ?</div>
+          <p class="s4-p">[Depuis Bloc 5 et Bloc 0 profil cliente. À qui ce soin s'adresse précisément.]</p>
+          <p class="s4-p">[Ce que la cliente vit avant de venir, ce qu'elle cherche.]</p>
+        </div>
+
+        <div class="s4-desc-block">
+          <span class="s4-desc-block-rom">— III —</span>
+          <div class="s4-desc-block-titre">L'approche de <em>[Prénom]</em></div>
+          <p class="s4-p">[Depuis Bloc 0 "Ce que tu fais différemment" appliqué à ce soin spécifiquement.]</p>
+          <p class="s4-p">[Ce que la cliente ressent pendant et après. Dans les mots de [Prénom].]</p>
+        </div>
+
+        <div class="s4-desc-block">
+          <span class="s4-desc-block-rom">— IV —</span>
+          <div class="s4-desc-block-titre">Ce que vous <em>emportez</em></div>
+          <p class="s4-p">[Depuis Bloc 0 "Ce que tu veux qu'elles emportent après" — appliqué à ce soin.]</p>
+          <p class="s4-p">[Les effets ressentis à court et long terme. Concret et honnête.]</p>
+        </div>
+
+      </div>
+
+      <!-- Encart -->
+      <div class="s4-encart s4-reveal-right">
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Durée</span>
+          <span class="s4-encart-val">[X]h [X]min</span>
+        </div>
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Tarif</span>
+          <span class="s4-encart-val">[X] €</span>
+        </div>
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Lieu</span>
+          <span class="s4-encart-val">[Adresse courte], [Ville]<br><a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Maps →</a></span>
+        </div>
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Modalités</span>
+          <span class="s4-encart-val">[Cabinet · Domicile · Visio]</span>
+        </div>
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Paiement</span>
+          <span class="s4-encart-val">[CB · Espèces · Virement]</span>
+        </div>
+        <div class="s4-encart-row">
+          <span class="s4-encart-label">Réservation</span>
+          <span class="s4-encart-val">En ligne · 24h/24</span>
+        </div>
+        <div class="s4-encart-cta">
+          <span class="s4-encart-cta-intro">
+            [Depuis Bloc 0 — 1 phrase sur ce que la cliente va vivre.]
+          </span>
+          <a href="[LIEN_RDV]" class="s4-encart-cta-btn" target="_blank" rel="noopener">
+            Réserver ce soin
+          </a>
+          <a href="[LIEN_CARTE_CADEAU]" class="s4-encart-cta-ghost" target="_blank" rel="noopener">
+            Offrir en cadeau →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S2 — BIENFAITS -->
+<section class="s4-section s4-bienfaits">
+  <div class="s4-inner">
+    <div class="s4-bienfaits-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— II — Bienfaits</span>
+        <h2 class="s4-h2">Ce que ce soin<br><em>vous apporte</em></h2>
+      </div>
+      <p class="s4-p">[Depuis Bloc 5 — phrase introductive sur les bienfaits globaux.]</p>
+    </div>
+    <div class="s4-bienfaits-grid">
+
+      <div class="s4-bienfait-card s4-reveal s4-d1">
+        <span class="s4-bienfait-rom">I</span>
+        <div class="s4-bienfait-titre">[Bienfait 1<br><em>physique ou émotionnel</em>]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète depuis Bloc 5.]</p>
+      </div>
+
+      <div class="s4-bienfait-card s4-reveal s4-d2">
+        <span class="s4-bienfait-rom">II</span>
+        <div class="s4-bienfait-titre">[Bienfait 2]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète.]</p>
+      </div>
+
+      <div class="s4-bienfait-card s4-reveal s4-d3">
+        <span class="s4-bienfait-rom">III</span>
+        <div class="s4-bienfait-titre">[Bienfait 3]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète.]</p>
+      </div>
+
+      <div class="s4-bienfait-card s4-reveal s4-d1">
+        <span class="s4-bienfait-rom">IV</span>
+        <div class="s4-bienfait-titre">[Bienfait 4]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète.]</p>
+      </div>
+
+      <div class="s4-bienfait-card s4-reveal s4-d2">
+        <span class="s4-bienfait-rom">V</span>
+        <div class="s4-bienfait-titre">[Bienfait 5]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète.]</p>
+      </div>
+
+      <div class="s4-bienfait-card s4-reveal s4-d3">
+        <span class="s4-bienfait-rom">VI</span>
+        <div class="s4-bienfait-titre">[Bienfait 6]</div>
+        <div class="s4-bienfait-trait"></div>
+        <p class="s4-bienfait-desc">[Description concrète.]</p>
+      </div>
+
+    </div>
+    <p style="margin-top:24px;font-family:var(--f-serif);font-style:italic;font-size:.82rem;color:var(--muted);">Ces informations sont données à titre indicatif et ne remplacent pas un avis médical.</p>
+  </div>
+</section>
+
+
+<!-- S3 — DÉROULEMENT -->
+<section class="s4-section s4-deroulement s4-reveal">
+  <div class="s4-inner">
+    <div class="s4-deroulement-grid">
+      <div>
+        <span class="s4-eyebrow" style="color:rgba(196,168,130,.7);">— III — Déroulement</span>
+        <h2 class="s4-h2" style="color:#fff;margin-bottom:12px;">
+          Comment se passe<br><em>une séance</em>
+        </h2>
+        <div style="width:32px;height:1px;background:var(--accent);margin:18px 0 32px;"></div>
+        <p style="font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.95;margin-bottom:36px;">[Depuis Bloc 5 — phrase intro sur le déroulement. Rassurer la cliente sur ce à quoi s'attendre.]</p>
+        <div class="s4-deroulement-steps">
+          <div class="s4-deroulement-step">
+            <span class="s4-deroulement-rom">I</span>
+            <div>
+              <div class="s4-deroulement-titre">Accueil & échange</div>
+              <p class="s4-deroulement-p">[Depuis Bloc 5 — déroulement étape 1. Ce que [Prénom] fait en premier.]</p>
+            </div>
+          </div>
+          <div class="s4-deroulement-step">
+            <span class="s4-deroulement-rom">II</span>
+            <div>
+              <div class="s4-deroulement-titre">[Étape 2 — Nom]</div>
+              <p class="s4-deroulement-p">[Depuis Bloc 5 — description.]</p>
+            </div>
+          </div>
+          <div class="s4-deroulement-step">
+            <span class="s4-deroulement-rom">III</span>
+            <div>
+              <div class="s4-deroulement-titre">[Étape 3 — Le soin proprement dit]</div>
+              <p class="s4-deroulement-p">[Depuis Bloc 5 — ce qui se passe concrètement.]</p>
+            </div>
+          </div>
+          <div class="s4-deroulement-step">
+            <span class="s4-deroulement-rom">IV</span>
+            <div>
+              <div class="s4-deroulement-titre">Clôture & conseils</div>
+              <p class="s4-deroulement-p">[Depuis Bloc 5 — fin de séance, conseils post-soin.]</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px;">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--accent);transition:all .3s;">Réserver ma séance</a>
+        </div>
+      </div>
+      <div class="s4-deroulement-aside">
+        <div class="s4-deroulement-img-wrap">
+          <div class="s4-deroulement-placeholder">[URL_PHOTO_SOIN_2 — Ambiance soin]</div>
+        </div>
+        <div class="s4-deroulement-encart">
+          <span class="s4-deroulement-encart-label">À prévoir</span>
+          <p class="s4-deroulement-encart-txt">[Depuis Bloc 5 — conseils pratiques avant la séance. Tenue, heure d'arrivée, etc.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — INDICATIONS & CI -->
+<section class="s4-section s4-indications">
+  <div class="s4-inner">
+    <div class="s4-reveal" style="margin-bottom:56px;">
+      <span class="s4-eyebrow">— IV — Indications & précautions</span>
+      <h2 class="s4-h2">Pour qui — <em>et pour qui pas</em></h2>
+    </div>
+    <div class="s4-indications-grid">
+      <div>
+        <div class="s4-indications-col-title">Ce soin est recommandé pour</div>
+        <div class="s4-indications-col s4-reveal-left">
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Indication 1 depuis Bloc 5]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Indication 2]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Indication 3]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Indication 4]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Indication 5]</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="s4-indications-col-title">Précautions & contre-indications</div>
+        <div class="s4-indications-col s4-reveal-right">
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Contre-indication 1 depuis Bloc 5]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Contre-indication 2]</span></div>
+          <div class="s4-indication-item"><div class="s4-indication-dash"></div><span class="s4-indication-txt">[Contre-indication 3]</span></div>
+        </div>
+        <div class="s4-ci-encart">
+          <span class="s4-ci-encart-label">En cas de doute</span>
+          <p class="s4-ci-encart-txt">Contactez <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> avant de réserver. Elle répondra à toutes vos questions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — AVIS -->
+<section class="s4-section s4-avis">
+  <div class="s4-inner">
+    <div class="s4-avis-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— V — Témoignages</span>
+        <h2 class="s4-h2">Ce que disent<br><em>les clientes</em></h2>
+      </div>
+      <div>
+        <div class="s4-avis-note">[X.X]</div>
+        <div class="s4-avis-note-label">Note Google · [X] avis vérifiés</div>
+        <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px;font-family:var(--f-sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line-md);">Voir tous les avis</a>
+      </div>
+    </div>
+    <div class="s4-avis-grid">
+      <div class="s4-avis-card s4-reveal s4-d1">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 1 depuis Bloc 11 — spécifique à ce soin si possible] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+      <div class="s4-avis-card s4-reveal s4-d2">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 2 depuis Bloc 11] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+      <div class="s4-avis-card s4-reveal s4-d3">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 3 depuis Bloc 11] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S6 — PRATICIENNE -->
+<section class="s4-prat s4-reveal">
+  <div class="s4-prat-grid">
+    <div class="s4-prat-content">
+      <div class="s4-prat-rom-bg" aria-hidden="true">VI</div>
+      <span class="s4-prat-eyebrow">La praticienne</span>
+      <h2>[Prénom Nom]<br><em>[Titre professionnel]</em></h2>
+      <div class="s4-prat-trait"></div>
+      <p class="s4-prat-p">[Depuis Bloc 9 bio courte + Bloc 0 — 2 phrases.]</p>
+      <ul class="s4-prat-certifs">
+        <li>[Formation 1 depuis Bloc 9]</li>
+        <li>[Formation 2]</li>
+        <li>[Formation 3]</li>
+      </ul>
+      <a href="/[slug-a-propos]" style="display:inline-block;background:transparent;color:rgba(255,255,255,.5);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:13px 24px;border:1px solid rgba(255,255,255,.12);transition:all .3s;">Découvrir le parcours</a>
+    </div>
+    <div class="s4-prat-img-col">
+      <div class="s4-prat-placeholder">[URL_PHOTO_PRATICIENNE]</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S7 — FAQ -->
+<section class="s4-section s4-faq">
+  <div class="s4-inner">
+    <div class="s4-faq-layout">
+      <div class="s4-faq-aside s4-reveal-left">
+        <span class="s4-eyebrow">— VII — Questions</span>
+        <h2 class="s4-h2">Vos questions<br><em>sur ce soin</em></h2>
+        <p>[Prénom] répond avant toute réservation — <a href="tel:[+33XXXXXXXXX]" style="color:var(--accent);border-bottom:1px solid var(--accent);">[Téléphone]</a>.</p>
+        <div style="margin-top:24px;">
+          <a href="/[slug-faq]" class="s4-btn-ghost">Toutes les questions</a>
+        </div>
+      </div>
+      <div class="s4-reveal-right">
+        <details class="s4-faq-item">
+          <summary>En quoi consiste exactement [Nom du soin] ?</summary>
+          <div class="s4-faq-ans">[Description courte depuis Bloc 5.] <a href="#description">Lire la description complète →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Quelle est la durée et le tarif de [Nom du soin] à [Ville] ?</summary>
+          <div class="s4-faq-ans">[Nom du soin] dure [X]h[X]min pour un tarif de [X] €. <a href="[LIEN_RDV]" target="_blank" rel="noopener">Réserver →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Y a-t-il des contre-indications ?</summary>
+          <div class="s4-faq-ans">[Contre-indications depuis Bloc 5.] En cas de doute, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Comment se passe la première séance ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 5 déroulement première séance. Rassurer.]</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Combien de séances faut-il pour voir des résultats ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 5 fréquence conseillée. [Prénom] vous guidera lors de la première séance.]</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Puis-je offrir ce soin en cadeau ?</summary>
+          <div class="s4-faq-ans">Oui — cartes cadeaux disponibles sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code unique par email. Valable 1 an.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S8 — AUTRES SOINS -->
+<section class="s4-section s4-autres">
+  <div class="s4-inner">
+    <div class="s4-reveal" style="margin-bottom:0;">
+      <span class="s4-eyebrow">— VIII — À découvrir aussi</span>
+      <h2 class="s4-h2">Les autres soins<br><em>de [Prénom Nom]</em></h2>
+    </div>
+    <div class="s4-autres-grid">
+      <a href="/[slug-soin-2]-[ville]" class="s4-autre-card s4-reveal s4-d1">
+        <span class="s4-autre-rom">I</span>
+        <div class="s4-autre-nom">[Nom du<br><em>soin 2</em>]</div>
+        <div class="s4-autre-trait"></div>
+        <div class="s4-autre-meta">
+          <div class="s4-autre-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-autre-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-autre-fleche">→</span>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s4-autre-card s4-reveal s4-d2">
+        <span class="s4-autre-rom">II</span>
+        <div class="s4-autre-nom">[Nom du<br><em>soin 3</em>]</div>
+        <div class="s4-autre-trait"></div>
+        <div class="s4-autre-meta">
+          <div class="s4-autre-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-autre-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-autre-fleche">→</span>
+        </div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s4-autre-card s4-reveal s4-d3">
+        <span class="s4-autre-rom">III</span>
+        <div class="s4-autre-nom">[Nom du<br><em>soin 4</em>]</div>
+        <div class="s4-autre-trait"></div>
+        <div class="s4-autre-meta">
+          <div class="s4-autre-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-autre-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-autre-fleche">→</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="s4-cta">
+  <div class="s4-cta-fond" aria-hidden="true">[Soin]</div>
+  <div class="s4-cta-inner s4-reveal">
+    <div class="s4-cta-eyebrow">[Nom du soin] · [Ville]</div>
+    <h2>[Accroche depuis<br>Bloc 0 ADN]<br><em>[suite]</em></h2>
+    <p class="s4-cta-sub">[Durée] · [Tarif] € · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Réserver ce soin</a>
+    <p class="s4-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+
+<!-- MAILLAGE -->
+<div class="s4-maillage">
+  <div class="s4-maillage-inner">
+    <span class="s4-maillage-label">À découvrir</span>
+    <div class="s4-maillage-grid">
+      <a href="/[slug-soin-2]-[ville]" class="s4-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s4-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soins]" class="s4-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-a-propos]" class="s4-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s4-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"Service","name":"[Nom du soin] à [Ville]","description":"[Description 150-200 caractères depuis Bloc 5.]","url":"https://[votre-domaine].fr/[slug-soin]-[ville]","provider":{"@type":"LocalBusiness","name":"[Prénom Nom] — [Titre professionnel]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","address":{"@type":"PostalAddress","streetAddress":"[Numéro et rue]","addressLocality":"[Ville]","postalCode":"[Code postal]","addressCountry":"FR"}},"offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"}},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"En quoi consiste [Nom du soin] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Description courte depuis Bloc 5]."}},
+    {"@type":"Question","name":"Quel est le tarif de [Nom du soin] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Nom du soin] : [tarif]€ pour [durée] au cabinet de [Ville]."}},
+    {"@type":"Question","name":"Y a-t-il des contre-indications à [Nom du soin] ?","acceptedAnswer":{"@type":"Answer","text":"[Contre-indications depuis Bloc 5]."}},
+    {"@type":"Question","name":"Comment réserver [Nom du soin] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]. Cabinet [adresse], [Ville]."}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"Soins","item":"https://[votre-domaine].fr/[slug-soins]"},
+    {"@type":"ListItem","position":3,"name":"[Nom du soin] à [Ville]","item":"https://[votre-domaine].fr/[slug-soin]-[ville]"}
+  ]}
+]
+</script>
+
+
+<script>
+(function(){var dot=document.getElementById('cursorDot');var ring=document.getElementById('cursorRing');if(!dot||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();document.querySelectorAll('a,button,.s4-bienfait-card,.s4-avis-card,.s4-autre-card').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='var(--accent)';});el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='var(--encre)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s4-reveal,.s4-reveal-left,.s4-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — À propos · [Titre professionnel] à [Ville]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. Son histoire, son approche, ses formations et ses valeurs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --blanc:   #FFFFFF;
+  --papier:  #F8F7F5;
+  --encre:   #111111;
+  --accent:  #C4A882;
+  --muted:   #9A9189;
+  --line:    rgba(17,17,17,.08);
+  --line-md: rgba(17,17,17,.14);
+  --f-serif: 'Cormorant Garamond', Georgia, serif;
+  --f-sans:  'DM Sans', sans-serif;
+  --max: 1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);padding-bottom:68px;overflow-x:hidden;cursor:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+.s4-cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--encre);position:fixed;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);}
+.s4-cursor-ring{width:32px;height:32px;border-radius:50%;border:1px solid var(--encre);position:fixed;z-index:99998;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+@media(max-width:860px){.s4-cursor-dot,.s4-cursor-ring{display:none;}body{cursor:auto;}}
+
+/* STICKY */
+.s4-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--blanc);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s4-sticky-id{font-family:var(--f-serif);font-weight:300;font-size:.88rem;letter-spacing:.08em;color:var(--muted);font-style:italic;}
+.s4-sticky-id strong{color:var(--encre);font-style:normal;font-weight:400;}
+.s4-sticky-btns{display:flex;gap:10px;}
+.s4-sticky-cta{background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--encre);transition:all .3s;}
+.s4-sticky-cta:hover{background:transparent;color:var(--encre);}
+.s4-sticky-ghost{background:transparent;color:var(--muted);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--line-md);transition:all .3s;}
+.s4-sticky-ghost:hover{border-color:var(--encre);color:var(--encre);}
+@media(max-width:600px){.s4-sticky{padding:12px 20px;justify-content:center;}.s4-sticky-id{display:none;}.s4-sticky-btns{width:100%;gap:8px;}.s4-sticky-cta,.s4-sticky-ghost{flex:1;text-align:center;}}
+
+/* HERO */
+.s4-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;}
+.s4-hero-img{position:relative;overflow:hidden;}
+.s4-hero-img-bg{position:absolute;inset:-8%;background-size:cover;background-position:center top;transform:scale(1.08);transition:transform 10s ease;}
+.s4-hero-img-bg.loaded{transform:scale(1);}
+.s4-hero-img::after{content:'';position:absolute;top:12%;right:0;bottom:12%;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);opacity:.5;}
+.s4-hero-txt{display:flex;flex-direction:column;justify-content:flex-end;padding:0 80px 68px 72px;background:var(--blanc);position:relative;}
+.s4-hero-rom{position:absolute;top:0;right:0;font-family:var(--f-serif);font-size:clamp(12rem,18vw,22rem);font-weight:300;color:rgba(17,17,17,.028);line-height:1;pointer-events:none;letter-spacing:-.04em;white-space:nowrap;}
+.s4-hero-eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:36px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s4-hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--accent);}
+.s4-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,5vw,5.8rem);line-height:1.0;letter-spacing:-.02em;color:var(--encre);margin-bottom:28px;opacity:0;animation:fadeUp 1s .35s ease forwards;}
+.s4-hero h1 em{font-style:italic;}
+.s4-hero-trait{width:48px;height:1px;background:var(--accent);margin-bottom:24px;opacity:0;animation:expandW .8s .5s ease forwards;}
+@keyframes expandW{from{width:0;opacity:0;}to{width:48px;opacity:1;}}
+.s4-hero-intro{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--muted);line-height:1.9;max-width:360px;margin-bottom:40px;opacity:0;animation:fadeUp .9s .55s ease forwards;}
+.s4-hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .7s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s4-hero{grid-template-columns:1fr;min-height:auto;}.s4-hero-img{height:60vw;}.s4-hero-img::after{display:none;}.s4-hero-txt{padding:40px 6% 60px;}.s4-hero h1{font-size:clamp(2.8rem,10vw,4rem);}.s4-hero-rom{font-size:28vw;}}
+
+/* BOUTONS */
+.s4-btn-primary{display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--encre);transition:all .3s;}
+.s4-btn-primary:hover{background:transparent;color:var(--encre);}
+.s4-btn-ghost{display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--line-md);transition:all .3s;}
+.s4-btn-ghost:hover{border-color:var(--encre);}
+
+/* BASE */
+.s4-section{padding:120px 6%;}.s4-inner{max-width:var(--max);margin:0 auto;}
+.s4-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.s4-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,4rem);line-height:1.06;letter-spacing:-.02em;color:var(--encre);}
+.s4-h2 em{font-style:italic;}
+.s4-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:1.95;color:var(--muted);}
+.s4-trait{width:36px;height:1px;background:var(--accent);margin:20px 0;}
+
+/* ─── S0 — CHIFFRES CLÉS ── */
+.s4-chiffres{background:var(--papier);padding:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.s4-chiffres-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.s4-chiffre-item{padding:48px 40px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;}
+.s4-chiffre-item:last-child{border-right:none;}
+.s4-chiffre-rom{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);}
+.s4-chiffre-val{font-family:var(--f-serif);font-size:clamp(2.4rem,4vw,4rem);font-weight:300;color:var(--encre);line-height:1;letter-spacing:-.03em;}
+.s4-chiffre-val em{font-style:italic;color:var(--accent);}
+.s4-chiffre-lbl{font-family:var(--f-sans);font-size:.7rem;font-weight:300;color:var(--muted);line-height:1.5;}
+@media(max-width:760px){.s4-chiffres-grid{grid-template-columns:1fr 1fr;}.s4-chiffre-item:nth-child(2){border-right:none;}.s4-chiffre-item:nth-child(3){border-right:none;border-top:1px solid var(--line);}.s4-chiffre-item:nth-child(4){border-top:1px solid var(--line);}}
+@media(max-width:480px){.s4-chiffres-grid{grid-template-columns:1fr;}.s4-chiffre-item{border-right:none!important;border-top:1px solid var(--line);}.s4-chiffre-item:first-child{border-top:none;}}
+
+/* ─── S1 — HISTOIRE ── */
+.s4-histoire{background:var(--blanc);}
+.s4-histoire-grid{display:grid;grid-template-columns:1fr 480px;gap:96px;align-items:start;}
+.s4-histoire-quote{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2rem);line-height:1.45;color:var(--encre);border-left:1px solid var(--accent);padding-left:28px;margin:32px 0;}
+.s4-histoire-img-wrap{position:relative;overflow:hidden;}
+.s4-histoire-img,
+.s4-histoire-placeholder{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;transition:transform .8s ease;}
+.s4-histoire-placeholder{background:#E8E4DF;display:flex;align-items:center;justify-content:center;font-family:var(--f-sans);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;padding:20px;}
+.s4-histoire-img-wrap:hover .s4-histoire-placeholder{transform:scale(1.04);}
+.s4-histoire-legend{padding:14px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.s4-histoire-legend-txt{font-family:var(--f-serif);font-style:italic;font-size:.82rem;color:var(--muted);}
+.s4-histoire-legend-rom{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);}
+@media(max-width:860px){.s4-histoire-grid{grid-template-columns:1fr;gap:48px;}}
+
+/* ─── S2 — CITATION PLEINE LARGEUR ── */
+.s4-citation-full{background:var(--encre);padding:96px 6%;text-align:center;position:relative;overflow:hidden;}
+.s4-citation-full-deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-serif);font-size:28vw;font-weight:300;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;line-height:1;letter-spacing:-.05em;}
+.s4-citation-full-inner{position:relative;z-index:1;max-width:860px;margin:0 auto;}
+.s4-citation-full-rom{font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:28px;}
+.s4-citation-full-txt{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.8rem,4vw,3.5rem);line-height:1.38;color:#fff;letter-spacing:-.01em;}
+.s4-citation-full-auteur{font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:28px;display:block;}
+
+/* ─── S3 — VALEURS ── */
+.s4-valeurs{background:var(--papier);}
+.s4-valeurs-header{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid var(--line);}
+.s4-valeurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.s4-valeur-card{background:var(--blanc);padding:48px 36px;display:flex;flex-direction:column;gap:14px;transition:background .3s;position:relative;overflow:hidden;}
+.s4-valeur-card:hover{background:var(--papier);}
+.s4-valeur-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s ease;}
+.s4-valeur-card:hover::before{transform:scaleX(1);}
+.s4-valeur-rom{font-family:var(--f-serif);font-size:.72rem;font-weight:300;color:var(--accent);letter-spacing:.2em;}
+.s4-valeur-nom{font-family:var(--f-serif);font-size:1.5rem;font-weight:300;color:var(--encre);line-height:1.15;}
+.s4-valeur-nom em{font-style:italic;}
+.s4-valeur-trait{width:20px;height:1px;background:var(--accent);transition:width .3s;}
+.s4-valeur-card:hover .s4-valeur-trait{width:40px;}
+.s4-valeur-desc{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:1.85;}
+@media(max-width:860px){.s4-valeurs-grid{grid-template-columns:1fr 1fr;}.s4-valeurs-header{grid-template-columns:1fr;gap:24px;}}
+@media(max-width:520px){.s4-valeurs-grid{grid-template-columns:1fr;}}
+
+/* ─── S4 — MÉTHODE ── */
+.s4-methode{background:var(--blanc);}
+.s4-methode-grid{display:grid;grid-template-columns:480px 1fr;gap:96px;align-items:start;}
+.s4-methode-img-wrap{position:relative;overflow:hidden;}
+.s4-methode-img,.s4-methode-placeholder{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .8s ease;}
+.s4-methode-placeholder{background:#E8E4DF;display:flex;align-items:center;justify-content:center;font-family:var(--f-sans);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;padding:20px;}
+.s4-methode-img-wrap:hover .s4-methode-placeholder{transform:scale(1.04);}
+.s4-methode-encart{background:var(--encre);padding:22px 24px;margin-top:1px;}
+.s4-methode-encart-label{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
+.s4-methode-encart-txt{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:.96rem;color:rgba(255,255,255,.5);line-height:1.85;}
+.s4-methode-steps{display:flex;flex-direction:column;}
+.s4-methode-step{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--line);align-items:start;}
+.s4-methode-step:first-child{padding-top:0;}
+.s4-methode-step:last-child{border-bottom:none;}
+.s4-methode-step-rom{font-family:var(--f-serif);font-size:.8rem;font-weight:300;color:var(--accent);letter-spacing:.12em;padding-top:4px;}
+.s4-methode-step-titre{font-family:var(--f-serif);font-size:1.15rem;font-weight:400;color:var(--encre);margin-bottom:6px;}
+.s4-methode-step-p{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:1.85;}
+@media(max-width:860px){.s4-methode-grid{grid-template-columns:1fr;gap:48px;}}
+
+/* ─── S5 — FORMATIONS ── */
+.s4-formations{background:var(--papier);}
+.s4-formations-header{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:64px;padding-bottom:48px;border-bottom:1px solid var(--line);}
+.s4-formations-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+.s4-formation-item{background:var(--blanc);padding:36px 32px;display:grid;grid-template-columns:72px 1fr;gap:20px;transition:background .3s;}
+.s4-formation-item:hover{background:var(--papier);}
+.s4-formation-annee{font-family:var(--f-serif);font-size:.78rem;font-weight:300;color:var(--accent);writing-mode:vertical-rl;letter-spacing:.1em;border-right:1px solid var(--line);padding-right:14px;align-self:start;}
+.s4-formation-nom{font-family:var(--f-serif);font-size:1.12rem;font-weight:300;color:var(--encre);margin-bottom:4px;line-height:1.25;}
+.s4-formation-nom em{font-style:italic;}
+.s4-formation-org{font-family:var(--f-sans);font-size:.6rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.s4-formation-desc{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.8;}
+@media(max-width:680px){.s4-formations-grid{grid-template-columns:1fr;}.s4-formations-header{grid-template-columns:1fr;gap:24px;}}
+
+/* ─── S6 — GALERIE ── */
+.s4-galerie{background:var(--blanc);}
+.s4-galerie-grid{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:360px 240px;gap:1px;background:var(--line);margin-top:56px;}
+.s4-galerie-item{position:relative;overflow:hidden;}
+.s4-galerie-item img,
+.s4-galerie-placeholder{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease;}
+.s4-galerie-placeholder{background:#E8E4DF;display:flex;align-items:center;justify-content:center;font-family:var(--f-sans);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;padding:12px;}
+.s4-galerie-wide{grid-column:span 2;}
+.s4-galerie-item:hover .s4-galerie-placeholder{transform:scale(1.04);}
+/* Overlay hover discret */
+.s4-galerie-item::after{content:'';position:absolute;inset:0;background:var(--accent);opacity:0;transition:opacity .4s;mix-blend-mode:multiply;}
+.s4-galerie-item:hover::after{opacity:.08;}
+@media(max-width:680px){.s4-galerie-grid{grid-template-columns:1fr 1fr;grid-template-rows:200px 160px;}}
+
+/* ─── S7 — FAQ ── */
+.s4-faq{background:var(--papier);}
+.s4-faq-layout{display:grid;grid-template-columns:360px 1fr;gap:80px;align-items:start;}
+.s4-faq-aside{position:sticky;top:40px;}
+.s4-faq-aside p{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;font-weight:300;color:var(--muted);line-height:1.85;margin-top:20px;}
+details.s4-faq-item{border-bottom:1px solid var(--line);}
+details.s4-faq-item summary{padding:24px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;font-family:var(--f-serif);font-size:1.05rem;font-weight:300;color:var(--encre);line-height:1.4;transition:color .2s;}
+details.s4-faq-item summary::-webkit-details-marker{display:none;}
+details.s4-faq-item summary::after{content:'+';font-family:var(--f-serif);font-size:1.4rem;font-weight:300;color:var(--accent);flex-shrink:0;transition:transform .3s;line-height:1;}
+details.s4-faq-item[open] summary{color:var(--accent);}
+details.s4-faq-item[open] summary::after{transform:rotate(45deg);}
+.s4-faq-ans{padding:0 0 24px;font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:var(--muted);line-height:2;}
+.s4-faq-ans a{color:var(--encre);border-bottom:1px solid var(--line-md);transition:border-color .2s;}
+.s4-faq-ans a:hover{border-bottom-color:var(--encre);}
+@media(max-width:860px){.s4-faq-layout{grid-template-columns:1fr;gap:40px;}.s4-faq-aside{position:static;}}
+
+/* ─── CTA ── */
+.s4-cta{background:var(--blanc);padding:140px 6%;text-align:center;position:relative;border-top:1px solid var(--line);}
+.s4-cta-fond{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-serif);font-size:clamp(8rem,22vw,26rem);font-weight:300;color:rgba(17,17,17,.025);white-space:nowrap;pointer-events:none;letter-spacing:-.05em;line-height:1;}
+.s4-cta-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.s4-cta-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;justify-content:center;}
+.s4-cta-eyebrow::before,.s4-cta-eyebrow::after{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-cta h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.6rem,6vw,5.8rem);line-height:1.04;letter-spacing:-.025em;color:var(--encre);margin-bottom:24px;}
+.s4-cta h2 em{font-style:italic;}
+.s4-cta-sub{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
+.s4-cta-contact{margin-top:20px;font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:var(--muted);}
+.s4-cta-contact a{color:var(--encre);border-bottom:1px solid var(--line-md);}
+
+/* MAILLAGE */
+.s4-maillage{background:var(--papier);padding:56px 6%;border-top:1px solid var(--line);}
+.s4-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s4-maillage-label{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:block;}
+.s4-maillage-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.s4-maillage-pill{display:inline-block;padding:8px 16px;border:1px solid var(--line-md);color:var(--muted);font-family:var(--f-sans);font-size:.7rem;font-weight:300;letter-spacing:.08em;transition:all .25s;}
+.s4-maillage-pill:hover{border-color:var(--encre);color:var(--encre);}
+
+/* REVEAL */
+.s4-reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease;}
+.s4-reveal.in{opacity:1;transform:none;}
+.s4-reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1s ease,transform 1s ease;}
+.s4-reveal-left.in{opacity:1;transform:none;}
+.s4-reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}
+.s4-reveal-right.in{opacity:1;transform:none;}
+.s4-d1{transition-delay:.12s;}.s4-d2{transition-delay:.22s;}.s4-d3{transition-delay:.32s;}.s4-d4{transition-delay:.42s;}
+
+</style>
+</head>
+<body>
+
+<div class="s4-cursor-dot" id="cursorDot"></div>
+<div class="s4-cursor-ring" id="cursorRing"></div>
+
+<div class="s4-sticky">
+  <div class="s4-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s4-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s4-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s4-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s4-hero">
+  <div class="s4-hero-img">
+    <div class="s4-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+  </div>
+  <div class="s4-hero-txt">
+    <div class="s4-hero-rom" aria-hidden="true">II</div>
+    <div class="s4-hero-eyebrow">[Titre professionnel] · [Ville]</div>
+    <h1 class="s4-custom-h1">
+      [Prénom Nom],<br>
+      <em>[titre ou accroche]</em>
+    </h1>
+    <div class="s4-hero-trait"></div>
+    <p class="s4-hero-intro">
+      [Depuis Bloc 0 ADN — 1-2 phrases qui résument l'essence de la praticienne. Dans ses mots.]
+    </p>
+    <div class="s4-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Prendre rendez-vous</a>
+      <a href="/[slug-soins]" class="s4-btn-ghost">Les soins</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- CHIFFRES CLÉS -->
+<div class="s4-chiffres s4-reveal">
+  <div class="s4-chiffres-grid">
+    <div class="s4-chiffre-item">
+      <span class="s4-chiffre-rom">I</span>
+      <div class="s4-chiffre-val">[X] <em>ans</em></div>
+      <span class="s4-chiffre-lbl">D'expérience à [Ville]</span>
+    </div>
+    <div class="s4-chiffre-item">
+      <span class="s4-chiffre-rom">II</span>
+      <div class="s4-chiffre-val">[X]</div>
+      <span class="s4-chiffre-lbl">Soins disponibles</span>
+    </div>
+    <div class="s4-chiffre-item">
+      <span class="s4-chiffre-rom">III</span>
+      <div class="s4-chiffre-val">[X.X] <em>★</em></div>
+      <span class="s4-chiffre-lbl">Note Google · [X] avis</span>
+    </div>
+    <div class="s4-chiffre-item">
+      <span class="s4-chiffre-rom">IV</span>
+      <div class="s4-chiffre-val">[X]</div>
+      <span class="s4-chiffre-lbl">Formations certifiantes</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- S1 — HISTOIRE -->
+<section class="s4-section s4-histoire">
+  <div class="s4-inner">
+    <div class="s4-histoire-grid">
+      <div class="s4-reveal-left">
+        <span class="s4-eyebrow">— I — Mon histoire</span>
+        <h2 class="s4-h2" style="margin-bottom:0;">
+          Ce qui m'a amenée<br>
+          <em>à ce métier</em>
+        </h2>
+        <blockquote class="s4-histoire-quote">
+          « [Citation depuis Bloc 0 ADN — la phrase qui résume le pourquoi. Mot pour mot.] »
+        </blockquote>
+        <p class="s4-p">[Paragraphe 1 — depuis Bloc 0 "Pourquoi tu fais ce métier". À la première personne.]</p>
+        <div class="s4-trait"></div>
+        <p class="s4-p">[Paragraphe 2 — depuis Bloc 0 "Ce qui t'a amenée là". Le déclic.]</p>
+        <div class="s4-trait"></div>
+        <p class="s4-p">[Paragraphe 3 — depuis Bloc 0 "Ce qui te rend fière".]</p>
+        <div style="margin-top:32px;">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Prendre rendez-vous</a>
+        </div>
+      </div>
+      <div class="s4-reveal-right">
+        <div class="s4-histoire-img-wrap">
+          <div class="s4-histoire-placeholder">[URL_PHOTO_HISTOIRE — Portrait naturel]</div>
+        </div>
+        <div class="s4-histoire-legend">
+          <span class="s4-histoire-legend-txt">[Prénom Nom] · [Ville]</span>
+          <span class="s4-histoire-legend-rom">— I —</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S2 — CITATION PLEINE LARGEUR -->
+<section class="s4-citation-full s4-reveal">
+  <div class="s4-citation-full-deco" aria-hidden="true">[Prénom]</div>
+  <div class="s4-citation-full-inner">
+    <span class="s4-citation-full-rom">— II —</span>
+    <blockquote class="s4-citation-full-txt">
+      « [Depuis Bloc 0 "Ce que tu veux qu'elles emportent après". La vraie version, dans ses mots.] »
+    </blockquote>
+    <span class="s4-citation-full-auteur">— [Prénom Nom] · [Titre professionnel]</span>
+  </div>
+</section>
+
+
+<!-- S3 — VALEURS -->
+<section class="s4-section s4-valeurs">
+  <div class="s4-inner">
+    <div class="s4-valeurs-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— III — Mes valeurs</span>
+        <h2 class="s4-h2">Ce qui guide<br><em>chaque séance</em></h2>
+      </div>
+      <p class="s4-p">[Depuis Bloc 0 — phrase d'intro sur ce que représentent ses valeurs dans la pratique concrète.]</p>
+    </div>
+    <div class="s4-valeurs-grid">
+
+      <div class="s4-valeur-card s4-reveal s4-d1">
+        <span class="s4-valeur-rom">I</span>
+        <div class="s4-valeur-nom">[Valeur 1<br><em>depuis Bloc 0</em>]</div>
+        <div class="s4-valeur-trait"></div>
+        <p class="s4-valeur-desc">[Ce que cette valeur veut dire concrètement.]</p>
+      </div>
+
+      <div class="s4-valeur-card s4-reveal s4-d2">
+        <span class="s4-valeur-rom">II</span>
+        <div class="s4-valeur-nom">[Valeur 2<br><em>depuis Bloc 0</em>]</div>
+        <div class="s4-valeur-trait"></div>
+        <p class="s4-valeur-desc">[Description concrète.]</p>
+      </div>
+
+      <div class="s4-valeur-card s4-reveal s4-d3">
+        <span class="s4-valeur-rom">III</span>
+        <div class="s4-valeur-nom">[Valeur 3<br><em>depuis Bloc 0</em>]</div>
+        <div class="s4-valeur-trait"></div>
+        <p class="s4-valeur-desc">[Description concrète.]</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — MÉTHODE -->
+<section class="s4-section s4-methode">
+  <div class="s4-inner">
+    <div class="s4-methode-grid">
+      <div class="s4-reveal-left">
+        <div class="s4-methode-img-wrap">
+          <div class="s4-methode-placeholder">[URL_PHOTO_SOIN — Soin en cours]</div>
+        </div>
+        <div class="s4-methode-encart">
+          <span class="s4-methode-encart-label">Ce que disent les clientes</span>
+          <p class="s4-methode-encart-txt">
+            « [Depuis Bloc 0 "Ce que mes clientes disent le plus souvent". Verbatim.] »
+          </p>
+        </div>
+      </div>
+      <div class="s4-reveal-right">
+        <span class="s4-eyebrow">— IV — Mon approche</span>
+        <h2 class="s4-h2" style="margin-bottom:12px;">
+          Comment je travaille —<br><em>[accroche méthode]</em>
+        </h2>
+        <div class="s4-trait"></div>
+        <p class="s4-p" style="margin-bottom:36px;">[Depuis Bloc 0 "Ce que tu fais différemment". Philosophie globale.]</p>
+        <div class="s4-methode-steps">
+          <div class="s4-methode-step">
+            <span class="s4-methode-step-rom">I</span>
+            <div>
+              <div class="s4-methode-step-titre">[Pilier 1 de la méthode]</div>
+              <p class="s4-methode-step-p">[Description concrète depuis Bloc 0 ou Bloc 5.]</p>
+            </div>
+          </div>
+          <div class="s4-methode-step">
+            <span class="s4-methode-step-rom">II</span>
+            <div>
+              <div class="s4-methode-step-titre">[Pilier 2]</div>
+              <p class="s4-methode-step-p">[Description concrète.]</p>
+            </div>
+          </div>
+          <div class="s4-methode-step">
+            <span class="s4-methode-step-rom">III</span>
+            <div>
+              <div class="s4-methode-step-titre">[Pilier 3]</div>
+              <p class="s4-methode-step-p">[Description concrète.]</p>
+            </div>
+          </div>
+          <div class="s4-methode-step">
+            <span class="s4-methode-step-rom">IV</span>
+            <div>
+              <div class="s4-methode-step-titre">[Pilier 4]</div>
+              <p class="s4-methode-step-p">[Description concrète.]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — FORMATIONS -->
+<section class="s4-section s4-formations">
+  <div class="s4-inner">
+    <div class="s4-formations-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— V — Formations & certifications</span>
+        <h2 class="s4-h2">Mon parcours<br><em>professionnel</em></h2>
+      </div>
+      <p class="s4-p">[Depuis Bloc 9 "Années d'expérience" — 1-2 phrases contextuelles.]</p>
+    </div>
+    <div class="s4-formations-grid">
+
+      <div class="s4-formation-item s4-reveal s4-d1">
+        <span class="s4-formation-annee">[Année]</span>
+        <div>
+          <div class="s4-formation-nom">[Nom exact formation 1]</div>
+          <div class="s4-formation-org">[Organisme / École]</div>
+          <p class="s4-formation-desc">[Description si fournie — sinon laisser vide.]</p>
+        </div>
+      </div>
+
+      <div class="s4-formation-item s4-reveal s4-d2">
+        <span class="s4-formation-annee">[Année]</span>
+        <div>
+          <div class="s4-formation-nom">[Nom exact formation 2]</div>
+          <div class="s4-formation-org">[Organisme]</div>
+          <p class="s4-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="s4-formation-item s4-reveal s4-d3">
+        <span class="s4-formation-annee">[Année]</span>
+        <div>
+          <div class="s4-formation-nom">[Nom exact formation 3]</div>
+          <div class="s4-formation-org">[Organisme]</div>
+          <p class="s4-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+      <div class="s4-formation-item s4-reveal s4-d4">
+        <span class="s4-formation-annee">[Année]</span>
+        <div>
+          <div class="s4-formation-nom">[Formation 4 / Certification]</div>
+          <div class="s4-formation-org">[Organisme]</div>
+          <p class="s4-formation-desc">[Description si fournie.]</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S6 — GALERIE -->
+<section class="s4-section s4-galerie">
+  <div class="s4-inner">
+    <div class="s4-reveal">
+      <span class="s4-eyebrow">— VI — Cabinet & univers</span>
+      <h2 class="s4-h2">[Mon cabinet] — <em>[Ville]</em></h2>
+    </div>
+    <div class="s4-galerie-grid">
+      <div class="s4-galerie-item s4-galerie-wide">
+        <div class="s4-galerie-placeholder">[URL_PHOTO_CABINET_1 — Vue d'ensemble]</div>
+      </div>
+      <div class="s4-galerie-item">
+        <div class="s4-galerie-placeholder">[URL_PHOTO_CABINET_2]</div>
+      </div>
+      <div class="s4-galerie-item">
+        <div class="s4-galerie-placeholder">[URL_PHOTO_SOIN_1]</div>
+      </div>
+      <div class="s4-galerie-item">
+        <div class="s4-galerie-placeholder">[URL_PHOTO_CABINET_3]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S7 — FAQ -->
+<section class="s4-section s4-faq">
+  <div class="s4-inner">
+    <div class="s4-faq-layout">
+      <div class="s4-faq-aside s4-reveal-left">
+        <span class="s4-eyebrow">— VII — Questions</span>
+        <h2 class="s4-h2">Vos<br><em>questions</em></h2>
+        <p>[Prénom] répond avant toute réservation. Contactez-la au <a href="tel:[+33XXXXXXXXX]" style="color:var(--accent);border-bottom:1px solid var(--accent);">[Téléphone]</a>.</p>
+        <div style="margin-top:28px;">
+          <a href="/[slug-faq]" class="s4-btn-ghost">Toutes les questions</a>
+        </div>
+      </div>
+      <div class="s4-reveal-right">
+        <details class="s4-faq-item">
+          <summary>Quel est votre parcours et vos formations ?</summary>
+          <div class="s4-faq-ans">[Prénom Nom] est [titre] à [Ville] depuis [X] ans. [Formations principales depuis Bloc 9]. <a href="/[slug-a-propos]">Parcours complet →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Quelle est votre approche et ce qui vous différencie ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 0 "Ce que tu fais différemment". Dans ses mots.]</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Pour quel type de clientèle travaillez-vous ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 0 profil cliente idéale.] <a href="/[slug-soins]">Découvrir les soins →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Comment se passe une première séance ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 5 déroulement.] <a href="[LIEN_RDV]" target="_blank" rel="noopener">Réserver →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Proposez-vous des séances à domicile ou à distance ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 5 — domicile oui/non + rayon. Visio oui/non + modalités.]</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Puis-je vous contacter avant de réserver ?</summary>
+          <div class="s4-faq-ans">Oui — [Prénom] répond à toutes vos questions. <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA FINAL -->
+<section class="s4-cta">
+  <div class="s4-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s4-cta-inner s4-reveal">
+    <div class="s4-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche depuis<br>Bloc 0 ADN]<br><em>[suite]</em></h2>
+    <p class="s4-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Prendre rendez-vous</a>
+    <p class="s4-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+
+<!-- MAILLAGE -->
+<div class="s4-maillage">
+  <div class="s4-maillage-inner">
+    <span class="s4-maillage-label">À découvrir aussi</span>
+    <div class="s4-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s4-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s4-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soins]" class="s4-maillage-pill">Toutes les prestations</a>
+      <a href="/[slug-faq]" class="s4-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","description":"[Bio courte — 2 phrases.]","url":"https://[votre-domaine].fr/[slug-a-propos]","image":"[URL_PHOTO_PORTRAIT]","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","streetAddress":"[Numéro et rue]","addressLocality":"[Ville]","postalCode":"[Code postal]","addressCountry":"FR"},"alumniOf":[{"@type":"EducationalOrganization","name":"[Organisme 1]"},{"@type":"EducationalOrganization","name":"[Organisme 2]"}],"knowsAbout":["[Soin 1]","[Soin 2]","[Soin 3]"],"sameAs":["[URL Instagram]","[URL Facebook]"]},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Quel est le parcours de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre] à [Ville] depuis [X] ans. [Formations principales]."}},
+    {"@type":"Question","name":"Quelle est l'approche de [Prénom Nom] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0 différenciation.]"}},
+    {"@type":"Question","name":"Comment se passe une première séance ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 déroulement.]"}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},
+    {"@type":"ListItem","position":2,"name":"À propos","item":"https://[votre-domaine].fr/[slug-a-propos]"}
+  ]}
+]
+</script>
+
+
+<script>
+(function(){var dot=document.getElementById('cursorDot');var ring=document.getElementById('cursorRing');if(!dot||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();document.querySelectorAll('a,button,.s4-valeur-card,.s4-galerie-item').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='var(--accent)';});el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='var(--encre)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s4-reveal,.s4-reveal-left,.s4-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

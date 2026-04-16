@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soins & prestations à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="Toutes les prestations de [Prénom Nom] à [Ville] : [Soin 1], [Soin 2], [Soin 3]. Tarifs, durées et réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blanc:#FFFFFF;--papier:#F8F7F5;--encre:#111111;--accent:#C4A882;--muted:#9A9189;--line:rgba(17,17,17,.08);--line-md:rgba(17,17,17,.14);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',sans-serif;--max:1200px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);padding-bottom:68px;overflow-x:hidden;cursor:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.s4-cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--encre);position:fixed;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);}
+.s4-cursor-ring{width:32px;height:32px;border-radius:50%;border:1px solid var(--encre);position:fixed;z-index:99998;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+@media(max-width:860px){.s4-cursor-dot,.s4-cursor-ring{display:none;}body{cursor:auto;}}
+.s4-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--blanc);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s4-sticky-id{font-family:var(--f-serif);font-weight:300;font-size:.88rem;letter-spacing:.08em;color:var(--muted);font-style:italic;}
+.s4-sticky-id strong{color:var(--encre);font-style:normal;font-weight:400;}
+.s4-sticky-btns{display:flex;gap:10px;}
+.s4-sticky-cta{background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--encre);transition:all .3s;}
+.s4-sticky-cta:hover{background:transparent;color:var(--encre);}
+.s4-sticky-ghost{background:transparent;color:var(--muted);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--line-md);transition:all .3s;}
+.s4-sticky-ghost:hover{border-color:var(--encre);color:var(--encre);}
+@media(max-width:600px){.s4-sticky{padding:12px 20px;justify-content:center;}.s4-sticky-id{display:none;}.s4-sticky-btns{width:100%;gap:8px;}.s4-sticky-cta,.s4-sticky-ghost{flex:1;text-align:center;}}
+/* HERO */
+.s4-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;}
+.s4-hero-img{position:relative;overflow:hidden;}
+.s4-hero-img-bg{position:absolute;inset:-8%;background-size:cover;background-position:center top;transform:scale(1.08);transition:transform 10s ease;}
+.s4-hero-img-bg.loaded{transform:scale(1);}
+.s4-hero-img::after{content:'';position:absolute;top:12%;right:0;bottom:12%;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);opacity:.5;}
+.s4-hero-txt{display:flex;flex-direction:column;justify-content:flex-end;padding:0 80px 68px 72px;background:var(--blanc);position:relative;}
+.s4-hero-rom{position:absolute;top:0;right:0;font-family:var(--f-serif);font-size:clamp(12rem,18vw,22rem);font-weight:300;color:rgba(17,17,17,.028);line-height:1;pointer-events:none;letter-spacing:-.04em;}
+.s4-hero-eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s4-hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--accent);}
+.s4-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,5vw,5.8rem);line-height:.96;letter-spacing:-.02em;color:var(--encre);margin-bottom:20px;opacity:0;animation:fadeUp 1s .35s ease forwards;}
+.s4-hero h1 em{font-style:italic;}
+.s4-hero-trait{width:48px;height:1px;background:var(--accent);margin-bottom:24px;opacity:0;animation:expandW .8s .5s ease forwards;}
+@keyframes expandW{from{width:0;opacity:0;}to{width:48px;opacity:1;}}
+.s4-hero-bar{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:36px;opacity:0;animation:fadeUp .8s .6s ease forwards;}
+.s4-hero-bar-item{display:flex;flex-direction:column;gap:3px;}
+.s4-hero-bar-label{font-family:var(--f-sans);font-size:.5rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);}
+.s4-hero-bar-val{font-family:var(--f-serif);font-size:1.05rem;font-weight:300;color:var(--encre);}
+.s4-hero-bar-val em{font-style:italic;color:var(--accent);}
+.s4-hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .72s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s4-hero{grid-template-columns:1fr;min-height:auto;}.s4-hero-img{height:60vw;}.s4-hero-img::after{display:none;}.s4-hero-txt{padding:36px 6% 60px;}.s4-hero h1{font-size:clamp(2.8rem,10vw,4rem);}.s4-hero-rom{display:none;}}
+/* BASE */
+.s4-section{padding:120px 6%;}.s4-inner{max-width:var(--max);margin:0 auto;}
+.s4-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.s4-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,4rem);line-height:1.06;letter-spacing:-.02em;color:var(--encre);}
+.s4-h2 em{font-style:italic;}
+.s4-h2-xl{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.5rem,5.5vw,6rem);line-height:1.0;letter-spacing:-.025em;color:var(--encre);}
+.s4-h2-xl em{font-style:italic;}
+.s4-h2-light{color:#fff;}.s4-h2-light em{color:var(--accent);}
+.s4-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:1.95;color:var(--muted);margin-bottom:14px;}
+.s4-trait{width:36px;height:1px;background:var(--accent);margin:20px 0;}
+/* BOUTONS */
+.s4-btn-primary{display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--encre);transition:all .3s;}
+.s4-btn-primary:hover{background:transparent;color:var(--encre);}
+.s4-btn-accent{display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--accent);transition:all .3s;}
+.s4-btn-accent:hover{background:transparent;color:var(--accent);}
+.s4-btn-ghost{display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--line-md);transition:all .3s;}
+.s4-btn-ghost:hover{border-color:var(--encre);}
+/* FILTRES */
+.s4-filtres{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:48px;}
+.s4-filtre-btn{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;padding:9px 20px;cursor:pointer;border:1px solid var(--line-md);color:var(--muted);background:transparent;transition:all .25s;}
+.s4-filtre-btn:hover{border-color:var(--encre);color:var(--encre);}
+.s4-filtre-btn.actif{background:var(--encre);color:var(--blanc);border-color:var(--encre);}
+/* GRILLE SOINS */
+.s4-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.s4-soin-card{background:var(--blanc);padding:44px 36px;display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;transition:background .35s;position:relative;overflow:hidden;}
+.s4-soin-card:hover{background:var(--papier);}
+.s4-soin-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.s4-soin-card:hover::before{transform:scaleX(1);}
+.s4-soin-card.masque{display:none;}
+.s4-soin-rom{font-family:var(--f-serif);font-size:.72rem;font-weight:300;color:var(--accent);letter-spacing:.2em;}
+.s4-soin-name{font-family:var(--f-serif);font-size:1.4rem;font-weight:300;color:var(--encre);line-height:1.2;flex:1;}
+.s4-soin-name em{font-style:italic;}
+.s4-soin-trait{width:18px;height:1px;background:var(--accent);transition:width .3s;}
+.s4-soin-card:hover .s4-soin-trait{width:36px;}
+.s4-soin-meta{display:flex;justify-content:space-between;align-items:flex-end;padding-top:16px;border-top:1px solid var(--line);}
+.s4-soin-meta-item{display:flex;flex-direction:column;gap:2px;}
+.s4-soin-meta-item span{font-family:var(--f-sans);font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+.s4-soin-meta-item strong{font-family:var(--f-serif);font-size:.96rem;font-weight:300;color:var(--encre);}
+.s4-soin-fleche{font-family:var(--f-serif);font-size:.82rem;color:var(--muted);transition:color .3s,transform .3s;}
+.s4-soin-card:hover .s4-soin-fleche{color:var(--accent);transform:translateX(5px);}
+.s4-no-result{display:none;grid-column:span 3;text-align:center;padding:56px;font-family:var(--f-serif);font-style:italic;font-size:1rem;color:var(--muted);}
+@media(max-width:860px){.s4-soins-grid{grid-template-columns:1fr 1fr;}.s4-no-result{grid-column:span 2;}}
+@media(max-width:520px){.s4-soins-grid{grid-template-columns:1fr;}.s4-no-result{grid-column:span 1;}}
+/* APPROCHE ENCART */
+.s4-approche-encart{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;background:var(--encre);padding:64px;margin-top:1px;}
+.s4-approche-quote{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.5vw,2.2rem);line-height:1.45;color:#fff;border-left:1px solid var(--accent);padding-left:28px;}
+.s4-approche-quote cite{display:block;margin-top:16px;font-style:normal;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,168,130,.5);}
+@media(max-width:768px){.s4-approche-encart{grid-template-columns:1fr;gap:36px;padding:40px 24px;}}
+/* PRATICIENNE */
+.s4-prat-mini{display:grid;grid-template-columns:100px 1fr;gap:32px;align-items:center;background:var(--papier);padding:40px;margin-top:1px;}
+.s4-prat-mini-img{width:100px;height:100px;object-fit:cover;background:#E8E4DF;display:flex;align-items:center;justify-content:center;font-family:var(--f-sans);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;padding:8px;flex-shrink:0;}
+.s4-prat-mini-nom{font-family:var(--f-serif);font-size:1.15rem;font-weight:300;color:var(--encre);margin-bottom:4px;}
+.s4-prat-mini-nom em{font-style:italic;}
+.s4-prat-mini-bio{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:14px;}
+/* AVIS */
+.s4-avis-grid-sombre{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.05);}
+.s4-avis-card-sombre{background:rgba(255,255,255,.04);padding:36px 28px;display:flex;flex-direction:column;gap:14px;}
+.s4-avis-stars{display:flex;gap:3px;}
+.s4-avis-star{width:10px;height:10px;background:var(--accent);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s4-avis-txt-light{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:.96rem;color:rgba(255,255,255,.5);line-height:1.85;flex:1;}
+.s4-avis-sep-light{width:20px;height:1px;background:var(--accent);}
+.s4-avis-author-light{font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+/* CTA / MAILLAGE */
+.s4-cta{background:var(--blanc);padding:140px 6%;text-align:center;position:relative;border-top:1px solid var(--line);}
+.s4-cta-fond{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-serif);font-size:clamp(8rem,22vw,26rem);font-weight:300;color:rgba(17,17,17,.025);white-space:nowrap;pointer-events:none;letter-spacing:-.05em;line-height:1;}
+.s4-cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.s4-cta-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;justify-content:center;}
+.s4-cta-eyebrow::before,.s4-cta-eyebrow::after{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-cta h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.025em;color:var(--encre);margin-bottom:24px;}
+.s4-cta h2 em{font-style:italic;}
+.s4-cta-sub{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
+.s4-cta-contact{margin-top:20px;font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:var(--muted);}
+.s4-cta-contact a{color:var(--encre);border-bottom:1px solid var(--line-md);}
+.s4-maillage{background:var(--papier);padding:56px 6%;border-top:1px solid var(--line);}
+.s4-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s4-maillage-label{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:block;}
+.s4-maillage-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.s4-maillage-pill{display:inline-block;padding:8px 16px;border:1px solid var(--line-md);color:var(--muted);font-family:var(--f-sans);font-size:.7rem;font-weight:300;letter-spacing:.08em;transition:all .25s;}
+.s4-maillage-pill:hover{border-color:var(--encre);color:var(--encre);}
+.s4-reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal.in{opacity:1;transform:none;}
+.s4-reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal-left.in{opacity:1;transform:none;}
+.s4-reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal-right.in{opacity:1;transform:none;}
+.s4-d1{transition-delay:.12s;}.s4-d2{transition-delay:.22s;}.s4-d3{transition-delay:.32s;}
+</style>
+</head>
+<body>
+<div class="s4-cursor-dot" id="cursorDot"></div>
+<div class="s4-cursor-ring" id="cursorRing"></div>
+
+<div class="s4-sticky">
+  <div class="s4-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s4-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s4-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s4-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="s4-hero">
+  <div class="s4-hero-img">
+    <div class="s4-hero-img-bg" id="heroBg" style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  </div>
+  <div class="s4-hero-txt">
+    <div class="s4-hero-rom" aria-hidden="true">IV</div>
+    <div class="s4-hero-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h1 class="s4-custom-h1">Toutes les prestations<br><em>à [Ville]</em></h1>
+    <div class="s4-hero-trait"></div>
+    <div class="s4-hero-bar">
+      <div class="s4-hero-bar-item"><span class="s4-hero-bar-label">Soins</span><span class="s4-hero-bar-val">[X] <em>disponibles</em></span></div>
+      <div class="s4-hero-bar-item"><span class="s4-hero-bar-label">À partir de</span><span class="s4-hero-bar-val">[X] <em>€</em></span></div>
+      <div class="s4-hero-bar-item"><span class="s4-hero-bar-label">Note</span><span class="s4-hero-bar-val">[X.X] <em>★</em></span></div>
+    </div>
+    <div class="s4-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Réserver</a>
+      <a href="/[slug-faq]" class="s4-btn-ghost">Questions</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOINS -->
+<section class="s4-section" style="background:var(--blanc);">
+  <div class="s4-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid var(--line);" class="s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— I — [X] prestations à [Ville]</span>
+        <h2 class="s4-h2-xl">Les soins de [Prénom]<br><em>à [Ville]</em></h2>
+      </div>
+      <p class="s4-p">[Depuis Bloc 0 ADN — phrase courte sur l'intention commune de tous les soins.]<br><br><a href="/[slug-faq]" style="font-family:var(--f-sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);">Questions fréquentes →</a></p>
+    </div>
+    <div class="s4-filtres">
+      <button class="s4-filtre-btn actif" data-filtre="tout">Tous les soins</button>
+      <button class="s4-filtre-btn" data-filtre="[cat-1-slug]">[Catégorie 1]</button>
+      <button class="s4-filtre-btn" data-filtre="[cat-2-slug]">[Catégorie 2]</button>
+      <button class="s4-filtre-btn" data-filtre="[cat-3-slug]">[Catégorie 3]</button>
+    </div>
+    <div class="s4-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s4-soin-card s4-reveal s4-d1" data-cat="[cat-1-slug]"><span class="s4-soin-rom">I</span><div class="s4-soin-name">[Nom du<br><em>soin 1</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <a href="/[slug-soin-2]-[ville]" class="s4-soin-card s4-reveal s4-d2" data-cat="[cat-1-slug]"><span class="s4-soin-rom">II</span><div class="s4-soin-name">[Nom du<br><em>soin 2</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <a href="/[slug-soin-3]-[ville]" class="s4-soin-card s4-reveal s4-d3" data-cat="[cat-2-slug]"><span class="s4-soin-rom">III</span><div class="s4-soin-name">[Nom du<br><em>soin 3</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <a href="/[slug-soin-4]-[ville]" class="s4-soin-card s4-reveal s4-d1" data-cat="[cat-2-slug]"><span class="s4-soin-rom">IV</span><div class="s4-soin-name">[Nom du<br><em>soin 4</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <a href="/[slug-soin-5]-[ville]" class="s4-soin-card s4-reveal s4-d2" data-cat="[cat-3-slug]"><span class="s4-soin-rom">V</span><div class="s4-soin-name">[Nom du<br><em>soin 5</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <a href="/[slug-soin-6]-[ville]" class="s4-soin-card s4-reveal s4-d3" data-cat="[cat-3-slug]"><span class="s4-soin-rom">VI</span><div class="s4-soin-name">[Nom du<br><em>soin 6</em>]</div><div class="s4-soin-trait"></div><div class="s4-soin-meta"><div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div><div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div><span class="s4-soin-fleche">→</span></div></a>
+      <div class="s4-no-result">Aucune prestation dans cette catégorie.</div>
+    </div>
+    <div class="s4-approche-encart s4-reveal">
+      <blockquote class="s4-approche-quote">« [Citation depuis Bloc 0 ADN — l'essence de l'approche.] »<cite>— [Prénom Nom] · [Titre professionnel]</cite></blockquote>
+      <div>
+        <span class="s4-eyebrow" style="color:rgba(196,168,130,.7);">Mon approche</span>
+        <p style="font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.95;margin-bottom:24px;">[Depuis Bloc 0 "Ce que tu fais différemment" — 2 phrases.]</p>
+        <a href="/[slug-a-propos]" style="display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;border:1px solid var(--accent);transition:all .3s;">En savoir plus →</a>
+      </div>
+    </div>
+    <div class="s4-prat-mini s4-reveal">
+      <div class="s4-prat-mini-img">[URL_PORTRAIT]</div>
+      <div>
+        <div class="s4-prat-mini-nom">[Prénom Nom] — <em>[Titre professionnel]</em></div>
+        <p class="s4-prat-mini-bio">[Depuis Bloc 9 bio courte — 1-2 phrases dans les mots de la praticienne.]</p>
+        <a href="/[slug-a-propos]" class="s4-btn-ghost" style="font-size:.6rem;padding:10px 20px;">Découvrir le parcours →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS fond encre -->
+<section class="s4-section s4-reveal" style="background:var(--encre);padding:96px 6%;text-align:center;">
+  <div class="s4-inner">
+    <span class="s4-eyebrow" style="color:rgba(196,168,130,.7);justify-content:center;">— II — Témoignages</span>
+    <h2 class="s4-h2 s4-h2-light" style="text-align:center;margin-bottom:56px;">Ce que disent<br><em>les clientes</em></h2>
+    <div class="s4-avis-grid-sombre">
+      <div class="s4-avis-card-sombre"><div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div><p class="s4-avis-txt-light">« [Témoignage 1 depuis Bloc 11] »</p><div class="s4-avis-sep-light"></div><span class="s4-avis-author-light">[Prénom N.]</span></div>
+      <div class="s4-avis-card-sombre"><div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div><p class="s4-avis-txt-light">« [Témoignage 2 depuis Bloc 11] »</p><div class="s4-avis-sep-light"></div><span class="s4-avis-author-light">[Prénom N.]</span></div>
+      <div class="s4-avis-card-sombre"><div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div><p class="s4-avis-txt-light">« [Témoignage 3 depuis Bloc 11] »</p><div class="s4-avis-sep-light"></div><span class="s4-avis-author-light">[Prénom N.]</span></div>
+    </div>
+    <div style="margin-top:32px;"><a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:rgba(255,255,255,.45);font-family:var(--f-sans);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;padding:12px 24px;border:1px solid rgba(255,255,255,.12);transition:all .3s;">Voir tous les avis Google</a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="s4-cta">
+  <div class="s4-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s4-cta-inner s4-reveal">
+    <div class="s4-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche depuis Bloc 0]<br><em>[suite]</em></h2>
+    <p class="s4-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Réserver ma séance</a>
+    <p class="s4-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</div>
+<div class="s4-maillage"><div class="s4-maillage-inner"><span class="s4-maillage-label">À découvrir</span><div class="s4-maillage-grid"><a href="/[slug-soin-1]-[ville]" class="s4-maillage-pill">[Soin 1] à [Ville]</a><a href="/[slug-soin-2]-[ville]" class="s4-maillage-pill">[Soin 2] à [Ville]</a><a href="/[slug-soin-3]-[ville]" class="s4-maillage-pill">[Soin 3] à [Ville]</a><a href="/[slug-a-propos]" class="s4-maillage-pill">À propos</a><a href="/[slug-faq]" class="s4-maillage-pill">Questions fréquentes</a></div></div></div>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"ItemList","name":"Soins de [Prénom Nom] à [Ville]","url":"https://[votre-domaine].fr/[slug-soins]","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"[Soin 1] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-1]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"[Soin 2] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-2]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"[Soin 3] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-3]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quels soins propose [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Liste soins]."}},{"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [tarif]€. [Soin 2] : [tarif]€."}},{"@type":"Question","name":"Comment choisir son soin ?","acceptedAnswer":{"@type":"Answer","text":"Contactez [Prénom] au [Téléphone] avant de réserver."}},{"@type":"Question","name":"Y a-t-il des packs ?","acceptedAnswer":{"@type":"Answer","text":"[Packs depuis Bloc 6]."}},{"@type":"Question","name":"Comment réserver à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},{"@type":"Question","name":"Peut-on offrir un soin en cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Cartes cadeaux sur [URL_CARTE_CADEAU]."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Soins & prestations","item":"https://[votre-domaine].fr/[slug-soins]"}]}]</script>
+<script>
+(function(){var dot=document.getElementById('cursorDot');var ring=document.getElementById('cursorRing');if(!dot||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();document.querySelectorAll('a,button,.s4-soin-card').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='var(--accent)';});el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='var(--encre)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s4-reveal,.s4-reveal-left,.s4-reveal-right').forEach(function(el){io.observe(el);});})();
+(function(){var btns=document.querySelectorAll('[data-filtre]');var cards=document.querySelectorAll('.s4-soin-card');var noRes=document.querySelector('.s4-no-result');btns.forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre');btns.forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');var v=0;cards.forEach(function(c){var show=f==='tout'||c.getAttribute('data-cat')===f;c.classList.toggle('masque',!show);if(show)v++;});if(noRes)noRes.style.display=v===0?'flex':'none';});});})();
+</script>
+</body>
+</html>

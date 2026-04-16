@@ -1,0 +1,345 @@
+<!-- ============================================================
+     OFFRIR PREMIUM — Style 04 Éditorial
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offrir — Cartes Cadeaux & Packs [Ville] | [Prénom Nom]</title>
+<meta name="description" content="Offrez un soin à [Ville] — cartes cadeaux et packs [Soin 1], [Soin 2]. Code immédiat. Valable 1 an.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blanc:#FFFFFF;--papier:#F8F7F5;--encre:#111111;--accent:#C4A882;--muted:#9A9189;--line:rgba(17,17,17,.08);--line-md:rgba(17,17,17,.14);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'DM Sans',sans-serif;--max:1200px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);overflow-x:hidden;cursor:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.s4-cursor-dot{width:6px;height:6px;border-radius:50%;background:var(--encre);position:fixed;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);}
+.s4-cursor-ring{width:32px;height:32px;border-radius:50%;border:1px solid var(--encre);position:fixed;z-index:99998;pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;}
+@media(max-width:860px){.s4-cursor-dot,.s4-cursor-ring{display:none;}body{cursor:auto;}}
+/* HERO SPLIT */
+.s4-hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;}
+.s4-hero-txt{background:var(--encre);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 72px;position:relative;overflow:hidden;}
+.s4-hero-deco{position:absolute;bottom:-80px;right:-80px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(196,168,130,.1);pointer-events:none;}
+.s4-hero-rom{position:absolute;top:0;left:0;font-family:var(--f-serif);font-size:22vw;font-weight:300;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;letter-spacing:-.04em;}
+.s4-hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:rgba(196,168,130,.6);margin-bottom:24px;opacity:0;animation:fadeUp .8s .2s ease forwards;position:relative;z-index:1;}
+.s4-hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.8rem,5vw,5.2rem);line-height:.96;letter-spacing:-.02em;color:#fff;margin-bottom:20px;opacity:0;animation:fadeUp 1s .35s ease forwards;position:relative;z-index:1;}
+.s4-hero h1 em{font-style:italic;color:var(--accent);}
+.s4-hero-trait{width:40px;height:1px;background:var(--accent);margin-bottom:24px;opacity:0;animation:expandW .8s .5s ease forwards;position:relative;z-index:1;}
+@keyframes expandW{from{width:0;opacity:0;}to{width:40px;opacity:1;}}
+.s4-hero-pills{display:flex;flex-direction:column;gap:10px;opacity:0;animation:fadeUp .8s .6s ease forwards;position:relative;z-index:1;}
+.s4-hero-pill{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.6);}
+.s4-hero-pill::before{content:'—';color:var(--accent);font-size:.7rem;flex-shrink:0;}
+.s4-hero-pill strong{color:#fff;font-weight:400;}
+.s4-hero-img-col{position:relative;overflow:hidden;}
+.s4-hero-img-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.08);transition:transform 10s ease;}
+.s4-hero-img-bg.loaded{transform:scale(1);}
+/* Filet gauche */
+.s4-hero-img-col::before{content:'';position:absolute;top:0;left:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);opacity:.4;z-index:2;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s4-hero{grid-template-columns:1fr;min-height:auto;}.s4-hero-img-col{height:55vw;order:-1;}.s4-hero-img-col::before{display:none;}.s4-hero-txt{padding:48px 6% 64px;}}
+/* BASE */
+.s4-section{padding:120px 6%;}.s4-inner{max-width:var(--max);margin:0 auto;}
+.s4-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.s4-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,4rem);line-height:1.06;letter-spacing:-.02em;color:var(--encre);}
+.s4-h2 em{font-style:italic;}
+.s4-h2-light{color:#fff;}.s4-h2-light em{color:var(--accent);}
+.s4-p{font-family:var(--f-sans);font-size:.9rem;font-weight:300;line-height:1.95;color:var(--muted);margin-bottom:14px;}
+.s4-trait{width:36px;height:1px;background:var(--accent);margin:20px 0;}
+/* BOUTONS */
+.s4-btn-primary{display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--encre);transition:all .3s;}
+.s4-btn-primary:hover{background:transparent;color:var(--encre);}
+.s4-btn-accent{display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:14px 36px;border:1px solid var(--accent);transition:all .3s;}
+.s4-btn-accent:hover{background:transparent;color:var(--accent);}
+.s4-btn-ghost{display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--line-md);transition:all .3s;}
+.s4-btn-ghost:hover{border-color:var(--encre);}
+/* FILTRES */
+.s4-filtres{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:40px;}
+.s4-filtre-btn{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;padding:9px 20px;cursor:pointer;border:1px solid var(--line-md);color:var(--muted);background:transparent;transition:all .25s;}
+.s4-filtre-btn:hover{border-color:var(--encre);color:var(--encre);}
+.s4-filtre-btn.actif{background:var(--encre);color:var(--blanc);border-color:var(--encre);}
+/* CARTES CADEAUX */
+.s4-cartes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.s4-carte-card{background:var(--blanc);padding:44px 36px;display:flex;flex-direction:column;gap:14px;transition:background .35s;position:relative;overflow:hidden;}
+.s4-carte-card:hover{background:var(--papier);}
+.s4-carte-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.s4-carte-card:hover::before{transform:scaleX(1);}
+.s4-carte-card.masque{display:none;}
+.s4-carte-rom{font-family:var(--f-serif);font-size:.7rem;font-weight:300;color:var(--accent);letter-spacing:.2em;}
+.s4-carte-nom{font-family:var(--f-serif);font-size:1.3rem;font-weight:300;color:var(--encre);line-height:1.2;}
+.s4-carte-nom em{font-style:italic;}
+.s4-carte-tagline{font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:var(--muted);}
+.s4-carte-trait{width:18px;height:1px;background:var(--accent);transition:width .3s;}
+.s4-carte-card:hover .s4-carte-trait{width:36px;}
+.s4-carte-infos{display:flex;gap:16px;flex-wrap:wrap;}
+.s4-carte-info span{display:block;font-family:var(--f-sans);font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.s4-carte-info strong{font-family:var(--f-serif);font-size:.9rem;font-weight:300;color:var(--encre);}
+.s4-carte-note{font-family:var(--f-serif);font-style:italic;font-size:.74rem;color:var(--muted);}
+.s4-carte-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line);}
+.s4-carte-prix{font-family:var(--f-serif);font-size:1.8rem;font-weight:300;color:var(--accent);line-height:1;}
+.s4-carte-prix sup{font-size:.9rem;vertical-align:super;}
+.s4-carte-btn{display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.6rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--encre);transition:all .3s;flex-shrink:0;}
+.s4-carte-btn:hover{background:transparent;color:var(--encre);}
+@media(max-width:860px){.s4-cartes-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:540px){.s4-cartes-grid{grid-template-columns:1fr;}}
+/* PACKS */
+.s4-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.s4-pack-card{background:rgba(255,255,255,.03);padding:40px 32px;display:flex;flex-direction:column;gap:10px;position:relative;border-top:1px solid transparent;transition:border-color .3s;}
+.s4-pack-card:hover{border-top-color:var(--accent);}
+.s4-pack-card.masque{display:none;}
+.s4-pack-badge{position:absolute;top:0;right:0;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;}
+.s4-pack-rom{font-family:var(--f-serif);font-size:.68rem;font-weight:300;color:rgba(196,168,130,.5);letter-spacing:.2em;}
+.s4-pack-nom{font-family:var(--f-serif);font-size:1.15rem;font-weight:300;color:#fff;line-height:1.2;}
+.s4-pack-nom em{font-style:italic;color:var(--accent);}
+.s4-pack-tagline{font-family:var(--f-serif);font-style:italic;font-size:.84rem;color:rgba(255,255,255,.4);}
+.s4-pack-contenu{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.s4-pack-contenu li{font-family:var(--f-sans);font-size:.8rem;color:rgba(255,255,255,.5);padding-left:18px;position:relative;line-height:1.5;font-weight:300;}
+.s4-pack-contenu li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:.7rem;}
+.s4-pack-footer{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);}
+.s4-pack-prix{font-family:var(--f-serif);font-size:1.7rem;font-weight:300;color:var(--accent);line-height:1;margin-bottom:4px;}
+.s4-pack-prix-alt{font-family:var(--f-sans);font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:14px;}
+.s4-pack-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.s4-pack-btn-main{display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--accent);transition:all .3s;}
+.s4-pack-btn-main:hover{background:transparent;color:var(--accent);}
+.s4-pack-btn-2x{display:inline-block;background:transparent;color:rgba(255,255,255,.4);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border:1px solid rgba(255,255,255,.12);transition:all .3s;}
+.s4-pack-btn-2x:hover{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.7);}
+@media(max-width:860px){.s4-packs-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.s4-packs-grid{grid-template-columns:1fr;}}
+/* RÉASSURANCE */
+.s4-reas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.s4-reas-block{background:rgba(255,255,255,.04);padding:28px 24px;}
+.s4-reas-block:first-child{background:var(--accent);}
+.s4-reas-titre{font-family:var(--f-serif);font-weight:300;font-size:1rem;color:#fff;margin-bottom:6px;}
+.s4-reas-block:first-child .s4-reas-titre{color:var(--encre);}
+.s4-reas-txt{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;}
+.s4-reas-block:first-child .s4-reas-txt{color:rgba(17,17,17,.65);}
+@media(max-width:760px){.s4-reas-grid{grid-template-columns:1fr 1fr;}}
+/* FAQ 2 COLS */
+.s4-faq-2cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;max-width:1000px;margin:0 auto;}
+.s4-faq-groupe-titre{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);display:block;}
+details.s4-faq-item{border-bottom:1px solid var(--line);}
+details.s4-faq-item summary{padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;font-family:var(--f-serif);font-size:1rem;font-weight:300;color:var(--encre);line-height:1.4;transition:color .2s;}
+details.s4-faq-item summary::-webkit-details-marker{display:none;}
+details.s4-faq-item summary::after{content:'+';font-family:var(--f-serif);font-size:1.3rem;font-weight:300;color:var(--accent);flex-shrink:0;transition:transform .3s;line-height:1;margin-top:2px;}
+details.s4-faq-item[open] summary{color:var(--accent);}
+details.s4-faq-item[open] summary::after{transform:rotate(45deg);}
+.s4-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:2;}
+.s4-faq-ans a{color:var(--encre);border-bottom:1px solid var(--line-md);}
+@media(max-width:760px){.s4-faq-2cols{grid-template-columns:1fr;gap:36px;}}
+/* QUESTIONNAIRE */
+.s4-quiz-wrap{max-width:520px;margin:0 auto;}
+.s4-quiz-step{display:none;}.s4-quiz-step.actif{display:block;}
+.s4-quiz-q{font-family:var(--f-serif);font-weight:300;font-size:1.3rem;color:#fff;margin-bottom:24px;line-height:1.4;}
+.s4-quiz-opts{display:flex;flex-direction:column;gap:6px;margin-bottom:24px;}
+.s4-quiz-opt{display:flex;align-items:center;gap:12px;padding:13px 18px;border:1px solid rgba(255,255,255,.1);cursor:pointer;background:transparent;font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:rgba(255,255,255,.65);text-align:left;transition:all .22s;width:100%;}
+.s4-quiz-opt:hover{border-color:var(--accent);color:#fff;}
+.s4-quiz-opt.selected{border-color:var(--accent);background:rgba(196,168,130,.1);color:#fff;}
+.s4-quiz-check{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid rgba(255,255,255,.2);position:relative;transition:all .22s;}
+.s4-quiz-opt.selected .s4-quiz-check{background:var(--accent);border-color:var(--accent);}
+.s4-quiz-opt.selected .s4-quiz-check::after{content:'';position:absolute;inset:3px;background:var(--encre);border-radius:50%;}
+.s4-quiz-nav{display:flex;gap:10px;align-items:center;}
+.s4-quiz-btn{display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:12px 24px;cursor:pointer;border:1px solid var(--accent);transition:all .3s;}
+.s4-quiz-btn:hover{background:transparent;color:var(--accent);}
+.s4-quiz-btn-ghost{background:transparent;color:rgba(255,255,255,.4);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;padding:12px 18px;cursor:pointer;border:1px solid rgba(255,255,255,.1);transition:all .3s;}
+.s4-quiz-btn-ghost:hover{border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.7);}
+.s4-quiz-progress{font-family:var(--f-sans);font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;margin-left:auto;}
+.s4-quiz-resultats{display:none;}.s4-quiz-resultats.actif{display:block;}
+.s4-quiz-reco-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.06);margin-bottom:20px;}
+.s4-quiz-reco-card{background:rgba(255,255,255,.04);padding:22px 20px;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--accent);}
+.s4-quiz-reco-nom{font-family:var(--f-serif);font-weight:300;font-size:1rem;color:#fff;}
+.s4-quiz-reco-detail{font-family:var(--f-sans);font-size:.76rem;color:rgba(255,255,255,.4);line-height:1.6;}
+.s4-quiz-reco-prix{font-family:var(--f-serif);font-size:1.3rem;color:var(--accent);}
+.s4-quiz-reco-btn{display:inline-block;background:var(--accent);color:var(--encre);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:8px 16px;margin-top:4px;border:1px solid var(--accent);transition:all .3s;}
+.s4-quiz-reco-btn:hover{background:transparent;color:var(--accent);}
+.s4-quiz-reset{font-family:var(--f-sans);font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:underline;text-underline-offset:3px;cursor:pointer;background:none;border:none;}
+/* CTA + MAILLAGE */
+.s4-cta{background:var(--blanc);padding:140px 6%;text-align:center;position:relative;border-top:1px solid var(--line);}
+.s4-cta-fond{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-serif);font-size:clamp(8rem,22vw,26rem);font-weight:300;color:rgba(17,17,17,.025);white-space:nowrap;pointer-events:none;letter-spacing:-.05em;line-height:1;}
+.s4-cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.s4-cta-eyebrow{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;justify-content:center;}
+.s4-cta-eyebrow::before,.s4-cta-eyebrow::after{content:'';width:24px;height:1px;background:var(--accent);}
+.s4-cta h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.6rem,6vw,5.5rem);line-height:1.04;letter-spacing:-.025em;color:var(--encre);margin-bottom:24px;}
+.s4-cta h2 em{font-style:italic;}
+.s4-cta-sub{font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
+.s4-maillage{background:var(--papier);padding:56px 6%;border-top:1px solid var(--line);}
+.s4-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s4-maillage-label{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:block;}
+.s4-maillage-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.s4-maillage-pill{display:inline-block;padding:8px 16px;border:1px solid var(--line-md);color:var(--muted);font-family:var(--f-sans);font-size:.7rem;font-weight:300;letter-spacing:.08em;transition:all .25s;}
+.s4-maillage-pill:hover{border-color:var(--encre);color:var(--encre);}
+.s4-reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal.in{opacity:1;transform:none;}
+.s4-reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal-left.in{opacity:1;transform:none;}
+.s4-reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}.s4-reveal-right.in{opacity:1;transform:none;}
+.s4-d1{transition-delay:.1s;}.s4-d2{transition-delay:.2s;}.s4-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="s4-cursor-dot" id="cursorDot"></div>
+<div class="s4-cursor-ring" id="cursorRing"></div>
+
+<section class="s4-hero">
+  <div class="s4-hero-txt">
+    <div class="s4-hero-deco"></div>
+    <div class="s4-hero-rom" aria-hidden="true">V</div>
+    <div class="s4-hero-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h1 class="s4-custom-h1">Offrir,<br><em>prendre soin.</em></h1>
+    <div class="s4-hero-trait"></div>
+    <div class="s4-hero-pills">
+      <div class="s4-hero-pill"><strong>Code cadeau</strong> envoyé immédiatement</div>
+      <div class="s4-hero-pill">Valable <strong>1 an</strong></div>
+      <div class="s4-hero-pill">Paiement en <strong>2 fois</strong> sur les packs</div>
+      <div class="s4-hero-pill"><strong>Aucun montant</strong> sur place</div>
+    </div>
+  </div>
+  <div class="s4-hero-img-col">
+    <div class="s4-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+  </div>
+</section>
+
+<!-- CARTES CADEAUX -->
+<section class="s4-section" style="background:var(--blanc);">
+  <div class="s4-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid var(--line);" class="s4-reveal">
+      <div><span class="s4-eyebrow">— I — Cartes cadeaux</span><h2 class="s4-h2">Offrir avec <em>intention</em></h2></div>
+      <p class="s4-p">[Depuis Bloc 0 ADN — 1 phrase sur ce que représente offrir une séance.]</p>
+    </div>
+    <div class="s4-filtres" id="filtres-cartes">
+      <button class="s4-filtre-btn actif" data-filtre-cartes="tout">Toutes</button>
+      <button class="s4-filtre-btn" data-filtre-cartes="[cat-1-slug]">[Catégorie 1]</button>
+      <button class="s4-filtre-btn" data-filtre-cartes="[cat-2-slug]">[Catégorie 2]</button>
+    </div>
+    <div class="s4-cartes-grid">
+      <div class="s4-carte-card s4-reveal s4-d1" data-cat="[cat-1-slug]"><span class="s4-carte-rom">I</span><div class="s4-carte-nom">[Nom du<br><em>soin 1</em>]</div><div class="s4-carte-tagline">[Accroche courte évocatrice]</div><div class="s4-carte-trait"></div><div class="s4-carte-infos"><div class="s4-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s4-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div></div><p class="s4-carte-note">Envoi immédiat · Valable 1 an</p><div class="s4-carte-footer"><div class="s4-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_1]" class="s4-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+      <div class="s4-carte-card s4-reveal s4-d2" data-cat="[cat-1-slug]"><span class="s4-carte-rom">II</span><div class="s4-carte-nom">[Nom du<br><em>soin 2</em>]</div><div class="s4-carte-tagline">[Accroche courte]</div><div class="s4-carte-trait"></div><div class="s4-carte-infos"><div class="s4-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s4-carte-info"><span>Lieu</span><strong>[Cabinet]</strong></div></div><p class="s4-carte-note">Envoi immédiat · Valable 1 an</p><div class="s4-carte-footer"><div class="s4-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_2]" class="s4-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+      <div class="s4-carte-card s4-reveal s4-d3" data-cat="[cat-2-slug]"><span class="s4-carte-rom">III</span><div class="s4-carte-nom">[Nom du<br><em>soin 3</em>]</div><div class="s4-carte-tagline">[Accroche courte]</div><div class="s4-carte-trait"></div><div class="s4-carte-infos"><div class="s4-carte-info"><span>Durée</span><strong>[X]h</strong></div><div class="s4-carte-info"><span>Lieu</span><strong>[Cabinet · Visio]</strong></div></div><p class="s4-carte-note">Envoi immédiat · Valable 1 an</p><div class="s4-carte-footer"><div class="s4-carte-prix"><sup>€</sup>[Tarif]</div><a href="[LIEN_CARTE_CADEAU_SOIN_3]" class="s4-carte-btn" target="_blank" rel="noopener">Offrir</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKS fond encre -->
+<section class="s4-section" style="background:var(--encre);">
+  <div class="s4-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.07);" class="s4-reveal">
+      <div><span class="s4-eyebrow" style="color:rgba(196,168,130,.6);">— II — Packs</span><h2 class="s4-h2 s4-h2-light">Des soins pensés <em>ensemble</em></h2></div>
+      <p style="font-family:var(--f-sans);font-size:.88rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.95;">[Depuis Bloc 6 — phrase sur les packs. Ce que ça représente d'offrir plusieurs séances.]</p>
+    </div>
+    <div class="s4-filtres" id="filtres-packs">
+      <button class="s4-filtre-btn actif" data-filtre-packs="tout" style="border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.6);">Tous les prix</button>
+      <button class="s4-filtre-btn" data-filtre-packs="moins200" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.4);">Moins de 200 €</button>
+      <button class="s4-filtre-btn" data-filtre-packs="200-300" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.4);">200 – 300 €</button>
+      <button class="s4-filtre-btn" data-filtre-packs="plus300" style="border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.4);">Plus de 300 €</button>
+    </div>
+    <div class="s4-packs-grid">
+      <div class="s4-pack-card s4-reveal s4-d1" data-prix="moins200"><span class="s4-pack-rom">I</span><div class="s4-pack-nom">[Nom du <em>pack 1</em>]</div><div class="s4-pack-tagline">[Accroche]</div><ul class="s4-pack-contenu"><li>[Soin inclus 1]</li><li>[Soin inclus 2]</li></ul><div class="s4-pack-footer"><div class="s4-pack-prix">[Tarif]€</div><div class="s4-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s4-pack-btns"><a href="[LIEN_PACK_1_1X]" class="s4-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_1_2X]" class="s4-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+      <div class="s4-pack-card s4-reveal s4-d2" data-prix="moins200"><div class="s4-pack-badge">Le plus populaire</div><span class="s4-pack-rom">II</span><div class="s4-pack-nom">[Nom du <em>pack 2</em>]</div><div class="s4-pack-tagline">[Accroche]</div><ul class="s4-pack-contenu"><li>[Soin inclus 1]</li><li>[Soin inclus 2]</li><li>[Soin inclus 3]</li></ul><div class="s4-pack-footer"><div class="s4-pack-prix">[Tarif]€</div><div class="s4-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s4-pack-btns"><a href="[LIEN_PACK_2_1X]" class="s4-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_2_2X]" class="s4-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+      <div class="s4-pack-card s4-reveal s4-d3" data-prix="200-300"><span class="s4-pack-rom">III</span><div class="s4-pack-nom">[Nom du <em>pack 3</em>]</div><div class="s4-pack-tagline">[Accroche]</div><ul class="s4-pack-contenu"><li>[Soin inclus 1]</li><li>[Soin inclus 2]</li><li>[Soin inclus 3]</li></ul><div class="s4-pack-footer"><div class="s4-pack-prix">[Tarif]€</div><div class="s4-pack-prix-alt">ou 2 × [Tarif/2]€</div><div class="s4-pack-btns"><a href="[LIEN_PACK_3_1X]" class="s4-pack-btn-main" target="_blank" rel="noopener">Commander</a><a href="[LIEN_PACK_3_2X]" class="s4-pack-btn-2x" target="_blank" rel="noopener">2 × [Tarif/2]€</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉASSURANCE -->
+<section style="background:var(--encre);padding:0 0 1px;" class="s4-reveal">
+  <div class="s4-reas-grid">
+    <div class="s4-reas-block"><div class="s4-reas-titre">Paiement sécurisé</div><p class="s4-reas-txt">Règlement en ligne. Aucun montant sur place.</p></div>
+    <div class="s4-reas-block"><div class="s4-reas-titre">Paiement en 2 fois</div><p class="s4-reas-txt">Disponible sur tous les packs. Sans frais.</p></div>
+    <div class="s4-reas-block"><div class="s4-reas-titre">Code immédiat</div><p class="s4-reas-txt">Par email dès validation. Valable 1 an.</p></div>
+    <div class="s4-reas-block"><div class="s4-reas-titre">[X.X] ★ · [X] avis</div><p class="s4-reas-txt">[Prénom] accompagne depuis [X] ans à [Ville].</p></div>
+  </div>
+</section>
+
+<!-- FAQ 2 COLS -->
+<section class="s4-section s4-reveal" style="background:var(--papier);text-align:center;">
+  <div class="s4-inner" style="margin-bottom:56px;">
+    <span class="s4-eyebrow" style="justify-content:center;">— III — Questions fréquentes</span>
+    <h2 class="s4-h2" style="text-align:center;">Tout comprendre avant <em>de commander</em></h2>
+  </div>
+  <div class="s4-faq-2cols" style="text-align:left;">
+    <div>
+      <span class="s4-faq-groupe-titre">Cartes cadeaux</span>
+      <details class="s4-faq-item"><summary>Comment fonctionne une carte cadeau ?</summary><div class="s4-faq-ans">Achat en ligne, code par email immédiatement, réservation sur <a href="[LIEN_RDV]">la plateforme</a>. Valable 1 an. Aucun montant sur place.</div></details>
+      <details class="s4-faq-item"><summary>Comment la carte est-elle transmise ?</summary><div class="s4-faq-ans">Par email dès la validation. À imprimer ou transmettre par message.</div></details>
+      <details class="s4-faq-item"><summary>Durée de validité ?</summary><div class="s4-faq-ans">1 an à compter de la date d'achat.</div></details>
+      <details class="s4-faq-item"><summary>Peut-on cumuler plusieurs cartes ?</summary><div class="s4-faq-ans">Oui, chaque code est indépendant.</div></details>
+    </div>
+    <div>
+      <span class="s4-faq-groupe-titre">Packs</span>
+      <details class="s4-faq-item"><summary>Comment fonctionne un pack ?</summary><div class="s4-faq-ans">Après l'achat, code unique par email. À utiliser lors de chaque réservation dans l'ordre souhaité.</div></details>
+      <details class="s4-faq-item"><summary>Un pack peut-il être offert ?</summary><div class="s4-faq-ans">Absolument — le code se transmet facilement par email ou message.</div></details>
+      <details class="s4-faq-item"><summary>Comment fonctionne le paiement en 2 fois ?</summary><div class="s4-faq-ans">Via la plateforme. Deux prélèvements sans frais supplémentaires.</div></details>
+      <details class="s4-faq-item"><summary>Peut-on choisir l'ordre des séances ?</summary><div class="s4-faq-ans">Oui — vous réservez chaque prestation quand vous le souhaitez.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONNAIRE fond encre -->
+<section class="s4-section" style="background:var(--encre);text-align:center;">
+  <div class="s4-inner">
+    <span class="s4-eyebrow" style="color:rgba(196,168,130,.6);justify-content:center;">— IV — Outil personnalisé</span>
+    <h2 class="s4-h2 s4-h2-light" style="text-align:center;margin-bottom:40px;">Quel pack est <em>fait pour vous ?</em></h2>
+    <div class="s4-quiz-wrap">
+      <div class="s4-quiz-step actif" data-step="1">
+        <p class="s4-quiz-q">Ce soin ou ce pack, c'est pour…</p>
+        <div class="s4-quiz-opts">
+          <button class="s4-quiz-opt" data-val="soi"><span class="s4-quiz-check"></span>Pour moi</button>
+          <button class="s4-quiz-opt" data-val="offrir"><span class="s4-quiz-check"></span>Pour offrir</button>
+          <button class="s4-quiz-opt" data-val="les-deux"><span class="s4-quiz-check"></span>Les deux</button>
+        </div>
+        <div class="s4-quiz-nav"><button class="s4-quiz-btn" onclick="quizSuivant(1)">Continuer</button><span class="s4-quiz-progress">1 / 3</span></div>
+      </div>
+      <div class="s4-quiz-step" data-step="2">
+        <p class="s4-quiz-q">Quel type de soin vous attire ?</p>
+        <div class="s4-quiz-opts">
+          <button class="s4-quiz-opt" data-val="[cat-1-slug]"><span class="s4-quiz-check"></span>[Catégorie 1]</button>
+          <button class="s4-quiz-opt" data-val="[cat-2-slug]"><span class="s4-quiz-check"></span>[Catégorie 2]</button>
+          <button class="s4-quiz-opt" data-val="[cat-3-slug]"><span class="s4-quiz-check"></span>[Catégorie 3]</button>
+        </div>
+        <div class="s4-quiz-nav"><button class="s4-quiz-btn-ghost" onclick="quizPrecedent(2)">Retour</button><button class="s4-quiz-btn" onclick="quizSuivant(2)">Continuer</button><span class="s4-quiz-progress">2 / 3</span></div>
+      </div>
+      <div class="s4-quiz-step" data-step="3">
+        <p class="s4-quiz-q">Votre budget ?</p>
+        <div class="s4-quiz-opts">
+          <button class="s4-quiz-opt" data-val="moins200"><span class="s4-quiz-check"></span>Moins de 200 €</button>
+          <button class="s4-quiz-opt" data-val="200-300"><span class="s4-quiz-check"></span>Entre 200 et 300 €</button>
+          <button class="s4-quiz-opt" data-val="plus300"><span class="s4-quiz-check"></span>Plus de 300 €</button>
+        </div>
+        <div class="s4-quiz-nav"><button class="s4-quiz-btn-ghost" onclick="quizPrecedent(3)">Retour</button><button class="s4-quiz-btn" onclick="quizResultats()">Voir mes recommandations</button><span class="s4-quiz-progress">3 / 3</span></div>
+      </div>
+      <div class="s4-quiz-resultats" id="quizResultats">
+        <h3 style="font-family:var(--f-serif);font-weight:300;font-size:1.3rem;color:#fff;margin-bottom:6px;">Vos packs <em style="color:var(--accent);">recommandés</em></h3>
+        <p id="quizSub" style="font-family:var(--f-sans);font-size:.78rem;color:rgba(255,255,255,.35);margin-bottom:24px;">En fonction de vos réponses.</p>
+        <div class="s4-quiz-reco-grid" id="quizPacks"></div>
+        <button class="s4-quiz-reset" onclick="quizReset()">Recommencer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s4-cta">
+  <div class="s4-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s4-cta-inner s4-reveal">
+    <div class="s4-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche depuis Bloc 0]<br><em>[suite]</em></h2>
+    <p class="s4-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Prendre rendez-vous</a>
+  </div>
+</div>
+<div class="s4-maillage"><div class="s4-maillage-inner"><span class="s4-maillage-label">À découvrir</span><div class="s4-maillage-grid"><a href="/[slug-soin-1]-[ville]" class="s4-maillage-pill">[Soin 1] à [Ville]</a><a href="/[slug-soin-2]-[ville]" class="s4-maillage-pill">[Soin 2] à [Ville]</a><a href="/[slug-soins]" class="s4-maillage-pill">Toutes les prestations</a><a href="/[slug-faq]" class="s4-maillage-pill">Questions fréquentes</a></div></div></div>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment fonctionne une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Achat en ligne, code par email, réservation sur [URL_RDV]. Valable 1 an."}},{"@type":"Question","name":"Comment la carte est transmise ?","acceptedAnswer":{"@type":"Answer","text":"Par email immédiatement. À imprimer ou transmettre."}},{"@type":"Question","name":"Durée de validité d'une carte cadeau ?","acceptedAnswer":{"@type":"Answer","text":"1 an à compter de la date d'achat."}},{"@type":"Question","name":"Comment fonctionne un pack ?","acceptedAnswer":{"@type":"Answer","text":"Code unique par email. Chaque séance se réserve en ligne."}},{"@type":"Question","name":"Le paiement en 2 fois est-il disponible ?","acceptedAnswer":{"@type":"Answer","text":"Oui sur tous les packs, sans frais supplémentaires."}},{"@type":"Question","name":"Un pack peut-il être offert ?","acceptedAnswer":{"@type":"Answer","text":"Oui — le code se transmet facilement."}},{"@type":"Question","name":"Peut-on choisir l'ordre des séances ?","acceptedAnswer":{"@type":"Answer","text":"Oui, chaque prestation se réserve quand vous le souhaitez."}},{"@type":"Question","name":"Comment offrir [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Offrir","item":"https://[votre-domaine].fr/[slug-offrir]"}]}]</script>
+<script>
+(function(){var dot=document.getElementById('cursorDot');var ring=document.getElementById('cursorRing');if(!dot||!ring)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();document.querySelectorAll('a,button,.s4-carte-card').forEach(function(el){el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.borderColor='var(--accent)';});el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='var(--encre)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s4-reveal,.s4-reveal-left,.s4-reveal-right').forEach(function(el){io.observe(el);});})();
+(function(){document.querySelectorAll('[data-filtre-cartes]').forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre-cartes');document.querySelectorAll('[data-filtre-cartes]').forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');document.querySelectorAll('.s4-carte-card').forEach(function(c){c.classList.toggle('masque',f!=='tout'&&c.getAttribute('data-cat')!==f);});});});})();
+(function(){document.querySelectorAll('[data-filtre-packs]').forEach(function(btn){btn.addEventListener('click',function(){var f=btn.getAttribute('data-filtre-packs');document.querySelectorAll('[data-filtre-packs]').forEach(function(b){b.classList.remove('actif');});btn.classList.add('actif');document.querySelectorAll('.s4-pack-card').forEach(function(c){c.classList.toggle('masque',f!=='tout'&&c.getAttribute('data-prix')!==f);});});});})();
+var quizRep={};
+document.querySelectorAll('.s4-quiz-opt').forEach(function(opt){opt.addEventListener('click',function(){var step=opt.closest('.s4-quiz-step');step.querySelectorAll('.s4-quiz-opt').forEach(function(o){o.classList.remove('selected');});opt.classList.add('selected');quizRep['step'+step.getAttribute('data-step')]=opt.getAttribute('data-val');});});
+function quizSuivant(s){if(!quizRep['step'+s]){return;}var a=document.querySelector('.s4-quiz-step[data-step="'+s+'"]');var n=document.querySelector('.s4-quiz-step[data-step="'+(s+1)+'"]');if(!n)return;a.classList.remove('actif');n.classList.add('actif');}
+function quizPrecedent(s){var a=document.querySelector('.s4-quiz-step[data-step="'+s+'"]');var p=document.querySelector('.s4-quiz-step[data-step="'+(s-1)+'"]');if(!p)return;a.classList.remove('actif');p.classList.add('actif');}
+function quizResultats(){if(!quizRep['step3'])return;document.querySelectorAll('.s4-quiz-step').forEach(function(s){s.classList.remove('actif');});document.getElementById('quizResultats').classList.add('actif');var budget=quizRep['step3'];var cards=document.querySelectorAll('.s4-pack-card');var matches=[];cards.forEach(function(p){if(p.getAttribute('data-prix')===budget)matches.push(p);});var container=document.getElementById('quizPacks');container.innerHTML='';if(!matches.length){container.innerHTML='<p style="grid-column:span 2;font-family:var(--f-sans);font-size:.84rem;color:rgba(255,255,255,.4);">Contactez [Prénom] pour une recommandation personnalisée.</p>';return;}matches.slice(0,2).forEach(function(p){var nom=p.querySelector('.s4-pack-nom')?p.querySelector('.s4-pack-nom').textContent:'';var prix=p.querySelector('.s4-pack-prix')?p.querySelector('.s4-pack-prix').textContent:'';var lien=p.querySelector('.s4-pack-btn-main')?p.querySelector('.s4-pack-btn-main').getAttribute('href'):'#';var contenu='';p.querySelectorAll('.s4-pack-contenu li').forEach(function(li){contenu+='— '+li.textContent+'<br>';});container.innerHTML+='<div class="s4-quiz-reco-card"><div class="s4-quiz-reco-nom">'+nom+'</div><div class="s4-quiz-reco-detail">'+contenu+'</div><div class="s4-quiz-reco-prix">'+prix+'</div><a href="'+lien+'" class="s4-quiz-reco-btn" target="_blank" rel="noopener">Commander</a></div>';});}
+function quizReset(){quizRep={};document.querySelectorAll('.s4-quiz-opt').forEach(function(o){o.classList.remove('selected');});document.getElementById('quizResultats').classList.remove('actif');document.querySelectorAll('.s4-quiz-step').forEach(function(s){s.classList.remove('actif');});document.querySelector('.s4-quiz-step[data-step="1"]').classList.add('actif');}
+</script>
+</body>
+</html>

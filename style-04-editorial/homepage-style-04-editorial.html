@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom] — [Titre professionnel] à [Ville]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3]. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─── PALETTE ── */
+:root {
+  --blanc:   #FFFFFF;
+  --papier:  #F8F7F5;
+  --encre:   #111111;
+  --accent:  #C4A882;
+  --muted:   #9A9189;
+  --line:    rgba(17,17,17,.08);
+  --line-md: rgba(17,17,17,.14);
+  --f-serif: 'Cormorant Garamond', Georgia, serif;
+  --f-sans:  'DM Sans', sans-serif;
+  --max: 1200px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans); font-weight: 300;
+  background: var(--blanc); color: var(--encre);
+  padding-bottom: 68px; overflow-x: hidden;
+  cursor: none;
+  /* Grain discret */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── CURSEUR ── */
+.s4-cursor-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--encre); position: fixed; z-index: 99999;
+  pointer-events: none; transform: translate(-50%,-50%);
+}
+.s4-cursor-ring {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--encre); position: fixed; z-index: 99998;
+  pointer-events: none; transform: translate(-50%,-50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+@media(max-width:860px){ .s4-cursor-dot,.s4-cursor-ring{display:none;} body{cursor:auto;} }
+
+/* ─── STICKY ── */
+.s4-sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: var(--blanc); border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 48px; gap: 16px;
+}
+.s4-sticky-id {
+  font-family: var(--f-serif); font-weight: 300; font-size: .88rem;
+  letter-spacing: .08em; color: var(--muted); font-style: italic;
+}
+.s4-sticky-id strong { color: var(--encre); font-style: normal; font-weight: 400; }
+.s4-sticky-btns { display: flex; gap: 10px; }
+.s4-sticky-cta {
+  background: var(--encre); color: var(--blanc);
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; padding: 11px 28px;
+  border: 1px solid var(--encre); transition: all .3s;
+}
+.s4-sticky-cta:hover { background: transparent; color: var(--encre); }
+.s4-sticky-ghost {
+  background: transparent; color: var(--muted);
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; padding: 11px 22px;
+  border: 1px solid var(--line-md); transition: all .3s;
+}
+.s4-sticky-ghost:hover { border-color: var(--encre); color: var(--encre); }
+@media(max-width:600px){
+  .s4-sticky { padding: 12px 20px; justify-content: center; }
+  .s4-sticky-id { display: none; }
+  .s4-sticky-btns { width: 100%; gap: 8px; }
+  .s4-sticky-cta,.s4-sticky-ghost { flex: 1; text-align: center; }
+}
+
+/* ─── HERO ── */
+.s4-hero {
+  min-height: 100vh; display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+
+/* Colonne gauche — image */
+.s4-hero-img {
+  position: relative; overflow: hidden;
+}
+.s4-hero-img-bg {
+  position: absolute; inset: -8%;
+  background-size: cover; background-position: center top;
+  transform: scale(1.08); transition: transform 10s ease;
+}
+.s4-hero-img-bg.loaded { transform: scale(1); }
+/* Filet vertical droite */
+.s4-hero-img::after {
+  content:''; position: absolute; top: 12%; right: 0; bottom: 12%;
+  width: 1px; background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: .5;
+}
+
+/* Colonne droite — texte */
+.s4-hero-txt {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 80px 68px 72px; background: var(--blanc); position: relative;
+}
+/* Numéro romain déco */
+.s4-hero-rom {
+  position: absolute; top: 0; right: 0;
+  font-family: var(--f-serif); font-size: clamp(12rem,18vw,22rem); font-weight: 300;
+  color: rgba(17,17,17,.028); line-height: 1; pointer-events: none;
+  letter-spacing: -.04em; white-space: nowrap;
+}
+.s4-hero-eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--f-sans); font-size: .58rem; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 36px;
+  opacity: 0; animation: fadeUp .8s .2s ease forwards;
+}
+.s4-hero-eyebrow::before { content:''; width: 32px; height: 1px; background: var(--accent); }
+.s4-hero h1 {
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(3.2rem,5.5vw,6.5rem);
+  line-height: 1.0; letter-spacing: -.02em; color: var(--encre);
+  margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 1s .35s ease forwards;
+}
+.s4-hero h1 em { font-style: italic; font-weight: 300; }
+.s4-hero-trait {
+  width: 48px; height: 1px; background: var(--accent);
+  margin-bottom: 28px;
+  opacity: 0; animation: expandW .8s .5s ease forwards;
+}
+@keyframes expandW { from { width: 0; opacity: 0; } to { width: 48px; opacity: 1; } }
+.s4-hero-intro {
+  font-family: var(--f-serif); font-style: italic; font-weight: 300;
+  font-size: 1.08rem; color: var(--muted); line-height: 1.85;
+  max-width: 360px; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp .9s .55s ease forwards;
+}
+.s4-hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+
+@media(max-width:860px){
+  .s4-hero { grid-template-columns: 1fr; min-height: auto; }
+  .s4-hero-img { height: 60vw; }
+  .s4-hero-img::after { display: none; }
+  .s4-hero-txt { padding: 40px 6% 60px; }
+  .s4-hero h1 { font-size: clamp(2.8rem,10vw,4.5rem); }
+  .s4-hero-stats { display: none; }
+  .s4-hero-rom { font-size: 28vw; }
+}
+
+/* ─── BOUTONS ── */
+.s4-btn-primary {
+  display: inline-block; background: var(--encre); color: var(--blanc);
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; padding: 14px 36px;
+  border: 1px solid var(--encre); transition: all .3s;
+}
+.s4-btn-primary:hover { background: transparent; color: var(--encre); }
+.s4-btn-ghost {
+  display: inline-block; background: transparent; color: var(--encre);
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; padding: 14px 28px;
+  border: 1px solid var(--line-md); transition: all .3s;
+}
+.s4-btn-ghost:hover { border-color: var(--encre); }
+.s4-btn-accent {
+  display: inline-block; background: var(--accent); color: var(--encre);
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase; padding: 14px 36px;
+  border: 1px solid var(--accent); transition: all .3s;
+}
+.s4-btn-accent:hover { background: transparent; color: var(--accent); }
+
+/* ─── SECTIONS ── */
+.s4-section { padding: 120px 6%; }
+.s4-inner { max-width: var(--max); margin: 0 auto; }
+
+.s4-eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--f-sans); font-size: .56rem; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 20px;
+}
+.s4-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
+.s4-h2 {
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(2rem,4vw,4rem); line-height: 1.06;
+  letter-spacing: -.02em; color: var(--encre);
+}
+.s4-h2 em { font-style: italic; }
+.s4-h2-xl {
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(2.5rem,5.5vw,6rem); line-height: 1.0;
+  letter-spacing: -.025em; color: var(--encre);
+}
+.s4-h2-xl em { font-style: italic; }
+.s4-p {
+  font-family: var(--f-sans); font-size: .9rem; font-weight: 300;
+  line-height: 1.95; color: var(--muted);
+}
+.s4-trait { width: 36px; height: 1px; background: var(--accent); margin: 20px 0; }
+
+/* ─── S1 — CITATION ── */
+.s4-citation { background: var(--blanc); padding: 80px 6%; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.s4-citation-inner {
+  max-width: 820px; margin: 0 auto; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+}
+.s4-citation-rom {
+  font-family: var(--f-serif); font-size: .7rem; font-weight: 300;
+  letter-spacing: .4em; text-transform: uppercase; color: var(--accent);
+}
+.s4-citation-txt {
+  font-family: var(--f-serif); font-style: italic; font-weight: 300;
+  font-size: clamp(1.6rem,3.5vw,3rem); line-height: 1.4;
+  color: var(--encre); letter-spacing: -.01em;
+}
+.s4-citation-auteur {
+  font-family: var(--f-sans); font-size: .58rem; font-weight: 400;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--muted);
+}
+
+/* ─── S2 — APPROCHE ── */
+.s4-approche { background: var(--papier); }
+.s4-approche-grid {
+  display: grid; grid-template-columns: 380px 1fr;
+  gap: 96px; align-items: start;
+}
+.s4-approche-sticky { position: sticky; top: 40px; }
+.s4-valeurs-liste { list-style: none; display: flex; flex-direction: column; margin-top: 32px; }
+.s4-valeur-item {
+  display: flex; align-items: flex-start; gap: 20px;
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+}
+.s4-valeur-item:last-child { border-bottom: none; }
+.s4-valeur-rom {
+  font-family: var(--f-serif); font-size: .78rem; font-weight: 300;
+  color: var(--accent); flex-shrink: 0; width: 24px; padding-top: 2px;
+  letter-spacing: .08em;
+}
+.s4-valeur-nom {
+  font-family: var(--f-serif); font-size: 1.05rem; font-weight: 400;
+  color: var(--encre); margin-bottom: 4px;
+}
+.s4-valeur-desc {
+  font-family: var(--f-sans); font-size: .82rem; font-weight: 300;
+  color: var(--muted); line-height: 1.8;
+}
+/* Colonne droite */
+.s4-approche-img-wrap { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+.s4-approche-img-wrap img,
+.s4-approche-placeholder {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .8s ease;
+}
+.s4-approche-placeholder {
+  background: #E8E4DF; display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-sans); font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); text-align: center; padding: 20px;
+}
+.s4-approche-img-wrap:hover img,
+.s4-approche-img-wrap:hover .s4-approche-placeholder { transform: scale(1.04); }
+/* Légende */
+.s4-approche-legend {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 16px 20px; background: rgba(255,255,255,.92);
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.s4-approche-legend-txt {
+  font-family: var(--f-serif); font-style: italic; font-size: .82rem;
+  color: var(--muted);
+}
+.s4-approche-legend-link {
+  font-family: var(--f-sans); font-size: .56rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--accent);
+  border-bottom: 1px solid var(--accent); padding-bottom: 1px;
+  transition: color .2s;
+}
+.s4-approche-legend-link:hover { color: var(--encre); border-color: var(--encre); }
+@media(max-width:900px){ .s4-approche-grid { grid-template-columns: 1fr; gap: 48px; } .s4-approche-sticky { position: static; } }
+
+/* ─── S3 — SOINS ── */
+.s4-soins { background: var(--blanc); }
+.s4-soins-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: end; margin-bottom: 72px;
+  padding-bottom: 48px; border-bottom: 1px solid var(--line);
+}
+/* Grille soins — layout éditorial asymétrique */
+.s4-soins-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px; background: var(--line);
+}
+.s4-soin-card {
+  background: var(--blanc); padding: 44px 36px;
+  display: flex; flex-direction: column; gap: 16px;
+  text-decoration: none; color: inherit;
+  transition: background .35s;
+  position: relative; overflow: hidden;
+}
+.s4-soin-card:hover { background: var(--papier); }
+/* Ligne accent qui apparaît au hover */
+.s4-soin-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s ease;
+}
+.s4-soin-card:hover::before { transform: scaleX(1); }
+.s4-soin-rom {
+  font-family: var(--f-serif); font-size: .72rem; font-weight: 300;
+  color: var(--accent); letter-spacing: .2em;
+}
+.s4-soin-name {
+  font-family: var(--f-serif); font-size: 1.4rem; font-weight: 300;
+  color: var(--encre); line-height: 1.2; flex: 1;
+}
+.s4-soin-name em { font-style: italic; }
+.s4-soin-trait { width: 20px; height: 1px; background: var(--accent); transition: width .3s; }
+.s4-soin-card:hover .s4-soin-trait { width: 40px; }
+.s4-soin-meta {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-top: 16px; border-top: 1px solid var(--line);
+}
+.s4-soin-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.s4-soin-meta-item span {
+  font-family: var(--f-sans); font-size: .5rem; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.s4-soin-meta-item strong {
+  font-family: var(--f-serif); font-size: .96rem; font-weight: 300; color: var(--encre);
+}
+.s4-soin-fleche {
+  font-family: var(--f-serif); font-size: .82rem; color: var(--muted);
+  transition: color .3s, transform .3s;
+}
+.s4-soin-card:hover .s4-soin-fleche { color: var(--accent); transform: translateX(6px); }
+/* Carte "voir tout" */
+.s4-soin-card-voir {
+  background: var(--encre); padding: 44px 36px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  text-decoration: none;
+  position: relative; overflow: hidden;
+}
+.s4-soin-card-voir::before {
+  content:''; position: absolute; inset: 0;
+  background: var(--accent); transform: scaleY(0); transform-origin: bottom;
+  transition: transform .45s cubic-bezier(.77,0,.18,1);
+}
+.s4-soin-card-voir:hover::before { transform: scaleY(1); }
+.s4-soin-card-voir-inner { position: relative; z-index: 1; }
+.s4-soin-card-voir-rom {
+  font-family: var(--f-serif); font-size: .7rem; font-weight: 300;
+  color: rgba(255,255,255,.35); letter-spacing: .2em; margin-bottom: 44px;
+}
+.s4-soin-card-voir-txt {
+  font-family: var(--f-serif); font-style: italic; font-weight: 300;
+  font-size: 1.4rem; color: #fff; line-height: 1.3; margin-bottom: 20px;
+  transition: color .3s;
+}
+.s4-soin-card-voir:hover .s4-soin-card-voir-txt { color: var(--encre); }
+.s4-soin-card-voir-lien {
+  font-family: var(--f-sans); font-size: .58rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px; display: inline-block; transition: color .3s, border-color .3s;
+}
+.s4-soin-card-voir:hover .s4-soin-card-voir-lien { color: var(--encre); border-color: var(--encre); }
+@media(max-width:860px){ .s4-soins-grid { grid-template-columns: 1fr 1fr; } .s4-soins-header { grid-template-columns: 1fr; gap: 24px; } }
+@media(max-width:520px){ .s4-soins-grid { grid-template-columns: 1fr; } }
+
+/* ─── S4 — PRATICIENNE ── */
+.s4-prat { background: var(--encre); padding: 0; }
+.s4-prat-grid { display: grid; grid-template-columns: 1fr 540px; min-height: 640px; }
+.s4-prat-content {
+  padding: 96px 80px; display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+/* Numéro romain déco */
+.s4-prat-rom-bg {
+  position: absolute; top: 0; right: 0;
+  font-family: var(--f-serif); font-size: 28vw; font-weight: 300;
+  color: rgba(255,255,255,.03); line-height: 1; pointer-events: none;
+  letter-spacing: -.04em;
+}
+.s4-prat-eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--f-sans); font-size: .56rem; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase; color: rgba(196,168,130,.7);
+  margin-bottom: 20px; position: relative; z-index: 1;
+}
+.s4-prat-eyebrow::before { content:''; width:24px; height:1px; background:var(--accent); }
+.s4-prat h2 {
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(2rem,3.5vw,3.8rem); line-height: 1.06;
+  letter-spacing: -.02em; color: #fff; margin-bottom: 8px;
+  position: relative; z-index: 1;
+}
+.s4-prat h2 em { font-style: italic; color: var(--accent); }
+.s4-prat-trait { width: 36px; height: 1px; background: var(--accent); margin: 20px 0; position: relative; z-index: 1; }
+.s4-prat-p {
+  font-family: var(--f-sans); font-size: .88rem; font-weight: 300;
+  color: rgba(255,255,255,.5); line-height: 1.95; margin-bottom: 10px;
+  position: relative; z-index: 1;
+}
+.s4-prat-certifs { list-style: none; margin: 20px 0 32px; position: relative; z-index: 1; }
+.s4-prat-certifs li {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06);
+  font-family: var(--f-sans); font-size: .8rem; font-weight: 300;
+  color: rgba(255,255,255,.45); line-height: 1.5;
+}
+.s4-prat-certifs li::before {
+  content: '—'; color: var(--accent); flex-shrink: 0; font-size: .7rem;
+}
+.s4-prat-quote {
+  font-family: var(--f-serif); font-style: italic; font-weight: 300;
+  font-size: .96rem; color: rgba(255,255,255,.35);
+  border-left: 1px solid var(--accent); padding-left: 18px;
+  margin-bottom: 32px; line-height: 1.9; position: relative; z-index: 1;
+}
+.s4-prat-img-col { position: relative; overflow: hidden; }
+.s4-prat-img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .8s ease; }
+.s4-prat-img-placeholder {
+  width: 100%; height: 100%; min-height: 640px;
+  background: rgba(255,255,255,.04);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-sans); font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.2); text-align: center; padding: 32px;
+}
+.s4-prat-img-col:hover .s4-prat-img { transform: scale(1.04); }
+/* Ligne accent déco */
+.s4-prat-img-col::before {
+  content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: .4; z-index: 2;
+}
+@media(max-width:860px){
+  .s4-prat-grid { grid-template-columns: 1fr; }
+  .s4-prat-img-col { height: 380px; }
+  .s4-prat-img-placeholder { min-height: 380px; }
+  .s4-prat-img-col::before { display: none; }
+  .s4-prat-content { padding: 64px 6%; }
+}
+
+/* ─── S5 — AVIS ── */
+.s4-avis { background: var(--papier); }
+.s4-avis-header {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: end; margin-bottom: 56px;
+  padding-bottom: 40px; border-bottom: 1px solid var(--line);
+}
+.s4-avis-note {
+  font-family: var(--f-serif); font-size: clamp(3rem,6vw,6rem); font-weight: 300;
+  color: var(--accent); line-height: 1; letter-spacing: -.04em;
+}
+.s4-avis-note-label {
+  font-family: var(--f-sans); font-size: .56rem; font-weight: 400;
+  letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-top: 4px;
+}
+.s4-avis-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.s4-avis-card {
+  background: var(--blanc); padding: 40px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background .3s;
+}
+.s4-avis-card:hover { background: var(--papier); }
+.s4-avis-stars {
+  display: flex; gap: 3px;
+}
+.s4-avis-star { width: 10px; height: 10px; background: var(--accent); clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+.s4-avis-txt {
+  font-family: var(--f-serif); font-style: italic; font-weight: 300;
+  font-size: 1.02rem; color: var(--muted); line-height: 1.85; flex: 1;
+}
+.s4-avis-sep { width: 24px; height: 1px; background: var(--accent); }
+.s4-avis-author {
+  font-family: var(--f-sans); font-size: .58rem; font-weight: 400;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--encre);
+}
+@media(max-width:860px){ .s4-avis-grid { grid-template-columns: 1fr; } .s4-avis-header { grid-template-columns: 1fr; gap: 24px; } }
+
+/* ─── S6 — CADEAU ── */
+.s4-cadeau {
+  background: var(--blanc);
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.s4-cadeau-txt {
+  padding: 96px 80px; display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--line);
+}
+.s4-cadeau-img-col { position: relative; overflow: hidden; min-height: 480px; }
+.s4-cadeau-img-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform .8s ease;
+}
+.s4-cadeau-img-col:hover .s4-cadeau-img-bg { transform: scale(1.04); }
+@media(max-width:768px){
+  .s4-cadeau { grid-template-columns: 1fr; }
+  .s4-cadeau-img-col { min-height: 300px; }
+  .s4-cadeau-txt { padding: 64px 6%; border-right: none; border-bottom: 1px solid var(--line); }
+}
+
+/* ─── S7 — CABINET ── */
+.s4-cabinet { background: var(--papier); }
+.s4-cabinet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.s4-cabinet-photos { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 280px 180px; gap: 1px; background: var(--line); }
+.s4-cabinet-photo { position: relative; overflow: hidden; }
+.s4-cabinet-photo img,
+.s4-cabinet-photo-placeholder {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .7s ease;
+}
+.s4-cabinet-photo-placeholder {
+  background: #E8E4DF; display: flex; align-items: center; justify-content: center;
+  font-family: var(--f-sans); font-size: .52rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); text-align: center; padding: 12px;
+}
+.s4-cabinet-photo-wide { grid-column: span 2; }
+.s4-cabinet-photo:hover img,
+.s4-cabinet-photo:hover .s4-cabinet-photo-placeholder { transform: scale(1.05); }
+.s4-cabinet-infos { display: flex; flex-direction: column; gap: 0; }
+.s4-cabinet-info-block {
+  padding: 22px 0; border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: start;
+}
+.s4-cabinet-info-block:first-child { padding-top: 0; }
+.s4-cabinet-info-label {
+  font-family: var(--f-sans); font-size: .52rem; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
+  padding-top: 3px;
+}
+.s4-cabinet-info-val {
+  font-family: var(--f-serif); font-size: .96rem; font-weight: 300;
+  color: var(--encre); line-height: 1.7;
+}
+.s4-cabinet-info-val a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.s4-cabinet-info-val a:hover { border-bottom-color: var(--accent); }
+@media(max-width:768px){ .s4-cabinet-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── S8 — FAQ ── */
+.s4-faq { background: var(--blanc); }
+.s4-faq-layout {
+  display: grid; grid-template-columns: 360px 1fr; gap: 80px; align-items: start;
+}
+.s4-faq-aside { position: sticky; top: 40px; }
+.s4-faq-aside p { font-family: var(--f-serif); font-style: italic; font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.85; margin-top: 20px; }
+.s4-faq-list { display: flex; flex-direction: column; }
+details.s4-faq-item { border-bottom: 1px solid var(--line); }
+details.s4-faq-item summary {
+  padding: 24px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+  font-family: var(--f-serif); font-size: 1.05rem; font-weight: 300;
+  color: var(--encre); line-height: 1.4; transition: color .2s;
+}
+details.s4-faq-item summary::-webkit-details-marker { display: none; }
+details.s4-faq-item summary::after {
+  content: '+'; font-family: var(--f-serif); font-size: 1.4rem; font-weight: 300;
+  color: var(--accent); flex-shrink: 0; transition: transform .3s; line-height: 1;
+}
+details.s4-faq-item[open] summary { color: var(--accent); }
+details.s4-faq-item[open] summary::after { transform: rotate(45deg); }
+.s4-faq-ans {
+  padding: 0 0 24px;
+  font-family: var(--f-sans); font-size: .86rem; font-weight: 300;
+  color: var(--muted); line-height: 2;
+}
+.s4-faq-ans a { color: var(--encre); border-bottom: 1px solid var(--line-md); transition: border-color .2s; }
+.s4-faq-ans a:hover { border-bottom-color: var(--encre); }
+@media(max-width:860px){ .s4-faq-layout { grid-template-columns: 1fr; gap: 40px; } .s4-faq-aside { position: static; } }
+
+/* ─── S9 — CTA FINAL ── */
+.s4-cta {
+  background: var(--blanc);
+  padding: 140px 6% 140px; text-align: center;
+  position: relative; border-top: 1px solid var(--line);
+}
+/* Typo géante fond */
+.s4-cta-fond {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-family: var(--f-serif); font-size: clamp(8rem,22vw,26rem); font-weight: 300;
+  color: rgba(17,17,17,.025); white-space: nowrap; pointer-events: none;
+  letter-spacing: -.05em; line-height: 1;
+}
+.s4-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+.s4-cta-eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--f-sans); font-size: .56rem; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 28px; justify-content: center;
+}
+.s4-cta-eyebrow::before,.s4-cta-eyebrow::after { content:''; width:24px; height:1px; background:var(--accent); }
+.s4-cta h2 {
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(2.6rem,6vw,6rem); line-height: 1.04;
+  letter-spacing: -.025em; color: var(--encre); margin-bottom: 24px;
+}
+.s4-cta h2 em { font-style: italic; }
+.s4-cta-sub {
+  font-family: var(--f-sans); font-size: .88rem; font-weight: 300;
+  color: var(--muted); line-height: 1.9; margin-bottom: 44px; max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.s4-cta-contact {
+  margin-top: 20px;
+  font-family: var(--f-serif); font-style: italic; font-size: .88rem; color: var(--muted);
+}
+.s4-cta-contact a { color: var(--encre); border-bottom: 1px solid var(--line-md); }
+
+/* ─── MAILLAGE ── */
+.s4-maillage {
+  background: var(--papier); padding: 56px 6%;
+  border-top: 1px solid var(--line);
+}
+.s4-maillage-inner { max-width: var(--max); margin: 0 auto; }
+.s4-maillage-label {
+  font-family: var(--f-sans); font-size: .52rem; font-weight: 400;
+  letter-spacing: .26em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 18px; display: block;
+}
+.s4-maillage-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.s4-maillage-pill {
+  display: inline-block; padding: 8px 16px;
+  border: 1px solid var(--line-md); color: var(--muted);
+  font-family: var(--f-sans); font-size: .7rem; font-weight: 300;
+  letter-spacing: .08em; transition: all .25s;
+}
+.s4-maillage-pill:hover { border-color: var(--encre); color: var(--encre); }
+
+/* ─── REVEAL ── */
+.s4-reveal { opacity:0; transform:translateY(24px); transition:opacity 1s ease, transform 1s ease; }
+.s4-reveal.in { opacity:1; transform:none; }
+.s4-reveal-left { opacity:0; transform:translateX(-24px); transition:opacity 1s ease, transform 1s ease; }
+.s4-reveal-left.in { opacity:1; transform:none; }
+.s4-reveal-right { opacity:0; transform:translateX(24px); transition:opacity 1s ease, transform 1s ease; }
+.s4-reveal-right.in { opacity:1; transform:none; }
+.s4-d1{transition-delay:.12s;} .s4-d2{transition-delay:.22s;} .s4-d3{transition-delay:.32s;} .s4-d4{transition-delay:.42s;}
+
+</style>
+</head>
+<body>
+
+<div class="s4-cursor-dot" id="cursorDot"></div>
+<div class="s4-cursor-ring" id="cursorRing"></div>
+
+<!-- STICKY -->
+<div class="s4-sticky">
+  <div class="s4-sticky-id">
+    <strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em>
+  </div>
+  <div class="s4-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s4-sticky-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s4-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+
+<!-- HERO -->
+<section class="s4-hero">
+  <div class="s4-hero-img">
+    <div class="s4-hero-img-bg" id="heroBg" style="background-image:url('[URL_IMAGE_HERO]')"></div>
+  </div>
+  <div class="s4-hero-txt">
+    <div class="s4-hero-rom" aria-hidden="true">I</div>
+    <div class="s4-hero-eyebrow">[Titre professionnel] · [Ville]</div>
+    <h1 class="s4-custom-h1">
+      [Accroche<br>principale]<br>
+      <em>[suite italique]</em>
+    </h1>
+    <div class="s4-hero-trait"></div>
+    <p class="s4-hero-intro">
+      [Depuis Bloc 0 ADN — 2 phrases sur ce que la praticienne offre. Dans ses mots.]
+    </p>
+    <div class="s4-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">Prendre rendez-vous</a>
+      <a href="/[slug-soins]" class="s4-btn-ghost">Les soins</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- S1 — CITATION -->
+<section class="s4-citation s4-reveal">
+  <div class="s4-citation-inner">
+    <span class="s4-citation-rom">— I —</span>
+    <blockquote class="s4-citation-txt">
+      « [Citation depuis Bloc 0 ADN — la phrase qui résume l'essence du travail.] »
+    </blockquote>
+    <span class="s4-citation-auteur">— [Prénom Nom] · [Titre professionnel]</span>
+  </div>
+</section>
+
+
+<!-- S2 — APPROCHE -->
+<section class="s4-section s4-approche">
+  <div class="s4-inner">
+    <div class="s4-approche-grid">
+      <div class="s4-approche-sticky s4-reveal-left">
+        <span class="s4-eyebrow">Mon approche</span>
+        <h2 class="s4-h2">
+          Ce qui guide<br>
+          <em>chaque séance</em>
+        </h2>
+        <div class="s4-trait"></div>
+        <p class="s4-p">[Depuis Bloc 0 "Ce que tu fais différemment" — 2 phrases.]</p>
+        <ul class="s4-valeurs-liste">
+          <li class="s4-valeur-item">
+            <span class="s4-valeur-rom">I</span>
+            <div>
+              <div class="s4-valeur-nom">[Valeur 1 depuis Bloc 0]</div>
+              <p class="s4-valeur-desc">[Description concrète.]</p>
+            </div>
+          </li>
+          <li class="s4-valeur-item">
+            <span class="s4-valeur-rom">II</span>
+            <div>
+              <div class="s4-valeur-nom">[Valeur 2]</div>
+              <p class="s4-valeur-desc">[Description concrète.]</p>
+            </div>
+          </li>
+          <li class="s4-valeur-item">
+            <span class="s4-valeur-rom">III</span>
+            <div>
+              <div class="s4-valeur-nom">[Valeur 3]</div>
+              <p class="s4-valeur-desc">[Description concrète.]</p>
+            </div>
+          </li>
+        </ul>
+        <a href="/[slug-a-propos]" class="s4-btn-ghost" style="margin-top:32px;">En savoir plus</a>
+      </div>
+      <div class="s4-approche-img-wrap s4-reveal-right">
+        <div class="s4-approche-placeholder">[URL_PHOTO_PRATICIENNE]</div>
+        <div class="s4-approche-legend">
+          <span class="s4-approche-legend-txt">[Prénom Nom] · [Titre professionnel]</span>
+          <a href="/[slug-a-propos]" class="s4-approche-legend-link">À propos →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S3 — LES SOINS -->
+<section class="s4-section s4-soins">
+  <div class="s4-inner">
+    <div class="s4-soins-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— II — Les soins</span>
+        <h2 class="s4-h2-xl">
+          Prestations<br>
+          <em>à [Ville]</em>
+        </h2>
+      </div>
+      <div>
+        <p class="s4-p">[Depuis Bloc 0 — phrase courte sur l'intention commune.]</p>
+        <a href="/[slug-soins]" style="display:inline-block;margin-top:20px;font-family:var(--f-sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px;">Voir toutes les prestations</a>
+      </div>
+    </div>
+    <div class="s4-soins-grid">
+
+      <a href="/[slug-soin-1]-[ville]" class="s4-soin-card s4-reveal s4-d1">
+        <span class="s4-soin-rom">I</span>
+        <div class="s4-soin-name">[Nom du<br><em>soin 1</em>]</div>
+        <div class="s4-soin-trait"></div>
+        <div class="s4-soin-meta">
+          <div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-soin-fleche">→</span>
+        </div>
+      </a>
+
+      <a href="/[slug-soin-2]-[ville]" class="s4-soin-card s4-reveal s4-d2">
+        <span class="s4-soin-rom">II</span>
+        <div class="s4-soin-name">[Nom du<br><em>soin 2</em>]</div>
+        <div class="s4-soin-trait"></div>
+        <div class="s4-soin-meta">
+          <div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-soin-fleche">→</span>
+        </div>
+      </a>
+
+      <a href="/[slug-soin-3]-[ville]" class="s4-soin-card s4-reveal s4-d3">
+        <span class="s4-soin-rom">III</span>
+        <div class="s4-soin-name">[Nom du<br><em>soin 3</em>]</div>
+        <div class="s4-soin-trait"></div>
+        <div class="s4-soin-meta">
+          <div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-soin-fleche">→</span>
+        </div>
+      </a>
+
+      <a href="/[slug-soin-4]-[ville]" class="s4-soin-card s4-reveal s4-d1">
+        <span class="s4-soin-rom">IV</span>
+        <div class="s4-soin-name">[Nom du<br><em>soin 4</em>]</div>
+        <div class="s4-soin-trait"></div>
+        <div class="s4-soin-meta">
+          <div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-soin-fleche">→</span>
+        </div>
+      </a>
+
+      <a href="/[slug-soin-5]-[ville]" class="s4-soin-card s4-reveal s4-d2">
+        <span class="s4-soin-rom">V</span>
+        <div class="s4-soin-name">[Nom du<br><em>soin 5</em>]</div>
+        <div class="s4-soin-trait"></div>
+        <div class="s4-soin-meta">
+          <div class="s4-soin-meta-item"><span>Tarif</span><strong>[X] €</strong></div>
+          <div class="s4-soin-meta-item"><span>Durée</span><strong>[X]h</strong></div>
+          <span class="s4-soin-fleche">→</span>
+        </div>
+      </a>
+
+      <a href="/[slug-soins]" class="s4-soin-card-voir s4-reveal s4-d3">
+        <div class="s4-soin-card-voir-inner">
+          <div class="s4-soin-card-voir-rom">VI</div>
+          <div class="s4-soin-card-voir-txt">Voir toutes<br><em>les prestations</em></div>
+          <span class="s4-soin-card-voir-lien">Explorer →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- S4 — LA PRATICIENNE -->
+<section class="s4-prat s4-reveal">
+  <div class="s4-prat-grid">
+    <div class="s4-prat-content">
+      <div class="s4-prat-rom-bg" aria-hidden="true">III</div>
+      <span class="s4-prat-eyebrow">La praticienne</span>
+      <h2>[Prénom Nom]<br><em>[Titre professionnel]</em></h2>
+      <div class="s4-prat-trait"></div>
+      <p class="s4-prat-p">[Depuis Bloc 9 bio + Bloc 0 — paragraphe 1. Qui elle est.]</p>
+      <p class="s4-prat-p">[Depuis Bloc 0 "Ce qui t'a amenée là". Le déclic.]</p>
+      <ul class="s4-prat-certifs">
+        <li>[Formation 1 depuis Bloc 9]</li>
+        <li>[Formation 2]</li>
+        <li>[Formation 3]</li>
+      </ul>
+      <blockquote class="s4-prat-quote">
+        « [Citation ADN depuis Bloc 0 — la phrase différenciante.] »
+      </blockquote>
+      <a href="/[slug-a-propos]" class="s4-btn-ghost" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);font-size:.6rem;">
+        Découvrir le parcours
+      </a>
+    </div>
+    <div class="s4-prat-img-col">
+      <div class="s4-prat-img-placeholder">[URL_PHOTO_PRATICIENNE]</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S5 — AVIS -->
+<section class="s4-section s4-avis">
+  <div class="s4-inner">
+    <div class="s4-avis-header s4-reveal">
+      <div>
+        <span class="s4-eyebrow">— IV — Témoignages</span>
+        <h2 class="s4-h2">Ce que disent<br><em>les clientes</em></h2>
+      </div>
+      <div>
+        <div class="s4-avis-note">[X.X]</div>
+        <div class="s4-avis-note-label">Note Google · [X] avis vérifiés</div>
+        <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px;font-family:var(--f-sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line-md);">Voir tous les avis</a>
+      </div>
+    </div>
+    <div class="s4-avis-grid">
+      <div class="s4-avis-card s4-reveal s4-d1">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 1 depuis Bloc 11] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+      <div class="s4-avis-card s4-reveal s4-d2">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 2 depuis Bloc 11] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+      <div class="s4-avis-card s4-reveal s4-d3">
+        <div class="s4-avis-stars"><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span><span class="s4-avis-star"></span></div>
+        <p class="s4-avis-txt">« [Témoignage 3 depuis Bloc 11] »</p>
+        <div class="s4-avis-sep"></div>
+        <span class="s4-avis-author">[Prénom N.]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S6 — CARTES CADEAUX -->
+<section class="s4-cadeau s4-reveal">
+  <div class="s4-cadeau-txt">
+    <span class="s4-eyebrow">— V — Offrir</span>
+    <h2 class="s4-h2" style="margin-bottom:12px;">
+      Offrir une parenthèse<br><em>de soin</em>
+    </h2>
+    <div class="s4-trait"></div>
+    <p class="s4-p" style="max-width:380px;margin-bottom:36px;">
+      [Depuis Bloc 0 ADN — 2 phrases sur ce que représente offrir une séance. Ce que la bénéficiaire va vivre.]
+    </p>
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s4-btn-accent">
+      Commander une carte cadeau
+    </a>
+  </div>
+  <div class="s4-cadeau-img-col">
+    <div class="s4-cadeau-img-bg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+  </div>
+</section>
+
+
+<!-- S7 — CABINET -->
+<section class="s4-section s4-cabinet">
+  <div class="s4-inner">
+    <div class="s4-reveal" style="margin-bottom:56px;">
+      <span class="s4-eyebrow">— VI — Cabinet & informations pratiques</span>
+      <h2 class="s4-h2">[Prénom Nom] à [Ville]<br><em>comment nous rejoindre</em></h2>
+    </div>
+    <div class="s4-cabinet-grid">
+      <div class="s4-cabinet-photos s4-reveal-left">
+        <div class="s4-cabinet-photo s4-cabinet-photo-wide">
+          <div class="s4-cabinet-photo-placeholder">[URL_PHOTO_CABINET_1]</div>
+        </div>
+        <div class="s4-cabinet-photo">
+          <div class="s4-cabinet-photo-placeholder">[URL_PHOTO_CABINET_2]</div>
+        </div>
+        <div class="s4-cabinet-photo">
+          <div class="s4-cabinet-photo-placeholder">[URL_PHOTO_CABINET_3]</div>
+        </div>
+      </div>
+      <div class="s4-cabinet-infos s4-reveal-right">
+        <div class="s4-cabinet-info-block">
+          <span class="s4-cabinet-info-label">Adresse</span>
+          <span class="s4-cabinet-info-val">[Numéro et rue]<br>[Code postal] [Ville]</span>
+        </div>
+        <div class="s4-cabinet-info-block">
+          <span class="s4-cabinet-info-label">Horaires</span>
+          <span class="s4-cabinet-info-val">[Jours] : [HH:MM]–[HH:MM]<br>Sur rendez-vous uniquement</span>
+        </div>
+        <div class="s4-cabinet-info-block">
+          <span class="s4-cabinet-info-label">Contact</span>
+          <span class="s4-cabinet-info-val">
+            <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a><br>
+            <a href="mailto:[email]">[Email]</a>
+          </span>
+        </div>
+        <div class="s4-cabinet-info-block">
+          <span class="s4-cabinet-info-label">Réservation</span>
+          <span class="s4-cabinet-info-val">En ligne · 24h/24</span>
+        </div>
+        <div style="padding-top:28px;">
+          <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">
+            Prendre rendez-vous
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S8 — FAQ -->
+<section class="s4-section s4-faq" style="background:var(--papier);">
+  <div class="s4-inner">
+    <div class="s4-faq-layout">
+      <div class="s4-faq-aside s4-reveal-left">
+        <span class="s4-eyebrow">— VII — FAQ</span>
+        <h2 class="s4-h2">Vos<br><em>questions</em></h2>
+        <p>
+          [Prénom Nom] répond à toutes vos questions avant réservation.
+          N'hésitez pas à la contacter directement au <a href="tel:[+33XXXXXXXXX]" style="color:var(--accent);border-bottom:1px solid var(--accent);">[Téléphone]</a>.
+        </p>
+        <div style="margin-top:28px;">
+          <a href="/[slug-faq]" class="s4-btn-ghost">Toutes les questions</a>
+        </div>
+      </div>
+      <div class="s4-faq-list s4-reveal-right">
+        <details class="s4-faq-item">
+          <summary>Qui est [Prénom Nom] et quelles sont ses spécialités à [Ville] ?</summary>
+          <div class="s4-faq-ans">[Prénom Nom] est [titre] à [Ville] depuis [X] ans. Elle propose [soins]. <a href="/[slug-a-propos]">À propos →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Quels sont les tarifs des soins à [Ville] ?</summary>
+          <div class="s4-faq-ans">[Liste courte soin + tarif depuis Bloc 5]. <a href="/[slug-soins]">Voir tous les tarifs →</a></div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Comment prendre rendez-vous ?</summary>
+          <div class="s4-faq-ans">Réservation en ligne 24h/24 sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>. Cabinet situé [adresse], [Ville].</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Y a-t-il des contre-indications ?</summary>
+          <div class="s4-faq-ans">[Synthèse depuis Bloc 5. Contacter [Prénom] en cas de doute.]</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Comment offrir une séance en cadeau ?</summary>
+          <div class="s4-faq-ans">Cartes cadeaux disponibles sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code unique par email. Valable 1 an.</div>
+        </details>
+        <details class="s4-faq-item">
+          <summary>Proposez-vous des séances à domicile ?</summary>
+          <div class="s4-faq-ans">[Depuis Bloc 5 — domicile oui/non, rayon, villes.]</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- S9 — CTA FINAL -->
+<section class="s4-cta">
+  <div class="s4-cta-fond" aria-hidden="true">[Prénom]</div>
+  <div class="s4-cta-inner s4-reveal">
+    <div class="s4-cta-eyebrow">[Prénom Nom] · [Ville]</div>
+    <h2>
+      [Accroche depuis<br>Bloc 0 ADN]<br>
+      <em>[suite]</em>
+    </h2>
+    <p class="s4-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s4-btn-primary">
+      Réserver ma séance
+    </a>
+    <p class="s4-cta-contact">
+      Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a>
+    </p>
+  </div>
+</section>
+
+
+<!-- MAILLAGE -->
+<div class="s4-maillage">
+  <div class="s4-maillage-inner">
+    <span class="s4-maillage-label">À découvrir</span>
+    <div class="s4-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s4-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s4-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s4-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-soin-1]-[ville2]" class="s4-maillage-pill">[Soin 1] à [Ville 2]</a>
+      <a href="/[slug-a-propos]" class="s4-maillage-pill">À propos</a>
+      <a href="/[slug-faq]" class="s4-maillage-pill">Questions fréquentes</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+[
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"[Prénom Nom] — [Titre professionnel]","description":"[Description 150-200 caractères.]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","email":"[email]","priceRange":"€€","image":"[URL_PHOTO_PRATICIENNE]","founder":{"@type":"Person","name":"[Prénom Nom]"},"address":{"@type":"PostalAddress","streetAddress":"[Numéro et rue]","addressLocality":"[Ville]","postalCode":"[Code postal]","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":"[Latitude]","longitude":"[Longitude]"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"[Jour]","opens":"[HH:MM]","closes":"[HH:MM]"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Soins et prestations","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 1] à [Ville]"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 2] à [Ville]"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"[Soin 3] à [Ville]"}}]},"sameAs":["[URL Google Maps]","[URL Instagram]"]},
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Qui est [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Prénom Nom] est [titre] à [Ville] depuis [X] ans."}},
+    {"@type":"Question","name":"Quels soins à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Liste soins + tarifs]."}},
+    {"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}}
+  ]},
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"}]}
+]
+</script>
+
+
+<script>
+/* Curseur */
+(function(){
+  var dot=document.getElementById('cursorDot');
+  var ring=document.getElementById('cursorRing');
+  if(!dot||!ring)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+  document.querySelectorAll('a,button,.s4-soin-card,.s4-avis-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='var(--accent)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='var(--encre)';});
+  });
+})();
+
+/* Hero zoom */
+(function(){
+  var bg=document.getElementById('heroBg');
+  if(bg)setTimeout(function(){bg.classList.add('loaded');},100);
+})();
+
+/* Scroll reveal */
+(function(){
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}
+    });
+  },{threshold:.08});
+  document.querySelectorAll('.s4-reveal,.s4-reveal-left,.s4-reveal-right').forEach(function(el){io.observe(el);});
+})();
+</script>
+
+</body>
+</html>
