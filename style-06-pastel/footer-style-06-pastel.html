@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Footer — Style 06 Éditorial Pastel</title>
+<style>
+:root{--blanc:#FAFAF8;--ecru:#F0ECE8;--poudre:#E8D5CC;--blush:#C49A8A;--blush2:#D4B4A8;--encre:#2C2420;--muted:#8A7A74;--line:rgba(44,36,32,.07);--line-md:rgba(44,36,32,.13);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Plus Jakarta Sans',sans-serif;--max:1200px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);}
+a{color:inherit;text-decoration:none;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================================================
+     FOOTER STYLE 06 — ÉDITORIAL PASTEL
+     À coller dans : Squarespace > Pages > Footer
+     Supprimer le header et footer Squarespace natifs si présents
+     CSS à coller dans : Settings > Advanced > Code Injection > Footer
+     ============================================================ -->
+
+<style>
+/* ─── FOOTER S06 ─── */
+.s6-footer{background:var(--encre);color:var(--blanc);position:relative;overflow:hidden;}
+.s6-footer::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--blush) 1px,transparent 1px);background-size:48px 48px;opacity:.025;pointer-events:none;}
+
+/* ZONE HAUTE — CTA + MARQUEE */
+.s6-footer-top{padding:80px 6% 0;position:relative;z-index:1;}
+.s6-footer-top-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.06);}
+.s6-footer-tagline{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,4.8rem);line-height:1.06;letter-spacing:-.015em;color:var(--blanc);}
+.s6-footer-tagline em{font-style:italic;color:var(--blush2);}
+.s6-footer-cta-col{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0;}
+.s6-footer-cta-note{font-family:var(--f-serif);font-style:italic;font-size:.84rem;color:rgba(255,255,255,.3);text-align:right;}
+
+/* MARQUEE */
+.s6-footer-marquee{border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 0;overflow:hidden;position:relative;z-index:1;}
+.s6-footer-marquee-track{display:flex;animation:marquee-f 28s linear infinite;width:max-content;}
+.s6-footer-marquee-item{display:flex;align-items:center;gap:22px;padding:0 24px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:rgba(255,255,255,.2);}
+.s6-footer-marquee-item strong{font-style:normal;color:rgba(255,255,255,.35);}
+.s6-footer-marquee-sep{width:3px;height:3px;border-radius:50%;background:var(--blush);opacity:.4;flex-shrink:0;}
+@keyframes marquee-f{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* GRILLE PRINCIPALE */
+.s6-footer-main{padding:56px 6%;position:relative;z-index:1;}
+.s6-footer-main-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;}
+
+/* COL IDENTITÉ */
+.s6-footer-brand{}
+.s6-footer-nom{font-family:var(--f-serif);font-weight:300;font-size:1.5rem;color:var(--blanc);margin-bottom:4px;letter-spacing:-.01em;}
+.s6-footer-nom em{font-style:italic;color:var(--blush2);}
+.s6-footer-titre{font-family:var(--f-sans);font-size:.54rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:22px;}
+.s6-footer-bio{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.3);line-height:1.95;margin-bottom:22px;max-width:280px;}
+.s6-footer-note{font-family:var(--f-serif);font-style:italic;font-size:.84rem;color:rgba(196,154,138,.4);line-height:1.6;border-left:1px solid rgba(196,154,138,.2);padding-left:14px;margin-bottom:24px;}
+.s6-footer-social{display:flex;gap:8px;}
+.s6-footer-social-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3);font-family:var(--f-sans);font-size:.6rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;}
+.s6-footer-social-link:hover{border-color:var(--blush);color:var(--blush);}
+
+/* COLONNES NAV */
+.s6-footer-col-titre{font-family:var(--f-sans);font-size:.52rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:18px;display:block;}
+.s6-footer-nav{display:flex;flex-direction:column;gap:10px;}
+.s6-footer-nav-item{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.3);transition:color .2s;display:flex;align-items:center;gap:8px;}
+.s6-footer-nav-item:hover{color:var(--blanc);}
+.s6-footer-nav-item.s6-primary{color:rgba(255,255,255,.6);}
+.s6-footer-nav-item.s6-primary:hover{color:var(--blanc);}
+
+/* CONTACT */
+.s6-footer-contact{display:flex;flex-direction:column;gap:10px;}
+.s6-footer-contact-item{display:flex;flex-direction:column;gap:2px;}
+.s6-footer-contact-lbl{font-family:var(--f-sans);font-size:.5rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.2);}
+.s6-footer-contact-val{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(255,255,255,.45);transition:color .2s;}
+.s6-footer-contact-val:hover{color:var(--blanc);}
+
+/* HORAIRES */
+.s6-footer-horaires{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+.s6-footer-horaire{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-sans);font-size:.72rem;font-weight:300;color:rgba(255,255,255,.28);padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.04);}
+.s6-footer-horaire:last-child{border-bottom:none;}
+.s6-footer-horaire strong{color:rgba(255,255,255,.45);font-weight:400;}
+
+/* SÉPARATEUR + AVIS */
+.s6-footer-mid{padding:0 6%;position:relative;z-index:1;}
+.s6-footer-mid-inner{max-width:var(--max);margin:0 auto;padding:28px 0;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+.s6-footer-avis{display:flex;align-items:center;gap:14px;}
+.s6-footer-stars{display:flex;gap:2px;}
+.s6-footer-star{width:8px;height:8px;background:var(--blush);opacity:.6;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s6-footer-avis-txt{font-family:var(--f-sans);font-size:.7rem;font-weight:300;color:rgba(255,255,255,.3);}
+.s6-footer-avis-txt a{color:rgba(196,154,138,.5);text-underline-offset:3px;text-decoration:underline;transition:color .2s;}
+.s6-footer-avis-txt a:hover{color:var(--blush);}
+.s6-footer-certifs{display:flex;gap:8px;flex-wrap:wrap;}
+.s6-footer-certif{display:inline-block;border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.25);font-family:var(--f-sans);font-size:.5rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;}
+
+/* BAS DE PAGE */
+.s6-footer-bottom{padding:20px 6%;position:relative;z-index:1;}
+.s6-footer-bottom-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.s6-footer-legal{display:flex;gap:16px;flex-wrap:wrap;}
+.s6-footer-legal-item{font-family:var(--f-sans);font-size:.6rem;font-weight:300;color:rgba(255,255,255,.2);transition:color .2s;}
+.s6-footer-legal-item:hover{color:rgba(255,255,255,.5);}
+.s6-footer-credit{font-family:var(--f-sans);font-size:.58rem;font-weight:300;color:rgba(255,255,255,.14);}
+.s6-footer-credit a{color:rgba(196,154,138,.3);transition:color .2s;}
+.s6-footer-credit a:hover{color:var(--blush);}
+.s6-footer-copy{font-family:var(--f-sans);font-size:.58rem;font-weight:300;color:rgba(255,255,255,.14);}
+
+/* RESPONSIVE */
+@media(max-width:960px){.s6-footer-main-inner{grid-template-columns:1fr 1fr;gap:40px;}.s6-footer-top-inner{grid-template-columns:1fr;gap:24px;}.s6-footer-cta-col{align-items:flex-start;}}
+@media(max-width:600px){.s6-footer-main-inner{grid-template-columns:1fr 1fr;gap:28px;}.s6-footer-brand{grid-column:span 2;}.s6-footer-bottom-inner{flex-direction:column;align-items:flex-start;gap:10px;}.s6-footer-mid-inner{flex-direction:column;align-items:flex-start;}}
+@media(max-width:400px){.s6-footer-main-inner{grid-template-columns:1fr;}.s6-footer-brand{grid-column:auto;}}
+</style>
+
+<footer class="s6-footer" role="contentinfo" aria-label="Pied de page">
+
+  <!-- ZONE HAUTE -->
+  <div class="s6-footer-top">
+    <div class="s6-footer-top-inner">
+      <div>
+        <div class="s6-footer-tagline">Prendre soin de soi,<br><em>à [Ville].</em></div>
+      </div>
+      <div class="s6-footer-cta-col">
+        <p class="s6-footer-cta-note">Sur rendez-vous · [Ville]</p>
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:inline-block;background:var(--blush);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--blush);transition:all .3s;text-decoration:none;">Prendre rendez-vous</a>
+        <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:rgba(255,255,255,.4);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid rgba(255,255,255,.12);transition:border-color .3s;text-decoration:none;">Offrir une séance</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="s6-footer-marquee" aria-hidden="true">
+    <div class="s6-footer-marquee-track">
+      <div class="s6-footer-marquee-item"><strong>[Prénom Nom]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Titre professionnel]<span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><em>[Ville]</em><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><strong>[Soin 1]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Soin 2]<span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><em>[Soin 3]</em><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><strong>[Valeur 1]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Valeur 2]<span class="s6-footer-marquee-sep"></span></div>
+      <!-- Répétition pour boucle sans-fin -->
+      <div class="s6-footer-marquee-item"><strong>[Prénom Nom]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Titre professionnel]<span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><em>[Ville]</em><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><strong>[Soin 1]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Soin 2]<span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><em>[Soin 3]</em><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item"><strong>[Valeur 1]</strong><span class="s6-footer-marquee-sep"></span></div>
+      <div class="s6-footer-marquee-item">[Valeur 2]<span class="s6-footer-marquee-sep"></span></div>
+    </div>
+  </div>
+
+  <!-- GRILLE PRINCIPALE -->
+  <div class="s6-footer-main">
+    <div class="s6-footer-main-inner">
+
+      <!-- COL 1 — IDENTITÉ -->
+      <div class="s6-footer-brand">
+        <div class="s6-footer-nom">[Prénom <em>Nom</em>]</div>
+        <div class="s6-footer-titre">[Titre professionnel] · [Ville]</div>
+        <p class="s6-footer-bio">[Depuis Bloc 0 ADN — bio ultra-courte 1-2 phrases depuis les mots de la praticienne.]</p>
+        <blockquote class="s6-footer-note">« [Depuis Bloc 0 — citation signature courte.] »</blockquote>
+        <div class="s6-footer-social">
+          <a href="[Bloc 12 Instagram]" target="_blank" rel="noopener" class="s6-footer-social-link" aria-label="Instagram">IG</a>
+          <a href="[Bloc 12 Facebook]" target="_blank" rel="noopener" class="s6-footer-social-link" aria-label="Facebook">FB</a>
+          <a href="[Bloc 8 fiche Google]" target="_blank" rel="noopener" class="s6-footer-social-link" aria-label="Google">G★</a>
+        </div>
+      </div>
+
+      <!-- COL 2 — NAVIGATION -->
+      <div>
+        <span class="s6-footer-col-titre">Navigation</span>
+        <nav class="s6-footer-nav" aria-label="Navigation principale">
+          <a href="/" class="s6-footer-nav-item s6-primary">Accueil</a>
+          <a href="/[slug-soins]" class="s6-footer-nav-item s6-primary">Soins & prestations</a>
+          <a href="/[slug-soin-1]-[ville]" class="s6-footer-nav-item">[Soin 1]</a>
+          <a href="/[slug-soin-2]-[ville]" class="s6-footer-nav-item">[Soin 2]</a>
+          <a href="/[slug-soin-3]-[ville]" class="s6-footer-nav-item">[Soin 3]</a>
+          <a href="/[slug-a-propos]" class="s6-footer-nav-item s6-primary">À propos</a>
+          <a href="/[slug-faq]" class="s6-footer-nav-item">FAQ</a>
+          <a href="/[slug-offrir]" class="s6-footer-nav-item">Cartes cadeaux</a>
+        </nav>
+      </div>
+
+      <!-- COL 3 — CONTACT -->
+      <div>
+        <span class="s6-footer-col-titre">Contact</span>
+        <div class="s6-footer-contact">
+          <div class="s6-footer-contact-item">
+            <span class="s6-footer-contact-lbl">Téléphone</span>
+            <a href="tel:[+33XXXXXXXXX]" class="s6-footer-contact-val">[Téléphone]</a>
+          </div>
+          <div class="s6-footer-contact-item">
+            <span class="s6-footer-contact-lbl">Email</span>
+            <a href="mailto:[email]" class="s6-footer-contact-val">[Email]</a>
+          </div>
+          <div class="s6-footer-contact-item">
+            <span class="s6-footer-contact-lbl">Adresse</span>
+            <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener" class="s6-footer-contact-val">[Adresse ligne 1]<br>[Code postal] [Ville]</a>
+          </div>
+          <div class="s6-footer-contact-item">
+            <span class="s6-footer-contact-lbl">Réservation</span>
+            <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s6-footer-contact-val">Réserver en ligne →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COL 4 — HORAIRES -->
+      <div>
+        <span class="s6-footer-col-titre">Horaires</span>
+        <div class="s6-footer-horaires">
+          <div class="s6-footer-horaire"><span>Lundi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Mardi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Mercredi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Jeudi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Vendredi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Samedi</span><strong>[Depuis Bloc 10]</strong></div>
+          <div class="s6-footer-horaire"><span>Dimanche</span><strong>Fermé</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MID — AVIS + CERTIFS -->
+  <div class="s6-footer-mid">
+    <div class="s6-footer-mid-inner">
+      <div class="s6-footer-avis">
+        <div class="s6-footer-stars" aria-hidden="true">
+          <span class="s6-footer-star"></span><span class="s6-footer-star"></span><span class="s6-footer-star"></span><span class="s6-footer-star"></span><span class="s6-footer-star"></span>
+        </div>
+        <p class="s6-footer-avis-txt"><strong style="color:rgba(255,255,255,.4);">[X.X]/5</strong> · [X] avis clients · <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener">Voir les avis Google →</a></p>
+      </div>
+      <div class="s6-footer-certifs">
+        <span class="s6-footer-certif">[Formation 1]</span>
+        <span class="s6-footer-certif">[Formation 2]</span>
+        <span class="s6-footer-certif">[Formation 3]</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAS DE PAGE -->
+  <div class="s6-footer-bottom">
+    <div class="s6-footer-bottom-inner">
+      <nav class="s6-footer-legal" aria-label="Liens légaux">
+        <a href="/mentions-legales" class="s6-footer-legal-item">Mentions légales</a>
+        <a href="/politique-confidentialite" class="s6-footer-legal-item">Confidentialité</a>
+        <a href="/cgv" class="s6-footer-legal-item">CGV</a>
+      </nav>
+      <span class="s6-footer-copy">© [Année] [Prénom Nom] · Tous droits réservés</span>
+      <span class="s6-footer-credit">Site réalisé par <a href="https://www.rys-communication.com/" target="_blank" rel="noopener">RYS Communication</a></span>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>

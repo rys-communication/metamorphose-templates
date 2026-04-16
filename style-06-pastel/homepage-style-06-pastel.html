@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Titre professionnel] à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3]. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="[Titre professionnel] à [Ville] — [Prénom Nom]">
+<meta property="og:description" content="[Prénom Nom], [titre professionnel] à [Ville]. [Soin 1], [Soin 2], [Soin 3].">
+<meta property="og:url" content="https://[votre-domaine].fr/">
+<meta property="og:image" content="[URL_OG_IMAGE]">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blanc:  #FAFAF8;
+  --ecru:   #F0ECE8;
+  --poudre: #E8D5CC;
+  --blush:  #C49A8A;
+  --blush2: #D4B4A8;
+  --encre:  #2C2420;
+  --muted:  #8A7A74;
+  --line:   rgba(44,36,32,.07);
+  --line-md:rgba(44,36,32,.13);
+  --f-serif:'Cormorant Garamond',Georgia,serif;
+  --f-sans: 'Plus Jakarta Sans',sans-serif;
+  --max:    1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);padding-bottom:68px;overflow-x:hidden;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+
+/* ─── STICKY ─────────────────────────────────────── */
+.s6-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--blanc);border-top:1px solid var(--line-md);display:flex;align-items:center;justify-content:space-between;padding:13px 48px;gap:16px;}
+.s6-sticky-id{font-family:var(--f-serif);font-style:italic;font-size:.9rem;font-weight:300;color:var(--muted);}
+.s6-sticky-id strong{font-style:normal;font-weight:500;color:var(--encre);}
+.s6-sticky-btns{display:flex;gap:8px;}
+.s6-btn-cta{background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--encre);transition:all .3s;}
+.s6-btn-cta:hover{background:transparent;color:var(--encre);}
+.s6-btn-ghost{background:transparent;color:var(--muted);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;border:1px solid var(--line-md);transition:all .3s;}
+.s6-btn-ghost:hover{border-color:var(--encre);color:var(--encre);}
+@media(max-width:600px){.s6-sticky{padding:12px 20px;}.s6-sticky-id{display:none;}.s6-sticky-btns{width:100%;gap:8px;}.s6-btn-cta,.s6-btn-ghost{flex:1;text-align:center;}}
+
+/* ─── HERO ────────────────────────────────────────── */
+.s6-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;}
+
+/* Colonne image */
+.s6-hero-img{position:relative;overflow:hidden;background:var(--ecru);}
+.s6-hero-img-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transform:scale(1.05);transition:transform 12s ease;}
+.s6-hero-img-bg.loaded{transform:scale(1);}
+/* voile poudré sur l'image */
+.s6-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(240,236,232,.15) 0%,transparent 60%);}
+
+/* Colonne texte */
+.s6-hero-txt{background:var(--blanc);display:flex;flex-direction:column;justify-content:center;padding:80px 72px 80px 64px;position:relative;overflow:hidden;}
+/* filet vertical décoratif blush côté image */
+.s6-hero-txt::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:1px;background:linear-gradient(to bottom,transparent,var(--poudre),transparent);}
+/* lettre fantôme en fond */
+.s6-hero-ghost{position:absolute;bottom:-10%;right:-5%;font-family:var(--f-serif);font-size:clamp(10rem,16vw,20rem);font-weight:300;color:rgba(196,154,138,.06);line-height:1;pointer-events:none;letter-spacing:-.04em;}
+
+.s6-hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--blush);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;position:relative;z-index:1;}
+.s6-hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--blush);}
+
+.s6-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.8rem,4.5vw,5.2rem);line-height:1.04;letter-spacing:-.015em;color:var(--encre);margin-bottom:8px;opacity:0;animation:fadeUp 1s .3s ease forwards;position:relative;z-index:1;}
+.s6-hero h1 em{font-style:italic;color:var(--blush);}
+
+.s6-hero-tagline{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--muted);margin-bottom:36px;opacity:0;animation:fadeUp .8s .4s ease forwards;position:relative;z-index:1;line-height:1.6;}
+
+/* Pills infos */
+.s6-hero-infos{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;opacity:0;animation:fadeUp .8s .5s ease forwards;position:relative;z-index:1;}
+.s6-hero-info{background:var(--ecru);border:1px solid var(--poudre);font-family:var(--f-sans);font-size:.66rem;font-weight:400;letter-spacing:.08em;color:var(--muted);padding:6px 14px;}
+
+.s6-hero-btns{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .6s ease forwards;position:relative;z-index:1;}
+
+/* Badge avis flottant */
+.s6-hero-badge{position:absolute;bottom:40px;left:-24px;background:var(--blanc);border:1px solid var(--poudre);padding:14px 18px;display:flex;flex-direction:column;gap:4px;z-index:2;opacity:0;animation:fadeUp .9s .9s ease forwards;}
+.s6-hero-badge-stars{display:flex;gap:3px;}
+.s6-hero-badge-star{width:9px;height:9px;background:var(--blush);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s6-hero-badge-note{font-family:var(--f-serif);font-size:1.1rem;font-weight:400;color:var(--encre);line-height:1;}
+.s6-hero-badge-lbl{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@media(max-width:860px){.s6-hero{grid-template-columns:1fr;min-height:auto;}.s6-hero-img{height:62vw;}.s6-hero-txt{padding:48px 6% 64px;}.s6-hero h1{font-size:clamp(2.4rem,9vw,3.8rem);}.s6-hero-txt::before{display:none;}.s6-hero-badge{left:16px;bottom:16px;}}
+
+/* ─── MARQUEE ─────────────────────────────────────── */
+.s6-marquee{background:var(--ecru);border-top:1px solid var(--poudre);border-bottom:1px solid var(--poudre);padding:15px 0;overflow:hidden;}
+.s6-marquee-track{display:flex;animation:marquee 26s linear infinite;width:max-content;}
+.s6-marquee-item{display:flex;align-items:center;gap:24px;padding:0 28px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-size:.96rem;font-weight:300;color:var(--muted);}
+.s6-marquee-item strong{font-style:normal;font-weight:400;color:var(--encre);}
+.s6-marquee-sep{width:4px;height:4px;border-radius:50%;background:var(--blush);flex-shrink:0;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ─── BASE ────────────────────────────────────────── */
+.s6-section{padding:100px 6%;}.s6-inner{max-width:var(--max);margin:0 auto;}
+.s6-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--blush);margin-bottom:18px;}
+.s6-label::before{content:'';width:16px;height:1px;background:var(--blush);}
+.s6-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,4rem);line-height:1.1;letter-spacing:-.015em;color:var(--encre);}
+.s6-h2 em{font-style:italic;}
+.s6-p{font-family:var(--f-sans);font-size:.88rem;font-weight:300;line-height:2;color:var(--muted);margin-bottom:12px;}
+
+/* Boutons */
+.s6-btn{display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--encre);transition:all .3s;}
+.s6-btn:hover{background:transparent;color:var(--encre);}
+.s6-btn-blush{background:var(--blush);border-color:var(--blush);color:var(--blanc);}
+.s6-btn-blush:hover{background:transparent;color:var(--blush);}
+.s6-btn-outline{background:transparent;color:var(--encre);border:1px solid var(--line-md);}
+.s6-btn-outline:hover{border-color:var(--encre);}
+.s6-btn-outline-blanc{background:transparent;color:var(--blanc);border:1px solid rgba(255,255,255,.3);}
+.s6-btn-outline-blanc:hover{border-color:var(--blanc);}
+
+/* ─── S1 — CITATION + VALEURS ─────────────────────── */
+.s6-citation-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s6-citation-img{position:relative;}
+.s6-citation-photo{width:100%;aspect-ratio:3/4;background:var(--ecru);overflow:hidden;position:relative;}
+.s6-citation-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center top;width:100%;height:100%;}
+/* double cadre décalé */
+.s6-citation-frame{position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:1px solid var(--poudre);pointer-events:none;z-index:1;}
+.s6-citation-deco{position:absolute;bottom:-20px;right:-20px;width:80px;height:80px;background:var(--ecru);border:1px solid var(--poudre);}
+
+blockquote.s6-quote{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.2vw,2rem);line-height:1.6;color:var(--encre);margin-bottom:24px;padding-left:24px;border-left:1px solid var(--poudre);}
+.s6-valeurs{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+.s6-valeur{display:flex;align-items:flex-start;gap:14px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);padding-bottom:14px;border-bottom:1px solid var(--line);}
+.s6-valeur:last-child{border-bottom:none;padding-bottom:0;}
+.s6-valeur-num{font-family:var(--f-serif);font-style:italic;font-size:.88rem;color:var(--blush);flex-shrink:0;min-width:20px;}
+.s6-valeur-titre{font-family:var(--f-sans);font-size:.78rem;font-weight:500;color:var(--encre);display:block;margin-bottom:2px;}
+@media(max-width:768px){.s6-citation-layout{grid-template-columns:1fr;gap:48px;}.s6-citation-photo{aspect-ratio:4/3;max-width:360px;margin:0 auto;}}
+
+/* ─── S2 — STATS ──────────────────────────────────── */
+.s6-stats-wrap{background:var(--ecru);border-top:1px solid var(--poudre);border-bottom:1px solid var(--poudre);padding:0;}
+.s6-stats-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.s6-stat{padding:48px 32px;text-align:center;border-right:1px solid var(--poudre);position:relative;}
+.s6-stat:last-child{border-right:none;}
+.s6-stat-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(2.4rem,4vw,3.8rem);color:var(--encre);display:block;margin-bottom:6px;line-height:1;}
+.s6-stat-lbl{font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
+@media(max-width:760px){.s6-stats-inner{grid-template-columns:1fr 1fr;}.s6-stat:nth-child(2){border-right:none;}.s6-stat:nth-child(3),.s6-stat:nth-child(4){border-top:1px solid var(--poudre);}}
+@media(max-width:420px){.s6-stats-inner{grid-template-columns:1fr 1fr;}}
+
+/* ─── S3 — SOINS ──────────────────────────────────── */
+.s6-soins-header{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px;}
+.s6-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--poudre);}
+.s6-soin-card{background:var(--blanc);padding:40px 32px;display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit;transition:background .35s;position:relative;overflow:hidden;}
+.s6-soin-card:hover{background:var(--ecru);}
+/* filet blush qui glisse en haut au hover */
+.s6-soin-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--blush);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.s6-soin-card:hover::before{transform:scaleX(1);}
+.s6-soin-num{font-family:var(--f-serif);font-style:italic;font-size:.8rem;color:var(--blush);opacity:.7;}
+.s6-soin-name{font-family:var(--f-serif);font-weight:300;font-size:1.35rem;line-height:1.25;color:var(--encre);flex:1;}
+.s6-soin-name em{font-style:italic;}
+.s6-soin-desc{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:var(--muted);line-height:1.85;}
+.s6-soin-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line);}
+.s6-soin-prix{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;color:var(--blush);}
+.s6-soin-dur{font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.s6-soin-arrow{font-family:var(--f-sans);font-size:.78rem;color:var(--muted);transition:color .3s,transform .3s;display:inline-block;}
+.s6-soin-card:hover .s6-soin-arrow{color:var(--blush);transform:translateX(5px);}
+@media(max-width:860px){.s6-soins-header{grid-template-columns:1fr;gap:24px;}.s6-soins-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.s6-soins-grid{grid-template-columns:1fr;}}
+
+/* ─── S4 — PRATICIENNE ────────────────────────────── */
+.s6-prat{background:var(--encre);}
+.s6-prat-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:600px;}
+.s6-prat-img-col{position:relative;overflow:hidden;min-height:520px;}
+.s6-prat-img-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:grayscale(20%);}
+/* voile encre sur l'image */
+.s6-prat-img-col::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 50%,var(--encre) 100%);}
+.s6-prat-txt{padding:80px 72px 80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.s6-prat-nom{font-family:var(--f-serif);font-weight:300;font-size:clamp(1.8rem,3vw,3rem);color:var(--blanc);line-height:1.1;margin-bottom:4px;}
+.s6-prat-nom em{font-style:italic;color:var(--blush2);}
+.s6-prat-titre{font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:28px;}
+.s6-prat-bio{font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:rgba(255,255,255,.5);line-height:2;margin-bottom:24px;}
+.s6-prat-certifs{display:flex;flex-direction:column;gap:8px;margin-bottom:32px;}
+.s6-prat-certif{display:flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.8rem;color:rgba(255,255,255,.4);font-weight:300;}
+.s6-prat-certif::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--blush);flex-shrink:0;}
+.s6-prat-quote{font-family:var(--f-serif);font-style:italic;font-size:.96rem;color:rgba(255,255,255,.25);line-height:1.8;border-left:1px solid var(--blush);padding-left:16px;margin-top:24px;}
+@media(max-width:768px){.s6-prat-inner{grid-template-columns:1fr;}.s6-prat-img-col{height:60vw;}.s6-prat-img-col::after{background:linear-gradient(to bottom,transparent 50%,var(--encre) 100%);}.s6-prat-txt{padding:48px 6%;}}
+
+/* ─── S5 — AVIS ───────────────────────────────────── */
+.s6-avis-header{text-align:center;margin-bottom:56px;}
+.s6-avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--poudre);}
+.s6-avis-card{background:var(--blanc);padding:36px 28px;display:flex;flex-direction:column;gap:14px;}
+.s6-avis-stars{display:flex;gap:3px;}
+.s6-avis-star{width:10px;height:10px;background:var(--blush);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+.s6-avis-txt{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:.96rem;color:var(--encre);line-height:1.9;flex:1;}
+.s6-avis-sep{width:16px;height:1px;background:var(--poudre);}
+.s6-avis-author{font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+@media(max-width:760px){.s6-avis-grid{grid-template-columns:1fr;gap:0;}}
+
+/* ─── S6 — CARTES CADEAUX ─────────────────────────── */
+.s6-cadeaux{background:var(--ecru);}
+.s6-cadeaux-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s6-cadeaux-img{position:relative;}
+.s6-cadeaux-photo{width:100%;aspect-ratio:4/5;background:var(--poudre);overflow:hidden;position:relative;}
+.s6-cadeaux-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;}
+.s6-cadeaux-frame{position:absolute;bottom:-14px;right:-14px;width:60%;height:60%;border:1px solid var(--poudre);}
+.s6-garanties{display:flex;flex-direction:column;gap:10px;margin:24px 0 32px;}
+.s6-garantie{display:flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);}
+.s6-garantie::before{content:'';width:18px;height:1px;background:var(--blush);}
+@media(max-width:768px){.s6-cadeaux-inner{grid-template-columns:1fr;gap:40px;}.s6-cadeaux-photo{aspect-ratio:3/2;max-width:340px;margin:0 auto;}}
+
+/* ─── S7 — CABINET ────────────────────────────────── */
+.s6-cabinet-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start;}
+.s6-galerie{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.s6-galerie-photo{background:var(--ecru);overflow:hidden;position:relative;}
+.s6-galerie-photo:first-child{grid-column:span 2;aspect-ratio:16/7;}
+.s6-galerie-photo:not(:first-child){aspect-ratio:1;}
+.s6-galerie-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;width:100%;height:100%;}
+.s6-infos-list{display:flex;flex-direction:column;gap:0;margin-top:32px;}
+.s6-info-ligne{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);}
+.s6-info-ligne:last-child{border-bottom:none;}
+.s6-info-key{font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--blush);flex-shrink:0;width:80px;padding-top:2px;}
+.s6-info-val{font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.7;}
+@media(max-width:768px){.s6-cabinet-layout{grid-template-columns:1fr;gap:40px;}}
+
+/* ─── S8 — FAQ ────────────────────────────────────── */
+.s6-faq{background:var(--ecru);border-top:1px solid var(--poudre);}
+.s6-faq-inner{max-width:740px;margin:0 auto;}
+.s6-faq-header{text-align:center;margin-bottom:48px;}
+details.s6-faq-item{border-bottom:1px solid var(--poudre);}
+details.s6-faq-item summary{padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-size:1.05rem;color:var(--encre);line-height:1.5;transition:color .2s;}
+details.s6-faq-item summary::-webkit-details-marker{display:none;}
+details.s6-faq-item summary::after{content:'+';font-family:var(--f-serif);font-size:1.3rem;font-weight:300;color:var(--blush);flex-shrink:0;transition:transform .3s;line-height:1;}
+details.s6-faq-item[open] summary{color:var(--blush);}
+details.s6-faq-item[open] summary::after{transform:rotate(45deg);}
+.s6-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:2;}
+.s6-faq-ans a{color:var(--encre);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--poudre);}
+.s6-faq-ans a:hover{text-decoration-color:var(--encre);}
+
+/* ─── S9 — CTA FINAL ──────────────────────────────── */
+.s6-cta{background:var(--encre);padding:120px 6%;text-align:center;position:relative;overflow:hidden;}
+/* motif de fond : grille de points poudre */
+.s6-cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--blush) 1px,transparent 1px);background-size:40px 40px;opacity:.04;pointer-events:none;}
+.s6-cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+.s6-cta-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:rgba(196,154,138,.6);margin-bottom:28px;justify-content:center;}
+.s6-cta-label::before,.s6-cta-label::after{content:'';width:16px;height:1px;background:var(--blush);opacity:.5;}
+.s6-cta h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.4rem,6vw,5.5rem);line-height:1.06;letter-spacing:-.015em;color:var(--blanc);margin-bottom:20px;}
+.s6-cta h2 em{font-style:italic;color:var(--blush2);}
+.s6-cta-sub{font-family:var(--f-sans);font-size:.86rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:40px;}
+.s6-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.s6-cta-contact{margin-top:24px;font-family:var(--f-serif);font-style:italic;font-size:.86rem;color:rgba(255,255,255,.25);}
+.s6-cta-contact a{color:rgba(255,255,255,.5);text-decoration:underline;text-underline-offset:3px;}
+
+/* ─── MAILLAGE ─────────────────────────────────────── */
+.s6-maillage{background:var(--blanc);padding:48px 6%;border-top:1px solid var(--line);}
+.s6-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s6-maillage-lbl{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block;}
+.s6-maillage-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.s6-maillage-pill{display:inline-block;padding:7px 16px;border:1px solid var(--line-md);color:var(--muted);font-family:var(--f-sans);font-size:.7rem;font-weight:300;letter-spacing:.06em;transition:all .25s;}
+.s6-maillage-pill:hover{border-color:var(--encre);color:var(--encre);}
+
+/* ─── REVEAL ───────────────────────────────────────── */
+.s6-reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal.in{opacity:1;transform:none;}
+.s6-reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal-left.in{opacity:1;transform:none;}
+.s6-reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal-right.in{opacity:1;transform:none;}
+.s6-d1{transition-delay:.1s;}.s6-d2{transition-delay:.2s;}.s6-d3{transition-delay:.3s;}.s6-d4{transition-delay:.4s;}
+</style>
+</head>
+<body>
+
+<!-- STICKY -->
+<div class="s6-sticky">
+  <div class="s6-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s6-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s6-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s6-btn-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="s6-hero" aria-label="Présentation de [Prénom Nom]">
+  <div class="s6-hero-img">
+    <div class="s6-hero-img-bg" id="heroBg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+  </div>
+  <div class="s6-hero-txt">
+    <div class="s6-hero-ghost" aria-hidden="true">[P]</div>
+    <div class="s6-hero-eyebrow">[Titre professionnel] · [Ville]</div>
+    <h1 class="s6-custom-h1">
+      [Accroche principale<br>depuis Bloc 0 ADN<br><em>en italique]</em>
+    </h1>
+    <p class="s6-hero-tagline">[Depuis Bloc 0 — phrase qui résume ce que la praticienne offre.]</p>
+    <div class="s6-hero-infos">
+      <span class="s6-hero-info">[Soin 1]</span>
+      <span class="s6-hero-info">[Soin 2]</span>
+      <span class="s6-hero-info">[Soin 3]</span>
+      <span class="s6-hero-info">À [Ville]</span>
+    </div>
+    <div class="s6-hero-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s6-btn">Réserver ma séance</a>
+      <a href="/[slug-soins]" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:all .3s;text-decoration:none;">Découvrir les soins</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="s6-marquee" aria-hidden="true">
+  <div class="s6-marquee-track">
+    <div class="s6-marquee-item"><strong>[Soin 1]</strong><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item">[Ville]<span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><em>[Valeur 1]</em><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><strong>[Soin 2]</strong><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item">[Titre professionnel]<span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><em>[Valeur 2]</em><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><strong>[Soin 3]</strong><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item">[Ville]<span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><em>[Valeur 1]</em><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><strong>[Soin 1]</strong><span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item">[Titre professionnel]<span class="s6-marquee-sep"></span></div>
+    <div class="s6-marquee-item"><em>[Valeur 2]</em><span class="s6-marquee-sep"></span></div>
+  </div>
+</div>
+
+<!-- S1 — CITATION ADN -->
+<section class="s6-section" style="background:var(--blanc);">
+  <div class="s6-inner">
+    <div class="s6-citation-layout">
+      <div class="s6-citation-img s6-reveal-left">
+        <div class="s6-citation-photo">
+          <div class="s6-citation-photo-bg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+        </div>
+        <div class="s6-citation-frame"></div>
+        <div class="s6-citation-deco"></div>
+      </div>
+      <div class="s6-reveal-right">
+        <div class="s6-label">Mon approche</div>
+        <blockquote class="s6-quote">« [Depuis Bloc 0 ADN — citation courte et sincère dans les mots de la praticienne.] »</blockquote>
+        <p class="s6-p">[Depuis Bloc 0 "Ce que je fais différemment" — 2 phrases max qui expliquent ce qui distingue cette praticienne.]</p>
+        <div class="s6-valeurs">
+          <div class="s6-valeur"><span class="s6-valeur-num">01</span><div><span class="s6-valeur-titre">[Valeur 1]</span>[Description concrète de la valeur 1 depuis Bloc 0.]</div></div>
+          <div class="s6-valeur"><span class="s6-valeur-num">02</span><div><span class="s6-valeur-titre">[Valeur 2]</span>[Description concrète de la valeur 2.]</div></div>
+          <div class="s6-valeur"><span class="s6-valeur-num">03</span><div><span class="s6-valeur-titre">[Valeur 3]</span>[Description concrète de la valeur 3.]</div></div>
+        </div>
+        <div style="margin-top:28px;">
+          <a href="/[slug-a-propos]" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">Mon parcours →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 — STATS -->
+<div class="s6-stats-wrap s6-reveal">
+  <div class="s6-stats-inner">
+    <div class="s6-stat"><span class="s6-stat-num">[X]+</span><span class="s6-stat-lbl">Années d'expérience</span></div>
+    <div class="s6-stat"><span class="s6-stat-num">[X]+</span><span class="s6-stat-lbl">Clientes accompagnées</span></div>
+    <div class="s6-stat"><span class="s6-stat-num" style="font-style:italic;">[X.X]★</span><span class="s6-stat-lbl">Note Google</span></div>
+    <div class="s6-stat"><span class="s6-stat-num">[X]</span><span class="s6-stat-lbl">Soins proposés</span></div>
+  </div>
+</div>
+
+<!-- S3 — LES SOINS -->
+<section class="s6-section" style="background:var(--blanc);">
+  <div class="s6-inner">
+    <div class="s6-soins-header">
+      <div class="s6-reveal-left">
+        <div class="s6-label">Les soins</div>
+        <h2 class="s6-h2">Prendre soin de soi<br><em>à [Ville]</em></h2>
+      </div>
+      <div class="s6-reveal-right">
+        <p class="s6-p">[Depuis Bloc 5 — présentation générale de l'offre de soins en 1-2 phrases.]</p>
+        <a href="/[slug-soins]" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">Voir toutes les prestations →</a>
+      </div>
+    </div>
+    <div class="s6-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s6-soin-card s6-reveal s6-d1">
+        <span class="s6-soin-num">01</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 1</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte et évocatrice sur le soin 1.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+      <a href="/[slug-soin-2]-[ville]" class="s6-soin-card s6-reveal s6-d2">
+        <span class="s6-soin-num">02</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 2</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 2.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s6-soin-card s6-reveal s6-d3">
+        <span class="s6-soin-num">03</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 3</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 3.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s6-soin-card s6-reveal s6-d1">
+        <span class="s6-soin-num">04</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 4</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 4.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+      <a href="/[slug-soin-5]-[ville]" class="s6-soin-card s6-reveal s6-d2">
+        <span class="s6-soin-num">05</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 5</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 5.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+      <a href="/[slug-soin-6]-[ville]" class="s6-soin-card s6-reveal s6-d3">
+        <span class="s6-soin-num">06</span>
+        <div class="s6-soin-name">[Nom du<br><em>soin 6</em>]</div>
+        <p class="s6-soin-desc">[Depuis Bloc 5 — accroche courte sur le soin 6.]</p>
+        <div class="s6-soin-footer"><span class="s6-soin-prix">[Tarif] €</span><span class="s6-soin-dur">[X]h</span><span class="s6-soin-arrow">→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- S4 — LA PRATICIENNE -->
+<section class="s6-prat" aria-label="À propos de [Prénom Nom]">
+  <div class="s6-prat-inner">
+    <div class="s6-prat-img-col">
+      <div class="s6-prat-img-bg" style="background-image:url('[URL_PHOTO_PORTRAIT_2]')"></div>
+    </div>
+    <div class="s6-prat-txt s6-reveal-right">
+      <div class="s6-label" style="color:rgba(196,154,138,.6);">La praticienne</div>
+      <div class="s6-prat-nom">[Prénom Nom],<br><em>[Titre professionnel]</em></div>
+      <div class="s6-prat-titre">À [Ville] depuis [X] ans</div>
+      <p class="s6-prat-bio">[Depuis Bloc 9 bio courte — 2-3 phrases dans les mots de la praticienne.]</p>
+      <div class="s6-prat-certifs">
+        <div class="s6-prat-certif">[Formation 1] — [Organisme]</div>
+        <div class="s6-prat-certif">[Formation 2] — [Organisme]</div>
+        <div class="s6-prat-certif">[Formation 3] — [Organisme]</div>
+      </div>
+      <a href="/[slug-a-propos]" class="s6-btn" style="background:var(--blush);border-color:var(--blush);">Découvrir mon parcours</a>
+      <blockquote class="s6-prat-quote">« [Depuis Bloc 0 ADN — phrase courte sur ce qui motive la praticienne.] »</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- S5 — AVIS -->
+<section class="s6-section" style="background:var(--ecru);">
+  <div class="s6-inner">
+    <div class="s6-avis-header s6-reveal">
+      <div class="s6-label" style="justify-content:center;">Témoignages</div>
+      <h2 class="s6-h2" style="text-align:center;">Ce qu'elles disent<br><em>après leur séance</em></h2>
+    </div>
+    <div class="s6-avis-grid">
+      <article class="s6-avis-card s6-reveal s6-d1">
+        <div class="s6-avis-stars"><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span></div>
+        <p class="s6-avis-txt">« [Témoignage 1 depuis Bloc 11 — texte exact.] »</p>
+        <div class="s6-avis-sep"></div>
+        <span class="s6-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s6-avis-card s6-reveal s6-d2">
+        <div class="s6-avis-stars"><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span></div>
+        <p class="s6-avis-txt">« [Témoignage 2 depuis Bloc 11.] »</p>
+        <div class="s6-avis-sep"></div>
+        <span class="s6-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s6-avis-card s6-reveal s6-d3">
+        <div class="s6-avis-stars"><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span><span class="s6-avis-star"></span></div>
+        <p class="s6-avis-txt">« [Témoignage 3 depuis Bloc 11.] »</p>
+        <div class="s6-avis-sep"></div>
+        <span class="s6-avis-author">[Prénom N.] · [Soin]</span>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:36px;" class="s6-reveal">
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">[X.X] ★ · Voir tous les avis Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- S6 — CARTES CADEAUX -->
+<section class="s6-cadeaux s6-section">
+  <div class="s6-cadeaux-inner">
+    <div class="s6-cadeaux-img s6-reveal-left">
+      <div class="s6-cadeaux-photo">
+        <div class="s6-cadeaux-photo-bg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+      </div>
+      <div class="s6-cadeaux-frame"></div>
+    </div>
+    <div class="s6-reveal-right">
+      <div class="s6-label">Cartes cadeaux</div>
+      <h2 class="s6-h2" style="margin-bottom:14px;">Offrir une séance,<br><em>un vrai cadeau</em></h2>
+      <p class="s6-p">[Depuis Bloc 6 — 1-2 phrases sur l'offre cadeau.]</p>
+      <div class="s6-garanties">
+        <div class="s6-garantie">Code envoyé immédiatement par email</div>
+        <div class="s6-garantie">Valable 1 an</div>
+        <div class="s6-garantie">Aucun montant à régler sur place</div>
+      </div>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s6-btn-blush">Offrir une séance</a>
+    </div>
+  </div>
+</section>
+
+<!-- S7 — CABINET -->
+<section class="s6-section" style="background:var(--blanc);">
+  <div class="s6-inner">
+    <div class="s6-cabinet-layout">
+      <div class="s6-galerie s6-reveal-left">
+        <div class="s6-galerie-photo"><div class="s6-galerie-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_1]')"></div></div>
+        <div class="s6-galerie-photo"><div class="s6-galerie-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_2]')"></div></div>
+        <div class="s6-galerie-photo"><div class="s6-galerie-photo-bg" style="background-image:url('[URL_PHOTO_CABINET_3]')"></div></div>
+      </div>
+      <div class="s6-reveal-right">
+        <div class="s6-label">Cabinet & accès</div>
+        <h2 class="s6-h2" style="margin-bottom:0;">Un espace pensé<br><em>pour vous</em></h2>
+        <div class="s6-infos-list">
+          <div class="s6-info-ligne"><span class="s6-info-key">Adresse</span><span class="s6-info-val">[Depuis Bloc 2 — adresse complète]</span></div>
+          <div class="s6-info-ligne"><span class="s6-info-key">Horaires</span><span class="s6-info-val">[Depuis Bloc 10 — jours et heures]</span></div>
+          <div class="s6-info-ligne"><span class="s6-info-key">Accès</span><span class="s6-info-val">[Depuis Bloc 2 — transports + parking]</span></div>
+          <div class="s6-info-ligne"><span class="s6-info-key">Contact</span><span class="s6-info-val"><a href="tel:[+33XXXXXXXXX]" style="color:var(--encre);">[Téléphone]</a></span></div>
+        </div>
+        <div style="margin-top:20px;">
+          <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">Voir sur Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 — FAQ -->
+<section class="s6-faq s6-section">
+  <div class="s6-faq-inner">
+    <div class="s6-faq-header s6-reveal">
+      <div class="s6-label" style="justify-content:center;">Questions fréquentes</div>
+      <h2 class="s6-h2" style="text-align:center;">Vos questions,<br><em>mes réponses</em></h2>
+    </div>
+    <div class="s6-reveal">
+      <details class="s6-faq-item"><summary>Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?</summary><div class="s6-faq-ans"><p>[Depuis Bloc 9 + Bloc 0 ADN.] <a href="/[slug-a-propos]">En savoir plus →</a></p></div></details>
+      <details class="s6-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s6-faq-ans"><p>[Depuis Bloc 5 — description complète.] <a href="/[slug-soin-1]-[ville]">Découvrir [Soin 1] →</a></p></div></details>
+      <details class="s6-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s6-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée]. <a href="/[slug-soins]">Voir tous les soins →</a></p></div></details>
+      <details class="s6-faq-item"><summary>Comment prendre rendez-vous ?</summary><div class="s6-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s6-faq-item"><summary>Y a-t-il des contre-indications à [Soin 1] ?</summary><div class="s6-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez [Prénom] au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s6-faq-item"><summary>Ces soins sont-ils remboursés ?</summary><div class="s6-faq-ans"><p>[Depuis dossier client — remboursement mutuelle éventuel.]</p></div></details>
+      <details class="s6-faq-item"><summary>Comment offrir une séance en cadeau ?</summary><div class="s6-faq-ans"><p>Carte cadeau sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code immédiat par email. Valable 1 an.</p></div></details>
+      <details class="s6-faq-item"><summary>Proposez-vous des séances à domicile ou en visio ?</summary><div class="s6-faq-ans"><p>[Depuis Bloc 5 — domicile/visio oui/non, conditions.]</p></div></details>
+      <details class="s6-faq-item"><summary>Quelle est la politique d'annulation ?</summary><div class="s6-faq-ans"><p>[Délai minimum et procédure depuis dossier client.]</p></div></details>
+      <details class="s6-faq-item"><summary>Que ressent-on après une séance ?</summary><div class="s6-faq-ans"><p>[Depuis Bloc 0 transformation + Bloc 13.]</p></div></details>
+    </div>
+    <div style="text-align:center;margin-top:32px;" class="s6-reveal">
+      <a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">Voir toutes les questions fréquentes →</a>
+    </div>
+  </div>
+</section>
+
+<!-- S9 — CTA FINAL -->
+<section class="s6-cta" aria-label="Prise de rendez-vous">
+  <div class="s6-cta-inner s6-reveal">
+    <div class="s6-cta-label">[Prénom Nom] · [Ville]</div>
+    <h2>[Accroche finale<br>depuis Bloc 0 ADN<br><em>[suite en italique]</em>]</h2>
+    <p class="s6-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Sur rendez-vous</p>
+    <div class="s6-cta-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s6-btn" style="background:var(--blush);border-color:var(--blush);">Réserver ma séance</a>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:rgba(255,255,255,.7);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid rgba(255,255,255,.3);transition:border-color .3s;text-decoration:none;">Offrir une séance</a>
+    </div>
+    <p class="s6-cta-contact">Questions ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[email]">[Email]</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- MAILLAGE -->
+<nav class="s6-maillage" aria-label="Navigation thématique">
+  <div class="s6-maillage-inner">
+    <span class="s6-maillage-lbl">À découvrir</span>
+    <div class="s6-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s6-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s6-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s6-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-a-propos]" class="s6-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s6-maillage-pill">Questions fréquentes</a>
+      <a href="/[slug-offrir]" class="s6-maillage-pill">Cartes cadeaux</a>
+    </div>
+  </div>
+</nav>
+
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"LocalBusiness","name":"[Prénom Nom] — [Titre professionnel]","description":"[Depuis Bloc 0 ADN — 2 phrases.]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","streetAddress":"[Adresse]","addressLocality":"[Ville]","postalCode":"[CP]","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":"[LAT]","longitude":"[LNG]"},"openingHours":["[Horaires]"],"priceRange":"[XX]€ – [XX]€","aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"},"image":"[URL_PHOTO_PORTRAIT]","sameAs":["[Bloc 12 Instagram]","[Bloc 12 Facebook]","[Bloc 8 fiche Google]"]},
+{"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","url":"https://[votre-domaine].fr/[slug-a-propos]","image":"[URL_PHOTO_PORTRAIT]","worksFor":{"@type":"LocalBusiness","name":"[Nom cabinet]","address":{"@type":"PostalAddress","addressLocality":"[Ville]","addressCountry":"FR"}},"knowsAbout":["[Soin 1]","[Soin 2]","[Soin 3]"]},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Qui est [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 9 + ADN]."}},
+  {"@type":"Question","name":"En quoi consiste [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5]."}},
+  {"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [tarif]€. [Soin 2] : [tarif]€."}},
+  {"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},
+  {"@type":"Question","name":"Y a-t-il des contre-indications à [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]."}},
+  {"@type":"Question","name":"Ces soins sont-ils remboursés ?","acceptedAnswer":{"@type":"Answer","text":"[Remboursement mutuelle]."}},
+  {"@type":"Question","name":"Comment offrir une séance en cadeau à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},
+  {"@type":"Question","name":"Proposez-vous des séances à domicile ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5 — domicile oui/non]."}},
+  {"@type":"Question","name":"Quelle est la politique d'annulation ?","acceptedAnswer":{"@type":"Answer","text":"[Délai minimum et procédure]."}},
+  {"@type":"Question","name":"Que ressent-on après une séance de [Soin 1] ?","acceptedAnswer":{"@type":"Answer","text":"[Effets post-séance depuis Bloc 0]."}}
+]},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"}]}]
+</script>
+
+<script>
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},100);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s6-reveal,.s6-reveal-left,.s6-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

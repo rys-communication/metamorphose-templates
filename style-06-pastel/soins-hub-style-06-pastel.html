@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soins & prestations à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="Toutes les prestations de [Prénom Nom] à [Ville] : [Soin 1], [Soin 2], [Soin 3]. Tarifs, durées, réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-soins]">
+<meta property="og:type" content="website"><meta property="og:title" content="Soins à [Ville] — [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-soins]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blanc:#FAFAF8;--ecru:#F0ECE8;--poudre:#E8D5CC;--blush:#C49A8A;--blush2:#D4B4A8;--encre:#2C2420;--muted:#8A7A74;--line:rgba(44,36,32,.07);--line-md:rgba(44,36,32,.13);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Plus Jakarta Sans',sans-serif;--max:1200px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--blanc);color:var(--encre);padding-bottom:68px;overflow-x:hidden;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.s6-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:var(--blanc);border-top:1px solid var(--line-md);display:flex;align-items:center;justify-content:space-between;padding:13px 48px;gap:16px;}
+.s6-sticky-id{font-family:var(--f-serif);font-style:italic;font-size:.9rem;color:var(--muted);}
+.s6-sticky-id strong{font-style:normal;font-weight:500;color:var(--encre);}
+.s6-sticky-btns{display:flex;gap:8px;}
+.s6-btn-cta{background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--encre);transition:all .3s;display:inline-block;}
+.s6-btn-ghost{background:transparent;color:var(--muted);font-family:var(--f-sans);font-size:.62rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;padding:10px 20px;border:1px solid var(--line-md);transition:all .3s;display:inline-block;}
+.s6-btn-ghost:hover{border-color:var(--encre);color:var(--encre);}
+@media(max-width:600px){.s6-sticky{padding:12px 20px;}.s6-sticky-id{display:none;}.s6-sticky-btns{width:100%;}.s6-btn-cta,.s6-btn-ghost{flex:1;text-align:center;}}
+
+/* HERO */
+.s6-hero-txt{background:var(--ecru);border-bottom:1px solid var(--poudre);padding:120px 6% 80px;position:relative;overflow:hidden;text-align:center;}
+.s6-hero-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--f-serif);font-size:clamp(10rem,18vw,22rem);font-weight:300;color:rgba(196,154,138,.05);line-height:1;pointer-events:none;white-space:nowrap;}
+.s6-hero-breadcrumb{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:.62rem;color:var(--muted);margin-bottom:24px;opacity:0;animation:fadeUp .7s .1s ease forwards;position:relative;z-index:1;}
+.s6-hero-breadcrumb span{color:var(--poudre);}
+.s6-hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-sans);font-size:.58rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--blush);margin-bottom:20px;opacity:0;animation:fadeUp .8s .2s ease forwards;position:relative;z-index:1;justify-content:center;}
+.s6-hero-eyebrow::before,.s6-hero-eyebrow::after{content:'';width:16px;height:1px;background:var(--blush);}
+.s6-hub-h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.6rem,5vw,5.5rem);line-height:1.06;letter-spacing:-.015em;color:var(--encre);margin-bottom:14px;opacity:0;animation:fadeUp 1s .3s ease forwards;position:relative;z-index:1;}
+.s6-hub-h1 em{font-style:italic;color:var(--blush);}
+.s6-hero-sub{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;color:var(--muted);opacity:0;animation:fadeUp .8s .4s ease forwards;position:relative;z-index:1;line-height:1.6;max-width:520px;margin:0 auto;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* BASE */
+.s6-section{padding:100px 6%;}.s6-inner{max-width:var(--max);margin:0 auto;}
+.s6-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--blush);margin-bottom:18px;}
+.s6-label::before{content:'';width:16px;height:1px;background:var(--blush);}
+.s6-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(1.9rem,3.5vw,3.5rem);line-height:1.1;letter-spacing:-.015em;color:var(--encre);}
+.s6-h2 em{font-style:italic;}
+.s6-p{font-family:var(--f-sans);font-size:.88rem;font-weight:300;line-height:2;color:var(--muted);margin-bottom:12px;}
+
+/* GRILLE SOINS PRINCIPALE */
+.s6-soins-full-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--poudre);}
+.s6-soin-full-card{background:var(--blanc);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:background .35s;position:relative;overflow:hidden;}
+.s6-soin-full-card:hover{background:var(--ecru);}
+.s6-soin-full-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--blush);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.s6-soin-full-card:hover::before{transform:scaleX(1);}
+.s6-soin-full-photo{width:100%;aspect-ratio:4/3;background:var(--ecru);overflow:hidden;position:relative;}
+.s6-soin-full-photo-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease;}
+.s6-soin-full-card:hover .s6-soin-full-photo-bg{transform:scale(1.04);}
+.s6-soin-full-body{padding:28px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1;}
+.s6-soin-full-num{font-family:var(--f-serif);font-style:italic;font-size:.78rem;color:var(--blush);opacity:.7;}
+.s6-soin-full-name{font-family:var(--f-serif);font-weight:300;font-size:1.3rem;line-height:1.2;color:var(--encre);flex:1;}
+.s6-soin-full-name em{font-style:italic;}
+.s6-soin-full-desc{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:var(--muted);line-height:1.8;}
+.s6-soin-full-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line);}
+.s6-soin-full-prix{font-family:var(--f-serif);font-style:italic;font-size:1rem;color:var(--blush);}
+.s6-soin-full-dur{font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.s6-soin-full-arrow{font-size:.8rem;color:var(--muted);transition:color .3s,transform .3s;display:inline-block;}
+.s6-soin-full-card:hover .s6-soin-full-arrow{color:var(--blush);transform:translateX(5px);}
+@media(max-width:860px){.s6-soins-full-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.s6-soins-full-grid{grid-template-columns:1fr;}}
+
+/* PACKS */
+.s6-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--poudre);}
+.s6-pack{background:var(--blanc);padding:36px 28px;display:flex;flex-direction:column;gap:12px;}
+.s6-pack-nom{font-family:var(--f-serif);font-weight:300;font-size:1.2rem;color:var(--encre);}
+.s6-pack-contenu{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.8;flex:1;}
+.s6-pack-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--line);}
+.s6-pack-prix{font-family:var(--f-serif);font-style:italic;font-size:1.1rem;color:var(--blush);}
+@media(max-width:760px){.s6-packs-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.s6-packs-grid{grid-template-columns:1fr;}}
+
+/* FAQ */
+.s6-faq-inner{max-width:720px;margin:0 auto;}
+details.s6-faq-item{border-bottom:1px solid var(--poudre);}
+details.s6-faq-item summary{padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-size:1.05rem;color:var(--encre);line-height:1.5;transition:color .2s;}
+details.s6-faq-item summary::-webkit-details-marker{display:none;}
+details.s6-faq-item summary::after{content:'+';font-family:var(--f-serif);font-size:1.3rem;font-weight:300;color:var(--blush);flex-shrink:0;transition:transform .3s;}
+details.s6-faq-item[open] summary{color:var(--blush);}
+details.s6-faq-item[open] summary::after{transform:rotate(45deg);}
+.s6-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:var(--muted);line-height:2;}
+.s6-faq-ans a{color:var(--encre);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--poudre);}
+
+/* CTA */
+.s6-cta{background:var(--encre);padding:120px 6%;text-align:center;position:relative;overflow:hidden;}
+.s6-cta::before{content:'';position:absolute;inset:0;background-image:radial-gradient(var(--blush) 1px,transparent 1px);background-size:40px 40px;opacity:.04;pointer-events:none;}
+.s6-cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.s6-cta-label{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-sans);font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(196,154,138,.5);margin-bottom:24px;justify-content:center;}
+.s6-cta-label::before,.s6-cta-label::after{content:'';width:16px;height:1px;background:var(--blush);opacity:.5;}
+.s6-cta h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.2rem,5.5vw,5.5rem);line-height:1.06;color:var(--blanc);margin-bottom:16px;}
+.s6-cta h2 em{font-style:italic;color:var(--blush2);}
+.s6-cta-sub{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(255,255,255,.35);line-height:1.9;margin-bottom:36px;}
+.s6-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+.s6-maillage{background:var(--blanc);padding:48px 6%;border-top:1px solid var(--line);}
+.s6-maillage-inner{max-width:var(--max);margin:0 auto;}
+.s6-maillage-lbl{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:block;}
+.s6-maillage-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.s6-maillage-pill{display:inline-block;padding:7px 16px;border:1px solid var(--line-md);color:var(--muted);font-family:var(--f-sans);font-size:.7rem;font-weight:300;transition:all .25s;}
+.s6-maillage-pill:hover{border-color:var(--encre);color:var(--encre);}
+
+.s6-reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal.in{opacity:1;transform:none;}
+.s6-reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal-left.in{opacity:1;transform:none;}
+.s6-reveal-right{opacity:0;transform:translateX(24px);transition:opacity 1s ease,transform 1s ease;}.s6-reveal-right.in{opacity:1;transform:none;}
+.s6-d1{transition-delay:.1s;}.s6-d2{transition-delay:.2s;}.s6-d3{transition-delay:.3s;}.s6-d4{transition-delay:.4s;}
+</style>
+</head>
+<body>
+<div class="s6-sticky">
+  <div class="s6-sticky-id"><strong>[Prénom Nom]</strong> — <em>[titre professionnel] à [Ville]</em></div>
+  <div class="s6-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" class="s6-btn-ghost">Offrir</a>
+    <a href="[LIEN_RDV]" class="s6-btn-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
+  </div>
+</div>
+<main>
+
+<!-- HERO -->
+<div class="s6-hero-txt">
+  <div class="s6-hero-ghost" aria-hidden="true">Soins</div>
+  <nav class="s6-hero-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>›</span><span style="color:var(--encre);">Soins</span></nav>
+  <div class="s6-hero-eyebrow">Toutes les prestations</div>
+  <h1 class="s6-hub-h1">Prendre soin de soi<br><em>à [Ville]</em></h1>
+  <p class="s6-hero-sub">[Depuis Bloc 5 — intro générale sur l'offre en 1-2 phrases depuis les mots de la praticienne.]</p>
+</div>
+
+<!-- GRILLE SOINS -->
+<section class="s6-section" style="background:var(--blanc);">
+  <div class="s6-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:48px;" class="s6-reveal">
+      <div>
+        <div class="s6-label">Les soins</div>
+        <h2 class="s6-h2">[X] prestations<br><em>à [Ville]</em></h2>
+      </div>
+      <p class="s6-p">[Depuis Bloc 0 — approche globale de la praticienne en 2 phrases. Ce qui unit tous ses soins.]</p>
+    </div>
+    <div class="s6-soins-full-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s6-soin-full-card s6-reveal s6-d1">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_1]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">01</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 1</em>]</div>
+          <p class="s6-soin-full-desc">[Depuis Bloc 5 — accroche évocatrice.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/[slug-soin-2]-[ville]" class="s6-soin-full-card s6-reveal s6-d2">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_2]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">02</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 2</em>]</div>
+          <p class="s6-soin-full-desc">[Accroche.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s6-soin-full-card s6-reveal s6-d3">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_3]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">03</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 3</em>]</div>
+          <p class="s6-soin-full-desc">[Accroche.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/[slug-soin-4]-[ville]" class="s6-soin-full-card s6-reveal s6-d1">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_4]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">04</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 4</em>]</div>
+          <p class="s6-soin-full-desc">[Accroche.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/[slug-soin-5]-[ville]" class="s6-soin-full-card s6-reveal s6-d2">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_5]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">05</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 5</em>]</div>
+          <p class="s6-soin-full-desc">[Accroche.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+      <a href="/[slug-soin-6]-[ville]" class="s6-soin-full-card s6-reveal s6-d3">
+        <div class="s6-soin-full-photo"><div class="s6-soin-full-photo-bg" style="background-image:url('[URL_PHOTO_SOIN_6]')"></div></div>
+        <div class="s6-soin-full-body">
+          <span class="s6-soin-full-num">06</span>
+          <div class="s6-soin-full-name">[Nom du<br><em>soin 6</em>]</div>
+          <p class="s6-soin-full-desc">[Accroche.]</p>
+          <div class="s6-soin-full-footer"><span class="s6-soin-full-prix">[Tarif] €</span><span class="s6-soin-full-dur">[X]h</span><span class="s6-soin-full-arrow">→</span></div>
+        </div>
+      </a>
+    </div>
+    <p style="font-family:var(--f-sans);font-size:.72rem;font-style:italic;color:var(--muted);text-align:center;margin-top:20px;" class="s6-reveal">Ces soins de bien-être ne se substituent pas à un suivi médical.</p>
+  </div>
+</section>
+
+<!-- PACKS -->
+<section class="s6-section" style="background:var(--ecru);">
+  <div class="s6-inner">
+    <div class="s6-reveal" style="margin-bottom:48px;">
+      <div class="s6-label">Packs & forfaits</div>
+      <h2 class="s6-h2">Accompagnement<br><em>sur la durée</em></h2>
+    </div>
+    <div class="s6-packs-grid">
+      <div class="s6-pack s6-reveal s6-d1">
+        <div class="s6-pack-nom">[Nom du pack 1]</div>
+        <p class="s6-pack-contenu">[Depuis Bloc 6 — contenu du pack, nombre de séances.]</p>
+        <div class="s6-pack-footer">
+          <span class="s6-pack-prix">[Tarif pack] €</span>
+          <a href="[LIEN_PACK_1]" target="_blank" rel="noopener" style="display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--encre);transition:all .3s;text-decoration:none;">Réserver</a>
+        </div>
+      </div>
+      <div class="s6-pack s6-reveal s6-d2">
+        <div class="s6-pack-nom">[Nom du pack 2]</div>
+        <p class="s6-pack-contenu">[Depuis Bloc 6.]</p>
+        <div class="s6-pack-footer">
+          <span class="s6-pack-prix">[Tarif] €</span>
+          <a href="[LIEN_PACK_2]" target="_blank" rel="noopener" style="display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--encre);transition:all .3s;text-decoration:none;">Réserver</a>
+        </div>
+      </div>
+      <div class="s6-pack s6-reveal s6-d3">
+        <div class="s6-pack-nom">[Nom du pack 3]</div>
+        <p class="s6-pack-contenu">[Depuis Bloc 6.]</p>
+        <div class="s6-pack-footer">
+          <span class="s6-pack-prix">[Tarif] €</span>
+          <a href="[LIEN_PACK_3]" target="_blank" rel="noopener" style="display:inline-block;background:var(--encre);color:var(--blanc);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--encre);transition:all .3s;text-decoration:none;">Réserver</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="s6-section" style="background:var(--blanc);">
+  <div class="s6-faq-inner">
+    <div class="s6-reveal" style="text-align:center;margin-bottom:40px;">
+      <div class="s6-label" style="justify-content:center;">Questions fréquentes</div>
+      <h2 class="s6-h2" style="text-align:center;">Ce que vous<br><em>voulez savoir</em></h2>
+    </div>
+    <div class="s6-reveal">
+      <details class="s6-faq-item"><summary>Comment choisir entre les différents soins ?</summary><div class="s6-faq-ans"><p>[Depuis dossier client.] En cas de doute, <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> vous conseille.</p></div></details>
+      <details class="s6-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s6-faq-ans"><p>[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€. [Soin 3] : [Tarif]€. <a href="/[slug-faq]#tarifs">Voir tous les tarifs →</a></p></div></details>
+      <details class="s6-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s6-faq-ans"><p>[CI générales depuis Bloc 5.] Chaque page de soin détaille les CI spécifiques.</p></div></details>
+      <details class="s6-faq-item"><summary>Peut-on combiner plusieurs soins ?</summary><div class="s6-faq-ans"><p>[Depuis dossier client — combinaisons possibles ou non.]</p></div></details>
+      <details class="s6-faq-item"><summary>Comment prendre rendez-vous ?</summary><div class="s6-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]" target="_blank" rel="noopener">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      <details class="s6-faq-item"><summary>Proposez-vous des cartes cadeaux ?</summary><div class="s6-faq-ans"><p>Oui — <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">cartes cadeaux disponibles ici</a>. Code immédiat. Valable 1 an.</p></div></details>
+    </div>
+    <div style="text-align:center;margin-top:28px;" class="s6-reveal">
+      <a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--encre);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--line-md);transition:border-color .3s;text-decoration:none;">Toutes les questions fréquentes →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="s6-cta">
+  <div class="s6-cta-inner s6-reveal">
+    <div class="s6-cta-label">[Prénom Nom] · [Ville]</div>
+    <h2>Quel soin<br><em>vous correspond ?</em></h2>
+    <p class="s6-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · Réservation en ligne 24h/24</p>
+    <div class="s6-cta-btns">
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:inline-block;background:var(--blush);color:var(--blanc);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid var(--blush);transition:all .3s;text-decoration:none;">Prendre rendez-vous</a>
+      <a href="tel:[+33XXXXXXXXX]" style="display:inline-block;background:transparent;color:rgba(255,255,255,.6);font-family:var(--f-sans);font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 32px;border:1px solid rgba(255,255,255,.2);transition:border-color .3s;text-decoration:none;">Nous appeler</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav class="s6-maillage" aria-label="Navigation thématique">
+  <div class="s6-maillage-inner">
+    <span class="s6-maillage-lbl">À découvrir</span>
+    <div class="s6-maillage-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s6-maillage-pill">[Soin 1] à [Ville]</a>
+      <a href="/[slug-soin-2]-[ville]" class="s6-maillage-pill">[Soin 2] à [Ville]</a>
+      <a href="/[slug-soin-3]-[ville]" class="s6-maillage-pill">[Soin 3] à [Ville]</a>
+      <a href="/[slug-a-propos]" class="s6-maillage-pill">À propos de [Prénom]</a>
+      <a href="/[slug-faq]" class="s6-maillage-pill">Questions fréquentes</a>
+      <a href="/[slug-offrir]" class="s6-maillage-pill">Cartes cadeaux</a>
+    </div>
+  </div>
+</nav>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"ItemList","name":"Soins de [Prénom Nom] à [Ville]","url":"https://[votre-domaine].fr/[slug-soins]","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"[Soin 1] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-1]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"[Soin 2] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-2]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"[Soin 3] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-3]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment choisir entre les soins de [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis dossier client]."}},{"@type":"Question","name":"Quels sont les tarifs des soins à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€."}},{"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},{"@type":"Question","name":"Y a-t-il des contre-indications aux soins de [Prénom] ?","acceptedAnswer":{"@type":"Answer","text":"[CI générales depuis Bloc 5]."}},{"@type":"Question","name":"Proposez-vous des cartes cadeaux à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Oui — [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},{"@type":"Question","name":"Peut-on combiner plusieurs soins ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis dossier client]."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Soins","item":"https://[votre-domaine].fr/[slug-soins]"}]}]</script>
+<script>
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s6-reveal,.s6-reveal-left,.s6-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
