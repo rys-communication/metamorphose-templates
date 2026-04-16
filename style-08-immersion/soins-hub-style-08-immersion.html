@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Réservez vos soins à [Ville] — [Prénom Nom], [Titre professionnel]</title>
+<meta name="description" content="Toutes les prestations de [Prénom Nom] à [Ville] : [Soin 1], [Soin 2], [Soin 3]. Tarifs, durées, réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-soins]">
+<meta property="og:type" content="website"><meta property="og:title" content="Soins à [Ville] — [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-soins]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#1C2B2B;--nuit2:#142020;--or:#C9A96E;--or-pale:#E8D5A8;--creme:#F7F3EE;--glass:rgba(28,43,43,.65);--or-line:rgba(201,169,110,.25);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Inter',sans-serif;--max:1320px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--nuit2);color:var(--creme);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--or);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,169,110,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.23,1,.32,1),width .3s,height .3s;}
+.s8-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(20,32,32,.92);backdrop-filter:blur(16px);border-top:1px solid var(--or-line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s8-sticky-id{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.3);}
+.s8-sticky-id strong{color:var(--or);font-weight:400;}
+.s8-sticky-btns{display:flex;gap:0;}
+.s8-btn-sticky{background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(201,169,110,.2);transition:all .3s;display:inline-block;}
+.s8-btn-sticky:hover{border-color:var(--or);color:var(--or);}
+.s8-btn-sticky-cta{background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--or);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s8-btn-sticky-cta:hover{background:transparent;color:var(--or);}
+@media(max-width:600px){.s8-sticky{padding:12px 20px;}.s8-sticky-id{display:none;}.s8-sticky-btns{width:100%;}.s8-btn-sticky,.s8-btn-sticky-cta{flex:1;text-align:center;}}
+.s8-hero{position:relative;min-height:70vh;display:flex;flex-direction:column;overflow:hidden;}
+.s8-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.45) saturate(.8);}
+.s8-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,32,.1) 0%,rgba(20,32,32,.9) 100%);}
+.s8-hero-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:var(--max);margin:0 auto;width:100%;padding:0 6% 64px;}
+.s8-hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s8-hero-tag::before{content:'';width:32px;height:1px;background:var(--or);}
+.s8-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,8vw,10rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);opacity:0;animation:fadeUp 1.2s .35s ease forwards;}
+.s8-hero h1 em{font-style:italic;color:var(--or-pale);}
+.s8-hero-sub{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--or-line);opacity:0;animation:fadeUp .9s .6s ease forwards;}
+.s8-hero-desc{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;max-width:480px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.s8-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:24px;}
+.s8-label::before{content:'';width:28px;height:1px;background:var(--or);}
+.s8-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,6rem);line-height:.92;letter-spacing:-.025em;color:var(--creme);}
+.s8-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-p{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.45);line-height:2.1;margin-bottom:14px;}
+/* GRILLE SOINS IMMERSIVE */
+.s8-soins-section{background:var(--nuit2);padding:0 6%;}
+.s8-soins-inner{max-width:var(--max);margin:0 auto;}
+.s8-soins-header{padding:80px 0 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;border-bottom:1px solid var(--or-line);}
+.s8-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-soin-card{position:relative;overflow:hidden;aspect-ratio:2/3;cursor:none;text-decoration:none;}
+.s8-soin-card:nth-child(even){aspect-ratio:2/3.5;margin-top:-48px;}
+.s8-soin-photo{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.55) saturate(.8);transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .9s;}
+.s8-soin-card:hover .s8-soin-photo{transform:scale(1.07);filter:brightness(.4);}
+.s8-soin-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,32,32,.95) 0%,rgba(20,32,32,0) 55%);}
+.s8-soin-content{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.s8-soin-card:hover .s8-soin-content{transform:translateY(-10px);}
+.s8-soin-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:.88rem;color:var(--or);display:block;margin-bottom:8px;opacity:.6;}
+.s8-soin-nom{font-family:var(--f-serif);font-weight:300;font-size:clamp(1.2rem,2vw,2rem);line-height:1.1;color:var(--creme);margin-bottom:8px;}
+.s8-soin-desc{font-family:var(--f-sans);font-size:.72rem;font-weight:300;color:rgba(247,243,238,.45);line-height:1.8;max-height:0;overflow:hidden;transition:max-height .5s,opacity .4s;opacity:0;}
+.s8-soin-card:hover .s8-soin-desc{max-height:80px;opacity:1;}
+.s8-soin-footer{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--or-line);}
+.s8-soin-prix{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--or);}
+.s8-soin-arrow{font-family:var(--f-sans);font-size:.58rem;color:rgba(247,243,238,.3);letter-spacing:.1em;text-transform:uppercase;transition:all .3s;}
+.s8-soin-card:hover .s8-soin-arrow{color:var(--or);transform:translateX(4px);}
+.s8-soins-cta{padding:48px 0 80px;text-align:center;border-top:1px solid var(--or-line);}
+@media(max-width:860px){.s8-soins-grid{grid-template-columns:1fr 1fr;}.s8-soin-card:nth-child(even){margin-top:0;aspect-ratio:2/3;}.s8-soins-header{grid-template-columns:1fr;}}
+@media(max-width:480px){.s8-soins-grid{grid-template-columns:1fr;}.s8-soin-card{aspect-ratio:4/3 !important;}}
+/* PACKS */
+.s8-packs{position:relative;overflow:hidden;padding:0 6%;}
+.s8-packs-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.12) saturate(.5);}
+.s8-packs-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:100px 0;}
+.s8-packs-header{padding-bottom:48px;border-bottom:1px solid var(--or-line);margin-bottom:56px;}
+.s8-packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-pack{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--or-line);padding:40px 32px;display:flex;flex-direction:column;gap:14px;margin-left:-1px;transition:background .3s;}
+.s8-pack:hover{background:rgba(28,43,43,.85);}
+.s8-pack-nom{font-family:var(--f-serif);font-weight:300;font-size:1.3rem;color:var(--creme);}
+.s8-pack-contenu{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;flex:1;}
+.s8-pack-footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--or-line);}
+.s8-pack-prix{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.5rem;color:var(--or);}
+@media(max-width:760px){.s8-packs-grid{grid-template-columns:1fr;}.s8-pack{margin-left:0;margin-top:-1px;}}
+/* FAQ */
+.s8-faq{background:var(--nuit);padding:0 6%;}
+.s8-faq-inner{max-width:var(--max);margin:0 auto;padding:100px 0;display:grid;grid-template-columns:1fr 1.6fr;gap:80px;}
+details.s8-faq-item{border-bottom:1px solid rgba(201,169,110,.1);}
+details.s8-faq-item:first-of-type{border-top:1px solid rgba(201,169,110,.1);}
+details.s8-faq-item summary{padding:20px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-style:italic;font-size:1rem;color:var(--creme);line-height:1.5;transition:color .25s;}
+details.s8-faq-item summary::-webkit-details-marker{display:none;}
+details.s8-faq-item summary::after{content:'＋';font-family:var(--f-serif);font-size:1.2rem;color:var(--or);flex-shrink:0;transition:transform .35s;line-height:1;font-style:normal;}
+details.s8-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s8-faq-item[open] summary{color:var(--or-pale);}
+.s8-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2.1;}
+.s8-faq-ans a{color:var(--or);}
+@media(max-width:768px){.s8-faq-inner{grid-template-columns:1fr;gap:40px;padding:64px 0;}}
+/* MARQUEE */
+.s8-marquee{background:var(--or);padding:16px 0;overflow:hidden;border-top:1px solid rgba(201,169,110,.4);border-bottom:1px solid rgba(201,169,110,.4);}
+.s8-marquee-track{display:flex;animation:marquee 28s linear infinite;width:max-content;}
+.s8-marquee-item{display:flex;align-items:center;gap:28px;padding:0 36px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--nuit2);}
+.s8-marquee-item strong{font-style:normal;font-weight:600;}
+.s8-marquee-sep{font-family:var(--f-serif);font-size:1rem;color:rgba(28,43,43,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* CTA */
+.s8-cta{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;padding:0 6%;}
+.s8-cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.22) saturate(.6);}
+.s8-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s8-cta-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,7vw,9rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);}
+.s8-cta-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s8-cta-sub{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.35);line-height:2;}
+@media(max-width:768px){.s8-cta-inner{grid-template-columns:1fr;gap:40px;}}
+.s8-maillage{background:var(--nuit2);padding:32px 6%;border-top:1px solid var(--or-line);}
+.s8-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.s8-maillage-lbl{font-family:var(--f-sans);font-size:.5rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-right:8px;white-space:nowrap;}
+.s8-maillage-pill{display:inline-block;padding:6px 16px;border:1px solid rgba(201,169,110,.15);color:rgba(247,243,238,.3);font-family:var(--f-sans);font-size:.64rem;font-weight:300;transition:all .25s;}
+.s8-maillage-pill:hover{border-color:var(--or);color:var(--or);}
+.s8-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal.in{opacity:1;transform:none;}
+.s8-d1{transition-delay:.1s;}.s8-d2{transition-delay:.2s;}.s8-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="s8-sticky">
+  <div class="s8-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s8-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s8-btn-sticky">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s8-btn-sticky-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+<main>
+<section class="s8-hero" aria-label="Soins à [Ville]">
+  <div class="s8-hero-bg" style="background-image:url('[URL_PHOTO_AMBIANCE]')"></div>
+  <div class="s8-hero-overlay"></div>
+  <div class="s8-hero-inner">
+    <div class="s8-hero-tag">Toutes les prestations · [Ville]</div>
+    <h1>Réservez vos soins<br><em>à [Ville].</em></h1>
+    <div class="s8-hero-sub">
+      <p class="s8-hero-desc">[Depuis Bloc 5 — intro générale sur l'offre en 1-2 phrases.]</p>
+    </div>
+  </div>
+</section>
+
+<div class="s8-soins-section">
+  <div class="s8-soins-inner">
+    <div class="s8-soins-header s8-reveal">
+      <div><div class="s8-label">Les soins à [Ville]</div><h2 class="s8-h2">Prenez soin<br><em>de vous.</em></h2></div>
+      <p class="s8-p">[Depuis Bloc 0 — approche globale, 2 phrases. Ce qui unit tous les soins.]</p>
+    </div>
+    <div class="s8-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s8-soin-card s8-reveal s8-d1"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_1]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">I</span><div class="s8-soin-nom">[Soin 1]</div><p class="s8-soin-desc">[Accroche 1 phrase.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+      <a href="/[slug-soin-2]-[ville]" class="s8-soin-card s8-reveal s8-d2"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_2]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">II</span><div class="s8-soin-nom">[Soin 2]</div><p class="s8-soin-desc">[Accroche.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+      <a href="/[slug-soin-3]-[ville]" class="s8-soin-card s8-reveal s8-d3"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_3]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">III</span><div class="s8-soin-nom">[Soin 3]</div><p class="s8-soin-desc">[Accroche.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+      <a href="/[slug-soin-4]-[ville]" class="s8-soin-card s8-reveal s8-d1"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_4]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">IV</span><div class="s8-soin-nom">[Soin 4]</div><p class="s8-soin-desc">[Accroche.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+      <a href="/[slug-soin-5]-[ville]" class="s8-soin-card s8-reveal s8-d2"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_5]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">V</span><div class="s8-soin-nom">[Soin 5]</div><p class="s8-soin-desc">[Accroche.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+      <a href="/[slug-soin-6]-[ville]" class="s8-soin-card s8-reveal s8-d3"><div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_6]')"></div><div class="s8-soin-overlay"></div><div class="s8-soin-content"><span class="s8-soin-num">VI</span><div class="s8-soin-nom">[Soin 6]</div><p class="s8-soin-desc">[Accroche.]</p><div class="s8-soin-footer"><span class="s8-soin-prix">[Tarif] €</span><span class="s8-soin-arrow">Découvrir →</span></div></div></a>
+    </div>
+    <p style="font-family:var(--f-sans);font-size:.7rem;font-style:italic;color:rgba(247,243,238,.2);padding:20px 0;border-top:1px solid var(--or-line);" class="s8-reveal">Ces soins de bien-être ne se substituent pas à un suivi médical.</p>
+  </div>
+</div>
+
+<div class="s8-packs s8-reveal">
+  <div class="s8-packs-bg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+  <div class="s8-packs-inner">
+    <div class="s8-packs-header"><div class="s8-label">Packs & forfaits</div><h2 class="s8-h2">Accompagnement<br><em>sur la durée</em></h2></div>
+    <div class="s8-packs-grid">
+      <div class="s8-pack"><div class="s8-pack-nom">[Nom du pack 1]</div><p class="s8-pack-contenu">[Depuis Bloc 6.]</p><div class="s8-pack-footer"><span class="s8-pack-prix">[Tarif] €</span><a href="[LIEN_PACK_1]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;">Réserver</a></div></div>
+      <div class="s8-pack"><div class="s8-pack-nom">[Nom du pack 2]</div><p class="s8-pack-contenu">[Depuis Bloc 6.]</p><div class="s8-pack-footer"><span class="s8-pack-prix">[Tarif] €</span><a href="[LIEN_PACK_2]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;">Réserver</a></div></div>
+      <div class="s8-pack"><div class="s8-pack-nom">[Nom du pack 3]</div><p class="s8-pack-contenu">[Depuis Bloc 6.]</p><div class="s8-pack-footer"><span class="s8-pack-prix">[Tarif] €</span><a href="[LIEN_PACK_3]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;">Réserver</a></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="s8-marquee" aria-hidden="true"><div class="s8-marquee-track"><div class="s8-marquee-item"><strong>[Soin 1]</strong><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item">[Soin 2]<span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><em>[Soin 3]</em><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item">[Prénom Nom]<span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><em>Réservation en ligne</em><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><strong>[Soin 1]</strong><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item">[Soin 2]<span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><em>[Soin 3]</em><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item">[Prénom Nom]<span class="s8-marquee-sep">·</span></div><div class="s8-marquee-item"><em>Réservation en ligne</em><span class="s8-marquee-sep">·</span></div></div></div>
+
+<div class="s8-faq"><div class="s8-faq-inner">
+  <div><div class="s8-label">Questions fréquentes</div><h2 class="s8-h2" style="margin-bottom:24px;">Ce que vous<br><em>voulez savoir</em></h2><a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;margin-top:8px;">Toutes les questions</a></div>
+  <div>
+    <details class="s8-faq-item"><summary>Comment choisir entre les différents soins à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis dossier.] <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> vous conseille avant toute réservation.</p></div></details>
+    <details class="s8-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s8-faq-ans"><p>[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€. [Soin 3] : [Tarif]€.</p></div></details>
+    <details class="s8-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s8-faq-ans"><p>[CI générales depuis Bloc 5.] Contactez <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> en cas de doute.</p></div></details>
+    <details class="s8-faq-item"><summary>Comment réserver votre soin à [Ville] ?</summary><div class="s8-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a> ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+    <details class="s8-faq-item"><summary>Comment offrir une séance en cadeau à [Ville] ?</summary><div class="s8-faq-ans"><p><a href="[LIEN_CARTE_CADEAU]">Carte cadeau ici</a>. Code immédiat. Valable 1 an.</p></div></details>
+  </div>
+</div></div>
+
+<div class="s8-cta">
+  <div class="s8-cta-bg" style="background-image:url('[URL_PHOTO_AMBIANCE]')"></div>
+  <div class="s8-cta-inner s8-reveal">
+    <h2 class="s8-cta-h2">Quel soin<br><em>vous correspond ?</em></h2>
+    <div class="s8-cta-right">
+      <p class="s8-cta-sub">[Soin 1] · [Soin 2] · [Soin 3] · [Ville] · 24h/24</p>
+      <div style="display:flex;flex-direction:column;gap:0;width:fit-content;">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;">Prendre rendez-vous</a>
+        <a href="tel:[+33XXXXXXXXX]" style="display:block;background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid rgba(247,243,238,.12);transition:all .35s;text-decoration:none;text-align:center;margin-top:-1px;">[Téléphone]</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<nav class="s8-maillage" aria-label="Navigation thématique"><div class="s8-maillage-inner"><span class="s8-maillage-lbl">Explorer</span><a href="/[slug-soin-1]-[ville]" class="s8-maillage-pill">[Soin 1] à [Ville]</a><a href="/[slug-soin-2]-[ville]" class="s8-maillage-pill">[Soin 2] à [Ville]</a><a href="/[slug-a-propos]" class="s8-maillage-pill">À propos</a><a href="/[slug-faq]" class="s8-maillage-pill">FAQ</a><a href="/[slug-offrir]" class="s8-maillage-pill">Cartes cadeaux</a></div></nav>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"ItemList","name":"Soins de [Prénom Nom] à [Ville]","url":"https://[votre-domaine].fr/[slug-soins]","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"Service","name":"[Soin 1] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-1]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":2,"item":{"@type":"Service","name":"[Soin 2] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-2]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}},{"@type":"ListItem","position":3,"item":{"@type":"Service","name":"[Soin 3] à [Ville]","url":"https://[votre-domaine].fr/[slug-soin-3]-[ville]","offers":{"@type":"Offer","price":"[Tarif]","priceCurrency":"EUR"}}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Soins","item":"https://[votre-domaine].fr/[slug-soins]"}]}]</script>
+<script>(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button,details summary').forEach(function(el){el.addEventListener('mouseenter',function(){r.style.width='56px';r.style.height='56px';r.style.borderColor='rgba(201,169,110,.8)';});el.addEventListener('mouseleave',function(){r.style.width='36px';r.style.height='36px';r.style.borderColor='rgba(201,169,110,.5)';});});})();(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s8-reveal').forEach(function(el){io.observe(el);});})();</script>
+</body>
+</html>

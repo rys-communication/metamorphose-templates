@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FAQ — Réservez votre [soin principal] à [Ville] · Toutes vos questions</title>
+<meta name="description" content="Toutes vos questions sur [Soin 1], [Soin 2] à [Ville]. Tarifs, déroulement, réservation — [Prénom Nom] répond. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-faq]">
+<meta property="og:type" content="website"><meta property="og:title" content="FAQ — [Prénom Nom], [Titre professionnel] à [Ville]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-faq]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#1C2B2B;--nuit2:#142020;--or:#C9A96E;--or-pale:#E8D5A8;--creme:#F7F3EE;--glass:rgba(28,43,43,.65);--or-line:rgba(201,169,110,.25);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Inter',sans-serif;--max:1320px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--nuit2);color:var(--creme);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--or);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,169,110,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.23,1,.32,1),width .3s,height .3s;}
+.s8-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(20,32,32,.92);backdrop-filter:blur(16px);border-top:1px solid var(--or-line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s8-sticky-id{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.3);}
+.s8-sticky-id strong{color:var(--or);font-weight:400;}
+.s8-sticky-btns{display:flex;gap:0;}
+.s8-btn-sticky{background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(201,169,110,.2);transition:all .3s;display:inline-block;}
+.s8-btn-sticky:hover{border-color:var(--or);color:var(--or);}
+.s8-btn-sticky-cta{background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--or);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s8-btn-sticky-cta:hover{background:transparent;color:var(--or);}
+@media(max-width:600px){.s8-sticky{padding:12px 20px;}.s8-sticky-id{display:none;}.s8-sticky-btns{width:100%;}.s8-btn-sticky,.s8-btn-sticky-cta{flex:1;text-align:center;}}
+/* HERO */
+.s8-hero{position:relative;min-height:60vh;display:flex;flex-direction:column;overflow:hidden;}
+.s8-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.3) saturate(.7);}
+.s8-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,32,.2) 0%,rgba(20,32,32,.9) 100%);}
+.s8-hero-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:var(--max);margin:0 auto;width:100%;padding:0 6% 64px;}
+.s8-hero-breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-bottom:32px;opacity:0;animation:fadeUp .7s .1s ease forwards;}
+.s8-hero-breadcrumb a:hover{color:var(--or);}
+.s8-hero-breadcrumb span{color:rgba(247,243,238,.1);}
+.s8-hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s8-hero-tag::before{content:'';width:32px;height:1px;background:var(--or);}
+.s8-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,8vw,10rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);opacity:0;animation:fadeUp 1.2s .35s ease forwards;}
+.s8-hero h1 em{font-style:italic;color:var(--or-pale);}
+.s8-hero-anchors{display:flex;flex-wrap:wrap;gap:0;margin-top:40px;padding-top:28px;border-top:1px solid var(--or-line);opacity:0;animation:fadeUp .9s .6s ease forwards;}
+.s8-anchor{display:inline-block;padding:8px 16px;border:1px solid rgba(201,169,110,.15);color:rgba(247,243,238,.3);font-family:var(--f-sans);font-size:.54rem;font-weight:300;letter-spacing:.1em;text-transform:uppercase;transition:all .25s;margin:-1px 0 0 -1px;}
+.s8-anchor:hover{border-color:var(--or);color:var(--or);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+/* BASE */
+.s8-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:24px;}
+.s8-label::before{content:'';width:28px;height:1px;background:var(--or);}
+.s8-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2rem,4vw,5rem);line-height:.92;letter-spacing:-.025em;color:var(--creme);}
+.s8-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-p{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.45);line-height:2.1;margin-bottom:14px;}
+/* FAQ LAYOUT */
+.s8-faq-page{background:var(--nuit2);padding:0 6%;}
+.s8-faq-layout{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:220px 1fr;gap:80px;padding:100px 0;align-items:start;}
+.s8-faq-nav{position:sticky;top:32px;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--or-line);}
+.s8-faq-nav-item{font-family:var(--f-sans);font-size:.68rem;font-weight:300;color:rgba(247,243,238,.3);padding:12px 0;border-bottom:1px solid rgba(201,169,110,.07);transition:color .2s;cursor:pointer;display:flex;align-items:center;gap:10px;}
+.s8-faq-nav-item:hover,.s8-faq-nav-item.active{color:var(--or);}
+.s8-faq-nav-num{font-family:var(--f-serif);font-style:italic;font-size:.8rem;color:var(--or);min-width:18px;}
+.s8-faq-content{display:flex;flex-direction:column;gap:72px;}
+.s8-faq-cat{scroll-margin-top:100px;}
+.s8-faq-cat-header{display:flex;align-items:center;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--or-line);margin-bottom:0;}
+.s8-faq-cat-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.2rem;color:var(--or);}
+.s8-faq-cat-titre{font-family:var(--f-serif);font-weight:300;font-size:1.5rem;color:var(--creme);}
+details.s8-faq-item{border-bottom:1px solid rgba(201,169,110,.1);}
+details.s8-faq-item summary{padding:20px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-style:italic;font-size:1rem;color:var(--creme);line-height:1.5;transition:color .25s;}
+details.s8-faq-item summary::-webkit-details-marker{display:none;}
+details.s8-faq-item summary::after{content:'＋';font-family:var(--f-serif);font-size:1.2rem;color:var(--or);flex-shrink:0;transition:transform .35s;line-height:1;font-style:normal;}
+details.s8-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s8-faq-item[open] summary{color:var(--or-pale);}
+.s8-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2.1;}
+.s8-faq-ans a{color:var(--or);}
+/* CTA MID */
+.s8-cta-mid{background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--or-line);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:8px 0;}
+.s8-cta-mid-txt{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--or-pale);}
+@media(max-width:860px){.s8-faq-layout{grid-template-columns:1fr;gap:48px;padding:64px 0;}.s8-faq-nav{display:none;}}
+/* MARQUEE */
+.s8-marquee{background:var(--or);padding:16px 0;overflow:hidden;border-top:1px solid rgba(201,169,110,.4);border-bottom:1px solid rgba(201,169,110,.4);}
+.s8-marquee-track{display:flex;animation:marquee 28s linear infinite;width:max-content;}
+.s8-marquee-item{display:flex;align-items:center;gap:28px;padding:0 36px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--nuit2);}
+.s8-marquee-item strong{font-style:normal;font-weight:600;}
+.s8-marquee-sep{font-family:var(--f-serif);font-size:1rem;color:rgba(28,43,43,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* CTA FINAL */
+.s8-cta{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;padding:0 6%;}
+.s8-cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.2) saturate(.6);}
+.s8-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s8-cta-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,7vw,9rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);}
+.s8-cta-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s8-cta-sub{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.35);line-height:2;}
+@media(max-width:768px){.s8-cta-inner{grid-template-columns:1fr;gap:40px;}}
+.s8-maillage{background:var(--nuit2);padding:32px 6%;border-top:1px solid var(--or-line);}
+.s8-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.s8-maillage-lbl{font-family:var(--f-sans);font-size:.5rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-right:8px;white-space:nowrap;}
+.s8-maillage-pill{display:inline-block;padding:6px 16px;border:1px solid rgba(201,169,110,.15);color:rgba(247,243,238,.3);font-family:var(--f-sans);font-size:.64rem;font-weight:300;transition:all .25s;}
+.s8-maillage-pill:hover{border-color:var(--or);color:var(--or);}
+.s8-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="s8-sticky">
+  <div class="s8-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s8-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s8-btn-sticky">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s8-btn-sticky-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+<main>
+<div class="s8-hero">
+  <div class="s8-hero-bg" style="background-image:url('[URL_PHOTO_AMBIANCE]')"></div>
+  <div class="s8-hero-overlay"></div>
+  <div class="s8-hero-inner">
+    <nav class="s8-hero-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>›</span><span>FAQ</span></nav>
+    <div class="s8-hero-tag">Questions fréquentes · [Ville]</div>
+    <h1>Vos<br><em>questions.</em></h1>
+    <div class="s8-hero-anchors">
+      <a href="#generalites" class="s8-anchor">Généralités</a>
+      <a href="#soins" class="s8-anchor">Les soins</a>
+      <a href="#tarifs" class="s8-anchor">Tarifs</a>
+      <a href="#deroulement" class="s8-anchor">Déroulement</a>
+      <a href="#indications" class="s8-anchor">CI</a>
+      <a href="#reservation" class="s8-anchor">Réservation</a>
+      <a href="#praticienne" class="s8-anchor">Praticienne</a>
+      <a href="#cabinet" class="s8-anchor">Cabinet</a>
+      <a href="#cadeaux" class="s8-anchor">Cadeaux</a>
+      <a href="#apres" class="s8-anchor">Après</a>
+    </div>
+  </div>
+</div>
+
+<div class="s8-faq-page">
+  <div class="s8-faq-layout">
+    <nav class="s8-faq-nav" aria-label="Navigation FAQ">
+      <a href="#generalites" class="s8-faq-nav-item"><span class="s8-faq-nav-num">I</span>Généralités</a>
+      <a href="#soins" class="s8-faq-nav-item"><span class="s8-faq-nav-num">II</span>Les soins</a>
+      <a href="#tarifs" class="s8-faq-nav-item"><span class="s8-faq-nav-num">III</span>Tarifs</a>
+      <a href="#deroulement" class="s8-faq-nav-item"><span class="s8-faq-nav-num">IV</span>Déroulement</a>
+      <a href="#indications" class="s8-faq-nav-item"><span class="s8-faq-nav-num">V</span>Indications & CI</a>
+      <a href="#reservation" class="s8-faq-nav-item"><span class="s8-faq-nav-num">VI</span>Réservation</a>
+      <a href="#praticienne" class="s8-faq-nav-item"><span class="s8-faq-nav-num">VII</span>Praticienne</a>
+      <a href="#cabinet" class="s8-faq-nav-item"><span class="s8-faq-nav-num">VIII</span>Cabinet</a>
+      <a href="#cadeaux" class="s8-faq-nav-item"><span class="s8-faq-nav-num">IX</span>Cadeaux</a>
+      <a href="#apres" class="s8-faq-nav-item"><span class="s8-faq-nav-num">X</span>Après</a>
+    </nav>
+    <div class="s8-faq-content">
+      <div class="s8-faq-cat s8-reveal" id="generalites"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">I</span><span class="s8-faq-cat-titre">Généralités</span></div>
+        <details class="s8-faq-item"><summary>Qui est [Prénom Nom] et quelle est sa spécialité à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 9 + Bloc 0 ADN.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quelles prestations propose [Prénom] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Soin 1], [Soin 2], [Soin 3]. <a href="/[slug-soins]">Voir toutes les prestations →</a></p></div></details>
+        <details class="s8-faq-item"><summary>Ces soins remplacent-ils un suivi médical ?</summary><div class="s8-faq-ans"><p>Non. Ces soins de bien-être sont complémentaires à un suivi médical et ne s'y substituent pas.</p></div></details>
+        <details class="s8-faq-item"><summary>Pour qui sont adaptés ces soins à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 0 profil clientèle.]</p></div></details>
+        <details class="s8-faq-item"><summary>Comment contacter [Prénom Nom] ?</summary><div class="s8-faq-ans"><p><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> ou <a href="mailto:[email]">[Email]</a>.</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="soins"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">II</span><span class="s8-faq-cat-titre">Les soins</span></div>
+        <details class="s8-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.] <a href="/[slug-soin-1]-[ville]">En savoir plus →</a></p></div></details>
+        <details class="s8-faq-item"><summary>En quoi consiste [Soin 2] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.] <a href="/[slug-soin-2]-[ville]">En savoir plus →</a></p></div></details>
+        <details class="s8-faq-item"><summary>Comment choisir entre les différents soins ?</summary><div class="s8-faq-ans"><p>[Depuis dossier.] En cas de doute, <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> vous conseille avant réservation.</p></div></details>
+        <details class="s8-faq-item"><summary>Proposez-vous des packs ou forfaits ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 6.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quelle est la différence entre [Soin 1] et [Soin 2] ?</summary><div class="s8-faq-ans"><p>[Depuis dossier.]</p></div></details>
+      </div>
+      <div class="s8-cta-mid s8-reveal"><div class="s8-cta-mid-txt">« Une question avant de réserver ? [Prénom] répond. »</div><a href="tel:[+33XXXXXXXXX]" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--or);transition:all .3s;text-decoration:none;white-space:nowrap;">[Téléphone]</a></div>
+      <div class="s8-faq-cat s8-reveal" id="tarifs"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">III</span><span class="s8-faq-cat-titre">Tarifs & paiement</span></div>
+        <details class="s8-faq-item"><summary>Quels sont les tarifs des soins à [Ville] ?</summary><div class="s8-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée].</p></div></details>
+        <details class="s8-faq-item"><summary>Ces soins sont-ils remboursés ?</summary><div class="s8-faq-ans"><p>[Depuis dossier — remboursement mutuelle éventuel.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quels modes de paiement acceptez-vous ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5/6.]</p></div></details>
+        <details class="s8-faq-item"><summary>Le paiement en plusieurs fois est-il possible ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Doit-on payer au moment de la réservation ?</summary><div class="s8-faq-ans"><p>[Conditions de pré-paiement depuis Bloc 6.]</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="deroulement"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">IV</span><span class="s8-faq-cat-titre">Déroulement</span></div>
+        <details class="s8-faq-item"><summary>Comment se déroule une première séance à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Combien de temps dure une séance ?</summary><div class="s8-faq-ans"><p>[Soin 1] : [Durée]. [Soin 2] : [Durée].</p></div></details>
+        <details class="s8-faq-item"><summary>Faut-il se déshabiller ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Que faut-il prévoir avant d'arriver ?</summary><div class="s8-faq-ans"><p>[Conseils pratiques depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Combien de séances sont nécessaires ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="indications"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">V</span><span class="s8-faq-cat-titre">Indications & contre-indications</span></div>
+        <details class="s8-faq-item"><summary>Y a-t-il des contre-indications à [Soin 1] ?</summary><div class="s8-faq-ans"><p>[CI exactes depuis Bloc 5.] <a href="tel:[+33XXXXXXXXX]">Contactez [Prénom]</a> en cas de doute.</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on recevoir un soin pendant la grossesse ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 CI grossesse.]</p></div></details>
+        <details class="s8-faq-item"><summary>Ces soins sont-ils adaptés aux personnes âgées ?</summary><div class="s8-faq-ans"><p>[Depuis dossier.]</p></div></details>
+        <details class="s8-faq-item"><summary>Ces soins sont-ils adaptés aux enfants ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 âge minimum.]</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on recevoir un soin en cas de maladie ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 CI médicales.] Ces soins ne remplacent pas un suivi médical.</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="reservation"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">VI</span><span class="s8-faq-cat-titre">Réservation</span></div>
+        <details class="s8-faq-item"><summary>Comment réserver votre [soin principal] à [Ville] ?</summary><div class="s8-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+        <details class="s8-faq-item"><summary>Quelle est la politique d'annulation ?</summary><div class="s8-faq-ans"><p>[Délai minimum et procédure depuis dossier.]</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on reporter un rendez-vous ?</summary><div class="s8-faq-ans"><p>[Conditions depuis dossier.]</p></div></details>
+        <details class="s8-faq-item"><summary>Proposez-vous des séances à domicile ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Proposez-vous des séances en visio ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+      </div>
+      <div class="s8-cta-mid s8-reveal"><div class="s8-cta-mid-txt">« Prête à réserver votre [soin] à [Ville] ? »</div><a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:12px 28px;border:1px solid var(--or);transition:all .3s;text-decoration:none;white-space:nowrap;">Prendre rendez-vous</a></div>
+      <div class="s8-faq-cat s8-reveal" id="praticienne"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">VII</span><span class="s8-faq-cat-titre">La praticienne</span></div>
+        <details class="s8-faq-item"><summary>Quel est le parcours de [Prénom Nom] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 9.] <a href="/[slug-a-propos]">Découvrir son parcours →</a></p></div></details>
+        <details class="s8-faq-item"><summary>Quelles formations a suivies [Prénom] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 9.]</p></div></details>
+        <details class="s8-faq-item"><summary>Depuis combien de temps [Prénom] pratique à [Ville] ?</summary><div class="s8-faq-ans"><p>[X] ans depuis [Année].</p></div></details>
+        <details class="s8-faq-item"><summary>Quelle est l'approche différenciante de [Prénom] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 0 "Ce que je fais différemment".]</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on contacter [Prénom] avant de réserver ?</summary><div class="s8-faq-ans"><p>Oui — <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> ou <a href="mailto:[email]">[Email]</a>.</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="cabinet"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">VIII</span><span class="s8-faq-cat-titre">Cabinet & accès</span></div>
+        <details class="s8-faq-item"><summary>Où se situe le cabinet à [Ville] ?</summary><div class="s8-faq-ans"><p>[Adresse depuis Bloc 2.] <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener">Voir sur Google Maps →</a></p></div></details>
+        <details class="s8-faq-item"><summary>Y a-t-il un parking à proximité ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 2.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quels sont les horaires du cabinet à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 10.]</p></div></details>
+        <details class="s8-faq-item"><summary>Le cabinet est-il accessible PMR ?</summary><div class="s8-faq-ans"><p>[Depuis dossier si mentionné, sinon inviter à contacter.]</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on venir avec un enfant en bas âge ?</summary><div class="s8-faq-ans"><p>[Depuis dossier.]</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="cadeaux"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">IX</span><span class="s8-faq-cat-titre">Cartes cadeaux</span></div>
+        <details class="s8-faq-item"><summary>Comment offrir une séance en cadeau à [Ville] ?</summary><div class="s8-faq-ans"><p><a href="[LIEN_CARTE_CADEAU]">Carte cadeau ici</a>. Code envoyé immédiatement. Valable 1 an.</p></div></details>
+        <details class="s8-faq-item"><summary>Combien de temps la carte cadeau est-elle valable ?</summary><div class="s8-faq-ans"><p>1 an à compter de la date d'achat.</p></div></details>
+        <details class="s8-faq-item"><summary>Comment la bénéficiaire prend-elle rendez-vous ?</summary><div class="s8-faq-ans"><p>Elle réserve sur <a href="[LIEN_RDV]">la plateforme</a> en saisissant son code. Aucun paiement sur place.</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on cumuler plusieurs cartes cadeaux ?</summary><div class="s8-faq-ans"><p>Oui — chaque code est indépendant.</p></div></details>
+        <details class="s8-faq-item"><summary>Le montant est-il indiqué sur la carte ?</summary><div class="s8-faq-ans"><p>Non — seul le soin est mentionné.</p></div></details>
+      </div>
+      <div class="s8-faq-cat s8-reveal" id="apres"><div class="s8-faq-cat-header"><span class="s8-faq-cat-num">X</span><span class="s8-faq-cat-titre">Après la séance</span></div>
+        <details class="s8-faq-item"><summary>Que ressent-on après une séance de [Soin 1] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 0 "Ce que je veux qu'elles emportent".]</p></div></details>
+        <details class="s8-faq-item"><summary>Peut-on reprendre ses activités normalement ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 selon le soin.]</p></div></details>
+        <details class="s8-faq-item"><summary>Y a-t-il des conseils à suivre après la séance ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 si mentionné.]</p></div></details>
+        <details class="s8-faq-item"><summary>À quelle fréquence revenir ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5.]</p></div></details>
+        <details class="s8-faq-item"><summary>Comment laisser un avis après ma séance ?</summary><div class="s8-faq-ans"><p><a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener">Sur la fiche Google →</a></p></div></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="s8-marquee" aria-hidden="true">
+  <div class="s8-marquee-track">
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Ville]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Soin 1]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Soin 2]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>Réservation en ligne</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Ville]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Soin 1]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Soin 2]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>Réservation en ligne</em><span class="s8-marquee-sep">·</span></div>
+  </div>
+</div>
+
+<div class="s8-cta">
+  <div class="s8-cta-bg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+  <div class="s8-cta-inner s8-reveal">
+    <h2 class="s8-cta-h2">Encore une<br><em>question ?</em></h2>
+    <div class="s8-cta-right">
+      <p class="s8-cta-sub">[Prénom] répond avant toute réservation — par téléphone ou email.</p>
+      <div style="display:flex;flex-direction:column;gap:0;width:fit-content;">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;">Prendre rendez-vous</a>
+        <a href="tel:[+33XXXXXXXXX]" style="display:block;background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid rgba(247,243,238,.12);transition:all .35s;text-decoration:none;text-align:center;margin-top:-1px;">[Téléphone]</a>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<nav class="s8-maillage" aria-label="Navigation thématique">
+  <div class="s8-maillage-inner">
+    <span class="s8-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin-1]-[ville]" class="s8-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s8-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soins]" class="s8-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-a-propos]" class="s8-maillage-pill">À propos</a>
+    <a href="/[slug-offrir]" class="s8-maillage-pill">Cartes cadeaux</a>
+  </div>
+</nav>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qui est [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 9]."}},{"@type":"Question","name":"En quoi consiste [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5]."}},{"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€."}},{"@type":"Question","name":"Comment réserver votre [soin principal] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},{"@type":"Question","name":"Y a-t-il des contre-indications ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]."}},{"@type":"Question","name":"Où se situe le cabinet à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Adresse depuis Bloc 2]."}},{"@type":"Question","name":"Comment offrir une séance en cadeau à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}},{"@type":"Question","name":"Quelle est la politique d'annulation ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis dossier]."}},{"@type":"Question","name":"Depuis combien de temps [Prénom] pratique à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[X] ans depuis [Année]."}},{"@type":"Question","name":"Que ressent-on après une séance ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0]."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://[votre-domaine].fr/[slug-faq]"}]}</script>
+<script>
+(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button,details summary').forEach(function(el){el.addEventListener('mouseenter',function(){r.style.width='56px';r.style.height='56px';r.style.borderColor='rgba(201,169,110,.8)';});el.addEventListener('mouseleave',function(){r.style.width='36px';r.style.height='36px';r.style.borderColor='rgba(201,169,110,.5)';});});})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s8-reveal').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

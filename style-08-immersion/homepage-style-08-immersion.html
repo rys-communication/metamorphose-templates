@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Titre professionnel] à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="[Titre professionnel] à [Ville] avec [Prénom Nom]. [Bénéfice principal]. Réservation en ligne 24h/24.">
+<link rel="canonical" href="https://[votre-domaine].fr">
+<meta property="og:type" content="website"><meta property="og:title" content="[Titre professionnel] à [Ville] — [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit:    #1C2B2B;
+  --nuit2:   #142020;
+  --sauge:   #4A7068;
+  --or:      #C9A96E;
+  --or-pale: #E8D5A8;
+  --creme:   #F7F3EE;
+  --gris-v:  #8C9E9A;
+  --glass:   rgba(28,43,43,.65);
+  --glass2:  rgba(20,32,32,.80);
+  --or-line: rgba(201,169,110,.25);
+  --f-serif: 'Cormorant Garamond',Georgia,serif;
+  --f-sans:  'Inter',sans-serif;
+  --max:     1320px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--f-sans);font-weight:300;
+  background:var(--nuit2);color:var(--creme);
+  padding-bottom:68px;overflow-x:hidden;
+  cursor:none;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* CURSEUR CUSTOM */
+.cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--or);border-radius:50%;
+  pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s ease,opacity .3s;
+  mix-blend-mode:normal;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(201,169,110,.5);border-radius:50%;
+  pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:transform .35s cubic-bezier(.23,1,.32,1),width .3s,height .3s,opacity .3s;
+}
+body:hover .cursor{opacity:1;}
+body:not(:hover) .cursor{opacity:0;}
+
+/* STICKY */
+.s8-sticky{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:rgba(20,32,32,.92);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--or-line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 48px;gap:16px;
+}
+.s8-sticky-id{
+  font-family:var(--f-sans);font-size:.58rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,243,238,.3);
+}
+.s8-sticky-id strong{color:var(--or);font-weight:400;}
+.s8-sticky-btns{display:flex;gap:0;}
+.s8-btn-sticky{
+  background:transparent;color:rgba(247,243,238,.35);
+  font-family:var(--f-sans);font-size:.58rem;font-weight:300;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:10px 22px;border:1px solid rgba(201,169,110,.2);
+  transition:all .3s;display:inline-block;
+}
+.s8-btn-sticky:hover{border-color:var(--or);color:var(--or);}
+.s8-btn-sticky-cta{
+  background:var(--or);color:var(--nuit2);
+  font-family:var(--f-sans);font-size:.58rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:10px 28px;border:1px solid var(--or);
+  transition:all .3s;display:inline-block;margin-left:-1px;
+}
+.s8-btn-sticky-cta:hover{background:transparent;color:var(--or);}
+@media(max-width:600px){
+  .s8-sticky{padding:12px 20px;}
+  .s8-sticky-id{display:none;}
+  .s8-sticky-btns{width:100%;}
+  .s8-btn-sticky,.s8-btn-sticky-cta{flex:1;text-align:center;}
+}
+
+/* ───────────────────────────────────────────
+   HERO IMMERSIF 100VH
+─────────────────────────────────────────── */
+.s8-hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+.s8-hero-bg{
+  position:absolute;
+  top:-20%;left:0;right:0;bottom:-20%;
+  background-image:url('[URL_PHOTO_HERO]');
+  background-size:cover;background-position:center top;
+  will-change:transform;
+  filter:brightness(.75) saturate(.9);
+}
+.s8-hero-bg.loaded{opacity:1;}
+.s8-hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(20,32,32,.2) 0%,
+    rgba(20,32,32,.0) 35%,
+    rgba(20,32,32,.0) 55%,
+    rgba(20,32,32,.85) 100%
+  );
+}
+.s8-hero-num{
+  position:absolute;top:50%;right:4%;
+  transform:translateY(-60%);
+  font-family:var(--f-serif);font-weight:300;
+  font-size:clamp(16rem,26vw,36rem);line-height:1;
+  color:rgba(247,243,238,.04);pointer-events:none;
+  letter-spacing:-.06em;
+}
+.s8-hero-inner{
+  position:relative;z-index:2;
+  flex:1;display:flex;flex-direction:column;
+  justify-content:flex-end;
+  max-width:var(--max);margin:0 auto;width:100%;
+  padding:0 6% 72px;
+}
+.s8-hero-tag{
+  display:inline-flex;align-items:center;gap:16px;
+  font-family:var(--f-sans);font-size:.56rem;font-weight:400;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--or);
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s .2s ease forwards;
+}
+.s8-hero-tag::before{content:'';width:32px;height:1px;background:var(--or);}
+.s8-hero h1{
+  font-family:var(--f-serif);font-weight:300;
+  font-size:clamp(3.5rem,9vw,12rem);line-height:.88;
+  letter-spacing:-.03em;color:var(--creme);
+  opacity:0;animation:fadeUp 1.2s .35s ease forwards;
+}
+.s8-hero h1 em{
+  font-style:italic;font-weight:300;color:var(--or-pale);
+}
+.s8-hero-sub-row{
+  display:flex;align-items:flex-end;
+  justify-content:space-between;gap:40px;
+  margin-top:40px;padding-top:28px;
+  border-top:1px solid var(--or-line);
+  opacity:0;animation:fadeUp .9s .65s ease forwards;
+}
+.s8-hero-desc{
+  font-family:var(--f-sans);font-size:.84rem;font-weight:300;
+  color:rgba(247,243,238,.45);line-height:2;max-width:420px;
+}
+.s8-hero-btns{display:flex;gap:0;flex-shrink:0;}
+.s8-btn-hero-main{
+  display:inline-block;background:var(--or);color:var(--nuit2);
+  font-family:var(--f-sans);font-size:.6rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:16px 36px;border:1px solid var(--or);
+  transition:all .35s;
+}
+.s8-btn-hero-main:hover{background:transparent;color:var(--or);}
+.s8-btn-hero-sec{
+  display:inline-block;background:transparent;
+  color:rgba(247,243,238,.4);
+  font-family:var(--f-sans);font-size:.6rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:16px 28px;border:1px solid rgba(247,243,238,.15);
+  transition:all .35s;margin-left:-1px;
+}
+.s8-btn-hero-sec:hover{border-color:rgba(247,243,238,.5);color:var(--creme);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+@media(max-width:768px){
+  .s8-hero h1{font-size:clamp(3rem,13vw,6rem);}
+  .s8-hero-sub-row{flex-direction:column;align-items:flex-start;gap:24px;}
+  .s8-hero-btns{flex-direction:column;width:100%;}
+  .s8-btn-hero-main,.s8-btn-hero-sec{text-align:center;margin-left:0;margin-top:-1px;}
+}
+
+/* ───────────────────────────────────────────
+   BASE
+─────────────────────────────────────────── */
+.s8-section{padding:120px 6%;}
+.s8-inner{max-width:var(--max);margin:0 auto;}
+.s8-label{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--f-sans);font-size:.54rem;font-weight:400;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--or);
+  margin-bottom:24px;
+}
+.s8-label::before{content:'';width:28px;height:1px;background:var(--or);}
+.s8-h2{
+  font-family:var(--f-serif);font-weight:300;
+  font-size:clamp(2.2rem,4.5vw,6rem);line-height:.92;
+  letter-spacing:-.025em;color:var(--creme);
+}
+.s8-h2 em{font-style:italic;font-weight:300;color:var(--or-pale);}
+.s8-p{
+  font-family:var(--f-sans);font-size:.84rem;font-weight:300;
+  color:rgba(247,243,238,.45);line-height:2.1;margin-bottom:14px;
+}
+.s8-filet{width:100%;height:1px;background:var(--or-line);margin:0;}
+
+/* ───────────────────────────────────────────
+   S1 ACCROCHE — VERRE DÉPOLI SUR FOND PHOTO
+─────────────────────────────────────────── */
+.s8-accroche{position:relative;overflow:hidden;min-height:70vh;display:flex;align-items:center;}
+.s8-accroche-bg{
+  position:absolute;inset:0;
+  background-image:url('[URL_PHOTO_ACCROCHE]');
+  background-size:cover;background-position:center;
+  filter:brightness(.5) saturate(.85);
+  transform:scale(1.04);
+  transition:transform 12s ease;
+}
+.s8-accroche:hover .s8-accroche-bg{transform:scale(1);}
+.s8-accroche-inner{
+  position:relative;z-index:2;
+  max-width:var(--max);margin:0 auto;width:100%;
+  padding:80px 6%;
+}
+.s8-glass{
+  background:var(--glass);
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid var(--or-line);
+  padding:56px 64px;
+  max-width:680px;
+}
+.s8-accroche-quote{
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:clamp(1.5rem,3vw,3rem);line-height:1.35;
+  color:var(--creme);margin-bottom:32px;letter-spacing:-.01em;
+}
+.s8-accroche-quote span{color:var(--or-pale);}
+.s8-accroche-meta{
+  display:flex;align-items:center;gap:16px;
+  padding-top:24px;border-top:1px solid var(--or-line);
+}
+.s8-accroche-nom{
+  font-family:var(--f-serif);font-weight:300;font-size:.95rem;
+  color:var(--creme);letter-spacing:.04em;
+}
+.s8-accroche-titre{
+  font-family:var(--f-sans);font-size:.54rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,243,238,.35);
+}
+@media(max-width:640px){.s8-glass{padding:36px 28px;}.s8-accroche-quote{font-size:clamp(1.3rem,6vw,2rem);}}
+
+/* ───────────────────────────────────────────
+   S2 SOINS — GRILLE PHOTOS IMMERSIVE
+─────────────────────────────────────────── */
+.s8-soins{background:var(--nuit2);padding:0 6% 0;}
+.s8-soins-inner{max-width:var(--max);margin:0 auto;}
+.s8-soins-header{
+  padding:80px 0 56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;
+  align-items:end;
+  border-bottom:1px solid var(--or-line);
+}
+.s8-soins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-soin{
+  position:relative;overflow:hidden;
+  aspect-ratio:3/4;
+  cursor:none;
+  display:block;
+  text-decoration:none;
+}
+.s8-soin-photo{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform .9s cubic-bezier(.25,.46,.45,.94),filter .9s ease;
+  filter:brightness(.6) saturate(.8);
+  pointer-events:none;
+}
+.s8-soin:hover .s8-soin-photo{
+  transform:scale(1.07);
+  filter:brightness(.35) saturate(.7);
+}
+.s8-soin-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(20,32,32,.95) 0%,rgba(20,32,32,.1) 60%);
+  pointer-events:none;
+}
+.s8-soin-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:32px 28px;
+  transform:translateY(0);
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.s8-soin:hover .s8-soin-content{transform:translateY(-8px);}
+.s8-soin-num{
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:.9rem;color:var(--or);display:block;margin-bottom:8px;
+  opacity:.6;
+}
+.s8-soin-nom{
+  font-family:var(--f-serif);font-weight:300;
+  font-size:clamp(1.3rem,2.2vw,2.2rem);line-height:1.1;
+  color:var(--creme);margin-bottom:8px;letter-spacing:-.01em;
+}
+.s8-soin-desc{
+  font-family:var(--f-sans);font-size:.74rem;font-weight:300;
+  color:rgba(247,243,238,.5);line-height:1.8;
+  max-height:0;overflow:hidden;
+  transition:max-height .5s ease,opacity .4s ease;
+  opacity:0;
+}
+.s8-soin:hover .s8-soin-desc{max-height:80px;opacity:1;}
+.s8-soin-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:16px;padding-top:14px;
+  border-top:1px solid var(--or-line);
+}
+.s8-soin-prix{
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:1.1rem;color:var(--or);
+}
+.s8-soin-arrow{
+  font-family:var(--f-sans);font-size:.6rem;
+  color:rgba(247,243,238,.5);letter-spacing:.1em;
+  transition:color .3s,transform .3s;
+  text-transform:uppercase;
+}
+.s8-soin:hover .s8-soin-arrow{color:var(--or);transform:translateX(5px);}
+.s8-soins-cta{
+  padding:48px 0 80px;text-align:center;
+  border-top:1px solid var(--or-line);
+}
+@media(max-width:860px){
+  .s8-soins-grid{grid-template-columns:1fr 1fr;gap:0;}
+  .s8-soins-header{grid-template-columns:1fr;}
+}
+@media(max-width:480px){.s8-soins-grid{grid-template-columns:1fr;}}
+
+/* ───────────────────────────────────────────
+   S3 PRATICIENNE — PLEIN ÉCRAN SPLIT
+─────────────────────────────────────────── */
+.s8-prat{
+  position:relative;min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  overflow:hidden;
+}
+.s8-prat-photo-wrap{position:relative;overflow:hidden;}
+.s8-prat-photo{
+  position:absolute;inset:0;
+  background-image:url('[URL_PHOTO_PORTRAIT]');
+  background-size:cover;background-position:center top;
+  transition:transform 14s ease;
+}
+.s8-prat:hover .s8-prat-photo{transform:scale(1.04);}
+.s8-prat-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    90deg,
+    rgba(20,32,32,0) 0%,
+    rgba(20,32,32,.6) 100%
+  );
+}
+.s8-prat-txt{
+  background:var(--nuit);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 72px;
+  position:relative;overflow:hidden;
+}
+.s8-prat-num{
+  position:absolute;bottom:-5%;right:-3%;
+  font-family:var(--f-serif);font-weight:300;
+  font-size:18rem;line-height:1;
+  color:rgba(247,243,238,.03);pointer-events:none;letter-spacing:-.06em;
+}
+.s8-prat-nom{
+  font-family:var(--f-serif);font-weight:300;font-style:italic;
+  font-size:clamp(2rem,4vw,5rem);line-height:.95;
+  color:var(--creme);margin-bottom:8px;letter-spacing:-.02em;
+}
+.s8-prat-titre{
+  font-family:var(--f-sans);font-size:.56rem;font-weight:300;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--or);margin-bottom:36px;
+}
+.s8-prat-bio{margin-bottom:32px;}
+.s8-prat-certifs{
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid var(--or-line);
+  margin-bottom:36px;
+}
+.s8-prat-certif{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;border-bottom:1px solid rgba(201,169,110,.07);
+  font-family:var(--f-sans);font-size:.76rem;font-weight:300;
+  color:rgba(247,243,238,.3);
+}
+.s8-prat-certif::before{
+  content:'';width:4px;height:4px;background:var(--or);
+  flex-shrink:0;border-radius:50%;
+}
+.s8-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--or-line);
+}
+.s8-stat{
+  padding:20px 16px;border-right:1px solid var(--or-line);
+  text-align:center;
+}
+.s8-stat:last-child{border-right:none;}
+.s8-stat-num{
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:1.6rem;color:var(--or);line-height:1;display:block;
+}
+.s8-stat-lbl{
+  font-family:var(--f-sans);font-size:.48rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,243,238,.25);display:block;margin-top:4px;
+}
+@media(max-width:860px){
+  .s8-prat{grid-template-columns:1fr;min-height:auto;}
+  .s8-prat-photo-wrap{min-height:70vw;}
+  .s8-prat-txt{padding:56px 6%;}
+  .s8-prat-num{display:none;}
+}
+
+/* ───────────────────────────────────────────
+   MARQUEE OR
+─────────────────────────────────────────── */
+.s8-marquee{
+  background:var(--or);padding:16px 0;
+  overflow:hidden;border-top:1px solid rgba(201,169,110,.4);
+  border-bottom:1px solid rgba(201,169,110,.4);
+}
+.s8-marquee-track{
+  display:flex;
+  animation:marquee 28s linear infinite;
+  width:max-content;
+}
+.s8-marquee-item{
+  display:flex;align-items:center;gap:28px;
+  padding:0 36px;white-space:nowrap;
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:1.05rem;color:var(--nuit2);
+}
+.s8-marquee-item strong{font-style:normal;font-weight:600;}
+.s8-marquee-sep{
+  font-family:var(--f-serif);font-size:1rem;
+  color:rgba(28,43,43,.3);
+}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ───────────────────────────────────────────
+   S4 TÉMOIGNAGES — FOND PHOTO DÉGRADÉ
+─────────────────────────────────────────── */
+.s8-temo{position:relative;overflow:hidden;padding:0 6%;}
+.s8-temo-bg{
+  position:absolute;inset:0;
+  background-image:url('[URL_PHOTO_AMBIANCE]');
+  background-size:cover;background-position:center;
+  filter:brightness(.25) saturate(.6);
+}
+.s8-temo-inner{
+  position:relative;z-index:2;
+  max-width:var(--max);margin:0 auto;
+  padding:100px 0;
+}
+.s8-temo-header{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;align-items:end;
+  padding-bottom:48px;border-bottom:1px solid var(--or-line);
+  margin-bottom:64px;
+}
+.s8-temo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-temo-card{
+  padding:40px 32px;border-right:1px solid var(--or-line);
+}
+.s8-temo-card:last-child{border-right:none;}
+.s8-temo-stars{display:flex;gap:3px;margin-bottom:20px;}
+.s8-temo-star{
+  width:9px;height:9px;background:var(--or);
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.s8-temo-txt{
+  font-family:var(--f-serif);font-style:italic;font-weight:300;
+  font-size:1.05rem;color:var(--creme);line-height:1.9;
+  flex:1;margin-bottom:28px;
+}
+.s8-temo-sep{width:20px;height:1px;background:var(--or);margin-bottom:16px;}
+.s8-temo-author{
+  font-family:var(--f-sans);font-size:.54rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,243,238,.35);
+}
+@media(max-width:760px){
+  .s8-temo-header{grid-template-columns:1fr;}
+  .s8-temo-grid{grid-template-columns:1fr;}
+  .s8-temo-card{border-right:none;border-bottom:1px solid var(--or-line);}
+  .s8-temo-card:last-child{border-bottom:none;}
+}
+
+/* ───────────────────────────────────────────
+   S5 INFOS PRATIQUES — FOND NUIT AVEC GRILLE
+─────────────────────────────────────────── */
+.s8-infos{background:var(--nuit2);padding:0 6%;}
+.s8-infos-inner{max-width:var(--max);margin:0 auto;}
+.s8-infos-header{
+  padding:80px 0 56px;border-bottom:1px solid var(--or-line);
+}
+.s8-infos-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:0;}
+.s8-infos-col{padding:56px 56px 56px 0;border-right:1px solid var(--or-line);}
+.s8-infos-col:last-child{border-right:none;padding:56px 0 56px 56px;}
+.s8-infos-col:nth-child(2){padding:56px 56px;}
+.s8-infos-col-titre{
+  font-family:var(--f-sans);font-size:.54rem;font-weight:400;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--or);
+  margin-bottom:24px;display:flex;align-items:center;gap:12px;
+}
+.s8-infos-col-titre::before{content:'';width:20px;height:1px;background:var(--or);}
+.s8-infos-list{display:flex;flex-direction:column;gap:0;}
+.s8-infos-item{
+  display:flex;flex-direction:column;gap:2px;
+  padding:14px 0;border-bottom:1px solid rgba(201,169,110,.07);
+}
+.s8-infos-item:last-child{border-bottom:none;}
+.s8-infos-lbl{
+  font-family:var(--f-sans);font-size:.48rem;font-weight:300;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(247,243,238,.2);
+}
+.s8-infos-val{
+  font-family:var(--f-sans);font-size:.8rem;font-weight:300;
+  color:rgba(247,243,238,.55);
+}
+.s8-infos-val a{transition:color .2s;}
+.s8-infos-val a:hover{color:var(--or);}
+.s8-infos-map{
+  width:100%;aspect-ratio:16/9;
+  background:var(--nuit);border:1px solid var(--or-line);
+  overflow:hidden;position:relative;
+}
+.s8-infos-map-placeholder{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;
+}
+.s8-infos-map-placeholder span{
+  font-family:var(--f-sans);font-size:.6rem;font-weight:300;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(247,243,238,.2);
+}
+@media(max-width:860px){
+  .s8-infos-grid{grid-template-columns:1fr;}
+  .s8-infos-col{border-right:none;border-bottom:1px solid var(--or-line);padding:40px 0;}
+  .s8-infos-col:last-child{border-bottom:none;padding:40px 0 0;}
+  .s8-infos-col:nth-child(2){padding:40px 0;}
+}
+
+/* ───────────────────────────────────────────
+   S6 FAQ
+─────────────────────────────────────────── */
+.s8-faq{background:var(--nuit);padding:0 6%;}
+.s8-faq-inner{max-width:var(--max);margin:0 auto;padding:100px 0;}
+.s8-faq-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;}
+details.s8-faq-item{border-bottom:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item:first-of-type{border-top:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item summary{
+  padding:20px 0;cursor:none;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:var(--f-serif);font-weight:300;font-style:italic;
+  font-size:1rem;color:var(--creme);line-height:1.5;
+  transition:color .25s;
+}
+details.s8-faq-item summary::-webkit-details-marker{display:none;}
+details.s8-faq-item summary::after{
+  content:'＋';font-family:var(--f-serif);font-size:1.2rem;
+  color:var(--or);flex-shrink:0;
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94);
+  line-height:1;font-style:normal;
+}
+details.s8-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s8-faq-item[open] summary{color:var(--or-pale);}
+.s8-faq-ans{
+  padding:0 0 20px;
+  font-family:var(--f-sans);font-size:.82rem;font-weight:300;
+  color:rgba(247,243,238,.4);line-height:2.1;
+}
+.s8-faq-ans a{color:var(--or);transition:opacity .2s;}
+.s8-faq-ans a:hover{opacity:.7;}
+@media(max-width:768px){.s8-faq-layout{grid-template-columns:1fr;gap:40px;}}
+
+/* ───────────────────────────────────────────
+   CTA FINAL — PLEIN ÉCRAN IMMERSIF
+─────────────────────────────────────────── */
+.s8-cta{
+  position:relative;min-height:80vh;
+  display:flex;align-items:center;
+  overflow:hidden;padding:0 6%;
+}
+.s8-cta-bg{
+  position:absolute;inset:0;
+  background-image:url('[URL_PHOTO_CTA]');
+  background-size:cover;background-position:center;
+  filter:brightness(.3) saturate(.7);
+  transform:scale(1.04);transition:transform 16s ease;
+}
+.s8-cta:hover .s8-cta-bg{transform:scale(1);}
+.s8-cta-inner{
+  position:relative;z-index:2;
+  max-width:var(--max);margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.s8-cta-h2{
+  font-family:var(--f-serif);font-weight:300;
+  font-size:clamp(3rem,7vw,9rem);line-height:.88;
+  letter-spacing:-.03em;color:var(--creme);
+}
+.s8-cta-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s8-cta-sub{
+  font-family:var(--f-sans);font-size:.84rem;font-weight:300;
+  color:rgba(247,243,238,.35);line-height:2;
+}
+@media(max-width:768px){.s8-cta-inner{grid-template-columns:1fr;gap:40px;}}
+
+/* MAILLAGE */
+.s8-maillage{background:var(--nuit2);padding:32px 6%;border-top:1px solid var(--or-line);}
+.s8-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.s8-maillage-lbl{
+  font-family:var(--f-sans);font-size:.5rem;font-weight:300;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(247,243,238,.2);margin-right:8px;white-space:nowrap;
+}
+.s8-maillage-pill{
+  display:inline-block;padding:6px 16px;
+  border:1px solid rgba(201,169,110,.15);
+  color:rgba(247,243,238,.3);
+  font-family:var(--f-sans);font-size:.64rem;font-weight:300;
+  transition:all .25s;
+}
+.s8-maillage-pill:hover{border-color:var(--or);color:var(--or);}
+
+/* SCROLL REVEAL */
+.s8-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;}
+.s8-reveal.in{opacity:1;transform:none;}
+.s8-reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 1s ease,transform 1s ease;}
+.s8-reveal-left.in{opacity:1;transform:none;}
+.s8-reveal-right{opacity:0;transform:translateX(30px);transition:opacity 1s ease,transform 1s ease;}
+.s8-reveal-right.in{opacity:1;transform:none;}
+.s8-d1{transition-delay:.1s;}.s8-d2{transition-delay:.2s;}.s8-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="s8-sticky">
+  <div class="s8-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s8-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s8-btn-sticky">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s8-btn-sticky-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="s8-hero" aria-label="[Titre professionnel] à [Ville]">
+  <div class="s8-hero-bg" id="heroBg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+  <div class="s8-hero-overlay"></div>
+  <div class="s8-hero-num" aria-hidden="true">01</div>
+  <div class="s8-hero-inner">
+    <div class="s8-hero-tag">[Titre professionnel] · [Ville]</div>
+    <h1 class="s8-custom-h1">Réservez votre<br><em>[soin principal]</em><br>à [Ville]</h1>
+    <div class="s8-hero-sub-row">
+      <p class="s8-hero-desc">[Depuis Bloc 0 ADN — accroche sensorielle en 1 phrase.]</p>
+      <div class="s8-hero-btns">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s8-btn-hero-main">Prendre rendez-vous</a>
+        <a href="#soins" class="s8-btn-hero-sec">Découvrir les soins</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S1 ACCROCHE VERRE DÉPOLI
+════════════════════════════════════════ -->
+<div class="s8-accroche s8-reveal">
+  <div class="s8-accroche-bg" style="background-image:url('[URL_PHOTO_ACCROCHE]')"></div>
+  <div class="s8-accroche-inner">
+    <div class="s8-glass">
+      <p class="s8-accroche-quote">« <span>[Depuis Bloc 0 — citation ou phrase ADN principale, sensoriellement forte.]</span> »</p>
+      <div class="s8-accroche-meta">
+        <div>
+          <div class="s8-accroche-nom">[Prénom Nom]</div>
+          <div class="s8-accroche-titre">[Titre professionnel] · [Ville] depuis [X] ans</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S2 SOINS
+════════════════════════════════════════ -->
+<div class="s8-soins" id="soins">
+  <div class="s8-soins-inner">
+    <div class="s8-soins-header s8-reveal">
+      <div>
+        <div class="s8-label">Les soins à [Ville]</div>
+        <h2 class="s8-h2">Prenez soin<br><em>de vous.</em></h2>
+      </div>
+      <p class="s8-p">[Depuis Bloc 5 — intro sur l'offre de soins en 1-2 phrases dans les mots de la praticienne.]</p>
+    </div>
+    <div class="s8-soins-grid">
+      <a href="/[slug-soin-1]-[ville]" class="s8-soin s8-reveal s8-d1">
+        <div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_1]')"></div>
+        <div class="s8-soin-overlay"></div>
+        <div class="s8-soin-content">
+          <span class="s8-soin-num">I</span>
+          <div class="s8-soin-nom">[Nom du soin 1]</div>
+          <p class="s8-soin-desc">[Accroche sensorielle 1 phrase depuis Bloc 5.]</p>
+          <div class="s8-soin-footer">
+            <span class="s8-soin-prix">[Tarif] €</span>
+            <span class="s8-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/[slug-soin-2]-[ville]" class="s8-soin s8-reveal s8-d2">
+        <div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_2]')"></div>
+        <div class="s8-soin-overlay"></div>
+        <div class="s8-soin-content">
+          <span class="s8-soin-num">II</span>
+          <div class="s8-soin-nom">[Nom du soin 2]</div>
+          <p class="s8-soin-desc">[Accroche 1 phrase.]</p>
+          <div class="s8-soin-footer">
+            <span class="s8-soin-prix">[Tarif] €</span>
+            <span class="s8-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+      <a href="/[slug-soin-3]-[ville]" class="s8-soin s8-reveal s8-d3">
+        <div class="s8-soin-photo" style="background-image:url('[URL_PHOTO_SOIN_3]')"></div>
+        <div class="s8-soin-overlay"></div>
+        <div class="s8-soin-content">
+          <span class="s8-soin-num">III</span>
+          <div class="s8-soin-nom">[Nom du soin 3]</div>
+          <p class="s8-soin-desc">[Accroche 1 phrase.]</p>
+          <div class="s8-soin-footer">
+            <span class="s8-soin-prix">[Tarif] €</span>
+            <span class="s8-soin-arrow">Découvrir →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="s8-soins-cta s8-reveal">
+      <a href="/[slug-soins]" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;padding:16px 40px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;">Voir toutes les prestations</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S3 PRATICIENNE
+════════════════════════════════════════ -->
+<div class="s8-prat s8-reveal">
+  <div class="s8-prat-photo-wrap">
+    <div class="s8-prat-photo" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+    <div class="s8-prat-photo-overlay"></div>
+  </div>
+  <div class="s8-prat-txt">
+    <div class="s8-prat-num" aria-hidden="true">02</div>
+    <div class="s8-label">La praticienne</div>
+    <div class="s8-prat-nom">[Prénom<br><em>Nom]</em></div>
+    <div class="s8-prat-titre">[Titre professionnel] · [Ville] depuis [X] ans</div>
+    <div class="s8-prat-bio">
+      <p class="s8-p">[Depuis Bloc 9 — bio courte en 2 phrases, personnelle et sensoriellement forte.]</p>
+      <p class="s8-p">[Depuis Bloc 0 "Ce que je fais différemment" — 1 phrase différenciante.]</p>
+    </div>
+    <div class="s8-prat-certifs">
+      <div class="s8-prat-certif">[Formation 1 — Bloc 9]</div>
+      <div class="s8-prat-certif">[Formation 2 — Bloc 9]</div>
+      <div class="s8-prat-certif">[Formation 3 — Bloc 9]</div>
+    </div>
+    <div class="s8-stats">
+      <div class="s8-stat"><span class="s8-stat-num">[X]+</span><span class="s8-stat-lbl">Années</span></div>
+      <div class="s8-stat"><span class="s8-stat-num">[X]+</span><span class="s8-stat-lbl">Clientes</span></div>
+      <div class="s8-stat"><span class="s8-stat-num">[X.X]★</span><span class="s8-stat-lbl">Google</span></div>
+    </div>
+    <a href="/[slug-a-propos]" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;margin-top:24px;width:fit-content;">Mon parcours complet</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MARQUEE
+════════════════════════════════════════ -->
+<div class="s8-marquee" aria-hidden="true">
+  <div class="s8-marquee-track">
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Soin 1]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Valeur 1]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 2]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Soin 1]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Valeur 1]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 2]</em><span class="s8-marquee-sep">·</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S4 TÉMOIGNAGES
+════════════════════════════════════════ -->
+<div class="s8-temo s8-reveal">
+  <div class="s8-temo-bg" style="background-image:url('[URL_PHOTO_AMBIANCE]')"></div>
+  <div class="s8-temo-inner">
+    <div class="s8-temo-header">
+      <div>
+        <div class="s8-label">Témoignages</div>
+        <h2 class="s8-h2">Ce qu'elles disent<br><em>de [Prénom]</em></h2>
+      </div>
+      <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;width:fit-content;align-self:flex-end;">[X.X] ★ · [X] avis Google →</a>
+    </div>
+    <div class="s8-temo-grid">
+      <article class="s8-temo-card s8-reveal s8-d1">
+        <div class="s8-temo-stars"><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span></div>
+        <p class="s8-temo-txt">« [Témoignage 1 — Bloc 11. Texte exact.] »</p>
+        <div class="s8-temo-sep"></div>
+        <span class="s8-temo-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s8-temo-card s8-reveal s8-d2">
+        <div class="s8-temo-stars"><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span></div>
+        <p class="s8-temo-txt">« [Témoignage 2.] »</p>
+        <div class="s8-temo-sep"></div>
+        <span class="s8-temo-author">[Prénom N.] · [Soin]</span>
+      </article>
+      <article class="s8-temo-card s8-reveal s8-d3">
+        <div class="s8-temo-stars"><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span><span class="s8-temo-star"></span></div>
+        <p class="s8-temo-txt">« [Témoignage 3.] »</p>
+        <div class="s8-temo-sep"></div>
+        <span class="s8-temo-author">[Prénom N.] · [Soin]</span>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S5 INFOS PRATIQUES
+════════════════════════════════════════ -->
+<div class="s8-infos s8-reveal">
+  <div class="s8-infos-inner">
+    <div class="s8-infos-header">
+      <div class="s8-label">Informations pratiques</div>
+      <h2 class="s8-h2">Votre rendez-vous<br><em>à [Ville]</em></h2>
+    </div>
+    <div class="s8-infos-grid">
+      <div class="s8-infos-col">
+        <div class="s8-infos-map">
+          <div class="s8-infos-map-placeholder">
+            <span>[Adresse — Bloc 2]</span>
+            <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener" style="font-family:var(--f-sans);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);border:1px solid var(--or-line);padding:8px 16px;transition:all .3s;">Itinéraire →</a>
+          </div>
+        </div>
+      </div>
+      <div class="s8-infos-col">
+        <div class="s8-infos-col-titre">Cabinet</div>
+        <div class="s8-infos-list">
+          <div class="s8-infos-item"><span class="s8-infos-lbl">Adresse</span><span class="s8-infos-val">[Adresse depuis Bloc 2]</span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">Téléphone</span><span class="s8-infos-val"><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a></span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">Email</span><span class="s8-infos-val"><a href="mailto:[email]">[Email]</a></span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">Parking</span><span class="s8-infos-val">[Depuis Bloc 2]</span></div>
+        </div>
+      </div>
+      <div class="s8-infos-col">
+        <div class="s8-infos-col-titre">Horaires</div>
+        <div class="s8-infos-list">
+          <div class="s8-infos-item"><span class="s8-infos-lbl">[Jours 1]</span><span class="s8-infos-val">[Horaire — Bloc 10]</span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">[Jours 2]</span><span class="s8-infos-val">[Horaire — Bloc 10]</span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">[Jours 3]</span><span class="s8-infos-val">[Horaire — Bloc 10]</span></div>
+          <div class="s8-infos-item"><span class="s8-infos-lbl">Réservation</span><span class="s8-infos-val"><a href="[LIEN_RDV]" target="_blank" rel="noopener">En ligne 24h/24</a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S6 FAQ
+════════════════════════════════════════ -->
+<div class="s8-faq">
+  <div class="s8-faq-inner">
+    <div class="s8-faq-layout">
+      <div class="s8-reveal-left">
+        <div class="s8-label">Questions fréquentes</div>
+        <h2 class="s8-h2" style="margin-bottom:28px;">Tout savoir<br><em>avant de réserver</em></h2>
+        <p class="s8-p">[Prénom] répond à vos questions avant toute première séance.</p>
+        <a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;margin-top:20px;">Toutes les questions</a>
+      </div>
+      <div class="s8-reveal-right">
+        <details class="s8-faq-item"><summary>Comment réserver votre [Soin principal] à [Ville] ?</summary><div class="s8-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a>, ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>. [Délai de réponse si contact par email.]</p></div></details>
+        <details class="s8-faq-item"><summary>En quoi consiste [Soin 1] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 5 — définition courte. 60-80 mots.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quels sont les tarifs à [Ville] ?</summary><div class="s8-faq-ans"><p>[Soin 1] : [Tarif]€ · [Durée]. [Soin 2] : [Tarif]€ · [Durée]. <a href="/[slug-soins]">Voir toutes les prestations →</a></p></div></details>
+        <details class="s8-faq-item"><summary>Y a-t-il des contre-indications ?</summary><div class="s8-faq-ans"><p>[CI depuis Bloc 5.] En cas de doute, contactez <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> avant de réserver.</p></div></details>
+        <details class="s8-faq-item"><summary>Comment offrir une séance en cadeau à [Ville] ?</summary><div class="s8-faq-ans"><p>Carte cadeau sur <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">ce lien</a>. Code envoyé immédiatement. Valable 1 an. Aucun montant sur place.</p></div></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL IMMERSIF
+════════════════════════════════════════ -->
+<div class="s8-cta">
+  <div class="s8-cta-bg" style="background-image:url('[URL_PHOTO_CTA]')"></div>
+  <div class="s8-cta-inner s8-reveal">
+    <h2 class="s8-cta-h2">Prenez<br>soin de<br><em>vous.</em></h2>
+    <div class="s8-cta-right">
+      <p class="s8-cta-sub">[Ville] · [Soin 1] · [Soin 2] · [Soin 3]<br>Réservation en ligne · 24h/24</p>
+      <div style="display:flex;flex-direction:column;gap:0;width:fit-content;">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;">Prendre rendez-vous</a>
+        <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:block;background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid rgba(247,243,238,.12);transition:all .35s;text-decoration:none;text-align:center;margin-top:-1px;">Offrir une séance</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<nav class="s8-maillage" aria-label="Navigation thématique">
+  <div class="s8-maillage-inner">
+    <span class="s8-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin-1]-[ville]" class="s8-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s8-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soins]" class="s8-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-a-propos]" class="s8-maillage-pill">À propos</a>
+    <a href="/[slug-faq]" class="s8-maillage-pill">Questions fréquentes</a>
+    <a href="/[slug-offrir]" class="s8-maillage-pill">Cartes cadeaux</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"LocalBusiness","name":"[Prénom Nom]","description":"[Depuis Bloc 0 ADN]","url":"https://[votre-domaine].fr","telephone":"[+33XXXXXXXXX]","email":"[email]","image":"[URL_PHOTO_PORTRAIT]","priceRange":"[Tarif min]€ – [Tarif max]€","address":{"@type":"PostalAddress","streetAddress":"[Adresse]","postalCode":"[Code postal]","addressLocality":"[Ville]","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":"[Latitude]","longitude":"[Longitude]"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["[Jours]"],"opens":"[HH:MM]","closes":"[HH:MM]"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"[X.X]","reviewCount":"[X]","bestRating":"5"},"sameAs":["[Instagram]","[Facebook]","[Fiche Google]"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment réserver [Soin principal] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}},{"@type":"Question","name":"En quoi consiste [Soin 1] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 5]."}},{"@type":"Question","name":"Quels sont les tarifs à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Soin 1] : [Tarif]€. [Soin 2] : [Tarif]€."}},{"@type":"Question","name":"Y a-t-il des contre-indications ?","acceptedAnswer":{"@type":"Answer","text":"[CI depuis Bloc 5]."}},{"@type":"Question","name":"Comment offrir une séance en cadeau ?","acceptedAnswer":{"@type":"Answer","text":"Carte cadeau sur [URL_CARTE_CADEAU]. Code immédiat. Valable 1 an."}}]}]</script>
+
+<script>
+// CURSOR
+(function(){
+  var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');
+  if(!c||!r)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});
+  (function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,details summary').forEach(function(el){
+    el.addEventListener('mouseenter',function(){r.style.width='56px';r.style.height='56px';r.style.borderColor='rgba(201,169,110,.8)';});
+    el.addEventListener('mouseleave',function(){r.style.width='36px';r.style.height='36px';r.style.borderColor='rgba(201,169,110,.5)';});
+  });
+})();
+
+// HERO PARALLAX
+(function(){
+  var bg = document.getElementById('heroBg');
+  if(!bg) return;
+  var hero = bg.parentElement;
+  function onScroll(){
+    var scrollY = window.pageYOffset;
+    var heroH = hero.offsetHeight;
+    if(scrollY > heroH) return;
+    // Décalage max 40% de la hauteur du hero — doux et immersif
+    var offset = scrollY * 0.4;
+    bg.style.transform = 'translateY(' + offset + 'px)';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+// SCROLL REVEAL
+(function(){
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(n){
+      if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}
+    });
+  },{threshold:.08});
+  document.querySelectorAll('.s8-reveal,.s8-reveal-left,.s8-reveal-right').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Footer — Style 08 Immersion · Métamorphose V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#1C2B2B;--nuit2:#142020;--or:#C9A96E;--or-pale:#E8D5A8;--creme:#F7F3EE;--or-line:rgba(201,169,110,.25);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Inter',sans-serif;--max:1320px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--nuit2);}
+a{color:inherit;text-decoration:none;}
+
+/* ============================================================
+   FOOTER STYLE-08 IMMERSION
+   Instructions Squarespace :
+   1. Design > Pied de page
+   2. Ajouter un bloc "Code"
+   3. Coller ce HTML complet
+   ============================================================ */
+
+.s8-footer{background:var(--nuit2);}
+
+/* BANDE CTA */
+.s8-footer-cta{position:relative;overflow:hidden;padding:72px 6%;}
+.s8-footer-cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.12) saturate(.5);}
+.s8-footer-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.s8-footer-cta-titre{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.5rem,5vw,6rem);line-height:.92;letter-spacing:-.03em;color:var(--creme);}
+.s8-footer-cta-titre em{font-style:italic;color:var(--or-pale);}
+.s8-footer-cta-right{display:flex;flex-direction:column;gap:0;}
+@media(max-width:768px){.s8-footer-cta-inner{grid-template-columns:1fr;gap:32px;}}
+
+/* CORPS FOOTER */
+.s8-footer-body{padding:64px 6%;border-top:1px solid var(--or-line);}
+.s8-footer-body-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:0;}
+.s8-footer-col{padding:0 48px 0 0;border-right:1px solid var(--or-line);}
+.s8-footer-col:last-child{border-right:none;padding:0 0 0 48px;}
+.s8-footer-col:nth-child(2),.s8-footer-col:nth-child(3){padding:0 48px;}
+.s8-footer-brand-nom{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.6rem;color:var(--creme);line-height:1.1;margin-bottom:6px;}
+.s8-footer-brand-titre{font-family:var(--f-sans);font-size:.52rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-bottom:20px;}
+.s8-footer-brand-desc{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:rgba(247,243,238,.3);line-height:2;margin-bottom:24px;}
+.s8-footer-socials{display:flex;gap:0;}
+.s8-footer-social{width:36px;height:36px;border:1px solid var(--or-line);display:flex;align-items:center;justify-content:center;color:rgba(247,243,238,.25);font-size:.58rem;font-family:var(--f-sans);font-weight:300;letter-spacing:.08em;transition:all .25s;margin-right:-1px;}
+.s8-footer-social:hover{border-color:var(--or);color:var(--or);}
+.s8-footer-col-titre{font-family:var(--f-sans);font-size:.52rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--or);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.s8-footer-col-titre::before{content:'';width:16px;height:1px;background:var(--or);}
+.s8-footer-links{display:flex;flex-direction:column;gap:0;}
+.s8-footer-link{font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:rgba(247,243,238,.3);padding:8px 0;border-bottom:1px solid rgba(201,169,110,.05);transition:color .2s;display:block;}
+.s8-footer-link:last-child{border-bottom:none;}
+.s8-footer-link:hover{color:var(--or);}
+.s8-footer-infos{display:flex;flex-direction:column;gap:12px;}
+.s8-footer-info{display:flex;flex-direction:column;gap:2px;}
+.s8-footer-info-lbl{font-family:var(--f-sans);font-size:.46rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.15);}
+.s8-footer-info-val{font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:rgba(247,243,238,.3);}
+.s8-footer-info-val a{transition:color .2s;}.s8-footer-info-val a:hover{color:var(--or);}
+@media(max-width:860px){.s8-footer-body-inner{grid-template-columns:1fr 1fr;gap:0;}.s8-footer-col{border-right:none;border-bottom:1px solid var(--or-line);padding:32px 0;}.s8-footer-col:last-child{border-bottom:none;padding:32px 0 0;}}
+@media(max-width:480px){.s8-footer-body-inner{grid-template-columns:1fr;}}
+
+/* LÉGAL */
+.s8-footer-legal{padding:20px 6%;border-top:1px solid rgba(201,169,110,.07);}
+.s8-footer-legal-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.s8-footer-legal-copy{font-family:var(--f-sans);font-size:.54rem;font-weight:300;color:rgba(247,243,238,.15);letter-spacing:.06em;}
+.s8-footer-legal-links{display:flex;gap:0;}
+.s8-footer-legal-link{font-family:var(--f-sans);font-size:.5rem;font-weight:300;color:rgba(247,243,238,.12);padding:0 14px;border-right:1px solid rgba(201,169,110,.07);transition:color .2s;letter-spacing:.06em;}
+.s8-footer-legal-link:last-child{border-right:none;}
+.s8-footer-legal-link:hover{color:rgba(247,243,238,.4);}
+.s8-footer-rys{font-family:var(--f-sans);font-size:.5rem;font-weight:300;color:rgba(247,243,238,.1);letter-spacing:.06em;}
+.s8-footer-rys a{color:rgba(247,243,238,.18);transition:color .2s;}.s8-footer-rys a:hover{color:var(--or);}
+@media(max-width:520px){.s8-footer-legal-inner{flex-direction:column;align-items:flex-start;gap:8px;}}
+</style>
+</head>
+<body>
+
+<!-- FOOTER STYLE-08 IMMERSION -->
+<footer class="s8-footer" itemscope itemtype="https://schema.org/LocalBusiness">
+
+  <!-- BANDE CTA -->
+  <div class="s8-footer-cta">
+    <div class="s8-footer-cta-bg" style="background-image:url('[URL_PHOTO_HERO]')"></div>
+    <div class="s8-footer-cta-inner">
+      <h2 class="s8-footer-cta-titre">Prenez soin<br><em>de vous.</em></h2>
+      <div class="s8-footer-cta-right">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:block;background:var(--or);color:var(--nuit2);font-family:'Inter',sans-serif;font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 40px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;">Prendre rendez-vous</a>
+        <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:block;background:transparent;color:rgba(247,243,238,.35);font-family:'Inter',sans-serif;font-size:.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 40px;border:1px solid rgba(201,169,110,.2);transition:all .35s;text-decoration:none;text-align:center;margin-top:-1px;">Offrir une séance</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CORPS -->
+  <div class="s8-footer-body">
+    <div class="s8-footer-body-inner">
+
+      <!-- COL 1 IDENTITÉ -->
+      <div class="s8-footer-col">
+        <div class="s8-footer-brand-nom" itemprop="name">[Prénom Nom]</div>
+        <div class="s8-footer-brand-titre" itemprop="jobTitle">[Titre professionnel] · [Ville]</div>
+        <p class="s8-footer-brand-desc" itemprop="description">[Depuis Bloc 0 — 1 phrase ADN ou accroche principale.]</p>
+        <div class="s8-footer-socials">
+          <a href="[Instagram]" target="_blank" rel="noopener" class="s8-footer-social" aria-label="Instagram">IG</a>
+          <a href="[Facebook]" target="_blank" rel="noopener" class="s8-footer-social" aria-label="Facebook">FB</a>
+          <a href="[Fiche Google]" target="_blank" rel="noopener" class="s8-footer-social" aria-label="Google">G</a>
+        </div>
+      </div>
+
+      <!-- COL 2 SOINS -->
+      <div class="s8-footer-col">
+        <div class="s8-footer-col-titre">Les soins</div>
+        <nav class="s8-footer-links" aria-label="Navigation soins">
+          <a href="/[slug-soin-1]-[ville]" class="s8-footer-link">[Soin 1]</a>
+          <a href="/[slug-soin-2]-[ville]" class="s8-footer-link">[Soin 2]</a>
+          <a href="/[slug-soin-3]-[ville]" class="s8-footer-link">[Soin 3]</a>
+          <a href="/[slug-soin-4]-[ville]" class="s8-footer-link">[Soin 4]</a>
+          <a href="/[slug-soins]" class="s8-footer-link" style="color:rgba(247,243,238,.15);font-size:.68rem;">Voir tous les soins →</a>
+        </nav>
+      </div>
+
+      <!-- COL 3 NAVIGATION -->
+      <div class="s8-footer-col">
+        <div class="s8-footer-col-titre">Navigation</div>
+        <nav class="s8-footer-links" aria-label="Navigation principale">
+          <a href="/" class="s8-footer-link">Accueil</a>
+          <a href="/[slug-a-propos]" class="s8-footer-link">À propos</a>
+          <a href="/[slug-soins]" class="s8-footer-link">Tous les soins</a>
+          <a href="/[slug-faq]" class="s8-footer-link">Questions fréquentes</a>
+          <a href="/[slug-offrir]" class="s8-footer-link">Cartes cadeaux</a>
+          <a href="[LIEN_GOOGLE_AVIS]" target="_blank" rel="noopener" class="s8-footer-link">Avis Google ★</a>
+        </nav>
+      </div>
+
+      <!-- COL 4 CONTACT -->
+      <div class="s8-footer-col">
+        <div class="s8-footer-col-titre">Contact</div>
+        <div class="s8-footer-infos">
+          <div class="s8-footer-info" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <span class="s8-footer-info-lbl">Adresse</span>
+            <span class="s8-footer-info-val" itemprop="streetAddress">[Adresse depuis Bloc 2]</span>
+            <span class="s8-footer-info-val"><span itemprop="postalCode">[Code postal]</span> <span itemprop="addressLocality">[Ville]</span></span>
+          </div>
+          <div class="s8-footer-info">
+            <span class="s8-footer-info-lbl">Téléphone</span>
+            <span class="s8-footer-info-val" itemprop="telephone"><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a></span>
+          </div>
+          <div class="s8-footer-info">
+            <span class="s8-footer-info-lbl">Email</span>
+            <span class="s8-footer-info-val" itemprop="email"><a href="mailto:[email]">[Email]</a></span>
+          </div>
+          <div class="s8-footer-info">
+            <span class="s8-footer-info-lbl">Horaires</span>
+            <span class="s8-footer-info-val">[Horaires depuis Bloc 10]</span>
+          </div>
+          <div class="s8-footer-info">
+            <span class="s8-footer-info-lbl">Réservation</span>
+            <span class="s8-footer-info-val"><a href="[LIEN_RDV]" target="_blank" rel="noopener">En ligne 24h/24</a></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LÉGAL -->
+  <div class="s8-footer-legal">
+    <div class="s8-footer-legal-inner">
+      <span class="s8-footer-legal-copy">© [Année] [Prénom Nom] · [Titre professionnel] à [Ville]</span>
+      <nav class="s8-footer-legal-links" aria-label="Liens légaux">
+        <a href="/[slug-mentions-legales]" class="s8-footer-legal-link">Mentions légales</a>
+        <a href="/[slug-cgv]" class="s8-footer-legal-link">CGV</a>
+        <a href="/[slug-politique-confidentialite]" class="s8-footer-legal-link">Confidentialité</a>
+      </nav>
+      <span class="s8-footer-rys">Site réalisé par <a href="https://www.rys-communication.fr/" target="_blank" rel="noopener">RYS Communication</a></span>
+    </div>
+  </div>
+
+</footer>
+
+<!-- JSON-LD LocalBusiness — coller dans Squarespace > Pages > Paramètres avancés > Injection </body> -->
+<!--
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "[Prénom Nom]",
+  "description": "[Depuis Bloc 0 ADN]",
+  "url": "https://[votre-domaine].fr",
+  "telephone": "[+33XXXXXXXXX]",
+  "email": "[email]",
+  "image": "[URL_PHOTO_PORTRAIT]",
+  "priceRange": "[Tarif min]€ – [Tarif max]€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Adresse]",
+    "postalCode": "[Code postal]",
+    "addressLocality": "[Ville]",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "[Latitude]",
+    "longitude": "[Longitude]"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["[Jours]"],
+      "opens": "[HH:MM]",
+      "closes": "[HH:MM]"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "[X.X]",
+    "reviewCount": "[X]",
+    "bestRating": "5"
+  },
+  "sameAs": [
+    "[Instagram]",
+    "[Facebook]",
+    "[Fiche Google]"
+  ],
+  "hasMap": "[LIEN_GOOGLE_MAPS]"
+}
+</script>
+-->
+</body>
+</html>

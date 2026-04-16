@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[Prénom Nom], [Titre professionnel] à [Ville] · À propos</title>
+<meta name="description" content="Découvrez [Prénom Nom], [titre professionnel] à [Ville]. [X] ans d'expérience, [X]+ clientes accompagnées. Formations, valeurs et approche différenciante.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-a-propos]">
+<meta property="og:type" content="website"><meta property="og:title" content="[Prénom Nom], [Titre professionnel] à [Ville] · À propos"><meta property="og:url" content="https://[votre-domaine].fr/[slug-a-propos]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#1C2B2B;--nuit2:#142020;--sauge:#4A7068;--or:#C9A96E;--or-pale:#E8D5A8;--creme:#F7F3EE;--gris-v:#8C9E9A;--glass:rgba(28,43,43,.65);--or-line:rgba(201,169,110,.25);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Inter',sans-serif;--max:1320px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--nuit2);color:var(--creme);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}
+
+.cursor{position:fixed;width:10px;height:10px;background:var(--or);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:opacity .3s;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,169,110,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.23,1,.32,1),width .3s,height .3s;}
+
+.s8-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(20,32,32,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--or-line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s8-sticky-id{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.3);}
+.s8-sticky-id strong{color:var(--or);font-weight:400;}
+.s8-sticky-btns{display:flex;gap:0;}
+.s8-btn-sticky{background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(201,169,110,.2);transition:all .3s;display:inline-block;}
+.s8-btn-sticky:hover{border-color:var(--or);color:var(--or);}
+.s8-btn-sticky-cta{background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--or);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s8-btn-sticky-cta:hover{background:transparent;color:var(--or);}
+@media(max-width:600px){.s8-sticky{padding:12px 20px;}.s8-sticky-id{display:none;}.s8-sticky-btns{width:100%;}.s8-btn-sticky,.s8-btn-sticky-cta{flex:1;text-align:center;}}
+
+/* HERO PORTRAIT */
+.s8-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+.s8-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transform:scale(1.06);transition:transform 18s cubic-bezier(.25,.46,.45,.94);filter:brightness(.6) saturate(.85);}
+.s8-hero-bg.loaded{transform:scale(1);}
+.s8-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,32,.1) 0%,rgba(20,32,32,0) 40%,rgba(20,32,32,.9) 100%);}
+.s8-hero-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:var(--max);margin:0 auto;width:100%;padding:0 6% 72px;}
+.s8-hero-breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--f-sans);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-bottom:32px;opacity:0;animation:fadeUp .7s .1s ease forwards;}
+.s8-hero-breadcrumb a:hover{color:var(--or);}
+.s8-hero-breadcrumb span{color:rgba(247,243,238,.1);}
+.s8-hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s8-hero-tag::before{content:'';width:32px;height:1px;background:var(--or);}
+.s8-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3.5rem,9vw,12rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);opacity:0;animation:fadeUp 1.2s .35s ease forwards;}
+.s8-hero h1 em{font-style:italic;font-weight:300;color:var(--or-pale);}
+.s8-hero-sub-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:40px;padding-top:28px;border-top:1px solid var(--or-line);opacity:0;animation:fadeUp .9s .65s ease forwards;}
+.s8-hero-desc{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;max-width:480px;}
+.s8-hero-stats{display:flex;gap:0;flex-shrink:0;}
+.s8-hero-stat{padding:12px 24px;border:1px solid var(--or-line);display:flex;flex-direction:column;gap:3px;margin-left:-1px;}
+.s8-hero-stat-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.4rem;color:var(--or);line-height:1;}
+.s8-hero-stat-lbl{font-family:var(--f-sans);font-size:.46rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.25);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+@media(max-width:768px){.s8-hero h1{font-size:clamp(3rem,13vw,6rem);}.s8-hero-sub-row{flex-direction:column;align-items:flex-start;gap:24px;}.s8-hero-stats{flex-wrap:wrap;}}
+
+/* BASE */
+.s8-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:24px;}
+.s8-label::before{content:'';width:28px;height:1px;background:var(--or);}
+.s8-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,6rem);line-height:.92;letter-spacing:-.025em;color:var(--creme);}
+.s8-h2 em{font-style:italic;font-weight:300;color:var(--or-pale);}
+.s8-p{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.45);line-height:2.1;margin-bottom:14px;}
+.s8-or-line{width:100%;height:1px;background:var(--or-line);}
+
+/* S1 HISTOIRE — SPLIT PLEIN ÉCRAN */
+.s8-histoire{position:relative;min-height:90vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
+.s8-histoire-img{position:relative;overflow:hidden;}
+.s8-histoire-photo{position:absolute;inset:0;background-size:cover;background-position:center top;filter:brightness(.7) saturate(.85);transition:transform 14s ease;}
+.s8-histoire:hover .s8-histoire-photo{transform:scale(1.04);}
+.s8-histoire-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,32,32,0) 0%,rgba(20,32,32,.5) 100%);}
+.s8-histoire-txt{background:var(--nuit);display:flex;flex-direction:column;justify-content:center;padding:80px 72px;position:relative;overflow:hidden;}
+.s8-histoire-num{position:absolute;bottom:-8%;right:-4%;font-family:var(--f-serif);font-weight:300;font-size:20rem;line-height:1;color:rgba(247,243,238,.025);pointer-events:none;letter-spacing:-.06em;}
+.s8-citation{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.1rem,1.8vw,1.6rem);line-height:1.6;color:var(--or-pale);padding-left:20px;border-left:1px solid var(--or);margin:28px 0;}
+@media(max-width:860px){.s8-histoire{grid-template-columns:1fr;min-height:auto;}.s8-histoire-img{min-height:70vw;}.s8-histoire-txt{padding:56px 6%;}.s8-histoire-num{display:none;}}
+
+/* S2 VALEURS — 3 COLONNES FOND NUIT */
+.s8-valeurs{background:var(--nuit2);padding:0 6%;}
+.s8-valeurs-inner{max-width:var(--max);margin:0 auto;}
+.s8-valeurs-header{padding:80px 0 56px;border-bottom:1px solid var(--or-line);}
+.s8-valeurs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-valeur{padding:56px 40px;border-right:1px solid var(--or-line);position:relative;overflow:hidden;transition:background .4s;}
+.s8-valeur:last-child{border-right:none;}
+.s8-valeur:hover{background:rgba(201,169,110,.04);}
+.s8-valeur-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:5rem;line-height:1;color:rgba(201,169,110,.08);margin-bottom:-16px;display:block;}
+.s8-valeur-titre{font-family:var(--f-serif);font-weight:300;font-size:1.5rem;color:var(--creme);margin-bottom:16px;letter-spacing:-.01em;}
+.s8-valeur-sep{width:20px;height:1px;background:var(--or);margin-bottom:16px;}
+.s8-valeur-txt{font-family:var(--f-sans);font-size:.8rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2.1;}
+@media(max-width:760px){.s8-valeurs-grid{grid-template-columns:1fr;}.s8-valeur{border-right:none;border-bottom:1px solid var(--or-line);}.s8-valeur:last-child{border-bottom:none;}}
+
+/* S3 MÉTHODE — FOND PHOTO */
+.s8-methode{position:relative;overflow:hidden;padding:0 6%;}
+.s8-methode-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.15) saturate(.6);}
+.s8-methode-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:100px 0;align-items:center;}
+.s8-piliers{display:flex;flex-direction:column;gap:0;margin-top:32px;}
+.s8-pilier{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid rgba(201,169,110,.12);}
+.s8-pilier:last-child{border-bottom:none;}
+.s8-pilier-num{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.1rem;color:var(--or);padding-top:2px;}
+.s8-pilier-titre{font-family:var(--f-sans);font-size:.82rem;font-weight:400;color:var(--creme);margin-bottom:4px;letter-spacing:.02em;}
+.s8-pilier-txt{font-family:var(--f-sans);font-size:.78rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;}
+.s8-methode-right{display:flex;flex-direction:column;gap:24px;}
+.s8-methode-citation{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:clamp(1.4rem,2.5vw,2.5rem);line-height:1.4;color:var(--creme);letter-spacing:-.01em;}
+.s8-methode-citation span{color:var(--or-pale);}
+@media(max-width:768px){.s8-methode-inner{grid-template-columns:1fr;gap:48px;padding:64px 0;}}
+
+/* MARQUEE */
+.s8-marquee{background:var(--or);padding:16px 0;overflow:hidden;border-top:1px solid rgba(201,169,110,.4);border-bottom:1px solid rgba(201,169,110,.4);}
+.s8-marquee-track{display:flex;animation:marquee 28s linear infinite;width:max-content;}
+.s8-marquee-item{display:flex;align-items:center;gap:28px;padding:0 36px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--nuit2);}
+.s8-marquee-item strong{font-style:normal;font-weight:600;}
+.s8-marquee-sep{font-family:var(--f-serif);font-size:1rem;color:rgba(28,43,43,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* S4 FORMATIONS */
+.s8-formations{background:var(--nuit2);padding:0 6%;}
+.s8-formations-inner{max-width:var(--max);margin:0 auto;}
+.s8-formations-header{padding:80px 0 48px;border-bottom:1px solid var(--or-line);}
+.s8-formations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.s8-formation{padding:36px 32px;border-right:1px solid var(--or-line);border-bottom:1px solid var(--or-line);display:flex;flex-direction:column;gap:10px;transition:background .3s;}
+.s8-formation:nth-child(3n){border-right:none;}
+.s8-formation:hover{background:rgba(201,169,110,.04);}
+.s8-formation-annee{font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:.9rem;color:var(--or);}
+.s8-formation-titre{font-family:var(--f-sans);font-size:.82rem;font-weight:400;color:var(--creme);line-height:1.5;}
+.s8-formation-org{font-family:var(--f-sans);font-size:.74rem;font-weight:300;color:rgba(247,243,238,.3);}
+.s8-formation-badge{display:inline-block;background:rgba(201,169,110,.12);color:var(--or);font-family:var(--f-sans);font-size:.48rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;width:fit-content;border:1px solid rgba(201,169,110,.2);}
+@media(max-width:760px){.s8-formations-grid{grid-template-columns:1fr 1fr;}.s8-formation:nth-child(2n){border-right:none;}}
+@media(max-width:480px){.s8-formations-grid{grid-template-columns:1fr;}.s8-formation{border-right:none;}}
+
+/* FAQ */
+.s8-faq{background:var(--nuit);padding:0 6%;}
+.s8-faq-inner{max-width:var(--max);margin:0 auto;padding:100px 0;}
+.s8-faq-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;}
+details.s8-faq-item{border-bottom:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item:first-of-type{border-top:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item summary{padding:20px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-style:italic;font-size:1rem;color:var(--creme);line-height:1.5;transition:color .25s;}
+details.s8-faq-item summary::-webkit-details-marker{display:none;}
+details.s8-faq-item summary::after{content:'＋';font-family:var(--f-serif);font-size:1.2rem;color:var(--or);flex-shrink:0;transition:transform .35s cubic-bezier(.25,.46,.45,.94);line-height:1;font-style:normal;}
+details.s8-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s8-faq-item[open] summary{color:var(--or-pale);}
+.s8-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2.1;}
+.s8-faq-ans a{color:var(--or);}
+@media(max-width:768px){.s8-faq-layout{grid-template-columns:1fr;gap:40px;}}
+
+/* CTA FINAL */
+.s8-cta{position:relative;min-height:70vh;display:flex;align-items:center;overflow:hidden;padding:0 6%;}
+.s8-cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.25) saturate(.7);transform:scale(1.04);transition:transform 16s ease;}
+.s8-cta:hover .s8-cta-bg{transform:scale(1);}
+.s8-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s8-cta-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,7vw,9rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);}
+.s8-cta-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s8-cta-sub{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.35);line-height:2;}
+@media(max-width:768px){.s8-cta-inner{grid-template-columns:1fr;gap:40px;}}
+
+.s8-maillage{background:var(--nuit2);padding:32px 6%;border-top:1px solid var(--or-line);}
+.s8-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.s8-maillage-lbl{font-family:var(--f-sans);font-size:.5rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-right:8px;white-space:nowrap;}
+.s8-maillage-pill{display:inline-block;padding:6px 16px;border:1px solid rgba(201,169,110,.15);color:rgba(247,243,238,.3);font-family:var(--f-sans);font-size:.64rem;font-weight:300;transition:all .25s;}
+.s8-maillage-pill:hover{border-color:var(--or);color:var(--or);}
+
+.s8-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal.in{opacity:1;transform:none;}
+.s8-reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal-left.in{opacity:1;transform:none;}
+.s8-reveal-right{opacity:0;transform:translateX(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal-right.in{opacity:1;transform:none;}
+.s8-d1{transition-delay:.1s;}.s8-d2{transition-delay:.2s;}.s8-d3{transition-delay:.3s;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="s8-sticky">
+  <div class="s8-sticky-id"><strong>[Prénom Nom]</strong> — [titre professionnel] · [Ville]</div>
+  <div class="s8-sticky-btns">
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s8-btn-sticky">Offrir</a>
+    <a href="[LIEN_RDV]" target="_blank" rel="noopener" class="s8-btn-sticky-cta">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="s8-hero" aria-label="À propos de [Prénom Nom]">
+  <div class="s8-hero-bg" id="heroBg" style="background-image:url('[URL_PHOTO_PORTRAIT]')"></div>
+  <div class="s8-hero-overlay"></div>
+  <div class="s8-hero-inner">
+    <nav class="s8-hero-breadcrumb" aria-label="Fil d'Ariane"><a href="/">Accueil</a><span>›</span><span>À propos</span></nav>
+    <div class="s8-hero-tag">À propos · [Ville]</div>
+    <h1>[Prénom Nom],<br><em>[titre professionnel]</em><br>à [Ville]</h1>
+    <div class="s8-hero-sub-row">
+      <p class="s8-hero-desc">[Depuis Bloc 9 — accroche bio courte, 1 phrase percutante.]</p>
+      <div class="s8-hero-stats">
+        <div class="s8-hero-stat"><span class="s8-hero-stat-num">[X]+</span><span class="s8-hero-stat-lbl">Années</span></div>
+        <div class="s8-hero-stat"><span class="s8-hero-stat-num">[X]+</span><span class="s8-hero-stat-lbl">Clientes</span></div>
+        <div class="s8-hero-stat"><span class="s8-hero-stat-num">[X.X]★</span><span class="s8-hero-stat-lbl">Google</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S1 HISTOIRE -->
+<div class="s8-histoire s8-reveal">
+  <div class="s8-histoire-img">
+    <div class="s8-histoire-photo" style="background-image:url('[URL_PHOTO_PORTRAIT_2]')"></div>
+    <div class="s8-histoire-overlay"></div>
+  </div>
+  <div class="s8-histoire-txt">
+    <div class="s8-histoire-num" aria-hidden="true">01</div>
+    <div class="s8-label">Mon histoire</div>
+    <h2 class="s8-h2" style="margin-bottom:28px;">Pourquoi j'ai<br><em>choisi ce chemin</em></h2>
+    <p class="s8-p">[Depuis Bloc 9 — paragraphe 1 : le déclic, l'avant.]</p>
+    <p class="s8-p">[Paragraphe 2 : la formation, la transformation.]</p>
+    <blockquote class="s8-citation">« [Depuis Bloc 0 — citation courte et personnelle, la phrase qui résume.] »</blockquote>
+    <p class="s8-p">[Paragraphe 3 : aujourd'hui, ce que ça représente à [Ville].]</p>
+  </div>
+</div>
+
+<!-- S2 VALEURS -->
+<div class="s8-valeurs s8-reveal">
+  <div class="s8-valeurs-inner">
+    <div class="s8-valeurs-header">
+      <div class="s8-label">Mes valeurs</div>
+      <h2 class="s8-h2">Ce qui guide<br><em>chaque séance</em></h2>
+    </div>
+    <div class="s8-valeurs-grid">
+      <div class="s8-valeur s8-d1"><span class="s8-valeur-num" aria-hidden="true">01</span><div class="s8-valeur-sep"></div><div class="s8-valeur-titre">[Valeur 1]</div><p class="s8-valeur-txt">[Description concrète depuis Bloc 0.]</p></div>
+      <div class="s8-valeur s8-d2"><span class="s8-valeur-num" aria-hidden="true">02</span><div class="s8-valeur-sep"></div><div class="s8-valeur-titre">[Valeur 2]</div><p class="s8-valeur-txt">[Description concrète depuis Bloc 0.]</p></div>
+      <div class="s8-valeur s8-d3"><span class="s8-valeur-num" aria-hidden="true">03</span><div class="s8-valeur-sep"></div><div class="s8-valeur-titre">[Valeur 3]</div><p class="s8-valeur-txt">[Description concrète depuis Bloc 0.]</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 MÉTHODE SUR FOND PHOTO -->
+<div class="s8-methode s8-reveal">
+  <div class="s8-methode-bg" style="background-image:url('[URL_PHOTO_CABINET]')"></div>
+  <div class="s8-methode-inner">
+    <div class="s8-reveal-left">
+      <div class="s8-label">Ma méthode</div>
+      <h2 class="s8-h2" style="margin-bottom:12px;">Mon approche,<br><em>unique à [Ville]</em></h2>
+      <p class="s8-p">[Depuis Bloc 0 "Ce que je fais différemment" — 1-2 phrases intro.]</p>
+      <div class="s8-piliers">
+        <div class="s8-pilier"><span class="s8-pilier-num">01</span><div><div class="s8-pilier-titre">[Pilier 1]</div><p class="s8-pilier-txt">[Description courte.]</p></div></div>
+        <div class="s8-pilier"><span class="s8-pilier-num">02</span><div><div class="s8-pilier-titre">[Pilier 2]</div><p class="s8-pilier-txt">[Description courte.]</p></div></div>
+        <div class="s8-pilier"><span class="s8-pilier-num">03</span><div><div class="s8-pilier-titre">[Pilier 3]</div><p class="s8-pilier-txt">[Description courte.]</p></div></div>
+        <div class="s8-pilier"><span class="s8-pilier-num">04</span><div><div class="s8-pilier-titre">[Pilier 4]</div><p class="s8-pilier-txt">[Description courte.]</p></div></div>
+      </div>
+    </div>
+    <div class="s8-methode-right s8-reveal-right">
+      <p class="s8-methode-citation">« <span>[Depuis Bloc 0 — 2e citation ou phrase différenciante forte.]</span> »</p>
+      <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:16px 36px;border:1px solid var(--or);transition:all .35s;text-decoration:none;width:fit-content;">Prendre rendez-vous à [Ville]</a>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="s8-marquee" aria-hidden="true">
+  <div class="s8-marquee-track">
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 1]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Valeur 2]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 3]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Titre professionnel]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 1]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Ville]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Valeur 2]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Valeur 3]</em><span class="s8-marquee-sep">·</span></div>
+  </div>
+</div>
+
+<!-- S4 FORMATIONS -->
+<div class="s8-formations s8-reveal">
+  <div class="s8-formations-inner">
+    <div class="s8-formations-header">
+      <div class="s8-label">Formations & certifications</div>
+      <h2 class="s8-h2">Un parcours construit<br><em>avec exigence</em></h2>
+    </div>
+    <div class="s8-formations-grid">
+      <div class="s8-formation s8-d1"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 1]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">Certifié</span></div>
+      <div class="s8-formation s8-d2"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 2]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">Certifié</span></div>
+      <div class="s8-formation s8-d3"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 3]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">Certifié</span></div>
+      <div class="s8-formation s8-d1"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 4]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">Spécialisation</span></div>
+      <div class="s8-formation s8-d2"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 5]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">En continu</span></div>
+      <div class="s8-formation s8-d3"><span class="s8-formation-annee">[Année]</span><div class="s8-formation-titre">[Formation 6]</div><div class="s8-formation-org">[Organisme]</div><span class="s8-formation-badge">Certifié</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="s8-faq">
+  <div class="s8-faq-inner">
+    <div class="s8-faq-layout">
+      <div class="s8-reveal-left">
+        <div class="s8-label">Questions fréquentes</div>
+        <h2 class="s8-h2" style="margin-bottom:28px;">Ce que vous<br><em>voulez savoir</em></h2>
+        <p class="s8-p">[Prénom] répond à vos questions sur son parcours et son approche à [Ville].</p>
+        <a href="/[slug-faq]" style="display:inline-block;background:transparent;color:var(--or);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--or-line);transition:all .35s;text-decoration:none;margin-top:20px;">Toutes les questions</a>
+      </div>
+      <div class="s8-reveal-right">
+        <details class="s8-faq-item"><summary>Quel est le parcours de [Prénom Nom] à [Ville] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 9.]</p></div></details>
+        <details class="s8-faq-item"><summary>Quelle est l'approche différenciante de [Prénom] ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 0 "Ce que je fais différemment".]</p></div></details>
+        <details class="s8-faq-item"><summary>Pour quel type de clientèle [Prénom] pratique-t-elle ?</summary><div class="s8-faq-ans"><p>[Depuis Bloc 0 profil clientèle.]</p></div></details>
+        <details class="s8-faq-item"><summary>Depuis combien de temps [Prénom] pratique à [Ville] ?</summary><div class="s8-faq-ans"><p>[X] ans depuis [Année — Bloc 9].</p></div></details>
+        <details class="s8-faq-item"><summary>Comment prendre rendez-vous avec [Prénom] à [Ville] ?</summary><div class="s8-faq-ans"><p>En ligne 24h/24 sur <a href="[LIEN_RDV]">ce lien</a> ou au <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a>.</p></div></details>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="s8-cta">
+  <div class="s8-cta-bg" style="background-image:url('[URL_PHOTO_CABINET]')"></div>
+  <div class="s8-cta-inner s8-reveal">
+    <h2 class="s8-cta-h2">Prenez<br>rendez-vous<br><em>à [Ville]</em></h2>
+    <div class="s8-cta-right">
+      <p class="s8-cta-sub">[Ville] · [Soin 1] · [Soin 2] · [Soin 3]<br>Réservation en ligne · 24h/24</p>
+      <div style="display:flex;flex-direction:column;gap:0;width:fit-content;">
+        <a href="[LIEN_RDV]" target="_blank" rel="noopener" style="display:block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;">Prendre rendez-vous</a>
+        <a href="/[slug-soins]" style="display:block;background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.6rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid rgba(247,243,238,.12);transition:all .35s;text-decoration:none;text-align:center;margin-top:-1px;">Voir les soins</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<nav class="s8-maillage" aria-label="Navigation thématique">
+  <div class="s8-maillage-inner">
+    <span class="s8-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin-1]-[ville]" class="s8-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s8-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-soins]" class="s8-maillage-pill">Toutes les prestations</a>
+    <a href="/[slug-faq]" class="s8-maillage-pill">Questions fréquentes</a>
+    <a href="/[slug-offrir]" class="s8-maillage-pill">Cartes cadeaux</a>
+  </div>
+</nav>
+
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"[Prénom Nom]","jobTitle":"[Titre professionnel]","description":"[Depuis Bloc 9 + Bloc 0 ADN]","url":"https://[votre-domaine].fr/[slug-a-propos]","image":"[URL_PHOTO_PORTRAIT]","telephone":"[+33XXXXXXXXX]","email":"[email]","address":{"@type":"PostalAddress","addressLocality":"[Ville]","addressCountry":"FR"},"knowsAbout":["[Soin 1]","[Soin 2]","[Soin 3]"],"hasCredential":[{"@type":"EducationalOccupationalCredential","name":"[Formation 1]"}],"sameAs":["[Instagram]","[Facebook]","[Fiche Google]"]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel est le parcours de [Prénom Nom] à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 9]."}},{"@type":"Question","name":"Quelle est l'approche différenciante de [Prénom] ?","acceptedAnswer":{"@type":"Answer","text":"[Depuis Bloc 0]."}},{"@type":"Question","name":"Depuis combien de temps [Prénom] pratique à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"[X] ans depuis [Année]."}},{"@type":"Question","name":"Comment prendre rendez-vous à [Ville] ?","acceptedAnswer":{"@type":"Answer","text":"En ligne 24h/24 sur [URL_RDV]."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"À propos","item":"https://[votre-domaine].fr/[slug-a-propos]"}]}]</script>
+<script>
+(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button,details summary').forEach(function(el){el.addEventListener('mouseenter',function(){r.style.width='56px';r.style.height='56px';r.style.borderColor='rgba(201,169,110,.8)';});el.addEventListener('mouseleave',function(){r.style.width='36px';r.style.height='36px';r.style.borderColor='rgba(201,169,110,.5)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},80);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s8-reveal,.s8-reveal-left,.s8-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>

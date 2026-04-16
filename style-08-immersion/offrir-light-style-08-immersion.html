@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offrir une séance à [Ville] — [Prénom Nom]</title>
+<meta name="description" content="Offrez une séance de [Soin 1] ou [Soin 2] à [Ville]. Code cadeau envoyé immédiatement. Valable 1 an.">
+<link rel="canonical" href="https://[votre-domaine].fr/[slug-offrir-light]">
+<meta property="og:type" content="website"><meta property="og:title" content="Offrir une séance à [Ville] — [Prénom Nom]"><meta property="og:url" content="https://[votre-domaine].fr/[slug-offrir-light]"><meta property="og:image" content="[URL_OG_IMAGE]"><meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#1C2B2B;--nuit2:#142020;--or:#C9A96E;--or-pale:#E8D5A8;--creme:#F7F3EE;--glass:rgba(28,43,43,.65);--or-line:rgba(201,169,110,.25);--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Inter',sans-serif;--max:1320px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:var(--f-sans);font-weight:300;background:var(--nuit2);color:var(--creme);padding-bottom:68px;overflow-x:hidden;cursor:none;}
+a{color:inherit;text-decoration:none;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--or);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(201,169,110,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:transform .35s cubic-bezier(.23,1,.32,1),width .3s,height .3s;}
+.s8-sticky{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(20,32,32,.92);backdrop-filter:blur(16px);border-top:1px solid var(--or-line);display:flex;align-items:center;justify-content:space-between;padding:14px 48px;gap:16px;}
+.s8-sticky-id{font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,243,238,.3);}
+.s8-sticky-id strong{color:var(--or);font-weight:400;}
+.s8-sticky-btns{display:flex;gap:0;}
+.s8-btn-sticky{background:transparent;color:rgba(247,243,238,.35);font-family:var(--f-sans);font-size:.58rem;font-weight:300;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;border:1px solid rgba(201,169,110,.2);transition:all .3s;display:inline-block;}
+.s8-btn-sticky:hover{border-color:var(--or);color:var(--or);}
+.s8-btn-sticky-cta{background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:10px 28px;border:1px solid var(--or);transition:all .3s;display:inline-block;margin-left:-1px;}
+.s8-btn-sticky-cta:hover{background:transparent;color:var(--or);}
+@media(max-width:600px){.s8-sticky{padding:12px 20px;}.s8-sticky-id{display:none;}.s8-sticky-btns{width:100%;}.s8-btn-sticky,.s8-btn-sticky-cta{flex:1;text-align:center;}}
+
+/* HERO PLEIN ÉCRAN */
+.s8-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+.s8-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.4) saturate(.8);transform:scale(1.04);transition:transform 14s ease;}
+.s8-hero-bg.loaded{transform:scale(1);}
+.s8-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,32,32,.1) 0%,rgba(20,32,32,.0) 35%,rgba(20,32,32,.85) 100%);}
+.s8-hero-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;max-width:var(--max);margin:0 auto;width:100%;padding:0 6% 72px;}
+.s8-hero-tag{display:inline-flex;align-items:center;gap:16px;font-family:var(--f-sans);font-size:.56rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:28px;opacity:0;animation:fadeUp .8s .2s ease forwards;}
+.s8-hero-tag::before{content:'';width:32px;height:1px;background:var(--or);}
+.s8-hero h1{font-family:var(--f-serif);font-weight:300;font-size:clamp(3.5rem,9vw,12rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);opacity:0;animation:fadeUp 1.2s .35s ease forwards;}
+.s8-hero h1 em{font-style:italic;color:var(--or-pale);}
+.s8-hero-sub{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--or-line);opacity:0;animation:fadeUp .9s .6s ease forwards;}
+.s8-hero-desc{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;max-width:440px;}
+.s8-hero-garanties{display:flex;gap:0;flex-shrink:0;}
+.s8-hero-garantie{padding:10px 20px;border:1px solid var(--or-line);display:flex;flex-direction:column;gap:2px;margin-left:-1px;}
+.s8-hero-garantie-val{font-family:var(--f-serif);font-style:italic;font-size:.9rem;color:var(--or);line-height:1;}
+.s8-hero-garantie-lbl{font-family:var(--f-sans);font-size:.46rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,238,.25);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+@media(max-width:768px){.s8-hero h1{font-size:clamp(3rem,13vw,6rem);}.s8-hero-sub{flex-direction:column;align-items:flex-start;gap:24px;}.s8-hero-garanties{flex-wrap:wrap;}}
+
+/* BASE */
+.s8-label{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-sans);font-size:.54rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:24px;}
+.s8-label::before{content:'';width:28px;height:1px;background:var(--or);}
+.s8-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(2.2rem,4.5vw,6rem);line-height:.92;letter-spacing:-.025em;color:var(--creme);}
+.s8-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-p{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.45);line-height:2.1;margin-bottom:14px;}
+
+/* SOINS EN BANDES */
+.s8-bandes{background:var(--nuit2);border-top:1px solid var(--or-line);}
+.s8-bande{display:grid;grid-template-columns:60px 1fr auto;gap:0;align-items:center;border-bottom:1px solid var(--or-line);text-decoration:none;color:inherit;transition:background .3s;padding:0 6%;}
+.s8-bande:hover{background:rgba(201,169,110,.04);}
+.s8-bande-num{font-family:var(--f-serif);font-style:italic;font-size:1.6rem;color:var(--or);padding:28px 0;border-right:1px solid var(--or-line);}
+.s8-bande-body{padding:24px 36px;border-right:1px solid var(--or-line);}
+.s8-bande-nom{font-family:var(--f-serif);font-weight:300;font-size:1.3rem;color:var(--creme);margin-bottom:6px;}
+.s8-bande-desc{font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:rgba(247,243,238,.35);line-height:1.7;}
+.s8-bande-meta{padding:24px 36px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;white-space:nowrap;}
+.s8-bande-infos{display:flex;align-items:baseline;gap:10px;}
+.s8-bande-prix{font-family:var(--f-serif);font-style:italic;font-size:1.5rem;color:var(--or);line-height:1;}
+.s8-bande-duree{font-family:var(--f-sans);font-size:.52rem;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,238,.25);}
+@media(max-width:640px){.s8-bande{grid-template-columns:1fr;padding:24px 6%;}.s8-bande-num{border-right:none;padding:0 0 8px;}.s8-bande-body{padding:0 0 16px;border-right:none;}.s8-bande-meta{padding:0;align-items:flex-start;}}
+
+/* COMMENT */
+.s8-comment{background:var(--nuit);padding:0 6%;}
+.s8-comment-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0;padding:80px 0;}
+.s8-comment-col{padding:0 56px 0 0;border-right:1px solid var(--or-line);}
+.s8-comment-col:last-child{border-right:none;padding:0 0 0 56px;}
+.s8-etapes{display:flex;flex-direction:column;gap:0;margin-top:28px;}
+.s8-etape{display:grid;grid-template-columns:40px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(201,169,110,.1);}
+.s8-etape:last-child{border-bottom:none;}
+.s8-etape-num{width:36px;height:36px;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-style:italic;font-size:.9rem;color:var(--nuit2);flex-shrink:0;}
+.s8-etape-titre{font-family:var(--f-sans);font-size:.82rem;font-weight:400;color:var(--creme);margin-bottom:3px;}
+.s8-etape-txt{font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2;}
+.s8-promesses{display:flex;flex-direction:column;gap:0;margin-top:28px;}
+.s8-promesse{padding:16px 0;border-bottom:1px solid rgba(201,169,110,.1);display:flex;flex-direction:column;gap:3px;}
+.s8-promesse:last-child{border-bottom:none;}
+.s8-promesse-titre{font-family:var(--f-sans);font-size:.8rem;font-weight:400;color:var(--creme);display:flex;align-items:center;gap:10px;}
+.s8-promesse-titre::before{content:'·';color:var(--or);}
+.s8-promesse-txt{font-family:var(--f-sans);font-size:.76rem;font-weight:300;color:rgba(247,243,238,.35);line-height:1.9;padding-left:14px;}
+@media(max-width:768px){.s8-comment-inner{grid-template-columns:1fr;}.s8-comment-col{border-right:none;border-bottom:1px solid var(--or-line);padding:0 0 48px;}.s8-comment-col:last-child{border-bottom:none;padding:48px 0 0;}}
+
+/* FAQ */
+.s8-faq{position:relative;overflow:hidden;padding:0 6%;}
+.s8-faq-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.1) saturate(.4);}
+.s8-faq-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding:100px 0;display:grid;grid-template-columns:1fr 1.6fr;gap:80px;}
+details.s8-faq-item{border-bottom:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item:first-of-type{border-top:1px solid rgba(201,169,110,.12);}
+details.s8-faq-item summary{padding:20px 0;cursor:none;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--f-serif);font-weight:300;font-style:italic;font-size:1rem;color:var(--creme);line-height:1.5;transition:color .25s;}
+details.s8-faq-item summary::-webkit-details-marker{display:none;}
+details.s8-faq-item summary::after{content:'＋';font-family:var(--f-serif);font-size:1.2rem;color:var(--or);flex-shrink:0;transition:transform .35s;line-height:1;font-style:normal;}
+details.s8-faq-item[open] summary::after{transform:rotate(45deg);}
+details.s8-faq-item[open] summary{color:var(--or-pale);}
+.s8-faq-ans{padding:0 0 20px;font-family:var(--f-sans);font-size:.82rem;font-weight:300;color:rgba(247,243,238,.4);line-height:2.1;}
+.s8-faq-ans a{color:var(--or);}
+@media(max-width:768px){.s8-faq-inner{grid-template-columns:1fr;gap:40px;padding:64px 0;}}
+
+/* MARQUEE */
+.s8-marquee{background:var(--or);padding:16px 0;overflow:hidden;border-top:1px solid rgba(201,169,110,.4);border-bottom:1px solid rgba(201,169,110,.4);}
+.s8-marquee-track{display:flex;animation:marquee 28s linear infinite;width:max-content;}
+.s8-marquee-item{display:flex;align-items:center;gap:28px;padding:0 36px;white-space:nowrap;font-family:var(--f-serif);font-style:italic;font-weight:300;font-size:1.05rem;color:var(--nuit2);}
+.s8-marquee-item strong{font-style:normal;font-weight:600;}
+.s8-marquee-sep{font-family:var(--f-serif);font-size:1rem;color:rgba(28,43,43,.3);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* CTA */
+.s8-cta{position:relative;min-height:60vh;display:flex;align-items:center;overflow:hidden;padding:0 6%;}
+.s8-cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.2) saturate(.6);}
+.s8-cta-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.s8-cta-h2{font-family:var(--f-serif);font-weight:300;font-size:clamp(3rem,7vw,9rem);line-height:.88;letter-spacing:-.03em;color:var(--creme);}
+.s8-cta-h2 em{font-style:italic;color:var(--or-pale);}
+.s8-cta-right{display:flex;flex-direction:column;gap:20px;}
+.s8-cta-sub{font-family:var(--f-sans);font-size:.84rem;font-weight:300;color:rgba(247,243,238,.35);line-height:2;}
+@media(max-width:768px){.s8-cta-inner{grid-template-columns:1fr;gap:40px;}}
+
+.s8-maillage{background:var(--nuit2);padding:32px 6%;border-top:1px solid var(--or-line);}
+.s8-maillage-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.s8-maillage-lbl{font-family:var(--f-sans);font-size:.5rem;font-weight:300;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,243,238,.2);margin-right:8px;white-space:nowrap;}
+.s8-maillage-pill{display:inline-block;padding:6px 16px;border:1px solid rgba(201,169,110,.15);color:rgba(247,243,238,.3);font-family:var(--f-sans);font-size:.64rem;font-weight:300;transition:all .25s;}
+.s8-maillage-pill:hover{border-color:var(--or);color:var(--or);}
+.s8-reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal.in{opacity:1;transform:none;}
+.s8-reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal-left.in{opacity:1;transform:none;}
+.s8-reveal-right{opacity:0;transform:translateX(30px);transition:opacity 1s ease,transform 1s ease;}.s8-reveal-right.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="s8-sticky">
+  <div class="s8-sticky-id"><strong>[Prénom Nom]</strong> — Cartes cadeaux · [Ville]</div>
+  <div class="s8-sticky-btns">
+    <a href="[LIEN_RDV]" class="s8-btn-sticky">Prendre RDV</a>
+    <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" class="s8-btn-sticky-cta">Offrir une séance</a>
+  </div>
+</div>
+<main>
+
+<!-- HERO -->
+<section class="s8-hero" aria-label="Offrir une séance à [Ville]">
+  <div class="s8-hero-bg" id="heroBg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+  <div class="s8-hero-overlay"></div>
+  <div class="s8-hero-inner">
+    <div class="s8-hero-tag">Cartes cadeaux · [Ville]</div>
+    <h1>Offrir,<br><em>prendre soin.</em></h1>
+    <div class="s8-hero-sub">
+      <p class="s8-hero-desc">[Depuis Bloc 0 — 1 phrase sur ce que représente offrir une séance à quelqu'un qu'on aime.]</p>
+      <div class="s8-hero-garanties">
+        <div class="s8-hero-garantie"><span class="s8-hero-garantie-val">Immédiat</span><span class="s8-hero-garantie-lbl">Code email</span></div>
+        <div class="s8-hero-garantie"><span class="s8-hero-garantie-val">1 an</span><span class="s8-hero-garantie-lbl">Validité</span></div>
+        <div class="s8-hero-garantie"><span class="s8-hero-garantie-val">0 €</span><span class="s8-hero-garantie-lbl">Sur place</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOINS EN BANDES -->
+<div class="s8-bandes s8-reveal" aria-label="Cartes cadeaux disponibles">
+  <a href="[LIEN_CARTE_CADEAU_SOIN_1]" target="_blank" rel="noopener" class="s8-bande">
+    <span class="s8-bande-num">I</span>
+    <div class="s8-bande-body"><div class="s8-bande-nom">[Soin 1]</div><p class="s8-bande-desc">[Accroche depuis Bloc 5 — 1 phrase.]</p></div>
+    <div class="s8-bande-meta"><div class="s8-bande-infos"><span class="s8-bande-prix">[Tarif] €</span><span class="s8-bande-duree">[Durée]</span></div><a href="[LIEN_CARTE_CADEAU_SOIN_1]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;margin-top:6px;">Offrir</a></div>
+  </a>
+  <a href="[LIEN_CARTE_CADEAU_SOIN_2]" target="_blank" rel="noopener" class="s8-bande">
+    <span class="s8-bande-num">II</span>
+    <div class="s8-bande-body"><div class="s8-bande-nom">[Soin 2]</div><p class="s8-bande-desc">[Accroche.]</p></div>
+    <div class="s8-bande-meta"><div class="s8-bande-infos"><span class="s8-bande-prix">[Tarif] €</span><span class="s8-bande-duree">[Durée]</span></div><a href="[LIEN_CARTE_CADEAU_SOIN_2]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;margin-top:6px;">Offrir</a></div>
+  </a>
+  <a href="[LIEN_CARTE_CADEAU_SOIN_3]" target="_blank" rel="noopener" class="s8-bande">
+    <span class="s8-bande-num">III</span>
+    <div class="s8-bande-body"><div class="s8-bande-nom">[Soin 3]</div><p class="s8-bande-desc">[Accroche.]</p></div>
+    <div class="s8-bande-meta"><div class="s8-bande-infos"><span class="s8-bande-prix">[Tarif] €</span><span class="s8-bande-duree">[Durée]</span></div><a href="[LIEN_CARTE_CADEAU_SOIN_3]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--or);transition:all .3s;text-decoration:none;margin-top:6px;">Offrir</a></div>
+  </a>
+</div>
+
+<!-- COMMENT + PROMESSES -->
+<div class="s8-comment s8-reveal">
+  <div class="s8-comment-inner">
+    <div class="s8-reveal-left">
+      <div class="s8-label">Comment ça marche</div>
+      <h2 class="s8-h2" style="margin-bottom:12px;">Simple.<br><em>Immédiat.</em></h2>
+      <div class="s8-etapes">
+        <div class="s8-etape"><div class="s8-etape-num">1</div><div><div class="s8-etape-titre">Choisissez le soin</div><p class="s8-etape-txt">Cliquez sur la carte de votre choix ci-dessus.</p></div></div>
+        <div class="s8-etape"><div class="s8-etape-num">2</div><div><div class="s8-etape-titre">Payez en ligne</div><p class="s8-etape-txt">Sécurisé, intégral. Aucun montant sur place.</p></div></div>
+        <div class="s8-etape"><div class="s8-etape-num">3</div><div><div class="s8-etape-titre">Code par email</div><p class="s8-etape-txt">Immédiatement. À imprimer ou transférer.</p></div></div>
+        <div class="s8-etape"><div class="s8-etape-num">4</div><div><div class="s8-etape-titre">La bénéficiaire réserve</div><p class="s8-etape-txt">En ligne 24h/24. Valable 1 an.</p></div></div>
+      </div>
+    </div>
+    <div class="s8-reveal-right">
+      <div class="s8-label">Ce qui rend ce cadeau juste</div>
+      <div class="s8-promesses">
+        <div class="s8-promesse"><div class="s8-promesse-titre">Envoi instantané</div><p class="s8-promesse-txt">Code immédiat — même la veille pour le lendemain.</p></div>
+        <div class="s8-promesse"><div class="s8-promesse-titre">Valable 1 an</div><p class="s8-promesse-txt">Le temps que la bénéficiaire trouve le bon moment.</p></div>
+        <div class="s8-promesse"><div class="s8-promesse-titre">Aucun montant sur la carte</div><p class="s8-promesse-txt">Discret et élégant.</p></div>
+        <div class="s8-promesse"><div class="s8-promesse-titre">Cumulable</div><p class="s8-promesse-txt">Plusieurs codes peuvent être utilisés.</p></div>
+        <div class="s8-promesse"><div class="s8-promesse-titre">Une question ?</div><p class="s8-promesse-txt"><a href="tel:[+33XXXXXXXXX]" style="color:var(--or);">[Téléphone]</a> · <a href="mailto:[email]" style="color:var(--or);">[Email]</a></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="s8-marquee" aria-hidden="true">
+  <div class="s8-marquee-track">
+    <div class="s8-marquee-item"><strong>Cartes cadeaux</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Soin 1]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Ville]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">Code immédiat<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>Valable 1 an</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>Cartes cadeaux</strong><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">[Soin 1]<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>[Ville]</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item">Code immédiat<span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><em>Valable 1 an</em><span class="s8-marquee-sep">·</span></div>
+    <div class="s8-marquee-item"><strong>[Prénom Nom]</strong><span class="s8-marquee-sep">·</span></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="s8-faq">
+  <div class="s8-faq-bg" style="background-image:url('[URL_PHOTO_AMBIANCE]')"></div>
+  <div class="s8-faq-inner">
+    <div>
+      <div class="s8-label">Questions fréquentes</div>
+      <h2 class="s8-h2" style="margin-bottom:24px;">Tout savoir<br><em>avant d'offrir</em></h2>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:14px 28px;border:1px solid var(--or);transition:all .35s;text-decoration:none;margin-top:8px;">Commander maintenant</a>
+    </div>
+    <div>
+      <details class="s8-faq-item"><summary>Comment fonctionne la carte cadeau à [Ville] ?</summary><div class="s8-faq-ans"><p>Achat en ligne → code par email immédiatement → réservation sur <a href="[LIEN_RDV]">la plateforme</a>. Valable 1 an. Aucun montant sur place.</p></div></details>
+      <details class="s8-faq-item"><summary>Combien de temps est-elle valable ?</summary><div class="s8-faq-ans"><p>1 an à compter de la date d'achat.</p></div></details>
+      <details class="s8-faq-item"><summary>Y a-t-il des contre-indications à signaler ?</summary><div class="s8-faq-ans"><p>[CI depuis Bloc 5.] <a href="tel:[+33XXXXXXXXX]">[Prénom]</a> répond avant tout achat.</p></div></details>
+      <details class="s8-faq-item"><summary>Peut-on cumuler plusieurs cartes ?</summary><div class="s8-faq-ans"><p>Oui. Chaque code est indépendant.</p></div></details>
+      <details class="s8-faq-item"><summary>Comment offrir [Soin 1] en cadeau à [Ville] ?</summary><div class="s8-faq-ans"><p>Sélectionnez la carte ci-dessus. <a href="[LIEN_CARTE_CADEAU]">Commander →</a></p></div></details>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="s8-cta">
+  <div class="s8-cta-bg" style="background-image:url('[URL_PHOTO_CADEAU]')"></div>
+  <div class="s8-cta-inner s8-reveal">
+    <h2 class="s8-cta-h2">Offrir,<br><em>prendre soin.</em></h2>
+    <div class="s8-cta-right">
+      <p class="s8-cta-sub">[Soin 1] · [Soin 2] · [Soin 3]<br>[Ville] · Code immédiat · Valable 1 an</p>
+      <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener" style="display:inline-block;background:var(--or);color:var(--nuit2);font-family:var(--f-sans);font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:18px 48px;border:1px solid var(--or);transition:all .35s;text-decoration:none;text-align:center;width:fit-content;">Choisir une carte cadeau</a>
+    </div>
+  </div>
+</div>
+
+</main>
+<nav class="s8-maillage" aria-label="Navigation thématique">
+  <div class="s8-maillage-inner">
+    <span class="s8-maillage-lbl">Explorer</span>
+    <a href="/[slug-soin-1]-[ville]" class="s8-maillage-pill">[Soin 1] à [Ville]</a>
+    <a href="/[slug-soin-2]-[ville]" class="s8-maillage-pill">[Soin 2] à [Ville]</a>
+    <a href="/[slug-offrir]" class="s8-maillage-pill">Page cadeaux complète</a>
+    <a href="/[slug-faq]" class="s8-maillage-pill">Questions fréquentes</a>
+  </div>
+</nav>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://[votre-domaine].fr/"},{"@type":"ListItem","position":2,"name":"Offrir une séance","item":"https://[votre-domaine].fr/[slug-offrir-light]"}]}</script>
+<script>
+(function(){var c=document.getElementById('cursor'),r=document.getElementById('cursorRing');if(!c||!r)return;var mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;c.style.left=mx+'px';c.style.top=my+'px';});(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;r.style.left=rx+'px';r.style.top=ry+'px';requestAnimationFrame(loop);})();document.querySelectorAll('a,button,details summary').forEach(function(el){el.addEventListener('mouseenter',function(){r.style.width='56px';r.style.height='56px';r.style.borderColor='rgba(201,169,110,.8)';});el.addEventListener('mouseleave',function(){r.style.width='36px';r.style.height='36px';r.style.borderColor='rgba(201,169,110,.5)';});});})();
+(function(){var bg=document.getElementById('heroBg');if(bg)setTimeout(function(){bg.classList.add('loaded');},80);})();
+(function(){var io=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('in');io.unobserve(n.target);}});},{threshold:.08});document.querySelectorAll('.s8-reveal,.s8-reveal-left,.s8-reveal-right').forEach(function(el){io.observe(el);});})();
+</script>
+</body>
+</html>
