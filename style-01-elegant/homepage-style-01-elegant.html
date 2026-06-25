@@ -485,6 +485,24 @@ a { color: inherit; text-decoration: none; }
   .cabinet-photos { grid-template-rows: 200px 160px; }
 }
 
+/* ─── S6b — CARTE GOOGLE MAPS ─────────────────────────────── */
+.map-section { background: var(--sand); text-align: center; }
+.map-section .p { max-width: 520px; margin-left: auto; margin-right: auto; }
+.map-link {
+  display: inline-block; margin: 6px 0 40px;
+  font-size: .8rem; color: var(--terra); font-weight: 500;
+  letter-spacing: .06em; text-decoration: underline; text-underline-offset: 3px;
+}
+.map-frame {
+  position: relative; width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--terra);
+  background: var(--sand); overflow: hidden;
+}
+.map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media(max-width:760px){ .map-frame { aspect-ratio: 3 / 4; } }
+
 /* ─── S7 — FAQ ────────────────────────────────────────────── */
 .faq-section { background: var(--ivory); }
 .faq-wrap { max-width: 720px; margin: 48px auto 0; }
@@ -929,6 +947,33 @@ details.faq-item[open] summary::after { transform: rotate(45deg); }
         <span class="cabinet-info-val">Réservation en ligne 24h/24</span>
         <a href="[LIEN_RDV]" class="cabinet-rdv-btn" target="_blank" rel="noopener">Prendre rendez-vous</a>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     S6b — CARTE GOOGLE MAPS
+     → Récupérer le lien : Google Maps → chercher la fiche de la
+       cliente → bouton « Partager » → onglet « Intégrer une carte »
+       → copier UNIQUEMENT la valeur du src="..." de l'iframe.
+       Format attendu : https://www.google.com/maps/embed?pb=!1m18...!5m2!1sfr!2s
+     ============================================================ -->
+<section class="section map-section reveal">
+  <div class="inner">
+    <span class="label label-center" style="display:block;">Nous trouver</span>
+    <h2 class="h2 h2-center">[Nom du cabinet]<br><em>sur la carte</em></h2>
+    <div class="rule rule-center"></div>
+    <p class="p">[Adresse courte] — [Ville]. [Accès / stationnement en une phrase].</p>
+    <a href="[LIEN_GOOGLE_MAPS]" class="map-link" target="_blank" rel="noopener">Itinéraire dans Google Maps →</a>
+
+    <div class="map-frame">
+      <iframe
+        src="[LIEN_GOOGLE_MAPS_EMBED]"
+        title="Carte — [Nom du cabinet] à [Ville]"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </div>
 </section>
