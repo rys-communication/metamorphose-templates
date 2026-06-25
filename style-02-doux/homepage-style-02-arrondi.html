@@ -129,10 +129,11 @@ a { color: var(--c-main); text-decoration: none; }
 .s2-s2  { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 3;  text-align: center; }
 .s2-s3  { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 4;  text-align: center; color: var(--c-ivory); }
 .s2-s4  { padding: 100px 8% 120px; background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 5;  text-align: center; }
-.s2-s5  { padding: 100px 8% 120px; background: var(--c-lin);   border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 6;  text-align: center; }
-.s2-s6  { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 7;  text-align: center; }
-.s2-s7  { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 8;  text-align: center; color: var(--c-ivory); }
-.s2-s8  { padding: 80px 8% 100px;  background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 9;  text-align: center; }
+.s2-s4b { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 6;  text-align: center; }
+.s2-s5  { padding: 100px 8% 120px; background: var(--c-lin);   border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 7;  text-align: center; }
+.s2-s6  { padding: 100px 8% 120px; background: var(--c-ivory); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 8;  text-align: center; }
+.s2-s7  { padding: 100px 8% 120px; background: var(--c-main);  border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 9;  text-align: center; color: var(--c-ivory); }
+.s2-s8  { padding: 80px 8% 100px;  background: var(--c-cream); border-radius: 60px 60px 0 0; margin-top: -60px; position: relative; z-index: 10; text-align: center; }
 
 /* ─── TYPO COMMUNE ────────────────────────────────────────── */
 .s2-label {
@@ -441,6 +442,21 @@ details.s2-faq-item[open] summary::after { transform: rotate(45deg); }
   transition: all .3s; letter-spacing: .05em;
 }
 .s2-maillage a:hover { background: var(--c-mid); color: #fff; }
+
+/* ─── S4b — CARTE GOOGLE MAPS ─────────────────────────────── */
+.s2-map-frame {
+  position: relative; width: 100%; max-width: 1000px; margin: 40px auto 0;
+  aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 4px 32px rgba(61,90,71,.1);
+}
+.s2-map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.s2-map-link {
+  display: inline-block; margin-top: 28px;
+  font-size: .78rem; color: var(--c-main); font-weight: 400;
+  letter-spacing: .08em; text-decoration: underline; text-underline-offset: 3px;
+  font-family: var(--f-body);
+}
+@media(max-width:768px){ .s2-map-frame { aspect-ratio: 3 / 4; } }
 
 /* ─── PARALLAX ────────────────────────────────────────────── */
 @media(max-width:900px){
@@ -753,6 +769,34 @@ details.s2-faq-item[open] summary::after { transform: rotate(45deg); }
       </div>
     </div>
   </div>
+</section>
+
+
+<!-- ============================================================
+     S4b — CARTE GOOGLE MAPS
+     → Récupérer le lien : Google Maps → fiche de la cliente →
+       bouton « Partager » → onglet « Intégrer une carte » →
+       copier UNIQUEMENT la valeur du src="..." de l'iframe.
+       Format attendu : https://www.google.com/maps/embed?pb=!1m18...!5m2!1sfr!2s
+     ============================================================ -->
+<section class="s2-s4b">
+  <span class="s2-label">Nous trouver</span>
+  <h2 class="s2-h2">[Nom du cabinet]<br><em>sur la carte</em></h2>
+  <div class="s2-divider"></div>
+  <p class="s2-p" style="max-width:520px;margin-left:auto;margin-right:auto;">
+    [Adresse courte] — [Ville]. [Accès / stationnement en une phrase].
+  </p>
+  <div class="s2-map-frame">
+    <iframe
+      src="[LIEN_GOOGLE_MAPS_EMBED]"
+      title="Carte — [Nom du cabinet] à [Ville]"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <a href="[LIEN_GOOGLE_MAPS]" target="_blank" rel="noopener" class="s2-map-link">
+    Itinéraire dans Google Maps →
+  </a>
 </section>
 
 
