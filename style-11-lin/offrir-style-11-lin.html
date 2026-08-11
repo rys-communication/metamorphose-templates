@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Offrir — Cartes Cadeaux &amp; Packs [Ville] | [Prénom Nom]</title>
+<meta name="description" content="Offrir une carte cadeau ou un pack de soins à [Ville] avec [Prénom Nom]. Code envoyé immédiatement, paiement sécurisé, réservation libre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=EB+Garamond:ital,wght@0,400;1,400&family=Marcellus&family=Martel:wght@300;400&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://[votre-domaine].fr/[slug-offrir]#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment fonctionne une carte cadeau ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Modalités carte cadeau]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment la carte cadeau est-elle transmise ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Transmission carte cadeau]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la durée de validité ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Validité carte cadeau]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on cumuler plusieurs cartes cadeaux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Cumul cartes cadeaux]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment fonctionne un pack ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Fonctionnement des packs]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Un pack peut-il être offert ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Pack offert]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Le paiement en 2 fois est-il possible ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Modalités paiement en plusieurs fois]" }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on choisir l'ordre des séances ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Ordre des séances]" }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://[votre-domaine].fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Offrir", "item": "https://[votre-domaine].fr/[slug-offrir]" }
+  ]
+}
+</script>
+
+<style>
+/* ================= STYLE 12 — VOILE ================= */
+.s12-scope{
+  --s12-blanc:#FFFFFF;
+  --s12-papier:#FAFAF8;
+  --s12-creme:#FBF5F1;
+  --s12-poudre:#D5C3C0;
+  --s12-rose:#B79E9E;
+  --s12-rose-cl:#DACDCD;
+  --s12-encre:#3B3331;
+  --s12-texte:#464646;
+  --s12-muted:#ABABAB;
+  --s12-line:#EEEEEE;
+  --s12-line-md:rgba(70,70,70,.14);
+  --s12-line-lt:rgba(255,255,255,.22);
+  --s12-line-dk:rgba(59,51,49,.16);
+  --s12-serif:'Marcellus',Georgia,serif;
+  --s12-ital:'EB Garamond',Georgia,serif;
+  --s12-corps:'Martel',Georgia,serif;
+  --s12-mono:'DM Mono',ui-monospace,monospace;
+}
+
+/* --- Reset scopé en :where() : spécificité 0 --- */
+.s12-scope :where(h1,h2,h3,h4,h5,h6,p,ul,ol,li,figure,blockquote,dl,dd){margin:0;padding:0;}
+.s12-scope :where(ul,ol){list-style:none;}
+.s12-scope :where(img){max-width:100%;display:block;}
+.s12-scope :where(a){color:inherit;text-decoration:none;}
+.s12-scope *,.s12-scope *::before,.s12-scope *::after{box-sizing:border-box;}
+
+.s12-scope{
+  font-family:var(--s12-corps);font-weight:300;font-size:16px;line-height:2;
+  color:var(--s12-texte);background:var(--s12-papier);overflow-x:hidden;
+}
+
+/* --- Curseur custom --- */
+.s12-cursor-dot,.s12-cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);border-radius:50%;}
+.s12-cursor-dot{width:5px;height:5px;background:var(--s12-rose);}
+.s12-cursor-ring{width:30px;height:30px;border:1px solid var(--s12-poudre);transition:width .3s ease,height .3s ease,border-color .3s ease;}
+@media (hover:none),(max-width:900px){.s12-cursor-dot,.s12-cursor-ring{display:none;}}
+
+/* --- Sticky bar --- */
+.s12-sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:9000;background:var(--s12-encre);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 28px;
+}
+.s12-sticky-txt{font-family:var(--s12-mono);font-size:10px;line-height:1.6;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);}
+.s12-sticky-txt strong{display:block;font-weight:500;color:#fff;letter-spacing:.2em;}
+.s12-sticky-btns{display:flex;gap:10px;flex-shrink:0;}
+.s12-sticky-ghost,.s12-sticky-cta{font-family:var(--s12-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:11px 20px;white-space:nowrap;transition:background .45s ease,color .45s ease,border-color .45s ease;}
+.s12-sticky-ghost{border:1px solid var(--s12-line-lt);color:#fff;}
+.s12-sticky-ghost:hover{border-color:var(--s12-poudre);color:var(--s12-poudre);}
+.s12-sticky-cta{background:var(--s12-rose);color:#fff;border:1px solid var(--s12-rose);}
+.s12-sticky-cta:hover{background:var(--s12-rose-cl);color:var(--s12-encre);border-color:var(--s12-rose-cl);}
+
+/* --- Typo utilitaires --- */
+.s12-over{font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;text-transform:uppercase;line-height:1.6;color:var(--s12-muted);}
+.s12-eyebrow{font-family:var(--s12-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-rose);line-height:1.6;}
+.s12-h2{font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;letter-spacing:.08em;line-height:1.25;font-size:clamp(22px,2.5vw,34px);color:var(--s12-texte);}
+.s12-h3{font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;letter-spacing:.08em;line-height:1.3;font-size:clamp(15px,1.4vw,18px);}
+.s12-lede{font-family:var(--s12-ital);font-style:italic;font-size:clamp(18px,2vw,25px);line-height:1.4;color:var(--s12-texte);}
+.s12-p{font-size:15px;line-height:2;font-weight:300;}
+.s12-p + .s12-p{margin-top:20px;}
+
+/* --- Boutons --- */
+.s12-btn,.s12-btn-ghost{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--s12-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  padding:16px 30px;transition:background .5s ease,color .5s ease,border-color .5s ease;
+}
+.s12-btn{background:var(--s12-rose);color:#fff;border:1px solid var(--s12-rose);}
+.s12-btn:hover{background:var(--s12-rose-cl);color:var(--s12-encre);border-color:var(--s12-rose-cl);}
+.s12-btn-ghost{background:transparent;color:var(--s12-texte);border:1px solid var(--s12-line-md);}
+.s12-btn-ghost:hover{border-color:var(--s12-rose);color:var(--s12-rose);}
+.s12-btn-lt{background:transparent;color:#fff;border:1px solid var(--s12-line-lt);}
+.s12-btn-lt:hover{border-color:var(--s12-poudre);color:var(--s12-poudre);}
+
+/* --- Sections --- */
+.s12-sec{padding:clamp(64px,8vw,120px) clamp(20px,5vw,72px);}
+.s12-sec--papier{background:var(--s12-papier);}
+.s12-sec--blanc{background:var(--s12-blanc);}
+.s12-sec--creme{background:var(--s12-creme);}
+.s12-sec--poudre{background:var(--s12-poudre);color:var(--s12-encre);}
+.s12-sec--encre{background:var(--s12-encre);color:rgba(255,255,255,.82);}
+.s12-sec--encre .s12-h2,.s12-sec--encre .s12-h3,.s12-sec--encre .s12-lede{color:#fff;}
+.s12-sec--encre .s12-over{color:rgba(255,255,255,.5);}
+.s12-sec--poudre .s12-h2,.s12-sec--poudre .s12-h3,.s12-sec--poudre .s12-lede{color:var(--s12-encre);}
+.s12-sec--poudre .s12-over{color:rgba(59,51,49,.55);}
+.s12-wrap{max-width:1280px;margin:0 auto;}
+.s12-head{margin-bottom:clamp(36px,4vw,60px);}
+.s12-head .s12-over{margin-bottom:16px;}
+.s12-head .s12-h2{margin-bottom:18px;}
+.s12-head--center{text-align:center;max-width:760px;margin-left:auto;margin-right:auto;}
+.s12-center{text-align:center;margin-top:clamp(34px,4vw,52px);}
+
+/* --- HERO PLEIN ÉCRAN --- */
+.s12-hero-full{
+  position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:clamp(90px,10vw,130px) clamp(20px,5vw,72px);
+}
+.s12-hero-img{position:absolute;inset:0;background-image:url('[URL_IMAGE_HERO]');background-size:cover;background-position:center;transform:scale(1.08);transition:transform 8s cubic-bezier(.25,.46,.45,.94);}
+.s12-hero-full.loaded .s12-hero-img{transform:scale(1);}
+.s12-hero-full::after{content:"";position:absolute;inset:0;background:rgba(59,51,49,.42);}
+.s12-hero-in{position:relative;z-index:2;max-width:900px;width:100%;color:#fff;}
+.s12-hero-in .s12-over{color:rgba(255,255,255,.72);margin-bottom:26px;}
+.s12-custom-h1{font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;letter-spacing:.06em;line-height:1.18;font-size:clamp(28px,4.4vw,56px);color:#fff;margin-bottom:22px;}
+.s12-hero-lede{color:#fff;margin:0 auto 34px;max-width:46ch;}
+.s12-hero-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:48px;}
+.s12-hero-full .s12-infos{border-top:1px solid var(--s12-line-lt);}
+.s12-hero-full .s12-info + .s12-info::before{background:var(--s12-line-lt);}
+.s12-hero-full .s12-info-lbl{color:rgba(255,255,255,.6);}
+.s12-hero-full .s12-info-val{color:#fff;}
+
+/* --- HERO SPLIT --- */
+.s12-hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;background:var(--s12-blanc);}
+.s12-hero-media{position:relative;overflow:hidden;background:var(--s12-creme);}
+.s12-hero-media .s12-hero-img{transform:scale(1.08);}
+.s12-hero.loaded .s12-hero-img{transform:scale(1);}
+.s12-hero-media::after{content:"";position:absolute;inset:0;background:rgba(59,51,49,.12);}
+.s12-hero-body{display:flex;flex-direction:column;justify-content:center;padding:clamp(48px,6vw,88px);}
+.s12-hero-body .s12-over{margin-bottom:26px;}
+.s12-hero-body .s12-custom-h1{color:var(--s12-texte);font-size:clamp(28px,4vw,54px);}
+.s12-hero-body .s12-hero-lede{color:var(--s12-texte);margin:0 0 34px;max-width:34ch;}
+.s12-hero-body .s12-hero-btns{justify-content:flex-start;margin-bottom:44px;}
+
+/* --- Grille à filets verticaux (signature) --- */
+.s12-infos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--s12-line);}
+.s12-info{padding:22px 16px 4px;position:relative;text-align:center;}
+.s12-info + .s12-info::before{content:"";position:absolute;left:0;top:24px;bottom:8px;width:1px;background:var(--s12-line);}
+.s12-info-lbl{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-muted);line-height:1.6;margin-bottom:6px;}
+.s12-info-val{font-family:var(--s12-serif);font-size:15px;text-transform:uppercase;letter-spacing:.08em;line-height:1.4;color:var(--s12-rose);}
+
+/* --- Marquee --- */
+.s12-marquee{background:var(--s12-poudre);overflow:hidden;padding:16px 0;}
+.s12-marquee-track{display:flex;width:max-content;animation:s12-slide 34s linear infinite;}
+.s12-marquee-track span{font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--s12-encre);white-space:nowrap;padding:0 22px;}
+@keyframes s12-slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion:reduce){.s12-marquee-track{animation:none;}}
+
+/* --- Pills de filtres --- */
+.s12-filtres{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:clamp(34px,4vw,52px);}
+.s12-filtre{
+  font-family:var(--s12-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--s12-line-md);background:transparent;color:var(--s12-texte);
+  padding:11px 18px;line-height:1.6;cursor:pointer;
+  transition:border-color .45s ease,color .45s ease,background .45s ease;
+}
+.s12-filtre:hover{border-color:var(--s12-rose);color:var(--s12-rose);}
+.s12-filtre.actif{background:var(--s12-rose);border-color:var(--s12-rose);color:#fff;}
+.s12-vide{
+  display:none;text-align:center;padding:52px 20px;
+  font-family:var(--s12-ital);font-style:italic;font-size:19px;color:var(--s12-muted);
+}
+.s12-vide.on{display:block;}
+
+/* --- Cartes soins --- */
+.s12-gap{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(18px,2vw,26px);}
+.s12-soin{background:var(--s12-blanc);border:1px solid var(--s12-line);display:block;transition:border-color .5s ease;}
+.s12-soin:hover{border-color:var(--s12-poudre);}
+.s12-soin.masque{display:none;}
+.s12-soin-img{width:100%;aspect-ratio:3/2;background:var(--s12-creme);background-size:cover;background-position:center;}
+.s12-soin-body{padding:28px;}
+.s12-soin-body .s12-h3{margin-bottom:12px;}
+.s12-soin-cat{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-muted);line-height:1.6;margin-bottom:14px;}
+.s12-soin-meta{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-rose);line-height:1.6;margin-top:18px;padding-top:16px;border-top:1px solid var(--s12-line);}
+
+/* --- Témoignages --- */
+.s12-avis{background:var(--s12-blanc);border:1px solid var(--s12-line);padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;}
+.s12-sec--encre .s12-avis{background:transparent;border-color:var(--s12-line-lt);}
+.s12-stars{font-family:var(--s12-mono);font-size:11px;letter-spacing:.3em;color:var(--s12-poudre);margin-bottom:20px;line-height:1.6;}
+.s12-avis-txt{font-family:var(--s12-ital);font-style:italic;font-size:17px;line-height:1.6;flex:1;margin-bottom:22px;}
+.s12-sec--encre .s12-avis-txt{color:#fff;}
+.s12-avis-nom{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-muted);line-height:1.6;}
+.s12-note-google{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-top:44px;}
+
+/* --- Accordéon --- */
+.s12-q{border-bottom:1px solid var(--s12-line-md);}
+.s12-q:first-child{border-top:1px solid var(--s12-line-md);}
+.s12-q-btn{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px 0;
+  font-family:var(--s12-serif);font-size:15px;text-transform:uppercase;letter-spacing:.06em;line-height:1.5;color:var(--s12-texte);
+}
+.s12-q-ic{font-family:var(--s12-mono);font-size:14px;color:var(--s12-rose);flex-shrink:0;transition:transform .4s ease;line-height:1.4;}
+.s12-q.open .s12-q-ic{transform:rotate(45deg);}
+.s12-q-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94);}
+.s12-q.open .s12-q-body{max-height:800px;}
+.s12-q-body p{padding:0 0 24px;font-size:15px;line-height:2;}
+
+/* --- Photo pilule --- */
+.s12-photo-pilule{width:100%;aspect-ratio:4/5;border-radius:180px;overflow:hidden;background-size:cover;background-position:center;opacity:.94;}
+
+/* --- CTA final --- */
+.s12-cta{text-align:center;max-width:720px;margin:0 auto;}
+.s12-cta .s12-over{margin-bottom:20px;}
+.s12-cta .s12-h2{margin-bottom:20px;}
+.s12-cta .s12-lede{margin-bottom:36px;}
+.s12-cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+
+/* --- Maillage --- */
+.s12-maillage{background:var(--s12-papier);padding:52px clamp(20px,5vw,72px) 64px;}
+.s12-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;}
+.s12-pill{font-family:var(--s12-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--s12-line-md);padding:11px 18px;line-height:1.6;transition:border-color .45s ease,color .45s ease;}
+.s12-pill:hover{border-color:var(--s12-rose);color:var(--s12-rose);}
+
+/* --- Scroll reveal --- */
+.s12-reveal,.s12-reveal-left,.s12-reveal-right{opacity:0;transition:opacity .9s cubic-bezier(.25,.46,.45,.94),transform .9s cubic-bezier(.25,.46,.45,.94);}
+.s12-reveal{transform:translateY(34px);}
+.s12-reveal-left{transform:translateX(-34px);}
+.s12-reveal-right{transform:translateX(34px);}
+.s12-reveal.in,.s12-reveal-left.in,.s12-reveal-right.in{opacity:1;transform:none;}
+.s12-d1{transition-delay:.12s;}
+.s12-d2{transition-delay:.24s;}
+.s12-d3{transition-delay:.36s;}
+.s12-d4{transition-delay:.48s;}
+@media (prefers-reduced-motion:reduce){.s12-reveal,.s12-reveal-left,.s12-reveal-right{opacity:1;transform:none;transition:none;}}
+
+/* --- Responsive commun --- */
+@media (max-width:1000px){
+  .s12-hero{grid-template-columns:1fr;min-height:auto;}
+  .s12-hero-media{min-height:52vh;}
+}
+@media (max-width:700px){
+  .s12-infos{grid-template-columns:repeat(2,1fr);}
+  .s12-info:nth-child(3)::before{display:none;}
+  .s12-info:nth-child(3),.s12-info:nth-child(4){border-top:1px solid var(--s12-line-lt);}
+  .s12-sticky{padding:11px 16px;gap:10px;}
+  .s12-sticky-txt{display:none;}
+  .s12-sticky-btns{width:100%;}
+  .s12-sticky-ghost,.s12-sticky-cta{flex:1;text-align:center;justify-content:center;}
+  .s12-hero-btns .s12-btn,.s12-hero-btns .s12-btn-ghost{flex:1;}
+}
+
+
+
+/* --- Pills de garanties --- */
+.s12-garanties{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:44px;}
+.s12-garantie{
+  font-family:var(--s12-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--s12-line-lt);color:#fff;padding:10px 16px;line-height:1.6;
+}
+
+/* --- Cartes cadeaux --- */
+.s12-carte{background:var(--s12-blanc);border:1px solid var(--s12-line);display:flex;flex-direction:column;transition:border-color .5s ease;}
+.s12-carte:hover{border-color:var(--s12-poudre);}
+.s12-carte.masque{display:none;}
+.s12-carte-img{width:100%;aspect-ratio:3/2;background:var(--s12-creme);background-size:cover;background-position:center;}
+.s12-carte-body{padding:28px;display:flex;flex-direction:column;flex:1;}
+.s12-carte-cat{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-muted);line-height:1.6;margin-bottom:14px;}
+.s12-carte-body .s12-h3{margin-bottom:12px;}
+.s12-carte-body .s12-p{flex:1;}
+.s12-carte-prix{
+  font-family:var(--s12-serif);font-size:22px;letter-spacing:.06em;color:var(--s12-rose);
+  line-height:1.4;margin:18px 0 18px;padding-top:16px;border-top:1px solid var(--s12-line);
+}
+.s12-carte .s12-btn{width:100%;}
+
+/* --- Packs --- */
+.s12-pack{border:1px solid var(--s12-line-lt);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;transition:border-color .5s ease;}
+.s12-pack:hover{border-color:var(--s12-poudre);}
+.s12-pack.masque{display:none;}
+.s12-pack-n{font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;color:var(--s12-poudre);margin-bottom:18px;}
+.s12-pack .s12-h3{margin-bottom:14px;}
+.s12-pack-list{margin:18px 0;flex:1;}
+.s12-pack-list li{padding:11px 0 11px 26px;border-bottom:1px solid var(--s12-line-lt);font-size:14px;line-height:1.7;position:relative;}
+.s12-pack-list li:first-child{border-top:1px solid var(--s12-line-lt);}
+.s12-pack-list li::before{content:"";position:absolute;left:0;top:21px;width:12px;height:1px;background:var(--s12-poudre);}
+.s12-pack-prix{font-family:var(--s12-serif);font-size:26px;letter-spacing:.06em;color:#fff;line-height:1.3;margin-bottom:4px;}
+.s12-pack-fois{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-poudre);line-height:1.6;margin-bottom:20px;}
+
+/* --- Réassurance --- */
+.s12-rassur{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--s12-line-lt);border-bottom:1px solid var(--s12-line-lt);}
+.s12-rassur-c{padding:30px 20px;position:relative;text-align:center;}
+.s12-rassur-c + .s12-rassur-c::before{content:"";position:absolute;left:0;top:28px;bottom:28px;width:1px;background:var(--s12-line-lt);}
+.s12-rassur-k{font-family:var(--s12-serif);font-size:16px;text-transform:uppercase;letter-spacing:.08em;color:#fff;line-height:1.4;margin-bottom:10px;}
+.s12-rassur-v{font-family:var(--s12-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);line-height:1.8;}
+
+/* --- FAQ 2 colonnes --- */
+.s12-faq2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(30px,4vw,64px);}
+.s12-faq2 .s12-over{margin-bottom:22px;}
+
+/* --- Questionnaire --- */
+.s12-quiz{background:transparent;border:1px solid var(--s12-line-lt);padding:clamp(28px,4vw,52px);}
+.s12-step + .s12-step{margin-top:34px;padding-top:34px;border-top:1px solid var(--s12-line-lt);}
+.s12-step-k{font-family:var(--s12-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-poudre);line-height:1.6;margin-bottom:16px;}
+.s12-choix{display:flex;flex-wrap:wrap;gap:10px;}
+.s12-choix button{
+  font-family:var(--s12-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--s12-line-lt);background:transparent;color:#fff;padding:12px 18px;
+  line-height:1.6;cursor:pointer;transition:border-color .45s ease,background .45s ease,color .45s ease;
+}
+.s12-choix button:hover{border-color:var(--s12-poudre);color:var(--s12-poudre);}
+.s12-choix button.actif{background:var(--s12-poudre);border-color:var(--s12-poudre);color:var(--s12-encre);}
+.s12-quiz-res{margin-top:34px;padding-top:34px;border-top:1px solid var(--s12-line-lt);}
+.s12-quiz-res .s12-over{margin-bottom:18px;}
+.s12-quiz-liste li{padding:14px 0;border-bottom:1px solid var(--s12-line-lt);font-size:15px;line-height:1.7;}
+.s12-quiz-liste li:first-child{border-top:1px solid var(--s12-line-lt);}
+.s12-quiz-vide{font-family:var(--s12-ital);font-style:italic;font-size:17px;color:rgba(255,255,255,.6);}
+
+@media (max-width:1000px){
+  .s12-rassur{grid-template-columns:repeat(2,1fr);}
+  .s12-rassur-c:nth-child(3)::before{display:none;}
+  .s12-rassur-c:nth-child(3),.s12-rassur-c:nth-child(4){border-top:1px solid var(--s12-line-lt);}
+}
+
+</style>
+</head>
+<body>
+
+<div class="s12-scope">
+  <div class="s12-cursor-dot" id="cursorDot"></div>
+  <div class="s12-cursor-ring" id="cursorRing"></div>
+  <section class="s12-hero-full" id="s12Hero">
+    <div class="s12-hero-img"></div>
+    <div class="s12-hero-in">
+      <p class="s12-over">Offrir · [Ville]</p>
+      <h1 class="s12-custom-h1">Offrir, c'est prendre soin</h1>
+      <p class="s12-lede s12-hero-lede">[Accroche carte cadeau]</p>
+      <div class="s12-garanties">
+        <span class="s12-garantie">Code envoyé immédiatement</span>
+        <span class="s12-garantie">Valable [Validité carte cadeau]</span>
+        <span class="s12-garantie">Paiement sécurisé</span>
+        <span class="s12-garantie">Réservation libre</span>
+      </div>
+      <div class="s12-hero-btns">
+        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir une carte cadeau</a>
+        <a href="#packs" class="s12-btn-ghost s12-btn-lt">Voir les packs</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="s12-marquee">
+    <div class="s12-marquee-track"><span>Cartes cadeaux</span><span>—</span><span>[Ville]</span><span>—</span><span>Code immédiat</span><span>—</span><span>Packs</span><span>—</span><span>[Nom du soin 1]</span><span>—</span><span>Cartes cadeaux</span><span>—</span><span>[Ville]</span><span>—</span><span>Code immédiat</span><span>—</span><span>Packs</span><span>—</span><span>[Nom du soin 1]</span><span>—</span></div>
+  </div>
+
+  <section class="s12-sec s12-sec--blanc">
+    <div class="s12-wrap">
+      <div class="s12-head s12-head--center s12-reveal">
+        <p class="s12-over">Cartes cadeaux</p>
+        <h2 class="s12-h2">Offrir un soin à [Ville]</h2>
+        <p class="s12-lede">[suite italique]</p>
+      </div>
+      <div class="s12-filtres s12-reveal">
+        <button class="s12-filtre actif" type="button" data-filtre="tous">Toutes les cartes</button>
+        <button class="s12-filtre" type="button" data-filtre="cat-1">[Catégorie]</button>
+        <button class="s12-filtre" type="button" data-filtre="cat-2">[Catégorie 2]</button>
+        <button class="s12-filtre" type="button" data-filtre="cat-3">[Catégorie 3]</button>
+      </div>
+      <div class="s12-gap" id="s12Cartes">
+        <div class="s12-carte s12-reveal" data-cat="cat-1" data-budget="budget-1" data-nom="[Nom du soin 1]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_1]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie]</p>
+            <h3 class="s12-h3">[Nom du soin 1]</h3>
+            <p class="s12-p">[Description courte soin 1]</p>
+            <p class="s12-carte-prix">[Tarif soin 1] · [Durée soin 1]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+        <div class="s12-carte s12-reveal" data-cat="cat-2" data-budget="budget-1" data-nom="[Nom du soin 2]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_2]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie 2]</p>
+            <h3 class="s12-h3">[Nom du soin 2]</h3>
+            <p class="s12-p">[Description courte soin 2]</p>
+            <p class="s12-carte-prix">[Tarif soin 2] · [Durée soin 2]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+        <div class="s12-carte s12-reveal" data-cat="cat-1" data-budget="budget-2" data-nom="[Nom du soin 3]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_3]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie]</p>
+            <h3 class="s12-h3">[Nom du soin 3]</h3>
+            <p class="s12-p">[Description courte soin 3]</p>
+            <p class="s12-carte-prix">[Tarif soin 3] · [Durée soin 3]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+        <div class="s12-carte s12-reveal" data-cat="cat-3" data-budget="budget-2" data-nom="[Nom du soin 4]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_4]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie 3]</p>
+            <h3 class="s12-h3">[Nom du soin 4]</h3>
+            <p class="s12-p">[Description courte soin 4]</p>
+            <p class="s12-carte-prix">[Tarif soin 4] · [Durée soin 4]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+        <div class="s12-carte s12-reveal" data-cat="cat-2" data-budget="budget-3" data-nom="[Nom du soin 5]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_5]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie 2]</p>
+            <h3 class="s12-h3">[Nom du soin 5]</h3>
+            <p class="s12-p">[Description courte soin 5]</p>
+            <p class="s12-carte-prix">[Tarif soin 5] · [Durée soin 5]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+        <div class="s12-carte s12-reveal" data-cat="cat-3" data-budget="budget-3" data-nom="[Nom du soin 6]">
+          <div class="s12-carte-img" style="background-image:url('[URL_PHOTO_SOIN_6]');"></div>
+          <div class="s12-carte-body">
+            <p class="s12-carte-cat">[Catégorie 3]</p>
+            <h3 class="s12-h3">[Nom du soin 6]</h3>
+            <p class="s12-p">[Description courte soin 6]</p>
+            <p class="s12-carte-prix">[Tarif soin 6] · [Durée soin 6]</p>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce soin</a>
+          </div>
+        </div>
+      </div>
+      <p class="s12-vide" id="s12Vide">Aucune carte ne correspond à cette catégorie pour le moment.</p>
+    </div>
+  </section>
+
+  <section class="s12-sec s12-sec--encre" id="packs">
+    <div class="s12-wrap">
+      <div class="s12-head s12-head--center s12-reveal">
+        <p class="s12-over">Les packs</p>
+        <h2 class="s12-h2">Offrir un parcours complet</h2>
+        <p class="s12-lede">[Accroche packs]</p>
+      </div>
+      <div class="s12-gap">
+        <div class="s12-pack s12-reveal" data-budget="budget-1">
+          <p class="s12-pack-n">I</p>
+          <h3 class="s12-h3">[Nom du pack 1]</h3>
+          <p class="s12-p">[Description pack 1]</p>
+          <ul class="s12-pack-list">
+            <li>[Soin inclus 1.1]</li>
+            <li>[Soin inclus 1.2]</li>
+            <li>[Soin inclus 1.3]</li>
+          </ul>
+          <p class="s12-pack-prix">[Tarif pack 1]</p>
+          <p class="s12-pack-fois">ou 2 × [Tarif pack 1 en 2 fois]</p>
+          <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce pack</a>
+        </div>
+        <div class="s12-pack s12-reveal" data-budget="budget-2">
+          <p class="s12-pack-n">II</p>
+          <h3 class="s12-h3">[Nom du pack 2]</h3>
+          <p class="s12-p">[Description pack 2]</p>
+          <ul class="s12-pack-list">
+            <li>[Soin inclus 2.1]</li>
+            <li>[Soin inclus 2.2]</li>
+            <li>[Soin inclus 2.3]</li>
+          </ul>
+          <p class="s12-pack-prix">[Tarif pack 2]</p>
+          <p class="s12-pack-fois">ou 2 × [Tarif pack 2 en 2 fois]</p>
+          <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce pack</a>
+        </div>
+        <div class="s12-pack s12-reveal" data-budget="budget-3">
+          <p class="s12-pack-n">III</p>
+          <h3 class="s12-h3">[Nom du pack 3]</h3>
+          <p class="s12-p">[Description pack 3]</p>
+          <ul class="s12-pack-list">
+            <li>[Soin inclus 3.1]</li>
+            <li>[Soin inclus 3.2]</li>
+            <li>[Soin inclus 3.3]</li>
+          </ul>
+          <p class="s12-pack-prix">[Tarif pack 3]</p>
+          <p class="s12-pack-fois">ou 2 × [Tarif pack 3 en 2 fois]</p>
+          <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir ce pack</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s12-sec s12-sec--encre" style="padding-top:0;">
+    <div class="s12-wrap s12-rassur s12-reveal">
+      <div class="s12-rassur-c">
+        <p class="s12-rassur-k">Paiement sécurisé</p>
+        <p class="s12-rassur-v">[Moyens de paiement]</p>
+      </div>
+      <div class="s12-rassur-c">
+        <p class="s12-rassur-k">Paiement en 2 fois</p>
+        <p class="s12-rassur-v">[Modalités paiement en plusieurs fois]</p>
+      </div>
+      <div class="s12-rassur-c">
+        <p class="s12-rassur-k">Code immédiat</p>
+        <p class="s12-rassur-v">[Transmission carte cadeau]</p>
+      </div>
+      <div class="s12-rassur-c">
+        <p class="s12-rassur-k">[X.X] ★ sur Google</p>
+        <p class="s12-rassur-v">[X] avis vérifiés</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s12-sec s12-sec--papier">
+    <div class="s12-wrap">
+      <div class="s12-head s12-head--center s12-reveal">
+        <p class="s12-over">Questions fréquentes</p>
+        <h2 class="s12-h2">Tout savoir avant d'offrir</h2>
+      </div>
+      <div class="s12-faq2">
+        <div class="s12-reveal">
+          <p class="s12-over">Les cartes cadeaux</p>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Comment fonctionne une carte cadeau ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Modalités carte cadeau]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Comment la carte cadeau est-elle transmise ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Transmission carte cadeau]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Quelle est la durée de validité ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Validité carte cadeau]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Peut-on cumuler plusieurs cartes cadeaux ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Cumul cartes cadeaux]</p></div>
+          </div>
+        </div>
+        <div class="s12-reveal s12-d1">
+          <p class="s12-over">Les packs</p>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Comment fonctionne un pack ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Fonctionnement des packs]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Un pack peut-il être offert ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Pack offert]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Le paiement en 2 fois est-il possible ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Modalités paiement en plusieurs fois]</p></div>
+          </div>
+          <div class="s12-q">
+            <button class="s12-q-btn" type="button">Peut-on choisir l'ordre des séances ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Ordre des séances]</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s12-sec s12-sec--encre">
+    <div class="s12-wrap" style="max-width:860px;">
+      <div class="s12-head s12-head--center s12-reveal">
+        <p class="s12-over">Aide au choix</p>
+        <h2 class="s12-h2">Trouver le bon cadeau</h2>
+        <p class="s12-lede">[Aide au choix du soin]</p>
+      </div>
+      <div class="s12-quiz s12-reveal">
+        <div class="s12-step">
+          <p class="s12-step-k">01 — C'est pour qui ?</p>
+          <div class="s12-choix" data-etape="pour">
+            <button type="button" data-val="proche">Un proche</button>
+            <button type="button" data-val="collegue">Une collègue</button>
+            <button type="button" data-val="moi">Moi-même</button>
+          </div>
+        </div>
+        <div class="s12-step">
+          <p class="s12-step-k">02 — Quel type de soin ?</p>
+          <div class="s12-choix" data-etape="cat">
+            <button type="button" data-val="cat-1">[Catégorie]</button>
+            <button type="button" data-val="cat-2">[Catégorie 2]</button>
+            <button type="button" data-val="cat-3">[Catégorie 3]</button>
+          </div>
+        </div>
+        <div class="s12-step">
+          <p class="s12-step-k">03 — Quel budget ?</p>
+          <div class="s12-choix" data-etape="budget">
+            <button type="button" data-val="budget-1">[Palier budget 1]</button>
+            <button type="button" data-val="budget-2">[Palier budget 2]</button>
+            <button type="button" data-val="budget-3">[Palier budget 3]</button>
+          </div>
+        </div>
+        <div class="s12-quiz-res">
+          <p class="s12-over">Suggestions</p>
+          <ul class="s12-quiz-liste" id="s12QuizRes"></ul>
+          <p class="s12-quiz-vide" id="s12QuizVide">Sélectionnez au moins un critère pour voir les suggestions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s12-sec s12-sec--creme">
+    <div class="s12-wrap s12-cta s12-reveal">
+      <p class="s12-over">Offrir</p>
+      <h2 class="s12-h2">Offrir un moment à [Ville]</h2>
+      <p class="s12-lede">[Accroche finale réservation]</p>
+      <div class="s12-cta-btns">
+        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn">Offrir une carte cadeau</a>
+        <a href="/[slug-soins]" class="s12-btn-ghost">Voir tous les soins</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="s12-maillage">
+    <div class="s12-wrap" style="text-align:center;">
+      <p class="s12-over">Continuer la visite</p>
+      <div class="s12-pills">
+        <a href="/" class="s12-pill">Accueil</a>
+        <a href="/[slug-soins]" class="s12-pill">Tous les soins à [Ville]</a>
+        <a href="/[slug-trouver-mon-soin]" class="s12-pill">Trouver mon soin</a>
+        <a href="/[slug-soin-1]-[ville]" class="s12-pill">[Nom du soin 1]</a>
+        <a href="/[slug-a-propos]" class="s12-pill">À propos de [Prénom Nom]</a>
+        <a href="/[slug-faq]" class="s12-pill">Questions fréquentes</a>
+        <a href="/[slug-contact]" class="s12-pill">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Curseur custom */
+(function(){
+  var dot = document.getElementById('cursorDot');
+  var ring = document.getElementById('cursorRing');
+  if(!dot || !ring) return;
+  var mx=0, my=0, rx=0, ry=0;
+  document.addEventListener('mousemove', function(e){
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  });
+  document.querySelectorAll('.s12-scope a,.s12-scope button').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='#B79E9E';});
+    el.addEventListener('mouseleave',function(){ring.style.width='30px';ring.style.height='30px';ring.style.borderColor='#D5C3C0';});
+  });
+  (function anim(){
+    rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(anim);
+  })();
+})();
+
+/* Hero zoom au chargement */
+(function(){
+  var hero = document.getElementById('s12Hero');
+  if(!hero) return;
+  requestAnimationFrame(function(){ hero.classList.add('loaded'); });
+})();
+
+/* Scroll reveal */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(n){
+      if(n.isIntersecting){ n.target.classList.add('in'); io.unobserve(n.target); }
+    });
+  }, {threshold: .08});
+  document.querySelectorAll('.s12-reveal,.s12-reveal-left,.s12-reveal-right')
+    .forEach(function(el){ io.observe(el); });
+})();
+
+/* Accordéon */
+(function(){
+  document.querySelectorAll('.s12-q-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var q = btn.parentElement;
+      var open = q.classList.contains('open');
+      q.parentElement.querySelectorAll('.s12-q.open').forEach(function(o){ o.classList.remove('open'); });
+      if(!open){ q.classList.add('open'); }
+    });
+  });
+})();
+
+/* Filtres cartes cadeaux */
+(function(){
+  var btns = document.querySelectorAll('.s12-filtre');
+  var grille = document.getElementById('s12Cartes');
+  var vide = document.getElementById('s12Vide');
+  if(!btns.length || !grille) return;
+  var cartes = grille.querySelectorAll('.s12-carte');
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-filtre');
+      btns.forEach(function(x){ x.classList.toggle('actif', x === b); });
+      var visibles = 0;
+      cartes.forEach(function(c){
+        var ok = (f === 'tous') || (c.getAttribute('data-cat') === f);
+        c.classList.toggle('masque', !ok);
+        if(ok) visibles++;
+      });
+      if(vide) vide.classList.toggle('on', visibles === 0);
+    });
+  });
+})();
+
+/* Questionnaire d'aide au choix */
+(function(){
+  var choix = {};
+  var groupes = document.querySelectorAll('.s12-choix');
+  var res = document.getElementById('s12QuizRes');
+  var vide = document.getElementById('s12QuizVide');
+  var cartes = document.querySelectorAll('#s12Cartes .s12-carte');
+  var packs = document.querySelectorAll('.s12-pack');
+  if(!groupes.length || !res) return;
+
+  function calculer(){
+    var actifs = Object.keys(choix).length;
+    res.innerHTML = '';
+    if(!actifs){
+      if(vide) vide.style.display = 'block';
+      return;
+    }
+    if(vide) vide.style.display = 'none';
+
+    var suggestions = [];
+    cartes.forEach(function(c){
+      var okCat = !choix.cat || c.getAttribute('data-cat') === choix.cat;
+      var okBud = !choix.budget || c.getAttribute('data-budget') === choix.budget;
+      if(okCat && okBud) suggestions.push(c.getAttribute('data-nom'));
+    });
+    packs.forEach(function(p){
+      var okBud = !choix.budget || p.getAttribute('data-budget') === choix.budget;
+      var titre = p.querySelector('.s12-h3');
+      if(okBud && titre) suggestions.push(titre.textContent.trim());
+    });
+
+    if(!suggestions.length){
+      var li = document.createElement('li');
+      li.textContent = "Aucune formule ne correspond exactement — écrivez-moi, je vous oriente.";
+      res.appendChild(li);
+      return;
+    }
+    suggestions.forEach(function(s){
+      var li = document.createElement('li');
+      li.textContent = s;
+      res.appendChild(li);
+    });
+  }
+
+  groupes.forEach(function(g){
+    var etape = g.getAttribute('data-etape');
+    g.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var v = b.getAttribute('data-val');
+        if(choix[etape] === v){
+          delete choix[etape];
+          b.classList.remove('actif');
+        } else {
+          choix[etape] = v;
+          g.querySelectorAll('button').forEach(function(x){ x.classList.toggle('actif', x === b); });
+        }
+        calculer();
+      });
+    });
+  });
+  calculer();
+})();
+
+</script>
+
+</body>
+</html>
