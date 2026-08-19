@@ -59,7 +59,7 @@
         "price": "[Tarif]",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": "[LIEN_RDV]"
+        "url": "[LIEN_RDV_LIEU_1]"
       },
       {
         "@type": "Offer",
@@ -67,15 +67,15 @@
         "price": "[Tarif 2]",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": "[LIEN_RDV]"
+        "url": "[LIEN_RDV_LIEU_2]"
       },
       {
         "@type": "Offer",
-        "name": "[Nom du soin 1] — [Durée 3]",
-        "price": "[Tarif 3]",
+        "name": "Carte cadeau — [Nom du soin 1]",
+        "price": "[Tarif]",
         "priceCurrency": "EUR",
         "availability": "https://schema.org/InStock",
-        "url": "[LIEN_RDV]"
+        "url": "[LIEN_CARTE_CADEAU]"
       }
     ]
   }
@@ -97,6 +97,11 @@
       "@type": "Question",
       "name": "Quel est le tarif et la durée du [Nom du soin 1] à [Ville] ?",
       "acceptedAnswer": { "@type": "Answer", "text": "Le [Nom du soin 1] est proposé en [Durée] à [Tarif], en [Durée 2] à [Tarif 2] et en [Durée 3] à [Tarif 3], à [Ville]." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que la [Méthode ou approche exclusive] ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "[Description de la méthode] [Ce qui la rend unique à Ville]" }
     },
     {
       "@type": "Question",
@@ -239,8 +244,10 @@
   font-family:var(--s12-ital);font-style:italic;font-weight:400;
   font-size:clamp(18px,2vw,25px);line-height:1.4;letter-spacing:0;color:var(--s12-texte);
 }
-.s12-p{font-size:15px;line-height:2;font-weight:300;}
+.s12-p{font-size:15px;line-height:2;font-weight:300;max-width:70ch;}
 .s12-p + .s12-p{margin-top:20px;}
+.s12-p strong{font-weight:400;color:var(--s12-encre);}
+.s12-sec--encre .s12-p strong{color:#fff;}
 
 /* --- Boutons --- */
 .s12-btn,.s12-btn-ghost{
@@ -286,6 +293,15 @@
 }
 .s12-hero.loaded .s12-hero-img{transform:scale(1);}
 .s12-hero-media::after{content:"";position:absolute;inset:0;background:rgba(59,51,49,.12);}
+.s12-hero-badge{
+  position:absolute;left:32px;bottom:32px;max-width:280px;z-index:2;
+  background:var(--s12-encre);color:rgba(255,255,255,.78);
+  padding:16px 20px;font-size:14px;line-height:1.6;font-weight:300;
+}
+.s12-hero-badge strong{
+  display:block;font-family:var(--s12-ital);font-style:italic;font-weight:400;
+  font-size:17px;color:var(--s12-poudre);margin-bottom:4px;
+}
 .s12-hero-body{
   display:flex;flex-direction:column;justify-content:center;
   padding:clamp(48px,6vw,88px);
@@ -324,26 +340,85 @@
 @keyframes s12-slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 @media (prefers-reduced-motion:reduce){.s12-marquee-track{animation:none;}}
 
-/* --- S1 Description --- */
-.s12-bloc{padding-top:26px;border-top:1px solid var(--s12-line-md);}
-.s12-bloc + .s12-bloc{margin-top:44px;}
-.s12-bloc-num{
-  font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;
-  text-transform:uppercase;color:var(--s12-rose);margin-bottom:14px;
+/* --- S1 Description : accordéon + photo --- */
+.s12-duo{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.78fr);
+  gap:clamp(30px,4vw,64px);align-items:stretch;
 }
-.s12-bloc .s12-h3{margin-bottom:16px;}
-.s12-blocs{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(30px,4vw,64px);}
+.s12-duo > div{min-width:0;}
+.s12-photo-duo-wrap{height:100%;}
+.s12-photo-duo{
+  width:100%;height:100%;min-height:440px;
+  background-image:url('[URL_PHOTO_SOIN]');
+  background-size:cover;background-position:center;
+}
+.s12-acc{border-top:1px solid var(--s12-line);}
+.s12-acc:last-of-type{border-bottom:1px solid var(--s12-line);}
+.s12-acc.open{background:var(--s12-creme);}
+.s12-acc-btn{
+  width:100%;background:none;border:0;cursor:pointer;text-align:left;
+  display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;
+  padding:24px 20px;transition:background .4s ease;
+}
+.s12-acc-btn:hover{background:var(--s12-creme);}
+.s12-acc-n{
+  font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--s12-rose);line-height:1.6;
+}
+.s12-acc-ttl{
+  font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;
+  letter-spacing:.08em;line-height:1.35;font-size:clamp(15px,1.4vw,18px);color:var(--s12-texte);
+}
+.s12-acc-ic{position:relative;flex-shrink:0;width:15px;height:15px;}
+.s12-acc-ic::before,.s12-acc-ic::after{
+  content:"";position:absolute;background:var(--s12-rose);
+  transition:transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+.s12-acc-ic::before{left:0;top:7px;width:15px;height:1px;}
+.s12-acc-ic::after{top:0;left:7px;width:1px;height:15px;}
+.s12-acc.open .s12-acc-ic::after{transform:scaleY(0);}
+.s12-acc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94);}
+.s12-acc.open .s12-acc-body{max-height:800px;}
+.s12-acc-inner{padding:0 20px 28px 62px;}
 
-/* --- Encart En pratique (bande horizontale) --- */
+/* --- Bloc Focus : l'argument de différenciation, toujours visible --- */
+.s12-focus{
+  background:var(--s12-creme);border-left:2px solid var(--s12-rose);
+  padding:clamp(28px,3.5vw,48px);margin:clamp(40px,4.5vw,64px) 0;
+}
+.s12-focus .s12-eyebrow{margin-bottom:12px;}
+.s12-focus .s12-h3{margin-bottom:4px;}
+.s12-focus-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:clamp(22px,3vw,48px);margin-top:22px;
+}
+
+/* --- Encarts --- */
+.s12-encart{
+  border-left:2px solid var(--s12-rose);background:var(--s12-creme);
+  padding:18px 22px;margin-top:22px;font-size:15px;line-height:1.9;font-weight:300;
+}
+.s12-encart strong{
+  display:block;font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;
+  letter-spacing:.08em;font-size:15px;color:var(--s12-texte);margin-bottom:6px;
+}
+.s12-encart a{color:var(--s12-rose);text-decoration:underline;text-underline-offset:3px;}
+
+/* --- Encart En pratique --- */
 .s12-pratique{
   margin-top:clamp(48px,6vw,80px);
   background:var(--s12-creme);border:1px solid var(--s12-line);
   padding:clamp(26px,3vw,40px);
 }
 .s12-pratique-top{
-  display:flex;flex-wrap:wrap;gap:18px;
+  display:flex;flex-wrap:wrap;gap:24px;
   align-items:center;justify-content:space-between;margin-bottom:28px;
 }
+.s12-prix{
+  font-family:var(--s12-serif);font-size:clamp(48px,6vw,76px);line-height:1;
+  letter-spacing:.02em;color:var(--s12-rose);
+}
+.s12-prix sup{font-size:.34em;vertical-align:super;}
 .s12-pratique-btns{display:flex;flex-wrap:wrap;gap:10px;}
 .s12-pratique-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -363,15 +438,61 @@
 }
 .s12-note{font-family:var(--s12-ital);font-style:italic;font-size:14px;line-height:1.6;color:var(--s12-muted);margin-top:22px;text-align:center;}
 
-/* --- S2 Bienfaits --- */
-.s12-grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--s12-line);border:1px solid var(--s12-line);}
+/* --- Témoignages : carrousel automatique --- */
+.s12-carrousel-wrap{max-width:920px;margin:0 auto;}
+.s12-carrousel{display:grid;}
+.s12-slide{
+  grid-area:1/1;opacity:0;transform:translateY(16px);pointer-events:none;text-align:center;
+  transition:opacity 1s cubic-bezier(.25,.46,.45,.94),transform 1s cubic-bezier(.25,.46,.45,.94);
+}
+.s12-slide.on{opacity:1;transform:none;pointer-events:auto;}
+.s12-stars{display:flex;gap:4px;margin-bottom:20px;justify-content:center;}
+.s12-star{
+  width:11px;height:11px;background:var(--s12-rose);
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.s12-quote{
+  font-family:var(--s12-ital);font-style:italic;font-weight:400;
+  font-size:clamp(19px,2.05vw,26px);line-height:1.55;
+  color:var(--s12-texte);margin-bottom:28px;
+}
+.s12-quote-nom{
+  font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--s12-muted);line-height:1.6;
+}
+.s12-dots{display:flex;gap:6px;justify-content:center;margin-top:36px;}
+.s12-dot{
+  position:relative;width:78px;height:30px;padding:0;border:0;cursor:pointer;background:transparent;
+}
+.s12-dot::before{
+  content:"";position:absolute;left:6px;right:6px;top:50%;height:1px;margin-top:-.5px;
+  background:var(--s12-poudre);transition:background .4s ease;
+}
+.s12-dot:hover::before{background:var(--s12-rose);}
+.s12-dot::after{
+  content:"";position:absolute;left:6px;top:50%;margin-top:-.5px;height:1px;width:0;background:var(--s12-rose);
+}
+.s12-dot.active::after{animation:s12-prog 7s linear forwards;}
+@keyframes s12-prog{from{width:0;}to{width:calc(100% - 12px);}}
+.s12-carrousel-wrap:hover .s12-dot.active::after{animation-play-state:paused;}
+.s12-note-google{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px;margin-top:44px;}
+@media (prefers-reduced-motion:reduce){
+  .s12-slide{transition:opacity .3s ease;transform:none;}
+  .s12-dot.active::after{animation:none;width:calc(100% - 12px);}
+}
+
+/* --- Bienfaits --- */
+.s12-grid3{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:var(--s12-line);border:1px solid var(--s12-line);
+}
 .s12-bien{background:var(--s12-blanc);padding:clamp(28px,3vw,40px);transition:background .5s ease;}
 .s12-bien:hover{background:var(--s12-creme);}
-.s12-bien-num{font-family:var(--s12-mono);font-size:10px;letter-spacing:.45em;color:var(--s12-poudre);margin-bottom:18px;transition:color .5s ease;}
+.s12-bien-num{font-family:var(--s12-serif);font-size:34px;line-height:1;color:var(--s12-poudre);margin-bottom:18px;transition:color .5s ease;}
 .s12-bien:hover .s12-bien-num{color:var(--s12-rose);}
 .s12-bien .s12-h3{margin-bottom:12px;}
 
-/* --- S3 Déroulement --- */
+/* --- Déroulement --- */
 .s12-split-media{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(36px,5vw,72px);align-items:start;}
 .s12-etape{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid var(--s12-line-lt);}
 .s12-etape:first-child{border-top:1px solid var(--s12-line-lt);}
@@ -379,10 +500,18 @@
 .s12-etape .s12-h3{margin-bottom:10px;}
 .s12-photo-pilule{
   width:100%;aspect-ratio:4/5;border-radius:180px;overflow:hidden;
-  background-image:url('[URL_PHOTO_SOIN]');background-size:cover;background-position:center;opacity:.9;
+  background-image:url('[URL_PHOTO_SOIN_2]');background-size:cover;background-position:center;opacity:.9;
+}
+.s12-encart-lt{
+  border-left:2px solid var(--s12-poudre);background:rgba(255,255,255,.06);
+  padding:18px 22px;margin-top:28px;font-size:15px;line-height:1.9;font-weight:300;
+}
+.s12-encart-lt strong{
+  display:block;font-family:var(--s12-serif);font-weight:400;text-transform:uppercase;
+  letter-spacing:.08em;font-size:15px;color:var(--s12-poudre);margin-bottom:6px;
 }
 
-/* --- S4 Indications / CI --- */
+/* --- Indications / CI --- */
 .s12-cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(30px,4vw,64px);}
 .s12-liste li{
   padding:15px 0 15px 28px;border-bottom:1px solid var(--s12-line);
@@ -392,23 +521,79 @@
   content:"";position:absolute;left:0;top:25px;width:12px;height:1px;background:var(--s12-rose);
 }
 .s12-liste li:first-child{border-top:1px solid var(--s12-line);}
-.s12-ci{margin-top:44px;background:var(--s12-creme);border-left:2px solid var(--s12-rose);padding:26px clamp(22px,3vw,34px);}
+.s12-ci{margin-top:44px;background:var(--s12-blanc);border-left:2px solid var(--s12-rose);padding:26px clamp(22px,3vw,34px);}
 .s12-ci .s12-eyebrow{margin-bottom:12px;}
 
-/* --- S5 Témoignages --- */
-.s12-avis{background:var(--s12-blanc);border:1px solid var(--s12-line);padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;}
-.s12-stars{font-family:var(--s12-mono);font-size:11px;letter-spacing:.3em;color:var(--s12-rose);margin-bottom:20px;line-height:1.6;}
-.s12-avis-txt{font-family:var(--s12-ital);font-style:italic;font-size:17px;line-height:1.6;flex:1;margin-bottom:22px;}
-.s12-avis-nom{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-muted);line-height:1.6;}
-.s12-note-google{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-top:44px;}
-
-/* --- S6 Praticienne --- */
+/* --- Praticienne --- */
 .s12-prat{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(36px,5vw,80px);align-items:center;}
 .s12-portrait{width:100%;aspect-ratio:4/5;border-radius:180px;overflow:hidden;background-image:url('[URL_PHOTO_PRATICIENNE]');background-size:cover;background-position:center;opacity:.92;}
 .s12-certifs{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
-.s12-certif{font-family:var(--s12-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--s12-line-lt);padding:9px 15px;line-height:1.6;}
+.s12-certif{font-family:var(--s12-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--s12-line-lt);padding:9px 15px;line-height:1.6;color:rgba(255,255,255,.78);}
 
-/* --- S7 FAQ --- */
+/* --- Cabinet + galerie --- */
+.s12-cab{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(30px,4vw,64px);align-items:start;}
+.s12-cab-photos{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:280px 200px;gap:3px;}
+.s12-cab-photo{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:opacity .5s ease;}
+.s12-cab-photo:hover{opacity:.86;}
+.s12-cab-wide{grid-column:span 2;}
+.s12-cab-infos{background:var(--s12-encre);}
+.s12-cab-row{padding:20px 24px;border-bottom:1px solid var(--s12-line-lt);display:flex;flex-direction:column;gap:5px;}
+.s12-cab-row:last-of-type{border-bottom:none;}
+.s12-cab-k{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-poudre);}
+.s12-cab-v{font-size:15px;font-weight:300;line-height:1.65;color:rgba(255,255,255,.82);}
+.s12-cab-v a{color:var(--s12-poudre);text-decoration:underline;text-underline-offset:3px;}
+.s12-cab-btn{
+  display:block;text-align:center;background:var(--s12-rose);color:#fff;
+  font-family:var(--s12-mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;padding:16px 20px;transition:background .45s ease,color .45s ease;
+}
+.s12-cab-btn:hover{background:var(--s12-rose-cl);color:var(--s12-encre);}
+
+/* --- Lightbox claire --- */
+.s12-lb{
+  position:fixed;inset:0;z-index:99998;background:rgba(255,255,255,.97);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  padding:clamp(56px,6vw,80px) clamp(20px,7vw,110px);
+  opacity:0;visibility:hidden;transition:opacity .5s cubic-bezier(.25,.46,.45,.94),visibility .5s;
+}
+.s12-lb.open{opacity:1;visibility:visible;}
+.s12-lb-fig{display:flex;flex-direction:column;align-items:center;max-width:100%;}
+.s12-lb-img{
+  max-width:100%;max-height:74vh;object-fit:contain;display:block;
+  opacity:0;transform:scale(.985);
+  transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+.s12-lb-img.shown{opacity:1;transform:none;}
+.s12-lb-cap{
+  margin-top:20px;font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--s12-muted);line-height:1.6;text-align:center;
+}
+.s12-lb-btn{
+  position:absolute;background:transparent;border:0;padding:0;cursor:pointer;
+  width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+}
+.s12-lb-close{top:clamp(18px,3vw,34px);right:clamp(18px,3vw,34px);}
+.s12-lb-close::before,.s12-lb-close::after{
+  content:"";position:absolute;width:20px;height:1px;background:var(--s12-texte);transition:background .4s ease;
+}
+.s12-lb-close::before{transform:rotate(45deg);}
+.s12-lb-close::after{transform:rotate(-45deg);}
+.s12-lb-close:hover::before,.s12-lb-close:hover::after{background:var(--s12-rose);}
+.s12-lb-prev{left:clamp(10px,2.5vw,34px);top:50%;margin-top:-24px;}
+.s12-lb-next{right:clamp(10px,2.5vw,34px);top:50%;margin-top:-24px;}
+.s12-lb-prev::before,.s12-lb-next::before{
+  content:"";width:13px;height:13px;border-left:1px solid var(--s12-texte);
+  border-bottom:1px solid var(--s12-texte);transition:border-color .4s ease;
+}
+.s12-lb-prev::before{transform:rotate(45deg);}
+.s12-lb-next::before{transform:rotate(-135deg);}
+.s12-lb-prev:hover::before,.s12-lb-next:hover::before{border-color:var(--s12-rose);}
+@media (prefers-reduced-motion:reduce){
+  .s12-lb,.s12-lb-img{transition:opacity .2s ease;}
+  .s12-lb-img{transform:none;}
+}
+
+/* --- FAQ --- */
 .s12-faq-wrap{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(36px,5vw,80px);align-items:start;}
 .s12-q{border-bottom:1px solid var(--s12-line);}
 .s12-q:first-child{border-top:1px solid var(--s12-line);}
@@ -421,20 +606,22 @@
 .s12-q-ic{font-family:var(--s12-mono);font-size:14px;color:var(--s12-rose);flex-shrink:0;transition:transform .4s ease;line-height:1.4;}
 .s12-q.open .s12-q-ic{transform:rotate(45deg);}
 .s12-q-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.25,.46,.45,.94);}
-.s12-q.open .s12-q-body{max-height:600px;}
-.s12-q-body p{padding:0 0 24px;font-size:15px;line-height:2;}
+.s12-q.open .s12-q-body{max-height:700px;}
+.s12-q-body p{padding:0 0 24px;font-size:15px;line-height:2;max-width:70ch;}
+.s12-q-body a{color:var(--s12-rose);text-decoration:underline;text-underline-offset:3px;}
 .s12-side{position:sticky;top:32px;background:var(--s12-creme);padding:clamp(24px,3vw,34px);border:1px solid var(--s12-line);}
 .s12-side .s12-over{margin-bottom:18px;}
 .s12-side .s12-btn{width:100%;margin-top:20px;}
 
-/* --- S8 Autres soins --- */
-.s12-soin{background:var(--s12-blanc);border:1px solid var(--s12-line);display:block;transition:border-color .5s ease;}
-.s12-soin:hover{border-color:var(--s12-poudre);}
+/* --- Autres soins --- */
+.s12-gap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2vw,26px);}
+.s12-soin{background:var(--s12-blanc);border:1px solid var(--s12-line);display:block;transition:border-color .5s ease,background .5s ease;}
+.s12-soin:hover{border-color:var(--s12-poudre);background:var(--s12-creme);}
 .s12-soin-img{width:100%;aspect-ratio:3/2;background:var(--s12-creme);background-size:cover;background-position:center;}
 .s12-soin-body{padding:26px;}
+.s12-soin-cat{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-rose);line-height:1.6;margin-bottom:12px;}
 .s12-soin-body .s12-h3{margin-bottom:10px;}
 .s12-soin-meta{font-family:var(--s12-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--s12-rose);line-height:1.6;margin-top:16px;}
-.s12-gap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(18px,2vw,26px);}
 
 /* --- CTA final --- */
 .s12-cta{text-align:center;max-width:720px;margin:0 auto;}
@@ -442,6 +629,8 @@
 .s12-cta .s12-h2{margin-bottom:20px;}
 .s12-cta .s12-lede{margin-bottom:36px;}
 .s12-cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.s12-cta-contact{margin-top:26px;font-size:14px;font-weight:300;color:var(--s12-muted);}
+.s12-cta-contact a{text-decoration:underline;text-underline-offset:3px;}
 
 /* --- Maillage --- */
 .s12-maillage{background:var(--s12-papier);padding:52px clamp(20px,5vw,72px) 64px;}
@@ -452,6 +641,7 @@
   transition:border-color .45s ease,color .45s ease;
 }
 .s12-pill:hover{border-color:var(--s12-rose);color:var(--s12-rose);}
+.s12-fresh{text-align:center;font-size:12px;font-weight:300;color:var(--s12-muted);padding:0 8% 40px;background:var(--s12-papier);}
 
 /* --- Scroll reveal --- */
 .s12-reveal,.s12-reveal-left,.s12-reveal-right{
@@ -464,16 +654,20 @@
 .s12-d1{transition-delay:.12s;}
 .s12-d2{transition-delay:.24s;}
 .s12-d3{transition-delay:.36s;}
-.s12-d4{transition-delay:.48s;}
 @media (prefers-reduced-motion:reduce){
   .s12-reveal,.s12-reveal-left,.s12-reveal-right{opacity:1;transform:none;transition:none;}
 }
 
 /* --- Responsive --- */
+@media (max-width:1080px){
+  .s12-grid3,.s12-gap{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
 @media (max-width:1000px){
   .s12-hero{grid-template-columns:1fr;min-height:auto;}
   .s12-hero-media{min-height:58vh;}
-  .s12-split-media,.s12-prat,.s12-faq-wrap{grid-template-columns:1fr;}
+  .s12-hero-badge{display:none;}
+  .s12-split-media,.s12-prat,.s12-faq-wrap,.s12-cab,.s12-duo{grid-template-columns:1fr;}
+  .s12-photo-duo{min-height:0;aspect-ratio:3/2;max-width:520px;}
   .s12-side{position:static;}
   .s12-prat .s12-portrait{max-width:340px;}
   .s12-pratique-grid{grid-template-columns:repeat(2,1fr);}
@@ -481,18 +675,27 @@
   .s12-cell:nth-child(3),.s12-cell:nth-child(4){border-top:1px solid var(--s12-line);}
 }
 @media (max-width:700px){
+  .s12-grid3,.s12-gap{grid-template-columns:1fr;}
   .s12-infos{grid-template-columns:repeat(2,1fr);}
-  .s12-info:nth-child(3)::before,.s12-info:nth-child(4)::before{top:0;}
   .s12-info:nth-child(3)::before{display:none;}
   .s12-info:nth-child(3),.s12-info:nth-child(4){border-top:1px solid var(--s12-line);}
+  .s12-info:nth-child(4)::before{top:0;}
   .s12-sticky{padding:11px 16px;gap:10px;}
   .s12-sticky-txt{display:none;}
   .s12-sticky-btns{width:100%;}
   .s12-sticky-ghost,.s12-sticky-cta{flex:1;text-align:center;justify-content:center;}
   .s12-hero-btns .s12-btn,.s12-hero-btns .s12-btn-ghost{flex:1;}
+  .s12-acc-btn{padding:22px 16px;}
+  .s12-acc-inner{padding:0 16px 24px;}
+  .s12-dot{width:58px;}
   .s12-etape{grid-template-columns:44px 1fr;gap:14px;}
   .s12-pratique-btns{width:100%;}
   .s12-pratique-btns .s12-btn,.s12-pratique-btns .s12-btn-ghost{flex:1;}
+  .s12-cab-photos{grid-template-rows:200px 150px;}
+  .s12-lb{padding:64px 16px;}
+  .s12-lb-prev,.s12-lb-next{top:auto;bottom:14px;margin-top:0;}
+  .s12-lb-prev{left:28%;}
+  .s12-lb-next{right:28%;}
 }
 </style>
 </head>
@@ -507,24 +710,30 @@
   <div class="s12-sticky">
     <div class="s12-sticky-txt">
       <strong>[Prénom Nom] — [Titre professionnel]</strong>
-      [Ville] · Réservation en ligne 24h/24
+      [Ville] · [Tarif] · [Durée] · Réservation en ligne 24h/24
     </div>
     <div class="s12-sticky-btns">
-      <a href="[LIEN_CARTE_CADEAU]" class="s12-sticky-ghost">Offrir</a>
+      <a href="[LIEN_CARTE_CADEAU]" class="s12-sticky-ghost" target="_blank" rel="noopener">Offrir</a>
       <a href="[LIEN_RDV]" class="s12-sticky-cta" target="_blank" rel="noopener">Prendre rendez-vous</a>
     </div>
   </div>
 
   <!-- ============ HERO ============ -->
   <section class="s12-hero" id="s12Hero">
-    <div class="s12-hero-media"><div class="s12-hero-img"></div></div>
+    <div class="s12-hero-media">
+      <div class="s12-hero-img"></div>
+      <div class="s12-hero-badge">
+        <strong>[Méthode ou approche exclusive]</strong>
+        [Ce qui rend ce soin unique à Ville]
+      </div>
+    </div>
     <div class="s12-hero-body">
       <p class="s12-over">[Catégorie] · [Ville]</p>
-      <h1 class="s12-custom-h1">[Nom du soin 1] à [Ville]</h1>
-      <p class="s12-lede s12-hero-lede">[Accroche principale]</p>
+      <h1 class="s12-custom-h1">[Mot-clé principal] à [Ville]</h1>
+      <p class="s12-lede s12-hero-lede">[Accroche principale — nommer le soin signature et la méthode]</p>
       <div class="s12-hero-btns">
         <a href="[LIEN_RDV]" class="s12-btn" target="_blank" rel="noopener">Réserver ce soin</a>
-        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost">Offrir ce soin</a>
+        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost" target="_blank" rel="noopener">Offrir ce soin</a>
       </div>
       <div class="s12-infos">
         <div class="s12-info">
@@ -550,61 +759,105 @@
   <!-- ============ MARQUEE ============ -->
   <div class="s12-marquee">
     <div class="s12-marquee-track">
-      <span>[Nom du soin 1]</span><span>—</span><span>[Ville]</span><span>—</span>
-      <span>[Valeur 1]</span><span>—</span><span>[Valeur 2]</span><span>—</span>
-      <span>[Valeur 3]</span><span>—</span><span>Réservation 24h/24</span><span>—</span>
-      <span>[Nom du soin 1]</span><span>—</span><span>[Ville]</span><span>—</span>
-      <span>[Valeur 1]</span><span>—</span><span>[Valeur 2]</span><span>—</span>
-      <span>[Valeur 3]</span><span>—</span><span>Réservation 24h/24</span><span>—</span>
+      <span>[Mot-clé principal]</span><span>—</span><span>[Ville]</span><span>—</span>
+      <span>[Méthode ou approche exclusive]</span><span>—</span><span>[Nom du soin 1]</span><span>—</span>
+      <span>[Valeur 1]</span><span>—</span><span>Réservation 24h/24</span><span>—</span>
+      <span>[Mot-clé principal]</span><span>—</span><span>[Ville]</span><span>—</span>
+      <span>[Méthode ou approche exclusive]</span><span>—</span><span>[Nom du soin 1]</span><span>—</span>
+      <span>[Valeur 1]</span><span>—</span><span>Réservation 24h/24</span><span>—</span>
     </div>
   </div>
 
-  <!-- ============ S1 — DESCRIPTION + ENCART ============ -->
+  <!-- ============ S1 — LE SOIN : accordéon + photo + focus + en pratique ============ -->
   <section class="s12-sec s12-sec--blanc">
     <div class="s12-wrap">
       <div class="s12-head s12-reveal">
-        <p class="s12-over">Le soin</p>
-        <h2 class="s12-h2">Comprendre le [Nom du soin 1]</h2>
-        <p class="s12-lede">[suite italique]</p>
+        <p class="s12-over">Le soin signature</p>
+        <h2 class="s12-h2">[Mot-clé principal] à [Ville], concrètement</h2>
+        <p class="s12-lede">[Phrase d'accroche courte et incarnée]</p>
       </div>
 
-      <div class="s12-blocs">
-        <div>
-          <div class="s12-bloc s12-reveal">
-            <p class="s12-bloc-num">01</p>
-            <h3 class="s12-h3">Qu'est-ce que le [Nom du soin 1]</h3>
-            <p class="s12-p">[Description du soin]</p>
+      <div class="s12-duo">
+        <div class="s12-reveal-left">
+
+          <div class="s12-acc">
+            <button class="s12-acc-btn" type="button">
+              <span class="s12-acc-n">01</span>
+              <span class="s12-acc-ttl">[Titre bloc 1 — le déroulé en une phrase]</span>
+              <span class="s12-acc-ic" aria-hidden="true"></span>
+            </button>
+            <div class="s12-acc-body"><div class="s12-acc-inner">
+              <p class="s12-p">[Description du soin — premier temps. Mettre en <strong>gras</strong> 2 à 3 termes clés seulement.]</p>
+              <p class="s12-p">[Description du soin — second temps.]</p>
+            </div></div>
           </div>
 
-          <div class="s12-bloc s12-reveal">
-            <p class="s12-bloc-num">02</p>
-            <h3 class="s12-h3">Pour qui ce soin est pensé</h3>
-            <p class="s12-p">[Indication 1] · [Indication 2] · [Indication 3]</p>
-            <p class="s12-p">[Ce que mes clientes disent le plus souvent]</p>
+          <div class="s12-acc">
+            <button class="s12-acc-btn" type="button">
+              <span class="s12-acc-n">02</span>
+              <span class="s12-acc-ttl">[Titre bloc 2 — pourquoi cette approche]</span>
+              <span class="s12-acc-ic" aria-hidden="true"></span>
+            </button>
+            <div class="s12-acc-body"><div class="s12-acc-inner">
+              <p class="s12-p">[Ta conviction de fond]</p>
+              <p class="s12-p">[Ce que ça change par rapport à une autre approche]</p>
+            </div></div>
           </div>
+
+          <div class="s12-acc">
+            <button class="s12-acc-btn" type="button">
+              <span class="s12-acc-n">03</span>
+              <span class="s12-acc-ttl">Ce que vous emportez en repartant</span>
+              <span class="s12-acc-ic" aria-hidden="true"></span>
+            </button>
+            <div class="s12-acc-body"><div class="s12-acc-inner">
+              <p class="s12-p">[Ce que tu veux qu'elles emportent après]</p>
+              <p class="s12-p">[Ce que tu ne promets pas — la nuance qui crée la confiance]</p>
+            </div></div>
+          </div>
+
+          <div class="s12-acc">
+            <button class="s12-acc-btn" type="button">
+              <span class="s12-acc-n">04</span>
+              <span class="s12-acc-ttl">Pour qui ce soin est pensé</span>
+              <span class="s12-acc-ic" aria-hidden="true"></span>
+            </button>
+            <div class="s12-acc-body"><div class="s12-acc-inner">
+              <p class="s12-p">[Indication 1] · [Indication 2] · [Indication 3]</p>
+              <p class="s12-p">[Ce que mes clientes disent le plus souvent]</p>
+            </div></div>
+          </div>
+
         </div>
+        <div class="s12-reveal-right s12-photo-duo-wrap"><div class="s12-photo-duo"></div></div>
+      </div>
 
-        <div>
-          <div class="s12-bloc s12-reveal">
-            <p class="s12-bloc-num">03</p>
-            <h3 class="s12-h3">Mon approche du [Nom du soin 1]</h3>
-            <p class="s12-p">[Ce que tu fais différemment]</p>
-          </div>
+      <aside class="s12-focus s12-reveal">
+        <p class="s12-eyebrow">Ce qui rend ce soin unique à [Ville]</p>
+        <h3 class="s12-h3">[Méthode ou approche exclusive]</h3>
+        <div class="s12-focus-grid">
+          <p class="s12-p">[Formation, organisme, date — d'où vient cette méthode]</p>
+          <p class="s12-p">[Pourquoi personne d'autre ne la propose de cette façon à Ville]</p>
+        </div>
+      </aside>
 
-          <div class="s12-bloc s12-reveal">
-            <p class="s12-bloc-num">04</p>
-            <h3 class="s12-h3">Ce que vous emportez en repartant</h3>
-            <p class="s12-p">[Ce que tu veux qu'elles emportent après]</p>
-          </div>
+      <div>
+        <div class="s12-encart s12-reveal" style="margin-top:0;">
+          <strong>[Titre comparaison avec une prestation voisine]</strong>
+          [Différence en deux phrases] Voir la <a href="/[slug-soin-2]-[ville]">[Nom du soin 2] à [Ville]</a>, [Durée soin 2], [Tarif soin 2].
         </div>
       </div>
 
       <aside class="s12-pratique s12-reveal">
         <div class="s12-pratique-top">
-          <p class="s12-over">En pratique</p>
+          <div>
+            <p class="s12-over" style="margin-bottom:10px;">En pratique</p>
+            <p class="s12-prix"><sup>€</sup>[Tarif sans devise]</p>
+          </div>
           <div class="s12-pratique-btns">
-            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost">Offrir ce soin</a>
-            <a href="[LIEN_RDV]" class="s12-btn" target="_blank" rel="noopener">Réserver ce soin</a>
+            <a href="[LIEN_RDV_LIEU_1]" class="s12-btn" target="_blank" rel="noopener">Réserver [Lieu 1]</a>
+            <a href="[LIEN_RDV_LIEU_2]" class="s12-btn" target="_blank" rel="noopener">Réserver [Lieu 2]</a>
+            <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost" target="_blank" rel="noopener">Offrir ce soin</a>
           </div>
         </div>
         <div class="s12-pratique-grid">
@@ -613,8 +866,8 @@
             <p class="s12-cell-v">[Durée]</p>
           </div>
           <div class="s12-cell">
-            <p class="s12-cell-k">Tarif</p>
-            <p class="s12-cell-v">[Tarif]</p>
+            <p class="s12-cell-k">Composition</p>
+            <p class="s12-cell-v">[Détail du protocole]</p>
           </div>
           <div class="s12-cell">
             <p class="s12-cell-k">Lieu</p>
@@ -630,12 +883,55 @@
     </div>
   </section>
 
-  <!-- ============ S2 — BIENFAITS ============ -->
+  <!-- ============ S2 — TÉMOIGNAGES (carrousel automatique) ============ -->
   <section class="s12-sec s12-sec--papier">
+    <div class="s12-wrap">
+      <div class="s12-head s12-reveal" style="text-align:center;">
+        <p class="s12-over">Elles en parlent</p>
+        <h2 class="s12-h2">Après un [Nom du soin 1] à [Ville]</h2>
+      </div>
+      <div class="s12-carrousel-wrap s12-reveal" id="s12Avis">
+        <div class="s12-carrousel">
+
+          <figure class="s12-slide">
+            <div class="s12-stars"><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i></div>
+            <blockquote class="s12-quote">« [Témoignage 1 — verbatim exact, aucune reformulation] »</blockquote>
+            <figcaption class="s12-quote-nom">[Prénom N.] · Avis Google vérifié</figcaption>
+          </figure>
+
+          <figure class="s12-slide">
+            <div class="s12-stars"><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i></div>
+            <blockquote class="s12-quote">« [Témoignage 2 — verbatim exact, aucune reformulation] »</blockquote>
+            <figcaption class="s12-quote-nom">[Prénom N.] · Avis Google vérifié</figcaption>
+          </figure>
+
+          <figure class="s12-slide">
+            <div class="s12-stars"><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i><i class="s12-star"></i></div>
+            <blockquote class="s12-quote">« [Témoignage 3 — verbatim exact, aucune reformulation] »</blockquote>
+            <figcaption class="s12-quote-nom">[Prénom N.] · Avis Google vérifié</figcaption>
+          </figure>
+
+        </div>
+        <div class="s12-dots">
+          <button class="s12-dot" type="button" aria-label="Avis 1"></button>
+          <button class="s12-dot" type="button" aria-label="Avis 2"></button>
+          <button class="s12-dot" type="button" aria-label="Avis 3"></button>
+        </div>
+      </div>
+      <div class="s12-note-google s12-reveal">
+        <p class="s12-over">[X.X] ★ · [X] avis Google</p>
+        <a href="[LIEN_GOOGLE_AVIS]" class="s12-btn-ghost" target="_blank" rel="noopener">Lire tous les avis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ S3 — BIENFAITS ============ -->
+  <section class="s12-sec s12-sec--blanc">
     <div class="s12-wrap">
       <div class="s12-head s12-reveal">
         <p class="s12-over">Bienfaits</p>
-        <h2 class="s12-h2">Ce que le [Nom du soin 1] apporte</h2>
+        <h2 class="s12-h2">Ce que le [Nom du soin 1] change concrètement</h2>
+        <p class="s12-lede">[Phrase de synthèse des bienfaits]</p>
       </div>
       <div class="s12-grid3">
         <div class="s12-bien s12-reveal"><p class="s12-bien-num">01</p><h3 class="s12-h3">[Bienfait 1]</h3><p class="s12-p">[Détail bienfait 1]</p></div>
@@ -645,10 +941,11 @@
         <div class="s12-bien s12-reveal s12-d1"><p class="s12-bien-num">05</p><h3 class="s12-h3">[Bienfait 5]</h3><p class="s12-p">[Détail bienfait 5]</p></div>
         <div class="s12-bien s12-reveal s12-d2"><p class="s12-bien-num">06</p><h3 class="s12-h3">[Bienfait 6]</h3><p class="s12-p">[Détail bienfait 6]</p></div>
       </div>
+      <p class="s12-note" style="text-align:left;">Ces soins ne se substituent pas à un suivi médical.</p>
     </div>
   </section>
 
-  <!-- ============ S3 — DÉROULEMENT ============ -->
+  <!-- ============ S4 — DÉROULEMENT ============ -->
   <section class="s12-sec s12-sec--encre">
     <div class="s12-wrap">
       <div class="s12-head s12-reveal">
@@ -673,6 +970,13 @@
             <p class="s12-etape-n">IV</p>
             <div><h3 class="s12-h3">[Titre étape 4]</h3><p class="s12-p">[Étape 4 déroulement]</p></div>
           </div>
+          <div class="s12-encart-lt s12-reveal">
+            <strong>Recommandations après la séance</strong>
+            [Conseil post-séance]
+          </div>
+          <div style="margin-top:32px;">
+            <a href="[LIEN_RDV]" class="s12-btn-ghost s12-btn-lt" target="_blank" rel="noopener">Prendre rendez-vous</a>
+          </div>
         </div>
         <div class="s12-reveal-right">
           <div class="s12-photo-pilule"></div>
@@ -681,16 +985,16 @@
     </div>
   </section>
 
-  <!-- ============ S4 — INDICATIONS & CONTRE-INDICATIONS ============ -->
-  <section class="s12-sec s12-sec--blanc">
+  <!-- ============ S5 — INDICATIONS & CONTRE-INDICATIONS ============ -->
+  <section class="s12-sec s12-sec--papier">
     <div class="s12-wrap">
       <div class="s12-head s12-reveal">
-        <p class="s12-over">Indications</p>
+        <p class="s12-over">Pour qui</p>
         <h2 class="s12-h2">Ce soin est-il fait pour vous</h2>
       </div>
       <div class="s12-cols2">
         <div class="s12-reveal-left">
-          <h3 class="s12-h3" style="margin-bottom:20px;">Le [Nom du soin 1] est indiqué si</h3>
+          <h3 class="s12-h3" style="margin-bottom:20px;">Situations pouvant être accompagnées</h3>
           <ul class="s12-liste">
             <li>[Indication 1]</li>
             <li>[Indication 2]</li>
@@ -700,7 +1004,7 @@
           </ul>
         </div>
         <div class="s12-reveal-right">
-          <h3 class="s12-h3" style="margin-bottom:20px;">Ce soin n'est pas adapté si</h3>
+          <h3 class="s12-h3" style="margin-bottom:20px;">Situations contre-indiquées</h3>
           <ul class="s12-liste">
             <li>[Contre-indication 1]</li>
             <li>[Contre-indication 2]</li>
@@ -710,38 +1014,7 @@
       </div>
       <div class="s12-ci s12-reveal">
         <p class="s12-eyebrow">Important</p>
-        <p class="s12-p">[Mention contre-indications à signaler avant la séance]</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ S5 — TÉMOIGNAGES ============ -->
-  <section class="s12-sec s12-sec--papier">
-    <div class="s12-wrap">
-      <div class="s12-head s12-reveal">
-        <p class="s12-over">Elles en parlent</p>
-        <h2 class="s12-h2">Après un [Nom du soin 1]</h2>
-      </div>
-      <div class="s12-gap">
-        <div class="s12-avis s12-reveal">
-          <p class="s12-stars">★★★★★</p>
-          <p class="s12-avis-txt">[Témoignage 1]</p>
-          <p class="s12-avis-nom">[Prénom N.] · [Ville]</p>
-        </div>
-        <div class="s12-avis s12-reveal s12-d1">
-          <p class="s12-stars">★★★★★</p>
-          <p class="s12-avis-txt">[Témoignage 2]</p>
-          <p class="s12-avis-nom">[Prénom N.] · [Ville]</p>
-        </div>
-        <div class="s12-avis s12-reveal s12-d2">
-          <p class="s12-stars">★★★★★</p>
-          <p class="s12-avis-txt">[Témoignage 3]</p>
-          <p class="s12-avis-nom">[Prénom N.] · [Ville]</p>
-        </div>
-      </div>
-      <div class="s12-note-google s12-reveal">
-        <p class="s12-over">[X.X] ★ · [X] avis Google</p>
-        <a href="[LIEN_GOOGLE_AVIS]" class="s12-btn-ghost" target="_blank" rel="noopener">Lire tous les avis</a>
+        <p class="s12-p">[Mention contre-indications à signaler avant la séance] Ces soins ne se substituent pas à un suivi médical.</p>
       </div>
     </div>
   </section>
@@ -751,13 +1024,13 @@
     <div class="s12-wrap s12-prat">
       <div class="s12-reveal-left"><div class="s12-portrait"></div></div>
       <div class="s12-reveal-right">
-        <p class="s12-over" style="margin-bottom:16px;">La praticienne</p>
-        <h2 class="s12-h2" style="margin-bottom:18px;">[Prénom Nom]</h2>
+        <p class="s12-over" style="margin-bottom:16px;">Votre praticienne</p>
+        <h2 class="s12-h2" style="margin-bottom:18px;">[Prénom Nom], [Titre professionnel] à [Ville]</h2>
         <p class="s12-lede" style="margin-bottom:26px;">[Citation depuis Bloc 0 ADN]</p>
         <p class="s12-p">[Pourquoi tu fais ce métier]</p>
-        <p class="s12-p">[Ce qui t'a amenée là]</p>
+        <p class="s12-p">[Ce qui t'a amenée là — et comment tu es arrivée à cette méthode]</p>
         <div class="s12-certifs">
-          <span class="s12-certif">[Formation 1] · [Organisme]</span>
+          <span class="s12-certif">[Formation 1] · [Organisme] · [Année]</span>
           <span class="s12-certif">[Formation 2]</span>
           <span class="s12-certif">[X] ans de pratique</span>
         </div>
@@ -768,8 +1041,44 @@
     </div>
   </section>
 
-  <!-- ============ S7 — FAQ ============ -->
+  <!-- ============ S7 — LE CABINET (galerie lightbox) ============ -->
   <section class="s12-sec s12-sec--blanc">
+    <div class="s12-wrap">
+      <div class="s12-head s12-reveal">
+        <p class="s12-over">Le cabinet</p>
+        <h2 class="s12-h2">[Nom de l'enseigne], [Ville]</h2>
+      </div>
+      <div class="s12-cab">
+        <div class="s12-cab-photos s12-reveal-left">
+          <img src="[URL_PHOTO_CABINET_1]" alt="[Description photo cabinet 1], [Ville]" class="s12-cab-photo s12-cab-wide" loading="lazy">
+          <img src="[URL_PHOTO_CABINET_2]" alt="[Description photo cabinet 2], [Ville]" class="s12-cab-photo" loading="lazy">
+          <img src="[URL_PHOTO_CABINET_3]" alt="[Description photo cabinet 3], [Ville]" class="s12-cab-photo" loading="lazy">
+        </div>
+        <div class="s12-cab-infos s12-reveal-right">
+          <div class="s12-cab-row">
+            <p class="s12-cab-k">Adresse</p>
+            <p class="s12-cab-v">[Numéro et rue]<br>[Code postal] [Ville]</p>
+          </div>
+          <div class="s12-cab-row">
+            <p class="s12-cab-k">Horaires</p>
+            <p class="s12-cab-v">[Horaires]<br>Uniquement sur rendez-vous</p>
+          </div>
+          <div class="s12-cab-row">
+            <p class="s12-cab-k">Zone desservie</p>
+            <p class="s12-cab-v">[Ville] et alentours : [Ville 2], [Ville 3], [Ville 4]</p>
+          </div>
+          <div class="s12-cab-row">
+            <p class="s12-cab-k">Contact</p>
+            <p class="s12-cab-v"><a href="tel:[+33XXXXXXXXX]">[Téléphone]</a><br><a href="mailto:[Email]">[Email]</a></p>
+          </div>
+          <a href="[LIEN_RDV]" class="s12-cab-btn" target="_blank" rel="noopener">Réserver en ligne — 24h/24</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ S8 — FAQ ============ -->
+  <section class="s12-sec s12-sec--papier">
     <div class="s12-wrap s12-faq-wrap">
       <div>
         <div class="s12-head s12-reveal">
@@ -786,6 +1095,10 @@
             <div class="s12-q-body"><p>[Durée] à [Tarif], [Durée 2] à [Tarif 2], [Durée 3] à [Tarif 3].</p></div>
           </div>
           <div class="s12-q">
+            <button class="s12-q-btn" type="button">Qu'est-ce que la [Méthode ou approche exclusive] ?<span class="s12-q-ic">+</span></button>
+            <div class="s12-q-body"><p>[Description de la méthode] [Ce qui la rend unique à Ville]</p></div>
+          </div>
+          <div class="s12-q">
             <button class="s12-q-btn" type="button">Y a-t-il des contre-indications ?<span class="s12-q-ic">+</span></button>
             <div class="s12-q-body"><p>[Contre-indication 1] · [Contre-indication 2] · [Contre-indication 3]</p></div>
           </div>
@@ -799,7 +1112,7 @@
           </div>
           <div class="s12-q">
             <button class="s12-q-btn" type="button">Peut-on offrir un [Nom du soin 1] ?<span class="s12-q-ic">+</span></button>
-            <div class="s12-q-body"><p>[Modalités carte cadeau]</p></div>
+            <div class="s12-q-body"><p>[Modalités carte cadeau] La carte cadeau s'achète <a href="[LIEN_CARTE_CADEAU]" target="_blank" rel="noopener">directement en ligne</a>.</p></div>
           </div>
           <div class="s12-q">
             <button class="s12-q-btn" type="button">Ce soin est-il proposé à domicile ou en visio ?<span class="s12-q-ic">+</span></button>
@@ -819,8 +1132,8 @@
     </div>
   </section>
 
-  <!-- ============ S8 — AUTRES SOINS ============ -->
-  <section class="s12-sec s12-sec--papier">
+  <!-- ============ S9 — AUTRES SOINS ============ -->
+  <section class="s12-sec s12-sec--blanc">
     <div class="s12-wrap">
       <div class="s12-head s12-reveal">
         <p class="s12-over">Poursuivre</p>
@@ -830,6 +1143,7 @@
         <a href="/[slug-soin-2]-[ville]" class="s12-soin s12-reveal">
           <div class="s12-soin-img" style="background-image:url('[URL_PHOTO_SOIN_2]');"></div>
           <div class="s12-soin-body">
+            <p class="s12-soin-cat">[Catégorie soin 2]</p>
             <h3 class="s12-h3">[Nom du soin 2]</h3>
             <p class="s12-p">[Description courte soin 2]</p>
             <p class="s12-soin-meta">[Durée soin 2] · [Tarif soin 2]</p>
@@ -838,6 +1152,7 @@
         <a href="/[slug-soin-3]-[ville]" class="s12-soin s12-reveal s12-d1">
           <div class="s12-soin-img" style="background-image:url('[URL_PHOTO_SOIN_3]');"></div>
           <div class="s12-soin-body">
+            <p class="s12-soin-cat">[Catégorie soin 3]</p>
             <h3 class="s12-h3">[Nom du soin 3]</h3>
             <p class="s12-p">[Description courte soin 3]</p>
             <p class="s12-soin-meta">[Durée soin 3] · [Tarif soin 3]</p>
@@ -846,6 +1161,7 @@
         <a href="/[slug-soin-4]-[ville]" class="s12-soin s12-reveal s12-d2">
           <div class="s12-soin-img" style="background-image:url('[URL_PHOTO_SOIN_4]');"></div>
           <div class="s12-soin-body">
+            <p class="s12-soin-cat">[Catégorie soin 4]</p>
             <h3 class="s12-h3">[Nom du soin 4]</h3>
             <p class="s12-p">[Description courte soin 4]</p>
             <p class="s12-soin-meta">[Durée soin 4] · [Tarif soin 4]</p>
@@ -858,13 +1174,14 @@
   <!-- ============ CTA FINAL ============ -->
   <section class="s12-sec s12-sec--creme">
     <div class="s12-wrap s12-cta s12-reveal">
-      <p class="s12-over">Réserver</p>
+      <p class="s12-over">[Prénom Nom] · [Ville]</p>
       <h2 class="s12-h2">Votre [Nom du soin 1] à [Ville]</h2>
       <p class="s12-lede">[Accroche finale réservation]</p>
       <div class="s12-cta-btns">
         <a href="[LIEN_RDV]" class="s12-btn" target="_blank" rel="noopener">Prendre rendez-vous</a>
-        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost">Offrir ce soin</a>
+        <a href="[LIEN_CARTE_CADEAU]" class="s12-btn-ghost" target="_blank" rel="noopener">Offrir ce soin</a>
       </div>
+      <p class="s12-cta-contact">Une question ? <a href="tel:[+33XXXXXXXXX]">[Téléphone]</a> · <a href="mailto:[Email]">[Email]</a></p>
     </div>
   </section>
 
@@ -882,6 +1199,19 @@
         <a href="/[slug-contact]" class="s12-pill">Contact</a>
       </div>
     </div>
+  </div>
+
+  <p class="s12-fresh"><time datetime="[AAAA-MM-JJ]">Page mise à jour le [Date en toutes lettres]</time></p>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="s12-lb" id="s12Lb" role="dialog" aria-modal="true" aria-label="Photos du cabinet">
+    <button class="s12-lb-btn s12-lb-close" type="button" aria-label="Fermer"></button>
+    <button class="s12-lb-btn s12-lb-prev" type="button" aria-label="Photo précédente"></button>
+    <button class="s12-lb-btn s12-lb-next" type="button" aria-label="Photo suivante"></button>
+    <figure class="s12-lb-fig">
+      <img class="s12-lb-img" id="s12LbImg" src="" alt="">
+      <figcaption class="s12-lb-cap" id="s12LbCap"></figcaption>
+    </figure>
   </div>
 
 </div>
@@ -924,6 +1254,101 @@
   }, {threshold: .08});
   document.querySelectorAll('.s12-reveal,.s12-reveal-left,.s12-reveal-right')
     .forEach(function(el){ io.observe(el); });
+})();
+
+/* Accordéon "Le soin" — un seul volet ouvert, tous fermés au chargement */
+(function(){
+  document.querySelectorAll('.s12-acc-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var acc = btn.parentElement;
+      var open = acc.classList.contains('open');
+      acc.parentElement.querySelectorAll('.s12-acc.open').forEach(function(o){ o.classList.remove('open'); });
+      if(!open){ acc.classList.add('open'); }
+    });
+  });
+})();
+
+/* Carrousel d'avis — défilement automatique, pause au survol */
+(function(){
+  var wrap = document.getElementById('s12Avis');
+  if(!wrap) return;
+  var slides = wrap.querySelectorAll('.s12-slide');
+  var dots   = wrap.querySelectorAll('.s12-dot');
+  if(!slides.length) return;
+  var i = 0, timer = null;
+  function go(n){
+    slides[i].classList.remove('on');
+    if(dots[i]) dots[i].classList.remove('active');
+    i = n;
+    slides[i].classList.add('on');
+    if(dots[i]){ void dots[i].offsetWidth; dots[i].classList.add('active'); }
+  }
+  function next(){ go((i+1) % slides.length); }
+  function start(){ clearInterval(timer); timer = setInterval(next, 7000); }
+  dots.forEach(function(d, n){
+    d.addEventListener('click', function(){ go(n); start(); });
+  });
+  wrap.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  wrap.addEventListener('mouseleave', start);
+  slides[0].classList.add('on');
+  if(dots[0]) dots[0].classList.add('active');
+  start();
+})();
+
+/* Lightbox claire — galerie du cabinet */
+(function(){
+  var lb  = document.getElementById('s12Lb');
+  var img = document.getElementById('s12LbImg');
+  var cap = document.getElementById('s12LbCap');
+  if(!lb || !img) return;
+  var photos = Array.prototype.slice.call(document.querySelectorAll('.s12-cab-photo'));
+  if(!photos.length) return;
+  var i = 0, last = null;
+
+  function show(n){
+    i = (n + photos.length) % photos.length;
+    var src = photos[i].getAttribute('src').replace(/format=\d+w/, 'format=2500w');
+    img.classList.remove('shown');
+    setTimeout(function(){
+      img.src = src;
+      img.alt = photos[i].alt || '';
+      cap.textContent = (photos[i].alt || '') + ' · ' + (i+1) + ' / ' + photos.length;
+      img.classList.add('shown');
+    }, 180);
+  }
+  function open(n){
+    last = document.activeElement;
+    show(n);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.s12-lb-close').focus();
+  }
+  function close(){
+    lb.classList.remove('open');
+    img.classList.remove('shown');
+    document.body.style.overflow = '';
+    if(last && last.focus) last.focus();
+  }
+
+  photos.forEach(function(ph, n){
+    ph.setAttribute('tabindex','0');
+    ph.setAttribute('role','button');
+    ph.addEventListener('click', function(){ open(n); });
+    ph.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(n); }
+    });
+  });
+
+  lb.querySelector('.s12-lb-close').addEventListener('click', close);
+  lb.querySelector('.s12-lb-prev').addEventListener('click', function(e){ e.stopPropagation(); show(i-1); });
+  lb.querySelector('.s12-lb-next').addEventListener('click', function(e){ e.stopPropagation(); show(i+1); });
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target.classList.contains('s12-lb-fig')) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft')  show(i-1);
+    if(e.key === 'ArrowRight') show(i+1);
+  });
 })();
 
 /* FAQ accordéon */
